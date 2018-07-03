@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import users from "./backend/users"
+import {getUser} from "./backend/users"
+import {getAllProjects, getProject} from "./backend/projects"
+import {login, logout} from "./backend/users";
+import firebase from "./backend/firebase"
 
+login("henninnenesgrd@gmail.com", "123456789")
+//https://api.trello.com/1/members/me/?key=85873074232e857f4e364a3ef1b545a3&token=ff6a08c9b2fc1df53138d4f788122032fd7d7ae93bb6919f1d81d1c5cd8af10b
 class App extends Component {
+
+  constructor(){
+    super();
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        console.log("USER IS SIGNED IN")
+        // ...
+      } else {
+        console.log("USER IS SIGNED OUT")
+      }
+    });
+  }
+
   render() {
     return (
       <div className="App">
