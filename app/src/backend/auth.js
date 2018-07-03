@@ -2,6 +2,18 @@ import firebase from "./firebase"
 
 let isLoggedIn = false;
 
+export async function register(firstname, lastname, email, password){
+  const newUser = await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    return Promise.reject(error);
+  });
+  console.log(newUser)
+  const user = {firstname, lastname, email};
+  console.log(user)
+  await firebase.firestore().collection("users").doc(newUser.user.uid).set(user);
+  return true;
+}
+
+
 export async function login(email, password){
   await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     return Promise.reject(error);
