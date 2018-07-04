@@ -1,37 +1,56 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import "./HomePage.css";
-import { getAllProjects, getProject } from "../backend/projects";
-import ProjectsDisplay from "../components/ProjectsDisplay";
-import LoginRegister from "../components/LoginRegister"
-import FilterProjects from "../components/FilterProjects"
-import Line from "../components/Line"
+import "./Main.css";
+import { getProject } from "../backend/projects";
+import LoginRegister from "../components/LoginRegister";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { withRouter } from 'react-router'
+import PropTypes from 'prop-types'
 
 class ProjectPage extends Component {
-  constructor() {
-    super();
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  }
+
+  constructor(props) {
+    super(props);
+    console.log(props)
+    this.state = {
+      loading: true,
+      project: {}
+    }
+  }
+
+  componentDidMount(){
+
+    if(this.props.match && this.props.match.params.projectId){
+      getProject(this.props.match.params.projectId).then((project) => {
+        this.setState({
+          loading: false,
+          project
+        })
+      })
+    }
+
   }
 
   render() {
+    console.log(this.state)
     return (
-      <div class="HomePage">
+      <div class="PageContainer">
         <header className="App-header">
           <img src={logo} className="Logo" alt="logo" />
           <LoginRegister />
         </header>
         <div class="Content">
-          <h1 className="App-title">DNB Open Source</h1>
-          <h2 className="App-intro">
-            Give your contribution
-          </h2>
-          <div style={{marginTop: 30, marginBottom: 30}}>
-            <Line style={{marginBottom: 10}}/>
-
-          </div>
+          <h1>{this.state.project.name}</h1>
         </div>
       </div>
     );
   }
 }
 
-export default ProjectPage;
+export default withRouter(ProjectPage);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import "./HomePage.css";
+import "./Main.css";
 import { getAllProjects, getProject } from "../backend/projects";
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister"
@@ -28,7 +28,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div class="HomePage">
+      <div class="PageContainer">
         <header className="App-header">
           <img src={logo} className="Logo" alt="logo" />
           <LoginRegister />
