@@ -49,7 +49,7 @@ const styles = {
     width: "auto",
     height: "100%",
     border: "solid 3px #ffffff",
-    backgroundColor: "grey"
+    backgroundColor: "red"
   },
   BackgroundImage: {
     backgroundSize: "cover"
