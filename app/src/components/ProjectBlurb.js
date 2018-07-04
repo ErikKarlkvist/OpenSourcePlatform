@@ -43,7 +43,7 @@ class ProjectBlurb extends Component {
         )}
         {this.state.isHovering && (
           <div style={styles.Description}>
-            <h2 style={{ color: "black" }}>{this.props.project.name}</h2>
+            <h4 style={{ color: "black" }}>{this.props.project.name}</h4>
             <p> {this.props.project.description} </p>
           </div>
         )}
