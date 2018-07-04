@@ -11,7 +11,7 @@
   word-wrap: break-word;
 
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-  transition: opacity 1s;
+  transition: opacity 0.5s;
   opacity: 0.5;
 }
 
