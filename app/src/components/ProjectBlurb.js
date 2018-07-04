@@ -46,7 +46,12 @@ class ProjectBlurb extends Component {
           </div>
         )}
 
-        {this.state.isHovering && <div>{this.props.project.description}</div>}
+        {this.state.isHovering && (
+          <div style={styles.Description}>
+            <h2>{this.props.project.name}</h2>
+            <p> {this.props.project.description} </p>
+          </div>
+        )}
       </div>
     );
   }
@@ -57,16 +62,16 @@ export default ProjectBlurb;
 const styles = {
   Rectangle: {
     position: "relative",
-    width: "200px",
-    height: "200px", //Temporary until height is set in parent
+    width: "300",
+    height: "300px", //Temporary until height is set in parent
     border: "solid 3px #ffffff",
-    backgroundColor: "grey"
+    backgroundColor: "black"
   },
   BackgroundImage: {
     position: "relative",
-    color: "#FF3333",
+    opacity: 0.5,
     width: "100%",
-    height: "95%"
+    height: "100%"
   },
   ProjectName: {
     //Centers the text above the image
@@ -78,5 +83,11 @@ const styles = {
     color: "white",
     fontSize: "24px",
     fontFamiliy: "FedraSans"
+  },
+  Description: {
+    backgroundColor: "white",
+    color: "black",
+    height: "95%",
+    marginTop: "2%"
   }
 };
