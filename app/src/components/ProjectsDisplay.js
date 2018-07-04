@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class ProjectsDisplay extends Component {
-    render(){
-        const data = this.props.projects;
-        console.log(data)
-        const listItems = data.map((d) => <li key={d.name}>{d.name}</li>)
-        return (
-            <div>
-                {listItems}
-            </div>
-
-        )
-    }
+  render() {
+    const data = this.props.projects;
+    console.log(data);
+    const listItems = data.map(d => <li key={d.name}>{d.name}</li>);
+    return <div>{listItems}</div>;
+  }
 }
 export default ProjectsDisplay;
