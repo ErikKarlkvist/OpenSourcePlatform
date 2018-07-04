@@ -4,17 +4,23 @@ import "./HomePage.css";
 import { getAllProjects, getProject } from "../backend/projects";
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister"
+import FilterProjects from "../components/FilterProjects"
 class HomePage extends Component {
   constructor() {
     super();
     this.state = {
-      projects: []
+      currentlyViewing: []
     }
   }
 
   componentDidMount() {
     getAllProjects().then(projects => {
-      this.setState({ projects });
+      this.setState({ 
+        currentlyViewing: projects,
+        allProjects: projects,
+        liveProjects: [],
+        graduateProjects: [] 
+      });
     });
   }
 
@@ -30,12 +36,21 @@ class HomePage extends Component {
           <h2 className="App-intro">
             Give your contribution
           </h2>
-          <ProjectsDisplay projects={this.state.projects} />
+          <FilterProjects changeFilter = {this.changeFilter}/>
+          <ProjectsDisplay projects={this.state.currentlyViewing} />
         </div>
       </div>
     );
   }
+
+  changeFilter = (picked) => {
+    if(picked === "all"){
+      this.setState({currentlyViewing: this.state.allProjects})
+    } else if(picked === "live"){
+      this.setState({currentlyViewing: this.state.liveProjects})
+    } else{
+      this.setState({currentlyViewing: this.state.graduateProjects})
+    }
+  }
 }
-
-
 export default HomePage;

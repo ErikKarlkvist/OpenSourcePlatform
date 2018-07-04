@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import firebase from "./backend/firebase";
 import HomePage from "./pages/HomePage";
+import "./resources/fonts.css"
 class App extends Component {
   constructor() {
     super();
