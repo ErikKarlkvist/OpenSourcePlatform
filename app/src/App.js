@@ -42,8 +42,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("!", this.state);
-
     return (
       <div className="App">
         <header className="App-header">
@@ -57,6 +55,9 @@ class App extends Component {
         <ProjectsDisplay projects={this.state.users} />
         <div style={{ height: "200px", width: "200px" }}>
           <ProjectBlurb project={this.state.projects[0]} />
+        </div>
+        <div style={{ height: "200px", width: "200px" }}>
+          <ProjectBlurb project={this.state.projects[1]} />
         </div>
       </div>
     );
