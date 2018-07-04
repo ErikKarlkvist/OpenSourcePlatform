@@ -5,15 +5,19 @@ class ProjectBlurb extends Component {
   constructor() {
     super();
     this.state = {
-      text: ""
+      isHovering: false,
+      project: {}
     };
   }
+  componentDidMount() {
+    this.setState({ project: this.props.project });
+  }
   onMouseOver(e) {
-    this.setState({ text: this.props.project.description });
+    this.setState({ isHovering: true });
   }
 
   onMouseOut(e) {
-    this.setState({ text: this.props.project.name });
+    this.setState({ isHovering: false });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,18 +27,31 @@ class ProjectBlurb extends Component {
   }
 
   render() {
+    if (this.props.project === undefined) {
+      return <div />;
+    }
     return (
       <div
         style={styles.Rectangle}
         onMouseEnter={this.onMouseOver.bind(this)}
         onMouseLeave={this.onMouseOut.bind(this)}
       >
-        <Image
-          responsive
-          style={styles.BackgroundImage}
-          src="https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/KB6iqfWRNQNIKYuTxeQ5%2Fdnb.png?alt=media&token=c393a52d-7785-44c3-bc3b-56115939ecc5"
-        />
-        {this.state.text}
+        {!this.state.isHovering && (
+          <div style={{ height: "100%" }}>
+            <img
+              style={styles.BackgroundImage}
+              src={this.props.project.imgURL}
+            />
+            <span style={styles.ProjectName}>{this.props.project.name}</span>
+          </div>
+        )}
+
+        {this.state.isHovering && (
+          <div style={styles.Description}>
+            <h2>{this.props.project.name}</h2>
+            <p> {this.props.project.description} </p>
+          </div>
+        )}
       </div>
     );
   }
@@ -44,22 +61,33 @@ export default ProjectBlurb;
 
 const styles = {
   Rectangle: {
-    //justifyContent: "center",
-    //alignItems: "center",
-    width: "auto",
-    height: "100%",
+    position: "relative",
+    width: "300",
+    height: "300px", //Temporary until height is set in parent
     border: "solid 3px #ffffff",
-    backgroundColor: "grey"
+    backgroundColor: "black"
   },
   BackgroundImage: {
-    backgroundSize: "cover"
+    position: "relative",
+    opacity: 0.5,
+    width: "100%",
+    height: "100%"
   },
   ProjectName: {
+    //Centers the text above the image
     position: "absolute",
-    top: "50%",
     left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
+
     color: "white",
     fontSize: "24px",
     fontFamiliy: "FedraSans"
+  },
+  Description: {
+    backgroundColor: "white",
+    color: "black",
+    height: "95%",
+    marginTop: "2%"
   }
 };
