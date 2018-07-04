@@ -77,8 +77,9 @@ const styles = {
     transform: "translate(-50%, -50%)",
 
     color: "white",
-    fontSize: "24px",
-    fontFamiliy: "FedraSans"
+    fontSize: "34px",
+    fontFamiliy: "FedraSans",
+    textShadow: "2px 2px 4px #000000"
   },
   Description: {
     position: "absolute",
@@ -89,6 +90,7 @@ const styles = {
     height: "90%",
     width: "90%",
     marginTop: "2%",
-    textAlign: "left"
+    textAlign: "left",
+    wordWrap: "break-word"
   }
 };
