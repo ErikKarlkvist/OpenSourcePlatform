@@ -9,7 +9,9 @@ export async function register(firstname, lastname, email, password){
   console.log(newUser)
   const user = {firstname, lastname, email};
   console.log(user)
-  await firebase.firestore().collection("users").doc(newUser.user.uid).set(user);
+  await firebase.firestore().collection("users").doc(newUser.user.uid).set(user).catch(function(error){
+    return Promise.reject(error);
+  });
   return true;
 }
 
