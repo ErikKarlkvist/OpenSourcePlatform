@@ -51,8 +51,10 @@ export async function getProject(id) {
   if (snapshot.exists) {
     let projectData = snapshot.data();
     projectData.id = snapshot.id;
-    projectData.tools = await getToolsForProject(projectData);
-    projectData.developers = await getToolsForProject(projectData);
+    const toolData = await getToolsForProject(projectData);
+    const developerData = await getDevelopersForProject(projectData);
+    projectData.tools = toolData.tools;
+    projectData.developers = developerData.developers;
     return Promise.resolve(projectData);
   } else {
     // doc.data() will be undefined in this case
