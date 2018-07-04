@@ -1,7 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@font-face {
+    font-family: 'FedraSans';
+    src: url('fedra_sans_book-webfont.woff2') format('woff2'),
+         url('fedra_sans_book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 /* h1---->Title/header */
 h1 {
-	font-family: "Open Sans";
+	font-family: FedraSans;
 	font-size: 72px;
 	font-weight: normal;
 	font-style: normal;

@@ -18,8 +18,5 @@ const styles = {
     margin: "auto",
     display: "flex"
   },
-  container: {
-
-  }
 }
 export default Line;
