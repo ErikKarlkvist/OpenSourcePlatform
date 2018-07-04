@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Image } from "react-bootstrap";
+import "./ProjectBlurb.css";
 
 class ProjectBlurb extends Component {
   constructor() {
@@ -42,7 +43,7 @@ class ProjectBlurb extends Component {
           <span style={styles.ProjectName}>{this.props.project.name}</span>
         )}
         {this.state.isHovering && (
-          <div style={styles.Description}>
+          <div className={"description"}>
             <h4 style={{ color: "black" }}>{this.props.project.name}</h4>
             <p> {this.props.project.description} </p>
           </div>
@@ -80,17 +81,5 @@ const styles = {
     fontSize: "34px",
     fontFamiliy: "FedraSans",
     textShadow: "2px 2px 4px #000000"
-  },
-  Description: {
-    position: "absolute",
-    top: "5%",
-    left: "5%",
-    backgroundColor: "white",
-    color: "black",
-    height: "90%",
-    width: "90%",
-    marginTop: "2%",
-    textAlign: "left",
-    wordWrap: "break-word"
   }
 };
