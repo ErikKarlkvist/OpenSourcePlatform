@@ -5,15 +5,20 @@ class ProjectBlurb extends Component {
   constructor() {
     super();
     this.state = {
-      text: ""
+      isHovering: false,
+      project: {}
     };
   }
+
+  componentDidMount() {
+    this.setState({ project: this.props.project });
+  }
   onMouseOver(e) {
-    this.setState({ text: this.props.project.description });
+    this.setState({ isHovering: true });
   }
 
   onMouseOut(e) {
-    this.setState({ text: this.props.project.name });
+    this.setState({ isHovering: false });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,18 +28,26 @@ class ProjectBlurb extends Component {
   }
 
   render() {
+    if (this.props.project === undefined) {
+      return <div />;
+    }
     return (
       <div
         style={styles.Rectangle}
         onMouseEnter={this.onMouseOver.bind(this)}
         onMouseLeave={this.onMouseOut.bind(this)}
       >
-        <Image
-          responsive
-          style={styles.BackgroundImage}
-          src="https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/KB6iqfWRNQNIKYuTxeQ5%2Fdnb.png?alt=media&token=c393a52d-7785-44c3-bc3b-56115939ecc5"
-        />
-        {this.state.text}
+        {!this.state.isHovering && (
+          <div>
+            <img
+              style={styles.BackgroundImage}
+              src="https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/KB6iqfWRNQNIKYuTxeQ5%2Fdnb.png?alt=media&token=c393a52d-7785-44c3-bc3b-56115939ecc5"
+            />
+            <span style={styles.ProjectName}>{this.props.project.name}</span>
+          </div>
+        )}
+
+        {this.state.isHovering && <div>{this.props.project.description}</div>}
       </div>
     );
   }
@@ -44,20 +57,22 @@ export default ProjectBlurb;
 
 const styles = {
   Rectangle: {
-    //justifyContent: "center",
-    //alignItems: "center",
-    width: "auto",
-    height: "100%",
+    position: "relative",
+    width: "200px",
+    height: "200px", //Temporary until height is set in parent
     border: "solid 3px #ffffff",
-    backgroundColor: "red"
+    backgroundColor: "grey"
   },
   BackgroundImage: {
-    backgroundSize: "cover"
+    position: "relative",
+    width: "100%",
+    height: "95%"
   },
   ProjectName: {
     position: "absolute",
-    top: "50%",
     left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
     color: "white",
     fontSize: "24px",
     fontFamiliy: "FedraSans"
