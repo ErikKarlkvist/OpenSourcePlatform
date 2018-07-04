@@ -62,8 +62,8 @@ export default ProjectBlurb;
 const styles = {
   Rectangle: {
     position: "relative",
-    width: "300",
-    height: "300px", //Temporary until height is set in parent
+    width: "100%",
+    height: "100%",
     border: "solid 3px #ffffff",
     backgroundColor: "black"
   },
