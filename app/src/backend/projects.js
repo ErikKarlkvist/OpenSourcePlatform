@@ -1,10 +1,13 @@
-import firebase from "./firebase"
+import firebase from "./firebase";
 
-export async function getAllProjects(){
-  const snapshots = await firebase.firestore().collection("projects").get();
+export async function getAllProjects() {
+  const snapshots = await firebase
+    .firestore()
+    .collection("projects")
+    .get();
   const promises = [];
   snapshots.forEach(snapshot => {
-    if(snapshot.exists){
+    if (snapshot.exists) {
       const data = snapshot.data();
       data.id = snapshot.id;
       promises.push(getToolsForProject(data));
@@ -12,17 +15,21 @@ export async function getAllProjects(){
   });
 
   const projects = await Promise.all(promises);
-  console.log(projects)
+  console.log(projects);
   return Promise.resolve(projects);
 }
 
-export async function getProject(id){
-  const snapshot = await firebase.firestore().collection("projects").doc(id).get();
-  if(snapshot.exists){
+export async function getProject(id) {
+  const snapshot = await firebase
+    .firestore()
+    .collection("projects")
+    .doc(id)
+    .get();
+  if (snapshot.exists) {
     let projectData = snapshot.data();
     projectData.id = snapshot.id;
     projectData = await getToolsForProject(projectData);
-    console.log(projectData)
+    console.log(projectData);
     return Promise.resolve(projectData);
   } else {
     // doc.data() will be undefined in this case
@@ -30,13 +37,18 @@ export async function getProject(id){
   }
 }
 
-async function getToolsForProject(project){
-  let snapshots = await firebase.firestore().collection("projects").doc(project.id).collection("tools").get();
+async function getToolsForProject(project) {
+  let snapshots = await firebase
+    .firestore()
+    .collection("projects")
+    .doc(project.id)
+    .collection("tools")
+    .get();
   project.tools = [];
   snapshots.forEach(snapshot => {
-    if(snapshot.exists){
+    if (snapshot.exists) {
       const data = snapshot.data();
-      project.tools.push(data)
+      project.tools.push(data);
     }
   });
   return Promise.resolve(project);
