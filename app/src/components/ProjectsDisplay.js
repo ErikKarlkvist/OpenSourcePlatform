@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProjectBlurb from "./ProjectBlurb";
-import "./ProjectsDisplay.css"
+import "./ProjectsDisplay.css";
 
 class ProjectsDisplay extends Component {
   render() {
@@ -13,12 +13,11 @@ class ProjectsDisplay extends Component {
     ));
 
     return (
-      <div class="container">
+      <div>
         <div class="row">{items}</div>
       </div>
     );
   }
 }
-
 
 export default ProjectsDisplay;
