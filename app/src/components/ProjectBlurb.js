@@ -9,7 +9,6 @@ class ProjectBlurb extends Component {
       project: {}
     };
   }
-
   componentDidMount() {
     this.setState({ project: this.props.project });
   }
@@ -41,7 +40,7 @@ class ProjectBlurb extends Component {
           <div>
             <img
               style={styles.BackgroundImage}
-              src="https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/KB6iqfWRNQNIKYuTxeQ5%2Fdnb.png?alt=media&token=c393a52d-7785-44c3-bc3b-56115939ecc5"
+              src={this.props.project.imgURL}
             />
             <span style={styles.ProjectName}>{this.props.project.name}</span>
           </div>
@@ -65,14 +64,17 @@ const styles = {
   },
   BackgroundImage: {
     position: "relative",
+    color: "#FF3333",
     width: "100%",
     height: "95%"
   },
   ProjectName: {
+    //Centers the text above the image
     position: "absolute",
     left: "50%",
     top: "50%",
     transform: "translate(-50%, -50%)",
+
     color: "white",
     fontSize: "24px",
     fontFamiliy: "FedraSans"
