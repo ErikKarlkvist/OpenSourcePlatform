@@ -31,7 +31,7 @@ class FilterProjects extends Component {
     }
 
   	return(
-  		<div >
+  		<div class ="Menu">
 	  		<a className={allStyle} href="#" onClick={() => this.setStyle("all")}>
 				  All Projects
 			 </a>

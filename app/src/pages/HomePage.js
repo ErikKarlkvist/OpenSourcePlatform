@@ -5,6 +5,7 @@ import { getAllProjects, getProject } from "../backend/projects";
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister"
 import FilterProjects from "../components/FilterProjects"
+import Line from "../components/Line"
 
 class HomePage extends Component {
   constructor() {
@@ -17,11 +18,11 @@ class HomePage extends Component {
 
   componentDidMount() {
     getAllProjects().then(projects => {
-      this.setState({ 
+      this.setState({
         currentlyViewing: projects,
         allProjects: projects,
         liveProjects: [],
-        graduateProjects: [] 
+        graduateProjects: []
       });
     });
   }
@@ -38,7 +39,11 @@ class HomePage extends Component {
           <h2 className="App-intro">
             Give your contribution
           </h2>
-          <FilterProjects changeFilter = {this.changeFilter}/>
+          <div style={{marginTop: 30, marginBottom: 30}}>
+            <Line style={{marginBottom: 10}}/>
+            <FilterProjects changeFilter = {this.changeFilter}/>
+
+          </div>
           <ProjectsDisplay projects={this.state.currentlyViewing} />
         </div>
       </div>

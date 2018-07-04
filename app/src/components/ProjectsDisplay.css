@@ -1,5 +1,5 @@
 .ProjectCard {
-  height: 280px;
+  height: 300px;
   margin-bottom: 20px;
   background-color: "white";
 }
@@ -30,7 +30,7 @@
 
 @media only screen and (min-width: 1200px) {
   .ProjectCard {
-    height: 380px;
+    height: 350px;
     margin-bottom: 40px;
     background-color: "white";
   }
