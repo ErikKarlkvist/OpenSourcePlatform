@@ -13,9 +13,15 @@ input[type="radio"]:checked + label {
   border: solid 2px green;
 }
 
+.Menu {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 40%;
+}
+
 .MenuItem {
-	margin-left: 20px;
-	margin-bottom: 20px;
+
 }
 
 .MenuItem:hover {
@@ -25,4 +31,3 @@ input[type="radio"]:checked + label {
 .UnderlinedMenuItem {
 	text-decoration: underline;
 }
-

@@ -13,7 +13,7 @@ class ProjectsDisplay extends Component {
     ));
 
     return (
-      <div>
+      <div class ="ProjectContainer">
         <div class="row">{items}</div>
       </div>
     );
