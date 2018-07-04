@@ -7,23 +7,9 @@ import LoginRegister from "../components/LoginRegister"
 import FilterProjects from "../components/FilterProjects"
 import Line from "../components/Line"
 
-class HomePage extends Component {
+class ProjectPage extends Component {
   constructor() {
     super();
-    this.state = {
-      currentlyViewing: []
-    }
-  }
-
-  componentDidMount() {
-    getAllProjects().then(projects => {
-      this.setState({
-        currentlyViewing: projects,
-        allProjects: projects,
-        liveProjects: [],
-        graduateProjects: []
-      });
-    });
   }
 
   render() {
@@ -40,25 +26,12 @@ class HomePage extends Component {
           </h2>
           <div style={{marginTop: 30, marginBottom: 30}}>
             <Line style={{marginBottom: 10}}/>
-            <FilterProjects changeFilter = {this.changeFilter}/>
 
           </div>
-          <ProjectsDisplay projects={this.state.currentlyViewing} />
         </div>
       </div>
     );
   }
-
-
-  changeFilter = (picked) => {
-    if(picked === "all"){
-      this.setState({currentlyViewing: this.state.allProjects})
-    } else if(picked === "live"){
-      this.setState({currentlyViewing: this.state.liveProjects})
-    } else{
-      this.setState({currentlyViewing: this.state.graduateProjects})
-    }
-  }
 }
 
-export default HomePage;
+export default ProjectPage;

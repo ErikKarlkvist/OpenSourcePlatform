@@ -11,7 +11,6 @@ export async function getUser(uid) {
   if (snapshot.exists) {
     const userData = snapshot.data();
     userData.id = snapshot.id;
-    console.log("Document data:", userData);
     return userData;
   } else {
     // doc.data() will be undefined in this case
@@ -33,7 +32,6 @@ export async function getAllUsers() {
     }
   });
 
-  console.log(users);
   return Promise.resolve(users);
 }
 
