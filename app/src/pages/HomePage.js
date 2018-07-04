@@ -5,10 +5,12 @@ import { getAllProjects, getProject } from "../backend/projects";
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister"
 import FilterProjects from "../components/FilterProjects"
+
 class HomePage extends Component {
   constructor() {
     super();
     this.state = {
+
       currentlyViewing: []
     }
   }
@@ -43,6 +45,7 @@ class HomePage extends Component {
     );
   }
 
+
   changeFilter = (picked) => {
     if(picked === "all"){
       this.setState({currentlyViewing: this.state.allProjects})
@@ -53,4 +56,5 @@ class HomePage extends Component {
     }
   }
 }
+
 export default HomePage;
