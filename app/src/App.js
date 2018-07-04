@@ -6,6 +6,7 @@ import { getAllProjects, getProject } from "./backend/projects";
 import { login, logout, getAllUsers } from "./backend/users";
 import firebase from "./backend/firebase";
 import ProjectsDisplay from "./components/ProjectsDisplay";
+import ProjectBlurb from "./components/ProjectBlurb";
 
 login("henninnenesgrd@gmail.com", "123456789");
 //https://api.trello.com/1/members/me/?key=85873074232e857f4e364a3ef1b545a3&token=ff6a08c9b2fc1df53138d4f788122032fd7d7ae93bb6919f1d81d1c5cd8af10b
@@ -54,6 +55,9 @@ class App extends Component {
         </p>
         <ProjectsDisplay projects={this.state.projects} />
         <ProjectsDisplay projects={this.state.users} />
+        <div style={{ height: "200px", width: "200px" }}>
+          <ProjectBlurb project={this.state.projects[0]} />
+        </div>
       </div>
     );
   }
