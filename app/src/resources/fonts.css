@@ -8,6 +8,16 @@
 
 }
 
+@font-face {
+    font-family: 'FedraSansLight';
+    src: url('fedra_sans_light-webfont.woff2') format('woff2'),
+         url('fedra_sans_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 /* h1---->Title/header */
 h1 {
 	font-family: FedraSans;
@@ -22,7 +32,7 @@ h1 {
 }
 /* h2---->subtitle */
 h2 {
-	font-family: FedraSans;
+	font-family: FedraSansLight;
  	font-size: 48px;
  	font-weight: 300;
 	font-style: normal;
@@ -35,7 +45,7 @@ h2 {
 }
 /* h3---->subsubtitle */
 h3{
-	font-family: FedraSans;
+	font-family: FedraSansLight;
 	font-size: 24px;
 	font-weight: 300;
   	font-style: normal;
@@ -48,7 +58,7 @@ h3{
 }
 /* h4---->Sign-up-Log-in */
 h4{
-	font-family: FedraSans;
+	font-family: FedraSansLight;
 	font-size: 24px;
 	font-weight: normal;
 	font-style: normal;
@@ -62,7 +72,7 @@ h4{
 
 /* h5---->Project name */
 h5{
-	font-family: FedraSans;
+	font-family: FedraSansLight;
 	font-size: 24px;
 	font-weight: normal;
 	font-style: normal;
@@ -76,7 +86,7 @@ h5{
 
 /* project description header */
 p {
-	font-family: FedraSans;
+	font-family: FedraSansLight;
 	font-size: 14px;
 	font-weight: normal;
 	font-style: normal;
@@ -90,7 +100,7 @@ p {
 }
 
 
-a{	font-family: FedraSans;
+a{	font-family: FedraSansLight;
 	font-size: 16px;
 	font-weight: normal;
 	font-style: normal;
@@ -102,7 +112,7 @@ a{	font-family: FedraSans;
 	color: var(--white);
 }
 
-a:hover{	font-family: FedraSans;
+a:hover{	font-family: FedraSansLight;
 	font-size: 16px;
 	font-weight: normal;
 	font-style: normal;
