@@ -87,6 +87,7 @@ a{	font-family: FedraSans;
 	font-stretch: normal;
 	line-height: normal;
 	letter-spacing: normal;
+	text-decoration: none;
 	color: #ffffff;
 	color: var(--white);
 }
