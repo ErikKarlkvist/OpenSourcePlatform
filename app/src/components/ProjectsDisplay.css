@@ -1,0 +1,37 @@
+.ProjectCard {
+  height: 280px;
+  margin-bottom: 20px;
+  background-color: "white";
+}
+
+@media only screen and (min-width: 576px) {
+  .ProjectCard {
+    height: 500px;
+    margin-bottom: 20px;
+    background-color: "white";
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .ProjectCard {
+    height: 280px;
+    margin-bottom: 20px;
+    background-color: "white";
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .ProjectCard {
+    height: 280px;
+    margin-bottom: 20px;
+    background-color: "white";
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .ProjectCard {
+    height: 350px;
+    margin-bottom: 20px;
+    background-color: "white";
+  }
+}

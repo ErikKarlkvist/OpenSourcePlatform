@@ -37,7 +37,7 @@ class ProjectBlurb extends Component {
         onMouseLeave={this.onMouseOut.bind(this)}
       >
         {!this.state.isHovering && (
-          <div>
+          <div style={{ height: "100%" }}>
             <img
               style={styles.BackgroundImage}
               src={this.props.project.imgURL}
