@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import ProjectBlurb from "./ProjectBlurb";
+import "./ProjectsDisplay.css"
 
 class ProjectsDisplay extends Component {
   render() {
     const data = this.props.projects;
 
     const items = data.map(d => (
-      <div class="col-4">
+      <div class="ProjectCard col-md-6 col-sm-12 col-lg-4">
         <ProjectBlurb project={d} />
       </div>
     ));
@@ -18,4 +19,6 @@ class ProjectsDisplay extends Component {
     );
   }
 }
+
+
 export default ProjectsDisplay;
