@@ -36,19 +36,14 @@ class ProjectBlurb extends Component {
         onMouseEnter={this.onMouseOver.bind(this)}
         onMouseLeave={this.onMouseOut.bind(this)}
       >
-        {!this.state.isHovering && (
-          <div style={{ height: "100%" }}>
-            <img
-              style={styles.BackgroundImage}
-              src={this.props.project.imgURL}
-            />
-            <span style={styles.ProjectName}>{this.props.project.name}</span>
-          </div>
-        )}
+        <img style={styles.BackgroundImage} src={this.props.project.imgURL} />
 
+        {!this.state.isHovering && (
+          <span style={styles.ProjectName}>{this.props.project.name}</span>
+        )}
         {this.state.isHovering && (
           <div style={styles.Description}>
-            <h2>{this.props.project.name}</h2>
+            <h2 style={{ color: "black" }}>{this.props.project.name}</h2>
             <p> {this.props.project.description} </p>
           </div>
         )}
@@ -65,7 +60,8 @@ const styles = {
     width: "100%",
     height: "100%",
     border: "solid 3px #ffffff",
-    backgroundColor: "black"
+    backgroundColor: "black",
+    boxShadow: "1px 2px 4px rgba(0, 0, 0, .5)"
   },
   BackgroundImage: {
     position: "relative",
@@ -85,9 +81,14 @@ const styles = {
     fontFamiliy: "FedraSans"
   },
   Description: {
+    position: "absolute",
+    top: "5%",
+    left: "5%",
     backgroundColor: "white",
     color: "black",
-    height: "95%",
-    marginTop: "2%"
+    height: "90%",
+    width: "90%",
+    marginTop: "2%",
+    textAlign: "left"
   }
 };
