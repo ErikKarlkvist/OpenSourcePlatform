@@ -1,7 +1,7 @@
+
 import React, { Component } from "react";
 import firebase from "./backend/firebase";
 import HomePage from "./pages/HomePage";
-
 class App extends Component {
   constructor() {
     super();
@@ -18,6 +18,7 @@ class App extends Component {
 
   render() {
     return (
+
       <HomePage />
     );
   }
