@@ -22,7 +22,10 @@ class ProjectPage extends Component {
     super(props);
     this.state = {
       loading: true,
-      project: {}
+      //add creator in order to not crash during load
+      project: {
+        creator: {}
+      }
     };
   }
 
@@ -38,14 +41,13 @@ class ProjectPage extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div class="PageContainer">
-
         <header className="App-header" />
         <ProjectHeader
           name={this.state.project.name}
           headerImageURL={this.state.project.headerImageURL}
+          contributors={this.state.project.contributors}
         />
         <div class="Content" />
         <Tools tools = {this.state.project.tools}/>
