@@ -7,20 +7,25 @@ export async function getAllProjects() {
     .get();
   let toolsData = [];
   let developersData = [];
+  let creatorsData = [];
   const projects = [];
   snapshots.forEach(snapshot => {
     if (snapshot.exists) {
       const data = snapshot.data();
       data.id = snapshot.id;
+
       projects.push(data);
+
       toolsData.push(getToolsForProject(data));
       developersData.push(getDevelopersForProject(data));
+      creatorsData.push(getCreatorForProject(data));
     }
   });
 
   //load in everything simultainously
   toolsData = await Promise.all(toolsData);
   developersData = await Promise.all(developersData);
+  creatorsData = await Promise.all(creatorsData);
 
   //loop everything to correct place
   projects.forEach(project => {
@@ -32,12 +37,16 @@ export async function getAllProjects() {
 
     developersData.forEach(data => {
       if (data.projectId === project.id) {
-        project.tools = data.developers;
+        project.developers = data.developers;
+      }
+    });
+
+    creatorsData.forEach(data => {
+      if (data.projectId === project.id) {
+        project.creator = data.creator;
       }
     });
   });
-
-  console.log(projects);
 
   return Promise.resolve(projects);
 }
@@ -51,14 +60,17 @@ export async function getProject(id) {
   if (snapshot.exists) {
     let projectData = snapshot.data();
     projectData.id = snapshot.id;
+
     const toolData = await getToolsForProject(projectData);
     const developerData = await getDevelopersForProject(projectData);
+    const creatorData = await getCreatorForProject(projectData);
+
     projectData.tools = toolData.tools;
     projectData.developers = developerData.developers;
+    projectData.creator = creatorData.creator;
     return Promise.resolve(projectData);
   } else {
     // doc.data() will be undefined in this case
-    console.log("No such document!");
   }
 }
 
@@ -102,4 +114,23 @@ async function getDevelopersForProject(project) {
   developers = await Promise.all(developers);
   const data = { developers, projectId: project.id };
   return Promise.resolve(data);
+}
+
+async function getCreatorForProject(project){
+  const creator = await firebase
+    .firestore()
+    .collection("users")
+    .doc(project.creator)
+    .get()
+    .then(snapshot => {
+      if (snapshot.exists) {
+        const user = snapshot.data();
+        user.id = snapshot.id;
+        return Promise.resolve(user);
+      } else {
+        return Promise.resolve({id: "No user"})
+      }
+    });
+    const data = { creator, projectId: project.id };
+    return Promise.resolve(data);
 }
