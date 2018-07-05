@@ -26,8 +26,10 @@ input[type="radio"]:checked + label {
 
 .MenuItem:hover {
 	text-decoration: underline;
+	text-decoration-color: red;
 }
 
 .UnderlinedMenuItem {
 	text-decoration: underline;
+	text-decoration-color: red;
 }
