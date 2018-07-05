@@ -1,11 +1,21 @@
 import React, { Component } from "react";
+import "./AnimatedMenu.css";
 
 class LoginRegister extends Component {
   render() {
     //hooka med login
     return (
       <div>
-        <a>Sign up | Log in</a>
+        <div>
+          <a className={"MenuItem"} href="#" >
+            Sign up
+         </a>
+
+         <a> | </a>
+         <a className={"MenuItem"} href="#" >
+            Log in
+         </a>
+        </div>
         <div style={styles.line}/>
       </div>
     );
@@ -22,3 +32,4 @@ const styles = {
   },
 }
 export default LoginRegister;
+
