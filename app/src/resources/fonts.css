@@ -1,130 +1,132 @@
-
 @font-face {
-    font-family: 'FedraSans';
-    src: url('fedra_sans_book-webfont.woff2') format('woff2'),
-         url('fedra_sans_book-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: "FedraSans";
+  src: url("fedra_sans_book-webfont.woff2") format("woff2"),
+    url("fedra_sans_book-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'FedraSansLight';
-    src: url('fedra_sans_light-webfont.woff2') format('woff2'),
-         url('fedra_sans_light-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: "FedraSansLight";
+  src: url("fedra_sans_light-webfont.woff2") format("woff2"),
+    url("fedra_sans_light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
-
 
 /* h1---->Title/header */
 h1 {
-	font-family: FedraSans;
-	font-size: 72px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	color: #ffffff;
-	color: var(--white);
+  font-family: FedraSans;
+  font-size: 72px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  color: var(--white);
 }
 /* h2---->subtitle */
 h2 {
-	font-family: FedraSansLight;
- 	font-size: 48px;
- 	font-weight: 300;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	text-align: center;
-	color: #ffffff;
-	color: var(--white)
+  font-family: FedraSansLight;
+  font-size: 48px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  color: var(--white);
 }
 /* h3---->subsubtitle */
-h3{
-	font-family: FedraSansLight;
-	font-size: 24px;
-	font-weight: 300;
-  	font-style: normal;
-  	font-stretch: normal;
-  	line-height: normal;
-  	letter-spacing: normal;
-  	text-align: center;
-  	color: #ffffff;
-  	color: var(--white);
+h3 {
+  font-family: FedraSansLight;
+  font-size: 24px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  color: var(--white);
 }
 /* h4---->Sign-up-Log-in */
-h4{
-	font-family: FedraSansLight;
-	font-size: 24px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	text-align: center;
-	color: #ffffff;
-	color: var(--white);
+h4 {
+  font-family: FedraSansLight;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  color: var(--white);
 }
 
 /* h5---->Project name */
-h5{
-	font-family: FedraSansLight;
-	font-size: 24px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	text-align: center;
-	color: #00343e;
-	color: var(--dark-teal);
+h5 {
+  font-family: FedraSansLight;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #00343e;
+  color: var(--dark-teal);
 }
-h5{
-	font-family: FedraSansLight;
-	font-size: 12px;
-	color: var(--white);
+h5 {
+  font-family: FedraSansLight;
+  font-size: 12px;
+  color: var(--white);
+}
+
+/* h6----> Project page sidebar subheaders*/
+h6 {
+  font-family: FedraSansLight;
+  font-size: 30px;
 }
 
 /* project description header */
 p {
-	font-family: FedraSansLight;
-	font-size: 14px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	text-align: center;
-	color: #00343e;
-	color: var(--dark-teal);
-
+  font-family: FedraSansLight;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #00343e;
+  color: var(--dark-teal);
 }
 
-
-a{	font-family: FedraSansLight;
-	font-size: 16px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	color: #ffffff;
-	color: var(--white);
+a {
+  font-family: FedraSansLight;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-decoration: none;
+  color: #ffffff;
+  color: var(--white);
 }
 
-a:hover{	font-family: FedraSansLight;
-	font-size: 16px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	color: #ffffff;
-	color: var(--white);
+a:hover {
+  font-family: FedraSansLight;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-decoration: none;
+  color: #ffffff;
+  color: var(--white);
 }

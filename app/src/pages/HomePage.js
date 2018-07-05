@@ -7,6 +7,7 @@ import LoginRegister from "../components/LoginRegister"
 import FilterProjects from "../components/FilterProjects"
 import Line from "../components/Line"
 import Spinner from "../components/Spinner"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class HomePage extends Component {
   constructor() {
@@ -34,7 +35,9 @@ class HomePage extends Component {
       <div class="PageContainer">
         <Spinner loading = {this.state.loading} fillPage={true}/>
         <header className="App-header">
-          <img src={logo} className="Logo" alt="logo" />
+          <Link to="/">
+            <img src={logo} class="Logo" alt="logo" />
+          </Link>
           <LoginRegister />
         </header>
         <div class="Content">

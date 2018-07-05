@@ -4,6 +4,7 @@ import "../resources/Main.css";
 import LoginRegister from "../components/LoginRegister"
 import logo from "../logo.svg";
 import Contributors from "./Contributors"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class ProjectsDisplay extends Component {
   constructor(props){
@@ -20,11 +21,15 @@ class ProjectsDisplay extends Component {
 
           <div style={styles.HeaderContent}>
             <header class = "App-header">
-              <img src={logo} class="Logo" alt="logo" />
+              <Link to="/">
+                <img src={logo} class="Logo" alt="logo" />
+              </Link>
               <LoginRegister />
             </header>
-            <h2 style={{marginTop: 20}}>{this.props.name}</h2>
-            <Contributors contributors = {this.props.contributors} />
+            <div>
+              <h2 style={{marginTop: 80}}>{this.props.name}</h2>
+              <Contributors developers = {this.props.developers} />
+            </div>
           </div>
 
 
@@ -37,9 +42,8 @@ const styles = {
   HeaderContainer: {
     position: "relative",
     width: "100%",
-    height: "50vh",
+    height: "70vh",
     backgroundColor: "#00343e",
-    top: -80,
   },
   HeaderImage: {
     position: "relative",
