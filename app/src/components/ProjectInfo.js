@@ -26,7 +26,12 @@ class ProjectInfo extends Component {
               </div>
               <div class="col-md-12 col-sm-6 col-lg-12">
                 {"Contact\n"}
-                <a href={"mailto:" + "xyz@dnb.no"}>xyz.dnb.no</a>
+                <a
+                  href={"mailto:" + "xyz@dnb.no"}
+                  style={{ textDecoration: "underline" }}
+                >
+                  xyz.dnb.no
+                </a>
                 {/*replace with this.props.project.contactMail when that is implemented*/}
               </div>
               <div class="col-md-12 col-sm-12 col-lg-12">Tools</div>
