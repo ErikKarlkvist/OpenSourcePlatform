@@ -4,10 +4,11 @@ import "../resources/Main.css";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { withRouter } from 'react-router'
-import PropTypes from 'prop-types'
-import Spinner from "../components/Spinner"
-import ProjectHeader from "../components/ProjectHeader"
+import { withRouter } from "react-router";
+import PropTypes from "prop-types";
+import Spinner from "../components/Spinner";
+import ProjectInfo from "../components/ProjectInfo";
+import ProjectHeader from "../components/ProjectHeader";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -52,6 +53,7 @@ class ProjectPage extends Component {
 
         </div>
         <Spinner loading = {this.state.loading} fillPage={true}/>
+        <ProjectInfo project={this.state.project} />
       </div>
     );
   }
