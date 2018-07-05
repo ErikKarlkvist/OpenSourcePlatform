@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
-import Tools from "../components/Tools"
+import Tools from "../components/Tools";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -51,7 +51,6 @@ class ProjectPage extends Component {
             headerImageURL={this.state.project.headerImageURL}
             developers={this.state.project.developers}
           />
-          <Tools tools = {this.state.project.tools}/>
           <ProjectInfo project={this.state.project} />
           </div>
         }
