@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
-import Tools from "../components/Tools"
+import Tools from "../components/Tools";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -50,7 +50,6 @@ class ProjectPage extends Component {
           contributors={this.state.project.contributors}
         />
         <div class="Content" />
-        <Tools tools = {this.state.project.tools}/>
         <Spinner loading={this.state.loading} fillPage={true} />
         <ProjectInfo project={this.state.project} />
       </div>
