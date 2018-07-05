@@ -4,17 +4,12 @@ import "../resources/Main.css";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-<<<<<<< HEAD
-import { withRouter } from 'react-router'
-import PropTypes from 'prop-types'
-import Tools from "../components/Tools"
-=======
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
->>>>>>> cf50c032c0c8853b4365b8935fa4ab659d5cb0ef
+import Tools from "../components/Tools"
 
 class ProjectPage extends Component {
   static propTypes = {
