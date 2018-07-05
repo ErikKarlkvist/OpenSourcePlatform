@@ -4,14 +4,30 @@ import PropTypes from 'prop-types'
 class Spinner extends React.Component {
 
   static propTypes = {
-    contributors: PropTypes.object.isRequired
+    developers: PropTypes.object.isRequired
   }
 
   render() {
+    const data = this.props.developers;
+
+    let items = [];
+    if(data){
+      while(data.length < 4){
+        data.push("empty")
+      }
+      items = data.map(d => (
+        <div class="col-md-4 col-sm-6 col-lg-3">
+          <img style = {styles.image} src = {d.profileURL}/>
+        </div>
+      ));
+    }
 
     return (
-      <div>
+      <div style={styles.container}>
         <h3>Contributors</h3>
+        <div style={styles.imageWrapper}>
+          <div class="row">{items}</div>
+        </div>
       </div>
     )
 
@@ -19,18 +35,20 @@ class Spinner extends React.Component {
 }
 
 const styles = {
-  fillPage: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
+  container: {
+    alignText: "left",
   },
   Contributors: {
     marginTop: "30px"
+  },
+  image: {
+    backgroundColor: "white",
+    height: "100px",
+    width: "100px"
+  },
+  imageWrapper: {
+    width: "50%",
+    margin: "auto"
   }
 }
 

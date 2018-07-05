@@ -41,13 +41,13 @@ class ProjectPage extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div class="PageContainer">
-        <header className="App-header" />
         <ProjectHeader
           name={this.state.project.name}
           headerImageURL={this.state.project.headerImageURL}
-          contributors={this.state.project.contributors}
+          developers={this.state.project.developers}
         />
         <div class="Content" />
         <Tools tools = {this.state.project.tools}/>
