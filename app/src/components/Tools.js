@@ -1,50 +1,44 @@
 import React, { Component } from "react";
-import "../resources/fonts.css"
-import "../resources/colors.css"
+import "../resources/fonts.css";
+import "../resources/colors.css";
 class Tools extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    console.log(props);
     this.state = {
-      term: '',
+      term: ""
     };
   }
 
-
   render() {
-    if(this.props.tools){
+    if (this.props.tools) {
       return (
-        <div style = {styles.container}>
-          <h3>Tools</h3>
-          <ul class="list-unstyled" >
-            {
-              this.props.tools.map((item, index) => 
-                <li key={index}>
-                  <a href={item.link}>
-                    <h5 style ={{textAlign: "left"}}>
-                      {item.name}
-                    </h5> 
-                  </a>
-                </li>
-              )
-            }
+        <div style={styles.container}>
+          <h6 style={{ textAlign: "center" }}>Tools</h6>
+          <ul class="list-unstyled">
+            {this.props.tools.map((item, index) => (
+              <li key={index}>
+                <a href={item.link}>
+                  <h5 style={{ textAlign: "left" }}>{item.name}</h5>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       );
     } else {
-      return <div/>
+      return <div />;
     }
   }
 }
 
-const styles= {
+const styles = {
   container: {
     paddingTop: "12px",
     border: "2px solid white",
-    maxWidth: "80px",
-    maxHeight: "200px",
     textAlign: "left",
-
+    paddingLeft: "10px",
+    paddingRight: "10px"
   }
-}
+};
 export default Tools;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../logo.svg";
+
 import "../resources/Main.css";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
-import Tools from "../components/Tools"
+import Tools from "../components/Tools";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -41,18 +41,20 @@ class ProjectPage extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div class="PageContainer">
-        <header className="App-header" />
-        <ProjectHeader
-          name={this.state.project.name}
-          headerImageURL={this.state.project.headerImageURL}
-          contributors={this.state.project.contributors}
-        />
-        <div class="Content" />
-        <Tools tools = {this.state.project.tools}/>
+        {!this.state.loading &&
+          <div>
+          <ProjectHeader
+            name={this.state.project.name}
+            headerImageURL={this.state.project.headerImageURL}
+            developers={this.state.project.developers}
+          />
+          <ProjectInfo project={this.state.project} />
+          </div>
+        }
         <Spinner loading={this.state.loading} fillPage={true} />
-        <ProjectInfo project={this.state.project} />
       </div>
     );
   }
