@@ -38,7 +38,6 @@ class ProjectInfo extends Component {
             </div>
           </div>
         </div>
-        <div style={styles.Contributors}> Contributors</div>
       </div>
     );
   }
@@ -60,7 +59,4 @@ const styles = {
     justifyContent: "center",
     alignItems: "right"
   },
-  Contributors: {
-    marginTop: "30px"
-  }
 };

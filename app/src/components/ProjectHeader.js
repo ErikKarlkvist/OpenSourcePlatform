@@ -3,6 +3,7 @@ import ProjectBlurb from "./ProjectBlurb";
 import "../resources/Main.css";
 import LoginRegister from "../components/LoginRegister"
 import logo from "../logo.svg";
+import Contributors from "./Contributors"
 
 class ProjectsDisplay extends Component {
   constructor(props){
@@ -23,7 +24,7 @@ class ProjectsDisplay extends Component {
               <LoginRegister />
             </header>
               <h2 style={{marginTop: 20}}>{this.props.name}</h2>
-              <h3 style={{marginTop: 80}}>Creator: {this.props.creatorName}</h3>
+              <Contributors {this.props.contributors} />
           </div>
 
 
