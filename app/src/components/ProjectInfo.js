@@ -18,14 +18,6 @@ class ProjectInfo extends Component {
           <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
             <div class="row">
               <div class="col-md-12 col-sm-6 col-lg-12">
-                <button
-                  className="JoinProjectBtn"
-                  onClick={this.joinProject(this.props.project.name)}
-                >
-                  <h6>Join Project</h6>
-                </button>
-              </div>
-              <div class="col-md-12 col-sm-6 col-lg-12">
                 <div>
                   <div style={{ textAlign: "center", marginBottom: "-10px" }}>
                     <h6>Contact</h6>
@@ -43,6 +35,15 @@ class ProjectInfo extends Component {
                 </div>
                 {/*replace with this.props.project.contactMail when that is implemented*/}
               </div>
+              <div class="col-md-12 col-sm-6 col-lg-12">
+                <button
+                  className="JoinProjectBtn"
+                  onClick={this.joinProject(this.props.project.name)}
+                >
+                  <h6>Join Project</h6>
+                </button>
+              </div>
+
               <div
                 class="col-md-12 col-sm-12 col-lg-12"
                 style={{ paddingTop: "20px" }}
