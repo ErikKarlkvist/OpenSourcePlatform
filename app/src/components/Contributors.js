@@ -11,7 +11,7 @@ class Spinner extends React.Component {
 
     return (
       <div>
-        <h3> Contributors</h3>
+        <h3>Contributors</h3>
       </div>
     )
 
