@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../logo.svg";
+
 import "../resources/Main.css";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
@@ -44,15 +44,18 @@ class ProjectPage extends Component {
     console.log(this.state)
     return (
       <div class="PageContainer">
-        <ProjectHeader
-          name={this.state.project.name}
-          headerImageURL={this.state.project.headerImageURL}
-          developers={this.state.project.developers}
-        />
-        <div class="Content" />
-        <Tools tools = {this.state.project.tools}/>
+        {!this.state.loading &&
+          <div>
+          <ProjectHeader
+            name={this.state.project.name}
+            headerImageURL={this.state.project.headerImageURL}
+            developers={this.state.project.developers}
+          />
+          <Tools tools = {this.state.project.tools}/>
+          <ProjectInfo project={this.state.project} />
+          </div>
+        }
         <Spinner loading={this.state.loading} fillPage={true} />
-        <ProjectInfo project={this.state.project} />
       </div>
     );
   }
