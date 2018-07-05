@@ -7,14 +7,14 @@
 .ProjectCard {
   height: 300px;
   margin-bottom: 20px;
-  background-color: var(--white);
+  background-color: var(--dark-teal);
 }
 
 @media only screen and (min-width: 576px) {
   .ProjectCard {
     height: 500px;
     margin-bottom: 20px;
-    background-color: var(--white);
+    background-color: var(--dark-teal);
   }
 }
 
@@ -22,7 +22,7 @@
   .ProjectCard {
     height: 280px;
     margin-bottom: 20px;
-    background-color: var(--white);
+    background-color: var(--dark-teal);
   }
 }
 
@@ -30,7 +30,7 @@
   .ProjectCard {
     height: 280px;
     margin-bottom: 20px;
-    background-color: var(--white);
+    background-color: var(--dark-teal);
   }
 }
 
@@ -38,6 +38,6 @@
   .ProjectCard {
     height: 350px;
     margin-bottom: 40px;
-    background-color: var(--white);
+    background-color: var(--dark-teal);
   }
 }
