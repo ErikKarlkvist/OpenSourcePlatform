@@ -12,21 +12,28 @@ class Spinner extends React.Component {
 
     let items = [];
     if(data){
-      while(data.length < 4){
+      while(data.length < 5){
         data.push("empty")
       }
       items = data.map(d => (
-        <div class="col-md-4 col-sm-6 col-lg-3">
-          <img style = {styles.image} src = {d.profileURL}/>
+        <div class="d-none d-sm-none d-md-block">
+          <img style = {styles.image} src = {d.profileImageURL}/>
+          <p style={styles.name}>{d.firstname}</p>
         </div>
       ));
     }
 
     return (
       <div style={styles.container}>
-        <h3>Contributors</h3>
-        <div style={styles.imageWrapper}>
-          <div class="row">{items}</div>
+        <div class="d-none d-sm-none d-md-block">
+          <h3>Contributors</h3>
+          <div style={styles.imageWrapper}>
+            <div class="row">{items}</div>
+            <a style={{textDecoration: "underline", marginBottom:20, marginLeft: 20, fontSize: 14}} href="#">See all</a>
+          </div>
+        </div>
+        <div class="d-block d-sm-none d-md-none">
+          <a href="#">View contributors</a>
         </div>
       </div>
     )
@@ -37,18 +44,30 @@ class Spinner extends React.Component {
 const styles = {
   container: {
     alignText: "left",
-  },
-  Contributors: {
-    marginTop: "30px"
+    marginTop: "50px"
   },
   image: {
     backgroundColor: "white",
     height: "100px",
-    width: "100px"
+    width: "100px",
+    marginLeft: "15px",
+    marginRight: "15px",
+    borderRadius: "50%",
+    border: "1px white ",
+    objectFit: "cover"
   },
   imageWrapper: {
-    width: "50%",
-    margin: "auto"
+    width: "100%",
+    margin: "auto",
+    display: "flex",
+    justifyContent: "center",
+    alignItems:"flex-end",
+    marginTop: "30px"
+  },
+  name: {
+    color: "white",
+    alignText: "center",
+    marginTop: "10px"
   }
 }
 
