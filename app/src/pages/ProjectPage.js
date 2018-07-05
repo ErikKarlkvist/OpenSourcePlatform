@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import "./Main.css";
+import "../resources/Main.css";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -40,11 +40,9 @@ class ProjectPage extends Component {
     console.log(this.state);
     return (
       <div class="PageContainer">
-        <header className="App-header">
-
-        </header>
+        <ProjectHeader name={this.state.project.name} headerImageURL={this.state.project.headerImageURL}/>
         <div class="Content">
-          <h1>{this.state.project.name}</h1>
+
         </div>
         <Spinner loading = {this.state.loading} fillPage={true}/>
       </div>
