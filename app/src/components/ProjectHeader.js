@@ -23,7 +23,7 @@ class ProjectsDisplay extends Component {
               <LoginRegister />
             </header>
               <h2 style={{marginTop: 20}}>{this.props.name}</h2>
-              <h3 style={{marginTop: 80}}>Creator: "not implemented"</h3>
+              <h3 style={{marginTop: 80}}>Creator: {this.props.creatorName}</h3>
           </div>
 
 
