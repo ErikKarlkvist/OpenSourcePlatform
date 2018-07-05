@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image } from "react-bootstrap";
 import "./ProjectBlurb.css";
+import "../resources/colors.css";
 
 class ProjectBlurb extends Component {
   constructor() {
@@ -44,8 +45,19 @@ class ProjectBlurb extends Component {
         )}
         {this.state.isHovering && (
           <div className={"description"}>
-            <h4 style={{ color: "black" }}>{this.props.project.name}</h4>
-            <p> {this.props.project.description} </p>
+            <h4 className={"descText"}>{this.props.project.name}</h4>
+            <p className={"descText"}>{this.props.project.description}</p>
+            <p
+              style={{
+                textAlign: "right",
+                position: "absolute",
+                right: 0,
+                bottom: 0,
+                verticalAlign: "bottom"
+              }}
+            >
+              Read More
+            </p>
           </div>
         )}
       </div>
