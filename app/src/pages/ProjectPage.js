@@ -8,6 +8,7 @@ import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
+import ProjectHeader from "../components/ProjectHeader";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -40,14 +41,11 @@ class ProjectPage extends Component {
     console.log(this.state);
     return (
       <div class="PageContainer">
-        <header className="App-header">
-          <img src={logo} className="Logo" alt="logo" />
-          <LoginRegister />
-        </header>
+        <header className="App-header" />
         <div class="Content">
           <h1>{this.state.project.name}</h1>
-          {this.state.spinner && <Spinner />}
         </div>
+        <Spinner loading={this.state.loading} fillPage={true} />
         <ProjectInfo project={this.state.project} />
       </div>
     );
