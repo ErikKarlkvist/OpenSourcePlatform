@@ -6,6 +6,7 @@ import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
+import Tools from "../components/Tools"
 
 class ProjectPage extends Component {
 
@@ -17,7 +18,6 @@ class ProjectPage extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       loading: true,
       project: {}
@@ -46,8 +46,10 @@ class ProjectPage extends Component {
           <LoginRegister />
         </header>
         <div class="Content">
+          <Tools tools = {this.state.project.tools}/>
           <h1>{this.state.project.name}</h1>
         </div>
+
       </div>
     );
   }
