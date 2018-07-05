@@ -11,9 +11,9 @@
   word-wrap: break-word;
   padding-top: 5%;
   padding-left: 5%;
+  padding-right: 5%;
 
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
   opacity: 0.5;
 }
 
@@ -24,4 +24,6 @@
 .descText {
   color: var(--dark-teal);
   text-align: left;
+  font-size: 16;
+  right: 5%;
 }
