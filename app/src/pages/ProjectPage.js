@@ -6,6 +6,7 @@ import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
+import Spinner from "../components/Spinner"
 
 class ProjectPage extends Component {
 
@@ -47,6 +48,7 @@ class ProjectPage extends Component {
         </header>
         <div class="Content">
           <h1>{this.state.project.name}</h1>
+          <Spinner/>
         </div>
       </div>
     );
