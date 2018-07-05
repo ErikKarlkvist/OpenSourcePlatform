@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import { RingLoader } from 'react-spinners';
+import { PropagateLoader } from 'react-spinners';
 
 class Spinner extends React.Component {
 
@@ -9,14 +9,21 @@ class Spinner extends React.Component {
   }
 
   render() {
-    return (
-      <div className='sweet-loading'>
-        <RingLoader
-          color={'#123abc'}
-          loading={this.props.loading}
-        />
-      </div>
-    )
+    const style = this.props.fillPage ? styles.fillPage : {}
+
+    if(this.props.loading){
+      return (
+        <div style={style}>
+          <PropagateLoader
+            color={this.props.color || "white"}
+            size={10}
+          />
+        </div>
+      )
+    } else {
+      return <div/>
+    }
+
   }
 }
 
@@ -24,7 +31,12 @@ const styles = {
   fillPage: {
     position: "absolute",
     top: 0,
-    bottom: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
   }
 }
 

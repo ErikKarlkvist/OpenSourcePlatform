@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import Spinner from "../components/Spinner"
+import ProjectHeader from "../components/ProjectHeader"
 
 class ProjectPage extends Component {
 
@@ -43,13 +44,13 @@ class ProjectPage extends Component {
     return (
       <div class="PageContainer">
         <header className="App-header">
-          <img src={logo} className="Logo" alt="logo" />
-          <LoginRegister />
+        
         </header>
         <div class="Content">
           <h1>{this.state.project.name}</h1>
-          <Spinner/>
+
         </div>
+        <Spinner loading = {this.state.loading} fillPage={true}/>
       </div>
     );
   }

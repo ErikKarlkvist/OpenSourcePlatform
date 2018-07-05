@@ -6,12 +6,14 @@ import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister"
 import FilterProjects from "../components/FilterProjects"
 import Line from "../components/Line"
+import Spinner from "../components/Spinner"
 
 class HomePage extends Component {
   constructor() {
     super();
     this.state = {
-      currentlyViewing: []
+      currentlyViewing: [],
+      loading: true,
     }
   }
 
@@ -21,7 +23,8 @@ class HomePage extends Component {
         currentlyViewing: projects,
         allProjects: projects,
         liveProjects: [],
-        graduateProjects: []
+        graduateProjects: [],
+        loading: false,
       });
     });
   }
@@ -29,6 +32,7 @@ class HomePage extends Component {
   render() {
     return (
       <div class="PageContainer">
+        <Spinner loading = {this.state.loading} fillPage={true}/>
         <header className="App-header">
           <img src={logo} className="Logo" alt="logo" />
           <LoginRegister />
