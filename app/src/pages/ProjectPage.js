@@ -4,16 +4,10 @@ import "./Main.css";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-<<<<<<< HEAD
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import Spinner from "../components/Spinner"
 import ProjectHeader from "../components/ProjectHeader"
-=======
-import { withRouter } from "react-router";
-import PropTypes from "prop-types";
-import Spinner from "../components/Spinner";
->>>>>>> f86f6be60a55683b75633146fac36fe1fc256499
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -47,15 +41,10 @@ class ProjectPage extends Component {
     return (
       <div class="PageContainer">
         <header className="App-header">
-        
+
         </header>
         <div class="Content">
           <h1>{this.state.project.name}</h1>
-<<<<<<< HEAD
-
-=======
-          {this.state.spinner && <Spinner />}
->>>>>>> f86f6be60a55683b75633146fac36fe1fc256499
         </div>
         <Spinner loading = {this.state.loading} fillPage={true}/>
       </div>
