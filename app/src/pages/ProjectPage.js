@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
+import ProjectInfo from "../components/ProjectInfo";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -47,6 +48,7 @@ class ProjectPage extends Component {
           <h1>{this.state.project.name}</h1>
           {this.state.spinner && <Spinner />}
         </div>
+        <ProjectInfo project={this.state.project} />
       </div>
     );
   }
