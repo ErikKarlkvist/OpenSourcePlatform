@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./FilterProjects.css"
+import "./AnimatedMenu.css";
 
 class FilterProjects extends Component {
   constructor(){
@@ -51,9 +51,4 @@ class FilterProjects extends Component {
     this.props.changeFilter(picked)
   }
 }
-
-/*<div onChange={this.setGender.bind(this)}>
-        	<input type="radio" value="MALE" name="gender" defaultChecked={this.props.value ==="MALE"} /> Male
-        	<input type="radio" value="FEMALE" name="gender" defaultChecked={this.props.value ==="FEMALE"}/> Female
-    	</div>*/
 export default FilterProjects;
