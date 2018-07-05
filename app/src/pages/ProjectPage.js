@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
+import Tools from "../components/Tools"
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -19,7 +20,6 @@ class ProjectPage extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       loading: true,
       //add creator in order to not crash during load
@@ -41,18 +41,17 @@ class ProjectPage extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div class="PageContainer">
+        <header className="App-header" />
         <ProjectHeader
           name={this.state.project.name}
           headerImageURL={this.state.project.headerImageURL}
-          creatorName={`${this.state.project.creator.firstname} ${this.state.project.creator.lastname}`}
-          />
-        <div class="Content">
-
-        </div>
-        <Spinner loading = {this.state.loading} fillPage={true}/>
+          contributors={this.state.project.contributors}
+        />
+        <div class="Content" />
+        <Tools tools = {this.state.project.tools}/>
+        <Spinner loading={this.state.loading} fillPage={true} />
         <ProjectInfo project={this.state.project} />
       </div>
     );
