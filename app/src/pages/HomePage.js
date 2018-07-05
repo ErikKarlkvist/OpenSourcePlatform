@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import "./Main.css";
+import "../resources/Main.css";
 import { getAllProjects, getProject } from "../backend/projects";
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister"
