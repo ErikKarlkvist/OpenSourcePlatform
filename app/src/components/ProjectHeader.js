@@ -23,8 +23,10 @@ class ProjectsDisplay extends Component {
               <img src={logo} class="Logo" alt="logo" />
               <LoginRegister />
             </header>
-            <h2 style={{marginTop: 20}}>{this.props.name}</h2>
-            <Contributors contributors = {this.props.contributors} />
+            <div>
+              <h2 style={{marginTop: 60}}>{this.props.name}</h2>
+              <Contributors developers = {this.props.developers} />
+            </div>
           </div>
 
 
@@ -39,7 +41,6 @@ const styles = {
     width: "100%",
     height: "50vh",
     backgroundColor: "#00343e",
-    top: -80,
   },
   HeaderImage: {
     position: "relative",
