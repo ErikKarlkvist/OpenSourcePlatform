@@ -39,13 +39,10 @@ class HomePage extends Component {
         </header>
         <div class="Content">
           <h1 className="App-title">DNB Open Source</h1>
-          <h2 className="App-intro">
-            Give your contribution
-          </h2>
-          <div style={{marginTop: 30, marginBottom: 30}}>
-            <Line style={{marginBottom: 10}}/>
-            <FilterProjects changeFilter = {this.changeFilter}/>
-
+          <h2 className="App-intro">Give your contribution</h2>
+          <div style={{ marginTop: 30, marginBottom: 30 }}>
+            <Line style={{ marginBottom: 10 }} />
+            <FilterProjects changeFilter={this.changeFilter} />
           </div>
           <ProjectsDisplay projects={this.state.currentlyViewing} />
         </div>
@@ -53,16 +50,15 @@ class HomePage extends Component {
     );
   }
 
-
-  changeFilter = (picked) => {
-    if(picked === "all"){
-      this.setState({currentlyViewing: this.state.allProjects})
-    } else if(picked === "live"){
-      this.setState({currentlyViewing: this.state.liveProjects})
-    } else{
-      this.setState({currentlyViewing: this.state.graduateProjects})
+  changeFilter = picked => {
+    if (picked === "all") {
+      this.setState({ currentlyViewing: this.state.allProjects });
+    } else if (picked === "live") {
+      this.setState({ currentlyViewing: this.state.liveProjects });
+    } else {
+      this.setState({ currentlyViewing: this.state.graduateProjects });
     }
-  }
+  };
 }
 
 export default HomePage;

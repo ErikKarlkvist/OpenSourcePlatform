@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image } from "react-bootstrap";
 import "./ProjectBlurb.css";
+import "../resources/colors.css";
 
 class ProjectBlurb extends Component {
   constructor() {
@@ -44,8 +45,19 @@ class ProjectBlurb extends Component {
         )}
         {this.state.isHovering && (
           <div className={"description"}>
-            <h4 style={{ color: "black" }}>{this.props.project.name}</h4>
-            <p> {this.props.project.description} </p>
+            <h4 className={"descText"}>{this.props.project.name}</h4>
+            <p className={"descText"}>{this.props.project.description}</p>
+            <p
+              style={{
+                textAlign: "right",
+                position: "absolute",
+                right: "5%",
+                bottom: 0,
+                verticalAlign: "bottom"
+              }}
+            >
+              Read More
+            </p>
           </div>
         )}
       </div>
@@ -61,7 +73,7 @@ const styles = {
     width: "100%",
     height: "100%",
     border: "solid 3px #ffffff",
-    backgroundColor: "black",
+    backgroundColor: "rgba(0, 52, 62, 1)",
     boxShadow: "1px 2px 4px rgba(0, 0, 0, .5)"
   },
   BackgroundImage: {
@@ -79,7 +91,6 @@ const styles = {
 
     color: "white",
     fontSize: "34px",
-    fontFamiliy: "FedraSans",
-    textShadow: "2px 2px 4px #000000"
+    fontFamiliy: "FedraSans"
   }
 };
