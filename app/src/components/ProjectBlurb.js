@@ -47,17 +47,7 @@ class ProjectBlurb extends Component {
           <div className={"description"}>
             <h4 className={"descText"}>{this.props.project.name}</h4>
             <p className={"descText"}>{this.props.project.description}</p>
-            <p
-              style={{
-                textAlign: "right",
-                position: "absolute",
-                right: "5%",
-                bottom: 0,
-                verticalAlign: "bottom"
-              }}
-            >
-              Read More
-            </p>
+            <p style={styles.BottomText}>Read More</p>
           </div>
         )}
       </div>
@@ -92,5 +82,12 @@ const styles = {
     color: "white",
     fontSize: "34px",
     fontFamiliy: "FedraSans"
+  },
+  BottomText: {
+    textAlign: "right",
+    position: "absolute",
+    right: "5%",
+    bottom: 0,
+    verticalAlign: "bottom"
   }
 };
