@@ -35,7 +35,7 @@ class Tools extends Component {
 const styles = {
   container: {
     paddingTop: "12px",
-    border: "2px solid white",
+    border: "1px solid white",
     textAlign: "left",
     paddingLeft: "10px",
     paddingRight: "10px"
