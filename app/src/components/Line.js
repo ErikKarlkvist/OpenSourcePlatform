@@ -2,10 +2,10 @@ import React, { Component } from "react";
 
 class Line extends Component {
   render() {
-    //hooka med login
+    //hooked with login
     return (
       <div style={this.props.style}>
-        <div style={styles.line}/>
+        <div style={styles.line} />
       </div>
     );
   }
@@ -13,10 +13,10 @@ class Line extends Component {
 
 const styles = {
   line: {
-    borderBottom: '1px solid white',
+    borderBottom: "1px solid white",
     width: "50%",
     margin: "auto",
     display: "flex"
-  },
-}
+  }
+};
 export default Line;
