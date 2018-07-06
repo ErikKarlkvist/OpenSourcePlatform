@@ -7,7 +7,7 @@ import Spinner from "./Spinner"
 
 /*
 WARNING HOW TO USE:
-<UploadImage type={"profileImage"} id={"czR8cVL2cieDEbcMnicvFwldM5s2"} recieveURL={this.recieveURL}/>
+<UploadImage type={} id={} recieveURL={this.recieveURL}/>
 type is "profileImage", "headerImage" or "thumbnailImage"
 id is user uid or project id
 recieveURL is a callback function that recieves the url for the uploaded image (for rendering directly)
