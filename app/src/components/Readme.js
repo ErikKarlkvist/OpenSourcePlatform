@@ -14,9 +14,7 @@ class Readme extends Component {
   }
 
   componentDidMount() {
-    fetch(
-      "https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md"
-    )
+    fetch(this.props.project.readmeURL)
       .then(response => response.text())
       .then(text => {
         this.setState({ text });
