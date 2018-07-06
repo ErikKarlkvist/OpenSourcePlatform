@@ -52,7 +52,7 @@ class Spinner extends React.Component {
 const styles = {
   container: {
     alignText: "left",
-    marginTop: "10%"
+    marginTop: "5%"
   },
   image: {
     backgroundColor: "white",
