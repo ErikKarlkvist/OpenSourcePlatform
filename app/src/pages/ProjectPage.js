@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import Spinner from "../components/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
-import Tools from "../components/Tools";
+import Readme from "../components/Readme";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -41,19 +41,19 @@ class ProjectPage extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div class="PageContainer">
-        {!this.state.loading &&
+        {!this.state.loading && (
           <div>
-          <ProjectHeader
-            name={this.state.project.name}
-            headerImageURL={this.state.project.headerImageURL}
-            developers={this.state.project.developers}
-          />
-          <ProjectInfo project={this.state.project} />
+            <ProjectHeader
+              name={this.state.project.name}
+              headerImageURL={this.state.project.headerImageURL}
+              developers={this.state.project.developers}
+            />
+            <ProjectInfo project={this.state.project} />
+            <Readme project={this.state.project} />
           </div>
-        }
+        )}
         <Spinner loading={this.state.loading} fillPage={true} />
       </div>
     );
