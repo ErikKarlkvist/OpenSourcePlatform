@@ -3,6 +3,11 @@ import { Image } from "react-bootstrap";
 import "./ProjectBlurb.css";
 import "../resources/colors.css";
 
+/*
+* Displays the name and thumbnail image of a project
+* On hover, the description of the project is shown
+* On click, opens the ProjectPage. This is handled in ProjectDisplay.js
+*/
 class ProjectBlurb extends Component {
   constructor() {
     super();

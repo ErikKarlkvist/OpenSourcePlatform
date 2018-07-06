@@ -1,63 +1,50 @@
-.markdownOuter h1 {
+.markdown h1 {
   color: black;
   font-size: 2em;
-  margin-top: 0.67em;
-  margin-bottom: 0.67em;
   font-weight: bold;
   border-bottom: 1px solid #eaecef;
 }
-.markdownOuter h2 {
+.markdown h2 {
   color: black;
   font-size: 1.5em;
-  margin-top: 0.83em;
-  margin-bottom: 0.83em;
   font-weight: bold;
   border-bottom: 1px solid #eaecef;
   text-align: left;
 }
-.markdownOuter h3 {
+.markdown h3 {
   color: black;
   font-size: 1.17em;
-  margin-top: 1em;
-  margin-bottom: 1em;
   font-weight: bold;
   text-align: left;
 }
-.markdownOuter h4 {
+.markdown h4 {
   color: black;
-  margin-top: 1.33em;
-  margin-bottom: 1.33em;
   font-weight: bold;
+  font-size: 1em;
   text-align: left;
 }
-.markdownOuter h5 {
+.markdown h5 {
   color: black;
   font-size: 0.83em;
-  margin-top: 1.67em;
-  margin-bottom: 1.67em;
   font-weight: bold;
   text-align: left;
 }
-.markdownOuter h6 {
+.markdown h6 {
   color: black;
   font-size: 0.67em;
-  margin-top: 2.33em;
-  margin-bottom: 2.33em;
   font-weight: bold;
 }
 
-.markdownOuter p {
-  margin-top: 1em;
-  margin-bottom: 1em;
+.markdown p {
   color: black;
   text-align: left;
 }
 
-.markdownOuter pre {
+.markdown pre {
   background-color: #f6f8fa;
 }
 
-.markdownOuter code {
+.markdown code {
   background-color: rgba(27, 31, 35, 0.05);
   padding-top: 0.2em;
   padding-right: 0.4em;
@@ -66,21 +53,21 @@
   font-size: 85%;
 }
 
-.markdownOuter a {
+.markdown a {
   color: #0366d6;
 }
-.markdownOuter a:hover {
+.markdown a:hover {
   color: #0366d6;
 }
 
-.markdownOuter blockquote {
+.markdown blockquote {
   border-left: 0.25em solid #dfe2e5;
   color: #6a737d;
   padding-right: 1em;
   padding-left: 1em;
 }
 
-.markdownOuter {
+.markdown {
   background-color: white;
   color: black !important;
   text-align: left !important;
