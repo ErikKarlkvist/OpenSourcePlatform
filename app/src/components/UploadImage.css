@@ -1,0 +1,8 @@
+input[type="file"] {
+    display: none;
+}
+
+.UploadLabel {
+  cursor: pointer;
+  text-decoration: underline;
+}
