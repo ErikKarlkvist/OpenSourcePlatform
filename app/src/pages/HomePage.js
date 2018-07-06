@@ -3,11 +3,12 @@ import logo from "../logo.svg";
 import "../resources/Main.css";
 import { getAllProjects, getProject } from "../backend/projects";
 import ProjectsDisplay from "../components/ProjectsDisplay";
-import LoginRegister from "../components/LoginRegister"
-import FilterProjects from "../components/FilterProjects"
-import Line from "../components/Line"
-import Spinner from "../components/Spinner"
+import LoginRegister from "../components/LoginRegister";
+import FilterProjects from "../components/FilterProjects";
+import Line from "../components/Line";
+import Spinner from "../components/Spinner";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import LoginForm from "../components/LoginForm";
 
 class HomePage extends Component {
   constructor() {
@@ -46,6 +47,7 @@ class HomePage extends Component {
           <div style={{ marginTop: 30, marginBottom: 30 }}>
             <Line style={{ marginBottom: 10 }} />
             <FilterProjects changeFilter={this.changeFilter} />
+            <LoginForm />
           </div>
           <ProjectsDisplay projects={this.state.currentlyViewing} />
         </div>
