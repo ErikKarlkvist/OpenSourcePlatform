@@ -2,28 +2,23 @@
 
 .JoinProjectBtn {
   border: solid var(--white-two) 3px;
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 4px 1px 0px rgba(0, 0, 0, 0.5);
   background: none;
   color: white;
   padding-top: 10px;
   width: inherit;
   height: 100%;
   text-align: center;
+  transition: 0.2s;
 }
 .JoinProjectBtn:hover {
   background: var(--white-two);
   color: var(--dark-teal);
-}
-
-.ThinBorder {
-  border: solid var(--white-two) 1px;
-  width: 100%;
+  cursor: pointer;
 }
 
 .Contact {
   border: solid var(--white-two) 1px;
-  width: 100%;
-  width: inherit;
   height: 100%;
   text-align: center;
 }
