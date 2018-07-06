@@ -10,46 +10,42 @@ class ProjectInfo extends Component {
 
   render() {
     return (
-      <div style={styles.InfoContainer}>
-        <div class="row" style={{ marginRight: "0px" }}>
-          <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
-            {this.props.project.description}
-          </div>
-          <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
-            <div class="row">
-              <div class="col-md-12 col-sm-6 col-lg-12">
-                <div>
-                  <div style={{ textAlign: "center", marginBottom: "-10px" }}>
-                    <h6>Contact</h6>
-                  </div>
-                  <a href={"mailto:" + "xyz@dnb.no"}>
-                    <h3
-                      style={{
-                        textDecoration: "underline",
-                        textAlign: "center"
-                      }}
-                    >
-                      xyz.dnb.no
-                    </h3>
-                  </a>
-                </div>
+      <div style={styles.InfoContainer} class="row">
+        <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
+          {this.props.project.description}
+        </div>
+        <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
+          <div class="row">
+            {/*Join project button*/}
+            <div
+              class="col-md-12 col-sm-6 col-lg-12"
+              style={{ marginBottom: "20px" }}
+            >
+              <button
+                className="JoinProjectBtn"
+                onClick={this.joinProject(this.props.project.name)}
+              >
+                <h6>Join Project</h6>
+              </button>
+            </div>
+
+            {/*Contact*/}
+            <div
+              class="col-md-12 col-sm-6 col-lg-12"
+              style={{ marginBottom: "20px" }}
+            >
+              <div className="Contact">
+                <h6>Contact</h6>
+                <a href={"mailto:" + "xyz@dnb.no"}>
+                  <h3 style={styles.Email}>xyz.dnb.no</h3>
+                </a>
                 {/*replace with this.props.project.contactMail when that is implemented*/}
               </div>
-              <div class="col-md-12 col-sm-6 col-lg-12">
-                <button
-                  className="JoinProjectBtn"
-                  onClick={this.joinProject(this.props.project.name)}
-                >
-                  <h6>Join Project</h6>
-                </button>
-              </div>
+            </div>
 
-              <div
-                class="col-md-12 col-sm-12 col-lg-12"
-                style={{ paddingTop: "20px" }}
-              >
-                <Tools tools={this.props.project.tools} />
-              </div>
+            {/*Tools*/}
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <Tools tools={this.props.project.tools} />
             </div>
           </div>
         </div>
@@ -63,15 +59,29 @@ export default ProjectInfo;
 const styles = {
   Description: {
     color: "white",
-    fontSize: 18
+    fontSize: 18,
+    paddingBottom: "20px"
   },
   InfoContainer: {
     paddingLeft: "5%",
-    fontSize: 30
+    fontSize: 30,
+    marginRight: "0px",
+    paddingTop: "20px",
+    paddingBottom: "20px"
   },
   Sidebar: {
     color: "white",
-    justifyContent: "center",
     alignItems: "right"
+  },
+  Email: {
+    textDecoration: "underline",
+    textAlign: "center",
+    fontSize: "14px"
+  },
+  Contact: {
+    border: "solid var(--white-two) 1px",
+    textAlign: "center",
+    paddingLeft: "10px",
+    paddingRight: "10px"
   }
 };
