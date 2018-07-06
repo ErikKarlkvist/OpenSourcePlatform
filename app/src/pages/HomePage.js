@@ -8,6 +8,7 @@ import FilterProjects from "../components/FilterProjects"
 import Line from "../components/Line"
 import Spinner from "../components/Spinner"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import UploadImage from "../components/UploadImage"
 
 class HomePage extends Component {
   constructor() {
@@ -48,11 +49,12 @@ class HomePage extends Component {
             <FilterProjects changeFilter={this.changeFilter} />
           </div>
           <ProjectsDisplay projects={this.state.currentlyViewing} />
+
         </div>
       </div>
     );
   }
-
+  
   changeFilter = picked => {
     if (picked === "all") {
       this.setState({ currentlyViewing: this.state.allProjects });
