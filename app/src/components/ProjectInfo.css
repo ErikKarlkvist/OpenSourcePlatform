@@ -1,17 +1,29 @@
 @import "../resources/colors.css";
 
 .JoinProjectBtn {
-  border: solid var(--white-two) 2px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  border: solid var(--white-two) 3px;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.5);
   background: none;
   color: white;
-  margin-bottom: 20px;
   padding-top: 10px;
-  padding-bottom: 10px;
-  width: 100%;
+  width: inherit;
+  height: 100%;
   text-align: center;
 }
 .JoinProjectBtn:hover {
   background: var(--white-two);
   color: var(--dark-teal);
+}
+
+.ThinBorder {
+  border: solid var(--white-two) 1px;
+  width: 100%;
+}
+
+.Contact {
+  border: solid var(--white-two) 1px;
+  width: 100%;
+  width: inherit;
+  height: 100%;
+  text-align: center;
 }
