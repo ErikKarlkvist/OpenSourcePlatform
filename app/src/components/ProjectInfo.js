@@ -3,7 +3,8 @@ import "./ProjectInfo.css";
 import Tools from "./Tools.js";
 import "../resources/Main.css"
 import LoginForm from "./LoginForm"
-import {requestJoinProject} from "../backend/projects"
+import SignupForm from "./SignupForm"
+import {requestJoinProject, removeRequestProject} from "../backend/projects"
 import firebase from "../backend/firebase"
 
 class ProjectInfo extends Component {
@@ -15,7 +16,15 @@ class ProjectInfo extends Component {
   }
 
   componentDidMount(){
-    if(this.props.project.requestJoin && this.props.project.requestJoin.contains(this.props.user.id)){
+    if(this.props.project.joinRequest && this.props.project.joinRequest.includes(this.props.user.id)){
+      this.setState({
+        joinStatus: "requested"
+      })
+    }
+  }
+
+  componentWillReceiveProps(props){
+    if(props.project.joinRequest && props.project.joinRequest.includes(props.user.id)){
       this.setState({
         joinStatus: "requested"
       })
@@ -27,11 +36,12 @@ class ProjectInfo extends Component {
       requestJoinProject(this.props.project).then(() => {
         this.setState({joinStatus: "requested"})
       })
-    } else {
-      requestJoinProject(this.props.project).then(() => {
-        this.setState({joinStatus: "requested"})
+    } else if(this.state.joinStatus === "requested"){
+      removeRequestProject(this.props.project).then(() => {
+        this.setState({joinStatus: "none"})
       })
-      //this.setState({displayLogin: true})
+    } else if(!this.props.isLoggedIn){
+      this.setState({displaySignup: true})
     }
   }
 
@@ -53,7 +63,8 @@ class ProjectInfo extends Component {
 
     return (
       <div style={styles.InfoContainer} class="row">
-        {this.state.displayLogin && <LoginForm hide = {this.hide}/>}
+        {this.state.displayLogin && <LoginForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
+        {this.state.displaySignup && <SignupForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
         <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
           {this.props.project.description}
         </div>
@@ -95,6 +106,27 @@ class ProjectInfo extends Component {
       </div>
     );
   }
+
+  switchDisplay = () => {
+    if(this.state.displaySignup){
+      this.setState({
+        displaySignup: false,
+        displayLogin: true,
+      })
+    } else {
+      this.setState({
+        displaySignup: true,
+        displayLogin: false,
+      })
+    }
+  }
+
+  hide = () => {
+    this.setState({
+      displaySignup: false,
+      displayLogin: false,
+    })
+  }
 }
 
 export default ProjectInfo;
@@ -107,7 +139,6 @@ const styles = {
   },
   InfoContainer: {
     paddingLeft: "5%",
-    fontSize: 30,
     marginRight: "0px",
     paddingTop: "20px",
     paddingBottom: "20px"
