@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../resources/fonts.css";
 import "../resources/colors.css";
 import "../resources/Main.css";
+import Spinner from "./Spinner"
+import {login, resetPassword} from "../backend/auth"
 
 class SignUpView extends Component {
  constructor(props, context) {
@@ -10,7 +12,8 @@ class SignUpView extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      value: ''
+      value: '',
+      loading: false,
     };
   }
 
@@ -31,8 +34,9 @@ class SignUpView extends Component {
       <div style={styles.background} >
         <div style={styles.closer} onClick={this.props.hide}/>
         <div style={styles.container} >
+          {this.state.loading && <Spinner loading={true} fillPage color ={"black"}/>}
           <h1 style={{color:"var(--dark-teal)", textAlign: "center"}}>Log in</h1>
-          <form style={{width:"100%"}}>
+          <form name="login" onSubmit={this.submit} style={{width:"100%"}}>
             <div style={styles.space}>
               Email <br/>      
               <input style={styles.input} type="email" name="email" placeholder="name@email.com "/><br/>
@@ -47,20 +51,50 @@ class SignUpView extends Component {
             <div style={styles.container2}>
             <a style= {styles.create} onClick={this.props.switchDisplay}>Create account</a>
             <br/>
+            <a style= {styles.create} onClick={this.forgotPassword}>Forgot password</a>
             </div>
           </form>
         </div>
       </div>
     );
   }
-}
-function validateForm() {
-    var x = document.forms["myForm"]["fname"].value;
-    if (x == "") {
-        alert("Name must be filled out");
-        return false;
+
+  forgotPassword = () => {
+    const email = document.forms["login"]["email"].value;
+    if(!email){
+      alert("Please fill in email to reset password")
+    } else {
+      this.setState({loading: true})
+      resetPassword(email).then(() => {
+        this.setState({loading:false})
+        alert(`An email has been sent to ${email}`)
+      })
     }
-};
+  }
+
+  submit = (e) => {
+    e.preventDefault();
+    const email = document.forms["login"]["email"].value;
+    const password = document.forms["login"]["password"].value;
+
+    const emailDomain = email.split("@")[1]
+    
+    if(emailDomain !== "dnb.no"){
+      alert("Your email must end with @dnb.no")
+    } else {
+      this.setState({loading:true})
+      login(email, password).then(() => {
+        this.setState({loading: false})
+        this.props.hide();
+      }).catch((e) => {
+        this.setState({loading: false})
+        alert(e.message)
+      })
+    }
+
+  }
+}
+
 
 const styles = {
   background: {
