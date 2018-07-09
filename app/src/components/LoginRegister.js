@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./AnimatedMenu.css";
 import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
 class LoginRegister extends Component {
 
@@ -17,7 +18,8 @@ class LoginRegister extends Component {
     if(!this.props.isLoggedIn){
       return (
         <div>
-          {this.state.displayLogin && <LoginForm hide = {this.hide}/>}
+          {this.state.displayLogin && <LoginForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
+          {this.state.displaySignup && <SignupForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
           <div>
             <a className={"MenuItem"} onClick={() => this.setState({displaySignup:true})} >
               Sign up
@@ -37,6 +39,20 @@ class LoginRegister extends Component {
           <div style={styles.line}/>
         </div>
       )
+    }
+  }
+
+  switchDisplay = () => {
+    if(this.state.displaySignup){
+      this.setState({
+        displaySignup: false,
+        displayLogin: true,
+      })
+    } else {
+      this.setState({
+        displaySignup: true,
+        displayLogin: false,
+      })
     }
   }
 
