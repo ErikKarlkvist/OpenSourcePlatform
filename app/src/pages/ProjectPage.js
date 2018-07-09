@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import firebase from "../backend/firebase";
 import "../resources/Main.css";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
@@ -26,7 +26,8 @@ class ProjectPage extends Component {
       //add creator in order to not crash during load
       project: {
         creator: {}
-      }
+      },
+      userId: "",
     };
   }
 
@@ -39,6 +40,26 @@ class ProjectPage extends Component {
         });
       });
     }
+
+    this.setupAuthStateChange();
+  }
+
+  setupAuthStateChange(){
+    const page = this;
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        page.setState({
+          isLoggedIn: true,
+          hasFetchedUser: true,
+          userId: user.uid,
+        })
+      } else {
+        page.setState({
+          isLoggedIn: false,
+          hasFetchedUser: true,
+        })
+      }
+    });
   }
 
   render() {
