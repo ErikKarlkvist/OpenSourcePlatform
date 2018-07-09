@@ -80,13 +80,12 @@ class ProjectPage extends Component {
               user={this.state.user}
               hasFetchedUser={this.state.hasFetchedUser}
             />
-            <ProjectInfo project={this.state.project} />
-            <CurrentState project={this.state.project} />
-            <ProjectInfo
+                      <ProjectInfo
               user={this.state.user}
               isLoggedIn={this.state.isLoggedIn}
               project={this.state.project}
             />
+            <CurrentState project={this.state.project} />
             <Readme project={this.state.project} />
           </div>
         )}
