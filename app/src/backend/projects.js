@@ -1,4 +1,5 @@
 import firebase from "./firebase";
+import {sendJoinRequestMail} from "./email"
 
 export async function getAllProjects() {
   const snapshots = await firebase
@@ -74,6 +75,30 @@ export async function getProject(id) {
   }
 }
 
+export async function requestJoinProject(project) {
+    if(!firebase.auth().currentUser){
+      throw new Error("Not logged in")
+    }
+
+    const userUid = firebase.auth().currentUser.uid;
+    const requests = project.joinRequest || [];
+    const developerArr = []
+
+    requests.forEach(uid => {
+      if(uid === userUid){
+        throw new Error("User already requested");
+      }
+    })
+
+    requests.push(userUid)
+
+    await firebase.firestore().collection("projects").doc(project.id).set({joinRequest: requests}, {merge:true})
+    //await sendJoinRequestMail(project.creator.email, user, project)
+    return Promise.resolve("success")
+
+}
+
+//----------------------------------_HELPER ---------------------------------
 async function getToolsForProject(project) {
   let snapshots = await firebase
     .firestore()

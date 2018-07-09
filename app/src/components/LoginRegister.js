@@ -3,6 +3,7 @@ import "./AnimatedMenu.css";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 
+import {logout} from "../backend/auth"
 class LoginRegister extends Component {
 
   constructor(){
@@ -10,11 +11,18 @@ class LoginRegister extends Component {
     this.state = {
       displaySignup: false,
       displayLogin: false,
+      loading: false,
     }
   }
 
   render() {
     //hooka med login
+    if(!this.props.hasFetchedUser || this.state.loading){
+      return (
+        <div />
+      )
+    }
+
     if(!this.props.isLoggedIn){
       return (
         <div>
@@ -37,6 +45,23 @@ class LoginRegister extends Component {
         <div style={styles.container}>
           <h5>Welcome {this.props.user.firstname} {this.props.user.lastname}</h5>
           <div style={styles.line}/>
+          <div style={styles.optionsContainer}>
+            <div style={styles.option}>
+              <a className={"MenuItem"}  onClick={() => {}} >
+                 Create Project
+              </a>
+            </div>
+            <div style={styles.option}>
+              <a className={"MenuItem"}  onClick={() => {}} >
+                 Your Projects
+              </a>
+            </div>
+            <div style={styles.option}>
+              <a className={"MenuItem"}  onClick={this.logout} >
+                 Log out
+              </a>
+            </div>
+          </div>
         </div>
       )
     }
@@ -56,7 +81,14 @@ class LoginRegister extends Component {
     }
   }
 
-  hide = (shouldHide) => {
+  logout = () => {
+    this.setState({loading:true})
+    logout().then(() => {
+      this.setState({loading:false})
+    })
+  }
+
+  hide = () => {
     this.setState({
       displaySignup: false,
       displayLogin: false,
@@ -68,13 +100,18 @@ const styles = {
   line: {
     borderBottom: '1px solid white',
     height: "20px",
-    width: "120px",
+    width: "150px",
     marginLeft: "50px",
-    marginRight: "-20px"
+    position: "absolute",
+    right: 0,
+    top: 40
   },
-  container: {
-    display:"flex",
-    alignItems:"right"
+  optionsContainer: {
+    marginTop: 30,
+  },
+  option: {
+    marginTop: 10,
+    textAlign: "right"
   }
 }
 export default LoginRegister;

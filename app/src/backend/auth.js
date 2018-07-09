@@ -4,9 +4,7 @@ export async function register(firstname, lastname, email, password){
   const newUser = await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
     return Promise.reject(error);
   });
-  console.log(newUser)
   const user = {firstname, lastname, email};
-  console.log(user)
   await firebase.firestore().collection("users").doc(newUser.user.uid).set(user).catch(function(error){
     return Promise.reject(error);
   });
@@ -32,4 +30,8 @@ export async function logout(){
 
 export function isLoggedIn(){
   return isLoggedIn;
+}
+
+export function resetPassword(email){
+  return firebase.auth().sendPasswordResetEmail(email)
 }

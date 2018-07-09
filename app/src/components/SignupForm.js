@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../resources/fonts.css";
 import "../resources/colors.css";
 import "../resources/Main.css";
+import {register} from "../backend/auth"
+import Spinner from "./Spinner"
 
 class SignUpView extends Component {
  constructor(props, context) {
@@ -10,7 +12,8 @@ class SignUpView extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      value: ''
+      value: '',
+      loading: false,
     };
   }
 
@@ -27,20 +30,23 @@ class SignUpView extends Component {
   }
 
   render() {
+
+
     return (
       <div style={styles.background} >
         <div style={styles.closer} onClick={this.props.hide}/>
         <div style={styles.container} >
+          {this.state.loading && <Spinner loading={true} fillPage color ={"black"}/>}
           <h1 style={{color:"var(--dark-teal)", textAlign: "center"}}>Sign up</h1>
-          <form action={() => {this.submit}} style={{width:"100%"}}>
+          <form name="signup" onSubmit={this.submit} style={{width:"100%"}}>
             <br/>
-            <input style={styles.input} type="text" name="firstname" placeholder="Enter your first name"/><br/>
+            <input style={styles.input} type="text" name="firstname" placeholder="Enter your first name" required/><br/>
             <br/>
-            <input style={styles.input} type="text" name="lastname" placeholder="Enter your lastname"/><br/>
+            <input style={styles.input} type="text" name="lastname" placeholder="Enter your lastname" required/><br/>
             <br/>
-            <input style={styles.input} type="email" name="email" placeholder="Enter your e-mail"/><br/>
+            <input style={styles.input} type="email" name="email" placeholder="Enter your e-mail" required/><br/>
            	<br/>
-            <input style={styles.input} type="password" name="password" placeholder="Enter your password"/><br/>
+            <input style={styles.input} type="password" name="password" placeholder="Enter your password" required/><br/>
 			<div style={styles.container2}>
             	<a style= {styles.cancel} onClick={this.props.hide}> Cancel </a>
             	<input type="submit" value="Sign up" class="LogInBtn"/>
@@ -55,18 +61,32 @@ class SignUpView extends Component {
     );
   }
 
-  submit = () => {
-  	console.log("test")
+  submit = (e) => {
+  	e.preventDefault();
+  	const firstname = document.forms["signup"]["firstname"].value;
+  	const lastname = document.forms["signup"]["lastname"].value;
+  	const email = document.forms["signup"]["email"].value;
+  	const password = document.forms["signup"]["password"].value;
+
+  	const emailDomain = email.split("@")[1]
+  	
+  	if(emailDomain !== "dnb.no"){
+  		alert("Your email must end with @dnb.no")
+  	} else {
+
+	  	this.setState({loading:true})
+	  	register(firstname, lastname, email, password).then(() => {
+	  		this.setState({loading: false})
+	  		this.props.hide();
+	  	}).catch((e) => {
+	  		this.setState({loading: false})
+	  		alert(e.message)
+  		})
+  	} 
+
   }
 }
 
-function validateForm() {
-    var x = document.forms["myForm"]["fname"].value;
-    if (x == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-};
 
 const styles = {
   background: {
