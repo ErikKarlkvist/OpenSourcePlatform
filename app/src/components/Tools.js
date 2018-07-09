@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../resources/fonts.css";
 import "../resources/colors.css";
+import "./AnimatedMenu.css"
 class Tools extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,6 @@ class Tools extends Component {
       term: ""
     };
   }
-
   render() {
     if (this.props.tools) {
       return (
@@ -17,10 +17,12 @@ class Tools extends Component {
           <h6 style={{ textAlign: "center" }}>Tools</h6>
           <ul class="list-unstyled">
             {this.props.tools.map((item, index) => (
-              <li key={index}>
-                <a href={item.link}>
-                  <h5 style={{ textAlign: "left" }}>{item.name}</h5>
-                </a>
+              <li style = {{textAlign: "left", marginTop: "-20px"}} key={index}>
+                <div >
+                  <a className={"MenuItem"}  href={item.link}>
+                    {item.name}
+                  </a>
+                </div>
               </li>
             ))}
           </ul>
@@ -39,6 +41,6 @@ const styles = {
     textAlign: "left",
     paddingLeft: "10px",
     paddingRight: "10px"
-  }
+  },
 };
 export default Tools;
