@@ -17,7 +17,7 @@ class Tools extends Component {
           <h6 style={{ textAlign: "center" }}>Tools</h6>
           <ul class="list-unstyled">
             {this.props.tools.map((item, index) => (
-              <li style = {{textAlign: "left", marginTop: "-20px"}} key={index}>
+              <li style = {{textAlign: "left"}} key={index}>
                 <div >
                   <a className={"MenuItem"}  href={item.link}>
                     {item.name}
