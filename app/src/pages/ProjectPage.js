@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "../backend/firebase";
 import "../resources/Main.css";
+import { getUser } from "../backend/users.js";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -27,7 +28,9 @@ class ProjectPage extends Component {
       project: {
         creator: {}
       },
-      userId: "",
+      user: {},
+      isLoggedIn: false,
+      hasFetchedUser: false
     };
   }
 
@@ -44,20 +47,22 @@ class ProjectPage extends Component {
     this.setupAuthStateChange();
   }
 
-  setupAuthStateChange(){
+  setupAuthStateChange() {
     const page = this;
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        page.setState({
-          isLoggedIn: true,
-          hasFetchedUser: true,
-          userId: user.uid,
-        })
+        getUser(user.uid).then(user => {
+          page.setState({
+            isLoggedIn: true,
+            hasFetchedUser: true,
+            user
+          });
+        });
       } else {
         page.setState({
           isLoggedIn: false,
-          hasFetchedUser: true,
-        })
+          hasFetchedUser: true
+        });
       }
     });
   }
@@ -71,9 +76,17 @@ class ProjectPage extends Component {
               name={this.state.project.name}
               headerImageURL={this.state.project.headerImageURL}
               developers={this.state.project.developers}
+              isLoggedIn={this.state.isLoggedIn}
+              user={this.state.user}
+              hasFetchedUser={this.state.hasFetchedUser}
             />
             <ProjectInfo project={this.state.project} />
             <CurrentState project={this.state.project} />
+            <ProjectInfo
+              user={this.state.user}
+              isLoggedIn={this.state.isLoggedIn}
+              project={this.state.project}
+            />
             <Readme project={this.state.project} />
           </div>
         )}

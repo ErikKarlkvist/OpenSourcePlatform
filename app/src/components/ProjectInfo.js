@@ -2,15 +2,69 @@ import React, { Component } from "react";
 import "./ProjectInfo.css";
 import Tools from "./Tools.js";
 import "../resources/Main.css"
+import LoginForm from "./LoginForm"
+import SignupForm from "./SignupForm"
+import {requestJoinProject, removeRequestProject} from "../backend/projects"
+import firebase from "../backend/firebase"
+
 class ProjectInfo extends Component {
-  joinProject(name) {
-    console.log("Let me join", name, "please");
-    return;
+
+  //"joinStatus === joined, requested or none"
+  state = {
+    displayLogin: false,
+    joinStatus: "none"
+  }
+
+  componentDidMount(){
+    if(this.props.project.joinRequest && this.props.project.joinRequest.includes(this.props.user.id)){
+      this.setState({
+        joinStatus: "requested"
+      })
+    }
+  }
+
+  componentWillReceiveProps(props){
+    if(props.project.joinRequest && props.project.joinRequest.includes(props.user.id)){
+      this.setState({
+        joinStatus: "requested"
+      })
+    }
+  }
+
+  joinProject = () => {
+    if(this.props.isLoggedIn && this.state.joinStatus === "none"){
+      requestJoinProject(this.props.project).then(() => {
+        this.setState({joinStatus: "requested"})
+      })
+    } else if(this.state.joinStatus === "requested"){
+      removeRequestProject(this.props.project).then(() => {
+        this.setState({joinStatus: "none"})
+      })
+    } else if(!this.props.isLoggedIn){
+      this.setState({displaySignup: true})
+    }
+  }
+
+  hide = () => {
+    this.setState({
+      displaySignup: false,
+      displayLogin: false,
+    })
   }
 
   render() {
+
+    let joinText = "Join Project"
+    if(this.state.joinStatus === "requested"){
+      joinText = "Remove request"
+    } else if (this.state.joinStatus === "joined"){
+      joinText = "Leave project"
+    }
+
     return (
       <div style={styles.InfoContainer} class="row">
+        {this.state.displayLogin && <LoginForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
+        {this.state.displaySignup && <SignupForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
         <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
           {this.props.project.description}
         </div>
@@ -23,9 +77,9 @@ class ProjectInfo extends Component {
             >
               <button
                 className="SeeThroughBtn"
-                onClick={this.joinProject(this.props.project.name)}
+                onClick={this.joinProject}
               >
-                <h6>Join Project</h6>
+                <h6>{joinText}</h6>
               </button>
             </div>
 
@@ -52,6 +106,27 @@ class ProjectInfo extends Component {
       </div>
     );
   }
+
+  switchDisplay = () => {
+    if(this.state.displaySignup){
+      this.setState({
+        displaySignup: false,
+        displayLogin: true,
+      })
+    } else {
+      this.setState({
+        displaySignup: true,
+        displayLogin: false,
+      })
+    }
+  }
+
+  hide = () => {
+    this.setState({
+      displaySignup: false,
+      displayLogin: false,
+    })
+  }
 }
 
 export default ProjectInfo;
@@ -64,7 +139,6 @@ const styles = {
   },
   InfoContainer: {
     paddingLeft: "5%",
-    fontSize: 30,
     marginRight: "0px",
     paddingTop: "20px",
     paddingBottom: "20px"
