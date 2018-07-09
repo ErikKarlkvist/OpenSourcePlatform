@@ -10,6 +10,7 @@ import Spinner from "../components/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
 import Readme from "../components/Readme";
+import CurrentState from "../components/CurrentState";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -51,6 +52,7 @@ class ProjectPage extends Component {
               developers={this.state.project.developers}
             />
             <ProjectInfo project={this.state.project} />
+            <CurrentState project={this.state.project} />
             <Readme project={this.state.project} />
           </div>
         )}
