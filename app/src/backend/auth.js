@@ -1,7 +1,5 @@
 import firebase from "./firebase"
 
-let isLoggedIn = false;
-
 export async function register(firstname, lastname, email, password){
   const newUser = await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
     return Promise.reject(error);
@@ -35,11 +33,3 @@ export async function logout(){
 export function isLoggedIn(){
   return isLoggedIn;
 }
-
-firebase.auth().onAuthStateChanged(function(user) {
-if (user) {
-    isLoggedIn = true;
-  } else {
-    isLoggedIn = false;
-  }
-});
