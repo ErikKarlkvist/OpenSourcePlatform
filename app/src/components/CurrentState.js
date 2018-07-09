@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
 import "./CurrentState.css";
 
 //Sets how many pictures are shown if "show more" has not been pressed
