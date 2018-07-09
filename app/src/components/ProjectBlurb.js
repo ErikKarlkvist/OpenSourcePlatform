@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Image } from "react-bootstrap";
 import "./ProjectBlurb.css";
 import "../resources/colors.css";
+import ThumbnailHeads from "./ThumbnailHeads";
 
 /*
 * Displays the name and thumbnail image of a project
@@ -46,7 +47,12 @@ class ProjectBlurb extends Component {
         <img style={styles.BackgroundImage} src={this.props.project.imgURL} />
 
         {!this.state.isHovering && (
-          <span style={styles.ProjectName}>{this.props.project.name}</span>
+          <div>
+            <span style={styles.ProjectName}>{this.props.project.name}</span>
+            <div style={styles.ThumbnailHeads}>
+              <ThumbnailHeads developers={this.props.project.developers} />
+            </div>
+          </div>
         )}
         {this.state.isHovering && (
           <div className={"description"}>
@@ -92,7 +98,11 @@ const styles = {
     textAlign: "right",
     position: "absolute",
     right: "5%",
-    bottom: 0,
-    verticalAlign: "bottom"
+    bottom: 0
+  },
+  ThumbnailHeads: {
+    position: "absolute",
+    right: "5%",
+    bottom: "2px"
   }
 };
