@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Form, FormGroup, ControlLabel, FormControl, Col,Checkbox, Button} from 'react-bootstrap';
 import "../resources/fonts.css";
+import "../resources/colors.css";
 
 class SignUpView extends Component {
  constructor(props, context) {
@@ -27,46 +28,33 @@ class SignUpView extends Component {
 
   render() {
     return (
-      <div style={styles.background} onClick={this.props.hide}>
-        <div style={styles.container} onClick={()=>{}}>
-          <div>
-          <Form horizontal>
-            <FormGroup controlId="formHorizontalEmail">
-              <Col componentClass={ControlLabel} sm={2}>
-                Email
-              </Col>
-                <Col sm={10}>
-                <FormControl type="email" placeholder="Email" />
-              </Col>
-            </FormGroup>
+      <div style={styles.background} >
+        <div style={styles.closer} onClick={this.props.hide}/>
+        <div style={styles.container} >
+          <h1 style={{color:"black", textAlign: "center"}}>Log in</h1>
+          <form style={{width:"100%"}}>
+            First name:<br/>
+            <input style={styles.input} type="text" name="firstname"/><br/>
+            Last name:<br/>
+            <input type="lastname" name="lastname"/><br/>
+            Password:<br/>
+            <input type="password" name="lastname"/><br/>
 
-            <FormGroup controlId="formHorizontalPassword">
-              <Col componentClass={ControlLabel} sm={2}>
-                Password
-              </Col>
-              <Col sm={10}>
-                <FormControl type="password" placeholder="Password" />
-              </Col>
-            </FormGroup>
-
-            <FormGroup>
-              <Col smOffset={2} sm={10}>
-                <Checkbox>Remember me</Checkbox>
-              </Col>
-            </FormGroup>
-
-            <FormGroup>
-              <Col smOffset={2} sm={10}>
-                <Button type="submit">Sign in</Button>
-              </Col>
-            </FormGroup>
-          </Form>
-          </div>
+            <input type="submit" value="Log in"/>
+          </form>
         </div>
       </div>
     );
   }
 }
+function validateForm() {
+    var x = document.forms["myForm"]["fname"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+};
+
 const styles = {
   background: {
     backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -78,14 +66,28 @@ const styles = {
     position: "fixed",
     top: 0,
     left: 0,
-    zIndex: 10,
+    zIndex: 2,
   },
   container: {
+    backgroundColor: "white",
     height: "400px",
     width: "400px",
-    alignItems: "center",
-    padding: "(1, 1, 1, 1)",
+    padding: 40,
+    color:"var(--dark-teal)",
+    zIndex: 4,
   },
+  closer: {
+    height: "100%",
+    width: "100%",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    zIndex: 3,
+  },
+  input: {
+    width: "100%"
+  }
+
 };
 
 

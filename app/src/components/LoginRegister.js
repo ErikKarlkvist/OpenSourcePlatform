@@ -31,7 +31,7 @@ class LoginRegister extends Component {
     );
   }
 
-  hide = () => {
+  hide = (shouldHide) => {
     this.setState({
       displaySignup: false,
       displayLogin: false,
