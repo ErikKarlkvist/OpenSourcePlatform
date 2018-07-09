@@ -11,6 +11,7 @@ import Spinner from "../components/Spinner";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import UploadImage from "../components/UploadImage";
 import firebase from "../backend/firebase";
+import LoginForm from "../components/LoginForm";
 
 class HomePage extends Component {
   constructor() {

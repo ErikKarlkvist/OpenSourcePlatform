@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./ProjectInfo.css";
 import Tools from "./Tools.js";
-
+import "../resources/Main.css"
 class ProjectInfo extends Component {
   joinProject(name) {
     console.log("Let me join", name, "please");
@@ -22,7 +22,7 @@ class ProjectInfo extends Component {
               style={{ marginBottom: "20px" }}
             >
               <button
-                className="JoinProjectBtn"
+                className="SeeThroughBtn"
                 onClick={this.joinProject(this.props.project.name)}
               >
                 <h6>Join Project</h6>
