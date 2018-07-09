@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-class Spinner extends React.Component {
+class Contributors extends React.Component {
   static propTypes = {
     developers: PropTypes.object.isRequired
   };
@@ -43,6 +43,7 @@ class Spinner extends React.Component {
         </div>
         <div class="d-block d-sm-none d-md-none">
           <a href="#">View contributors</a>
+          {/*TODO: Open contributor modal on click*/}
         </div>
       </div>
     );
@@ -79,4 +80,4 @@ const styles = {
   }
 };
 
-export default Spinner;
+export default Contributors;
