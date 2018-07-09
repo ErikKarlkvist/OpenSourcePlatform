@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import firebase from "./backend/firebase";
 import ProjectsDisplay from "./components/ProjectsDisplay";
 import ProjectBlurb from "./components/ProjectBlurb";
 
@@ -10,19 +9,17 @@ import "./resources/fonts.css"
 class App extends Component {
   constructor() {
     super();
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        console.log("USER IS SIGNED IN");
-        // ...
-      } else {
-        console.log("USER IS SIGNED OUT");
-      }
-    });
+
+    this.state = {
+      isLoggedIn: false,
+      hasFetchedUser: false,
+    }
+
+
   }
 
   render() {
-    return <Routing />;
+    return <Routing isLoggedIn={this.state.isLoggedIn} hasFetchedUser={this.state.hasFetchedUser}/>;
   }
 }
 
