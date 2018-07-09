@@ -8,6 +8,7 @@ export async function getAllProjects() {
   let toolsData = [];
   let developersData = [];
   let creatorsData = [];
+  let thumbnailsData = [];
   const projects = [];
   snapshots.forEach(snapshot => {
     if (snapshot.exists) {
@@ -19,6 +20,7 @@ export async function getAllProjects() {
       toolsData.push(getToolsForProject(data));
       developersData.push(getDevelopersForProject(data));
       creatorsData.push(getCreatorForProject(data));
+      thumbnailsData.push(getThumbnailsForProject(data));
     }
   });
 
@@ -26,6 +28,7 @@ export async function getAllProjects() {
   toolsData = await Promise.all(toolsData);
   developersData = await Promise.all(developersData);
   creatorsData = await Promise.all(creatorsData);
+  thumbnailsData = await Promise.all(thumbnailsData);
 
   //loop everything to correct place
   projects.forEach(project => {
@@ -46,6 +49,12 @@ export async function getAllProjects() {
         project.creator = data.creator;
       }
     });
+
+    thumbnailsData.forEach(data => {
+      if (data.projectId === project.id) {
+        project.thumbnails = data.thumbnails;
+      }
+    });
   });
 
   return Promise.resolve(projects);
@@ -64,10 +73,12 @@ export async function getProject(id) {
     const toolData = await getToolsForProject(projectData);
     const developerData = await getDevelopersForProject(projectData);
     const creatorData = await getCreatorForProject(projectData);
+    const thumbnailData = await getThumbnailsForProject(projectData);
 
     projectData.tools = toolData.tools;
     projectData.developers = developerData.developers;
     projectData.creator = creatorData.creator;
+    projectData.thumbnails = thumbnailData.thumbnails;
     return Promise.resolve(projectData);
   } else {
     // doc.data() will be undefined in this case
@@ -116,7 +127,7 @@ async function getDevelopersForProject(project) {
   return Promise.resolve(data);
 }
 
-async function getCreatorForProject(project){
+async function getCreatorForProject(project) {
   const creator = await firebase
     .firestore()
     .collection("users")
@@ -128,9 +139,27 @@ async function getCreatorForProject(project){
         user.id = snapshot.id;
         return Promise.resolve(user);
       } else {
-        return Promise.resolve({id: "No user"})
+        return Promise.resolve({ id: "No user" });
       }
     });
-    const data = { creator, projectId: project.id };
-    return Promise.resolve(data);
+  const data = { creator, projectId: project.id };
+  return Promise.resolve(data);
+}
+
+async function getThumbnailsForProject(project) {
+  let snapshots = await firebase
+    .firestore()
+    .collection("projects")
+    .doc(project.id)
+    .collection("thumbnails")
+    .get();
+  const thumbnails = [];
+  snapshots.forEach(snapshot => {
+    if (snapshot.exists) {
+      const data = snapshot.data();
+      thumbnails.push(data);
+    }
+  });
+  const data = { thumbnails, projectId: project.id };
+  return Promise.resolve(data);
 }
