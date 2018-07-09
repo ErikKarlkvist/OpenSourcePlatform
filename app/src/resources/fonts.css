@@ -80,16 +80,11 @@ h6 {
   font-size: 16px;
 }
 
+
 /* project description header */
 p {
   font-family: FedraSansLight;
   font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
   color: #00343e;
   color: var(--dark-teal);
 }
@@ -118,4 +113,8 @@ a:hover {
   text-decoration: none;
   color: #ffffff;
   color: var(--white);
+}
+
+.f18 {
+  font-size: 18px;
 }

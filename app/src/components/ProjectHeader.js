@@ -27,7 +27,7 @@ class ProjectsDisplay extends Component {
               <LoginRegister />
             </header>
             <div>
-              <h2 style={{marginTop: 80}}>{this.props.name}</h2>
+              <h2 style={{marginTop: "2%"}}>{this.props.name}</h2>
               <Contributors developers = {this.props.developers} />
             </div>
           </div>
