@@ -12,13 +12,14 @@ import LoginForm from "../components/LoginForm";
 import UploadImage from "../components/UploadImage"
 
 
+
 class HomePage extends Component {
   constructor() {
     super();
     this.state = {
       currentlyViewing: [],
-      loading: true,
-    }
+      loading: true
+    };
   }
 
   componentDidMount() {
@@ -26,9 +27,9 @@ class HomePage extends Component {
       this.setState({
         currentlyViewing: projects,
         allProjects: projects,
-        liveProjects: [],
-        graduateProjects: [],
-        loading: false,
+        liveProjects: [projects[0]],
+        graduateProjects: [projects[projects.length - 1]],
+        loading: false
       });
     });
   }
@@ -36,7 +37,7 @@ class HomePage extends Component {
   render() {
     return (
       <div class="PageContainer">
-        <Spinner loading = {this.state.loading} fillPage={true}/>
+        <Spinner loading={this.state.loading} fillPage={true} />
         <header className="App-header">
           <Link to="/">
             <img src={logo} class="Logo" alt="logo" />
@@ -51,12 +52,11 @@ class HomePage extends Component {
             <FilterProjects changeFilter={this.changeFilter} />
           </div>
           <ProjectsDisplay projects={this.state.currentlyViewing} />
-
         </div>
       </div>
     );
   }
-  
+
   changeFilter = picked => {
     if (picked === "all") {
       this.setState({ currentlyViewing: this.state.allProjects });
