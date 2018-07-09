@@ -49,12 +49,11 @@ class HomePage extends Component {
             <FilterProjects changeFilter={this.changeFilter} />
           </div>
           <ProjectsDisplay projects={this.state.currentlyViewing} />
-
         </div>
       </div>
     );
   }
-  
+
   changeFilter = picked => {
     if (picked === "all") {
       this.setState({ currentlyViewing: this.state.allProjects });
