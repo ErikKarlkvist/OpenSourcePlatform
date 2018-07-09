@@ -25,3 +25,21 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.SeeThroughBtn {
+  border: solid var(--white-two) 3px;
+  box-shadow: 1px 4px 1px 0px rgba(0, 0, 0, 0.5);
+  background: none;
+  color: white;
+  padding-top: 10px;
+  width: inherit;
+  height: 100%;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.SeeThroughBtn:hover {
+  background: var(--white-two);
+  color: var(--dark-teal);
+  cursor: pointer;
+}
