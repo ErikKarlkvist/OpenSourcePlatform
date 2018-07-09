@@ -82,13 +82,31 @@ export async function requestJoinProject(project) {
 
     const userUid = firebase.auth().currentUser.uid;
     const requests = project.joinRequest || [];
-    const developerArr = []
 
     requests.forEach(uid => {
       if(uid === userUid){
         throw new Error("User already requested");
       }
     })
+
+    requests.push(userUid)
+
+    await firebase.firestore().collection("projects").doc(project.id).set({joinRequest: requests}, {merge:true})
+    //await sendJoinRequestMail(project.creator.email, user, project)
+    return Promise.resolve("success")
+
+}
+
+export async function removeRequestProject(project) {
+    if(!firebase.auth().currentUser){
+      throw new Error("Not logged in")
+    }
+
+    const userUid = firebase.auth().currentUser.uid;
+    const requests = project.joinRequest || [];
+
+    const index = requests.indexOf(userUid);
+    requests.splice(index,1);
 
     requests.push(userUid)
 
