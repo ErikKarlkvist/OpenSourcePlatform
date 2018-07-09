@@ -14,21 +14,30 @@ class LoginRegister extends Component {
 
   render() {
     //hooka med login
-    return (
-      <div>
-        {this.state.displayLogin && <LoginForm hide = {this.hide}/>}
+    if(!this.props.isLoggedIn){
+      return (
         <div>
-          <a className={"MenuItem"} onClick={() => this.setState({displaySignup:true})} >
-            Sign up
-         </a>
-         <a> | </a>
-         <a className={"MenuItem"} onClick={() => this.setState({displayLogin:true})} >
-            Log in
-         </a>
+          {this.state.displayLogin && <LoginForm hide = {this.hide}/>}
+          <div>
+            <a className={"MenuItem"} onClick={() => this.setState({displaySignup:true})} >
+              Sign up
+           </a>
+           <a> | </a>
+           <a className={"MenuItem"} onClick={() => this.setState({displayLogin:true})} >
+              Log in
+           </a>
+          </div>
+          <div style={styles.line}/>
         </div>
-        <div style={styles.line}/>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div style={styles.container}>
+          <h5>Welcome {this.props.user.firstname} {this.props.user.lastname}</h5>
+          <div style={styles.line}/>
+        </div>
+      )
+    }
   }
 
   hide = (shouldHide) => {
@@ -47,6 +56,9 @@ const styles = {
     marginLeft: "50px",
     marginRight: "-20px"
   },
+  container: {
+    display:"flex",
+    alignItems:"right"
+  }
 }
 export default LoginRegister;
-
