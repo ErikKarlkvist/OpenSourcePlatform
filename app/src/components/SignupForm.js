@@ -40,13 +40,22 @@ class SignUpView extends Component {
           <h1 style={{color:"var(--dark-teal)", textAlign: "center"}}>Sign up</h1>
           <form name="signup" onSubmit={this.submit} style={{width:"100%"}}>
             <br/>
-            <input style={styles.input} type="text" name="firstname" placeholder="Enter your first name" required/><br/>
-            <br/>
-            <input style={styles.input} type="text" name="lastname" placeholder="Enter your lastname" required/><br/>
-            <br/>
-            <input style={styles.input} type="email" name="email" placeholder="Enter your e-mail" required/><br/>
-           	<br/>
+            <div style ={styles.space}>
+            Firstname<br/>
+            <input style={styles.input} type="text" name="firstname" placeholder="Enter your first name" required/>
+            </div>
+            <div style ={styles.space}>
+            Lastname<br/>
+            <input style={styles.input} type="text" name="lastname" placeholder="Enter your lastname" required/>
+            </div>
+            <div style={styles.space}>
+            Email<br/>
+            <input style={styles.input} type="email" name="email" placeholder="Enter your e-mail" required/>
+            </div>
+           	<div style ={styles.space}>
+           	Password<br/>
             <input style={styles.input} type="password" name="password" placeholder="Enter your password" required/><br/>
+            </div>
 			<div style={styles.container2}>
             	<a style= {styles.cancel} onClick={this.props.hide}> Cancel </a>
             	<input type="submit" value="Sign up" class="LogInBtn"/>
@@ -105,7 +114,7 @@ const styles = {
   },
   container: {
     backgroundColor: "var(--white-three)",
-    height: "500px",
+    height: "600px",
     width: "400px",
     padding: 40,
     color:"var(--dark-teal)",
@@ -113,7 +122,7 @@ const styles = {
     boxShadow: "5px 5px 10px black"
   },
   container2:{
-  	marginTop:"5%",
+  	marginTop:"3%",
   	width: "100%",
     display:"flex",
     justifyContent: "center",
