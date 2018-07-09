@@ -24,10 +24,10 @@ class ProjectsDisplay extends Component {
               <Link to="/">
                 <img src={logo} class="Logo" alt="logo" />
               </Link>
-              <LoginRegister />
+              <LoginRegister isLoggedIn={this.props.isLoggedIn} user={this.props.user} hasFetchedUser={this.props.hasFetchedUser}/>
             </header>
             <div>
-              <h2 style={{marginTop: 80}}>{this.props.name}</h2>
+              <h2 style={{marginTop: "15vh"}}>{this.props.name}</h2>
               <Contributors developers = {this.props.developers} />
             </div>
           </div>

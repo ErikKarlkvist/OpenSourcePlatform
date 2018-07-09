@@ -43,3 +43,17 @@
   color: var(--dark-teal);
   cursor: pointer;
 }
+.LogInBtn {
+  border: solid var(--dark-teal) 2px;
+  background: none;
+  color: var(--dark-teal);
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.LogInBtn:hover {
+  background: var(--dark-teal);
+  color: var(--white);
+}

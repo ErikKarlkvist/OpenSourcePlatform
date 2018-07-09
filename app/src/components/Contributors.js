@@ -53,7 +53,7 @@ class Contributors extends React.Component {
 const styles = {
   container: {
     alignText: "left",
-    marginTop: "5%"
+    marginTop: "30px"
   },
   image: {
     backgroundColor: "white",
