@@ -2,15 +2,58 @@ import React, { Component } from "react";
 import "./ProjectInfo.css";
 import Tools from "./Tools.js";
 import "../resources/Main.css"
+import LoginForm from "./LoginForm"
+import {requestJoinProject} from "../backend/projects"
+import firebase from "../backend/firebase"
+
 class ProjectInfo extends Component {
-  joinProject(name) {
-    console.log("Let me join", name, "please");
-    return;
+
+  //"joinStatus === joined, requested or none"
+  state = {
+    displayLogin: false,
+    joinStatus: "none"
+  }
+
+  componentDidMount(){
+    if(this.props.project.requestJoin && this.props.project.requestJoin.contains(this.props.user.id)){
+      this.setState({
+        joinStatus: "requested"
+      })
+    }
+  }
+
+  joinProject = () => {
+    if(this.props.isLoggedIn && this.state.joinStatus === "none"){
+      requestJoinProject(this.props.project).then(() => {
+        this.setState({joinStatus: "requested"})
+      })
+    } else {
+      requestJoinProject(this.props.project).then(() => {
+        this.setState({joinStatus: "requested"})
+      })
+      //this.setState({displayLogin: true})
+    }
+  }
+
+  hide = () => {
+    this.setState({
+      displaySignup: false,
+      displayLogin: false,
+    })
   }
 
   render() {
+
+    let joinText = "Join Project"
+    if(this.state.joinStatus === "requested"){
+      joinText = "Remove request"
+    } else if (this.state.joinStatus === "joined"){
+      joinText = "Leave project"
+    }
+
     return (
       <div style={styles.InfoContainer} class="row">
+        {this.state.displayLogin && <LoginForm hide = {this.hide}/>}
         <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
           {this.props.project.description}
         </div>
@@ -23,9 +66,9 @@ class ProjectInfo extends Component {
             >
               <button
                 className="SeeThroughBtn"
-                onClick={this.joinProject(this.props.project.name)}
+                onClick={this.joinProject}
               >
-                <h6>Join Project</h6>
+                <h6>{joinText}</h6>
               </button>
             </div>
 

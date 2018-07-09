@@ -67,7 +67,7 @@ class HomePage extends Component {
           <Link to="/">
             <img src={logo} class="Logo" alt="logo" />
           </Link>
-          <LoginRegister isLoggedIn={this.state.isLoggedIn} user={this.state.user}/>
+          <LoginRegister isLoggedIn={this.state.isLoggedIn} user={this.state.user} hasFetchedUser={this.state.hasFetchedUser}/>
         </header>
         <div class="Content">
           <h1 className="App-title">DNB Open Source</h1>
