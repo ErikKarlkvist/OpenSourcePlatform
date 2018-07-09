@@ -16,10 +16,11 @@ label {
 .MenuItem {
   position: relative;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .MenuItem:hover {
-	
+
 }
 .MenuItem:before{
   content: "";

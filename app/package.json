@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "firebase": "^5.2.0",
+    "nodemailer": "^4.6.7",
     "raw-loader": "^0.5.1",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
