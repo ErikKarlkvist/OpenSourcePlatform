@@ -38,7 +38,8 @@ const styles = {
     width: "40px",
     borderRadius: "50%",
     border: "1px white ",
-    marginRight: "5px"
+    marginRight: "5px",
+    objectFit: "cover"
   },
   ellipses: {
     fontSize: 12,

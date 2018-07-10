@@ -12,7 +12,8 @@ class CurrentState extends Component {
       images: [],
       showing: [],
       showLightbox: false,
-      currentImage: 0
+      currentImage: 0,
+      lightBoxImages: []
     };
 
     this.openLightbox = this.openLightbox.bind(this);
@@ -29,7 +30,9 @@ class CurrentState extends Component {
         </div>
       ));
     }
-    this.setState({ images: items, showing: items.slice(0, cutoff) });
+
+    const lightBoxImages = this.mapToLightbox()
+    this.setState({ images: items, showing: items.slice(0, cutoff), lightBoxImages });
   }
 
   showAll = () => {
@@ -76,7 +79,7 @@ class CurrentState extends Component {
           )}
         </div>
         <Lightbox
-          images={this.mapToLightbox}
+          images={this.state.lightBoxImages}
           isOpen={this.state.showLightbox}
           backdropClosesModal={true}
           onClose={this.closeLightbox}
