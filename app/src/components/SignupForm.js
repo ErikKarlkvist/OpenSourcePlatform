@@ -41,16 +41,16 @@ class SignUpView extends Component {
           <form name="signup" onSubmit={this.submit} style={{width:"100%"}}>
             <br/>
             <div style ={styles.space}>
-            Firstname<br/>
+            First name<br/>
             <input style={styles.input} type="text" name="firstname" placeholder="Enter your first name" required/>
             </div>
             <div style ={styles.space}>
-            Lastname<br/>
-            <input style={styles.input} type="text" name="lastname" placeholder="Enter your lastname" required/>
+            Last name<br/>
+            <input style={styles.input} type="text" name="lastname" placeholder="Enter your last name" required/>
             </div>
             <div style={styles.space}>
             Email<br/>
-            <input style={styles.input} type="email" name="email" placeholder="Enter your e-mail" required/>
+            <input style={styles.input} type="email" name="email" placeholder="Enter your email" required/>
             </div>
            	<div style ={styles.space}>
            	Password<br/>
@@ -127,6 +127,7 @@ const styles = {
     display:"flex",
     justifyContent: "center",
     alignItems:"center",
+    marginBottom:10
   },
   closer: {
     height: "100%",

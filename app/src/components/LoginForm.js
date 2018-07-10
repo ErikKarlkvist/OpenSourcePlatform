@@ -112,7 +112,7 @@ const styles = {
   },
   container: {
     backgroundColor: "var(--white-three)",
-    height: "400px",
+    height: "425px",
     width: "400px",
     padding: 40,
     color:"var(--dark-teal)",
@@ -134,7 +134,7 @@ const styles = {
     border: "1px solid var(--dark-teal)",
   },
   container2:{
-    marginTop: "3%",
+    marginTop:"3%",
     width: "100%",
     display:"flex",
     justifyContent: "center",
