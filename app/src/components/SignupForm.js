@@ -77,7 +77,7 @@ class SignUpView extends Component {
                 name="email"
                 placeholder="Enter a valid @dnb.no email address"
                 pattern="[^@\s]+@dnb.no+"
-                setCustomVali
+                customValidity
                 onBlur={e => this.checkEmail(e.target.value)}
                 required
               />
