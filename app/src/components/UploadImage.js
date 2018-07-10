@@ -38,7 +38,7 @@ class UploadImage extends Component {
         <div style={styles.container}>
           <label class="UploadLabel">
             <input type="file" onChange = {(e) => {this.handleEvent(e)}} accept="image/*"></input>
-            +Add image
+            {this.props.label || "+Add image"}
           </label>
         </div>
       );
@@ -89,7 +89,8 @@ const styles = {
   container: {
     width: "100%",
     display: "flex",
-    justifyContent:"center"
+    justifyContent:"center",
+    height: "120px"
   }
 }
 
