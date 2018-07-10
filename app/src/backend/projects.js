@@ -25,13 +25,15 @@ export async function getAllProjects() {
     }
   });
 
-  //load in everything simultainously
+  //load in everything simultainously.
+  //TODO: Add asyncstorage, redux (too complicated?) or some other system to cache the data.
   toolsData = await Promise.all(toolsData);
   developersData = await Promise.all(developersData);
   creatorsData = await Promise.all(creatorsData);
   thumbnailsData = await Promise.all(thumbnailsData);
 
-  //loop everything to correct place
+  //loop everything to correct place.
+  //TODO: Should be a better way, maybe ignore some if they are not necessery like toolsData & creatorsData
   projects.forEach(project => {
     toolsData.forEach(data => {
       if (data.projectId === project.id) {
@@ -86,6 +88,8 @@ export async function getProject(id) {
   }
 }
 
+//adds a user to "joinRequest" array in the specified project - admin can now see who requesteded to join
+//user has to be signed in
 export async function requestJoinProject(project) {
     if(!firebase.auth().currentUser){
       throw new Error("Not logged in")
@@ -108,6 +112,7 @@ export async function requestJoinProject(project) {
 
 }
 
+//removes a user from "joinRequest" array in the specified project. User has to be signed in
 export async function removeRequestProject(project) {
     if(!firebase.auth().currentUser){
       throw new Error("Not logged in")
@@ -128,6 +133,8 @@ export async function removeRequestProject(project) {
 }
 
 //----------------------------------_HELPER ---------------------------------
+
+//loads tools for specified project
 async function getToolsForProject(project) {
   let snapshots = await firebase
     .firestore()
@@ -146,6 +153,7 @@ async function getToolsForProject(project) {
   return Promise.resolve(data);
 }
 
+//loads developers for specified project
 async function getDevelopersForProject(project) {
   let developers = [];
   project.developers.forEach(devUid => {
@@ -170,6 +178,7 @@ async function getDevelopersForProject(project) {
   return Promise.resolve(data);
 }
 
+//loads creator for specified project
 async function getCreatorForProject(project) {
   const creator = await firebase
     .firestore()
@@ -189,6 +198,7 @@ async function getCreatorForProject(project) {
   return Promise.resolve(data);
 }
 
+//loads thumbnails for specified project
 async function getThumbnailsForProject(project) {
   let snapshots = await firebase
     .firestore()
