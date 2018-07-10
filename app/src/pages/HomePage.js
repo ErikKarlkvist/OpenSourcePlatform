@@ -82,11 +82,11 @@ class HomePage extends Component {
             <UploadImage type={"headerImage"} id={"0C80Ksr7bjmDSrcLRqEo"} label={"Header Image to project 0C80Ksr7bjmDSrcLRqEo"}/>
             <UploadImage type={"thumbnailImage"} id={"0C80Ksr7bjmDSrcLRqEo"} label={"Thumbnail Image to project 0C80Ksr7bjmDSrcLRqEo"}/>
             <UploadImage type={"headerImage"} id={"Ff7t9Un7xp3scwX70v14"} label={"Header Image to project Ff7t9Un7xp3scwX70v14"}/>
-            <UploadImage type={"thumbnailImage"} id={"Ff7t9Un7xp3scwX70v14"} label={"Header Image to project Ff7t9Un7xp3scwX70v14"}/>
+            <UploadImage type={"thumbnailImage"} id={"Ff7t9Un7xp3scwX70v14"} label={"Thumbnail Image to project Ff7t9Un7xp3scwX70v14"}/>
             <UploadImage type={"headerImage"} id={"KB6iqfWRNQNIKYuTxeQ5"} label={"Header Image to project KB6iqfWRNQNIKYuTxeQ5"}/>
-            <UploadImage type={"thumbnailImage"} id={"KB6iqfWRNQNIKYuTxeQ5"} label={"Header Image to project KB6iqfWRNQNIKYuTxeQ5"}/>
+            <UploadImage type={"thumbnailImage"} id={"KB6iqfWRNQNIKYuTxeQ5"} label={"Thumbnail Image to project KB6iqfWRNQNIKYuTxeQ5"}/>
             <UploadImage type={"headerImage"} id={"UfXbdgmpamNF7GmjURP1"} label={"Header Image to project UfXbdgmpamNF7GmjURP1"}/>
-            <UploadImage type={"thumbnailImage"} id={"UfXbdgmpamNF7GmjURP1"} label={"Header Image to project UfXbdgmpamNF7GmjURP1"}/>
+            <UploadImage type={"thumbnailImage"} id={"UfXbdgmpamNF7GmjURP1"} label={"Thumbnail Image to project UfXbdgmpamNF7GmjURP1"}/>
           </div>
         </div>
       </div>
