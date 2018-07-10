@@ -1,3 +1,5 @@
+//documentation https://firebase.google.com/docs/firestore/
+//https://firebase.google.com/docs/auth/web/password-auth
 import firebase from "./firebase";
 
 let isLoggedIn = false;
