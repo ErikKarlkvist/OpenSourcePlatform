@@ -6,6 +6,7 @@ import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
 import {requestJoinProject, removeRequestProject} from "../backend/projects"
 import firebase from "../backend/firebase"
+import Contributors from "./Contributors"
 
 class ProjectInfo extends Component {
 
@@ -66,7 +67,9 @@ class ProjectInfo extends Component {
         {this.state.displayLogin && <LoginForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
         {this.state.displaySignup && <SignupForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
         <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
+          <h3 style={{textAlign: "left"}}>Description</h3>
           {this.props.project.description}
+          <Contributors developers = {this.props.project.developers} />
         </div>
         <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
           <div class="row">
@@ -135,7 +138,8 @@ const styles = {
   Description: {
     color: "white",
     fontSize: 18,
-    paddingBottom: "20px"
+    paddingBottom: "20px",
+    textAlign: "left"
   },
   InfoContainer: {
     paddingLeft: "5%",

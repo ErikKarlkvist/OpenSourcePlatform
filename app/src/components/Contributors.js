@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "../resources/Main.css"
 
 class Contributors extends React.Component {
   static propTypes = {
@@ -22,7 +23,7 @@ class Contributors extends React.Component {
     return (
       <div style={styles.container}>
         <div class="d-none d-sm-none d-md-block">
-          <h3>Contributors</h3>
+          <h3 style={{textAlign:"left"}}>Contributors</h3>
           <div style={styles.imageWrapper}>
             <div class="row">{items}</div>
 
@@ -42,7 +43,12 @@ class Contributors extends React.Component {
           </div>
         </div>
         <div class="d-block d-sm-none d-md-none">
-          <a href="#">View contributors</a>
+          <button
+            className="SeeThroughBtn"
+            onClick={() => {}}
+          >
+          <h6>View contributors</h6>
+          </button>
           {/*TODO: Open contributor modal on click*/}
         </div>
       </div>
@@ -69,13 +75,13 @@ const styles = {
     width: "100%",
     margin: "auto",
     display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-end",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     marginTop: "30px"
   },
   name: {
     color: "white",
-    alignText: "center",
+    textAlign: "center",
     marginTop: "10px"
   }
 };

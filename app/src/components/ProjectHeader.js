@@ -28,7 +28,6 @@ class ProjectsDisplay extends Component {
             </header>
             <div>
               <h2 style={{marginTop: "15vh"}}>{this.props.name}</h2>
-              <Contributors developers = {this.props.developers} />
             </div>
           </div>
 
