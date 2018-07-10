@@ -1,3 +1,5 @@
+//TODO: Create server to handle emails
+
 // var nodemailer = require('nodemailer');
 //
 //  const transporter = nodemailer.createTransport({

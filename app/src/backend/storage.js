@@ -1,15 +1,28 @@
+//this file handles data uploads to firebase storage
+//documentation at https://firebase.google.com/docs/storage/
+
 import firebase from "./firebase";
 const storageService = firebase.storage();
 const databaseService = firebase.firestore();
 const storageRef = storageService.ref();
 
+//the comments here apply for all image uploading methods
+//TODO: Make generic function for all image uploads
 export async function uploadHeaderImage(file, projectId) {
   try {
+
+    //ref is the reference point to where the images will be uploaded
+    //in this case it will be under {firebaseURL}/projects/projectId/header
     const ref = storageRef.child("projects").child(projectId).child("header");
-    const output = await uploadImage(ref, file);
+    //wait for image to upload
+    await uploadImage(ref, file);
+    //get downloadURL
     const url = await ref.getDownloadURL();
 
+    //store downloadURL
     await databaseService.collection("projects").doc(projectId).set({headerImageURL: url},{merge:true});
+
+    //return downloadURL in case we want to load the image
     return Promise.resolve({status: "Success", downloadURL:url});
   } catch (e) {
     //handle error somehow
@@ -21,7 +34,7 @@ export async function uploadHeaderImage(file, projectId) {
 export async function uploadThumbnailImage(file, projectId) {
   try {
     const ref = storageRef.child("projects").child(projectId).child("thumbnails").child(file.name);
-    const output = await uploadImage(ref, file);
+    await uploadImage(ref, file);
     const url = await ref.getDownloadURL();
 
     await databaseService.collection("projects").doc(projectId).collection("thumbnails").add({
@@ -40,7 +53,7 @@ export async function uploadThumbnailImage(file, projectId) {
 export async function uploadProfileImage(file, userId) {
   try {
     const ref = storageRef.child("users").child(userId).child("profile");
-    const output = await uploadImage(ref, file);
+    await uploadImage(ref, file);
     const url = await ref.getDownloadURL();
 
     await databaseService.collection("users").doc(userId).set({profileImageURL: url},{merge:true});
@@ -59,11 +72,11 @@ async function uploadImage(ref, file){
     const uploadTask = ref.put(file);
     uploadTask.on('state_changed', (snapshot) => {
       // Observe state change events such as progress, pause, and resume
-      console.log(snapshot)
+      // good to have if we want to render loading bars for images
     }, (error) => {
        reject(error);
     }, () => {
-      //success
+        //image uploaded
        resolve("success");
     });
   });
