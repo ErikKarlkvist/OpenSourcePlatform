@@ -3,7 +3,7 @@ import Lightbox from "react-images";
 import "./CurrentState.css";
 
 //Sets how many pictures are shown if "show more" has not been pressed
-const cutoff = 1;
+const cutoff = 6;
 
 class CurrentState extends Component {
   constructor() {
@@ -14,6 +14,9 @@ class CurrentState extends Component {
       showLightbox: false,
       currentImage: 0
     };
+
+    this.openLightbox = this.openLightbox.bind(this);
+    this.closeLightbox = this.closeLightbox.bind(this);
   }
 
   componentDidMount() {
@@ -37,13 +40,13 @@ class CurrentState extends Component {
     this.setState({ showing: this.state.images.slice(0, cutoff) });
   };
 
-  openLightbox = () => {
+  openLightbox() {
     this.setState({ showLightbox: true });
-  };
+  }
 
-  closeLightbox = () => {
+  closeLightbox() {
     this.setState({ showLightbox: false });
-  };
+  }
   //TODO: Should only call in componentDidMount
   mapToLightbox = () => {
     return this.props.project.thumbnails.map(d => {
@@ -73,7 +76,7 @@ class CurrentState extends Component {
           )}
         </div>
         <Lightbox
-          images={this.mapToLightbox()}
+          images={this.mapToLightbox}
           isOpen={this.state.showLightbox}
           backdropClosesModal={true}
           onClose={this.closeLightbox}
