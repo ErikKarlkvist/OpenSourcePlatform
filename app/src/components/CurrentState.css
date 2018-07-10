@@ -15,6 +15,7 @@
   margin-bottom: 20px;
   background-color: var(--dark-teal);
   opacity: 0.8;
+  object-fit: cover;
 }
 .Thumbnail:hover {
   cursor: pointer;
@@ -27,6 +28,7 @@
     min-width: 500px;
     margin-bottom: 20px;
     background-color: var(--dark-teal);
+    object-fit: cover;
   }
 }
 
@@ -36,6 +38,7 @@
     min-width: 280px;
     margin-bottom: 20px;
     background-color: var(--dark-teal);
+    object-fit: cover;
   }
 }
 
@@ -45,6 +48,7 @@
     min-width: 280px;
     margin-bottom: 20px;
     background-color: var(--dark-teal);
+    object-fit: cover;
   }
 }
 
@@ -54,5 +58,6 @@
     min-width: 350px;
     margin-bottom: 40px;
     background-color: var(--dark-teal);
+    object-fit: cover;
   }
 }
