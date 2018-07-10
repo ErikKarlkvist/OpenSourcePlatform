@@ -72,7 +72,7 @@ class HomePage extends Component {
         <div class="Content">
 
           <h1 className="App-title">DNB Open Source</h1>
-          <h2 className="App-intro">Give your contribution</h2>
+          <h2 className="App-intro">Contribute & Innovate</h2>
           <div style={{ marginTop: 30, marginBottom: 30 }}>
             <Line style={{ marginBottom: 10 }} />
             <FilterProjects changeFilter={this.changeFilter} />
