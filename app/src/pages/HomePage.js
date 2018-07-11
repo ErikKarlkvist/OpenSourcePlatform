@@ -93,9 +93,7 @@ class HomePage extends Component {
     );
   }
 
-  /*
-
-  */
+           
 
   changeFilter = picked => {
     if (picked === "all") {
