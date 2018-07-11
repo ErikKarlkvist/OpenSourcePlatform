@@ -50,7 +50,7 @@ class ProjectBlurb extends Component {
           <div>
             <span style={styles.ProjectName}>{this.props.project.name}</span>
             <div style={styles.ThumbnailHeads}>
-              <ThumbnailHeads developers={this.props.project.developers} />
+              <ThumbnailHeads owners={this.props.project.owners} />
             </div>
           </div>
         )}

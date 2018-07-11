@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 
 class ThumbnailHeads extends React.Component {
   static propTypes = {
-    developers: PropTypes.object.isRequired
+    owners: PropTypes.object.isRequired
   };
-
   render() {
-    const data = this.props.developers;
-
+    const data = this.props.owners;
+    console.log("!", this.props);
     let items = [];
     if (data) {
       items = data.slice(0, 3).map(d => (
