@@ -81,7 +81,7 @@ class ProjectInfo extends Component {
         </div>
         <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
           <div class="row">
-            {/*Join project button*/}
+            {/*Get code button*/}
             <div
               class="col-md-12 col-sm-6 col-lg-12"
               style={{ marginBottom: "20px" }}
@@ -91,29 +91,25 @@ class ProjectInfo extends Component {
               </button>
             </div>
 
-            {/*Contact*/}
+            {/*Contact button*/}
             <div
               class="col-md-12 col-sm-6 col-lg-12"
               style={{ marginBottom: "20px" }}
             >
-              <div className="Contact">
-                <h6 style={{ marginTop: "10px" }}>Contact</h6>
-                <a href={"mailto:" + "xyz@dnb.no"}>
-                  <h3 style={styles.Email}>xyz.dnb.no</h3>
-                </a>
-                {/*replace with this.props.project.contactMail when that is implemented*/}
-              </div>
-            </div>
-
-            {/*Tools*/}
-            <div class="col-md-12 col-sm-12 col-lg-12">
-              <Tools tools={this.props.project.tools} />
+              <button className="SeeThroughBtn" onClick={this.mailContact}>
+                <h6>Contact</h6>
+              </button>
+              {/*replace with this.props.project.contactMail when that is implemented*/}
             </div>
           </div>
         </div>
       </div>
     );
   }
+
+  mailContact = () => {
+    window.location = "mailto:xyz.dnb.no";
+  };
 
   switchDisplay = () => {
     if (this.state.displaySignup) {
