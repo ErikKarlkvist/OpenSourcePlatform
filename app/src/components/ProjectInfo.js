@@ -1,75 +1,83 @@
 import React, { Component } from "react";
 import "./ProjectInfo.css";
 import Tools from "./Tools.js";
-import "../resources/Main.css"
-import LoginForm from "./LoginForm"
-import SignupForm from "./SignupForm"
-import {requestJoinProject, removeRequestProject} from "../backend/projects"
-import firebase from "../backend/firebase"
-import Contributors from "./Contributors"
+import "../resources/Main.css";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
+import { requestJoinProject, removeRequestProject } from "../backend/projects";
+import firebase from "../backend/firebase";
+import Contributors from "./Contributors";
 
 class ProjectInfo extends Component {
-
   //"joinStatus === joined, requested or none"
   state = {
     displayLogin: false,
     joinStatus: "none"
-  }
+  };
 
-  componentDidMount(){
-    if(this.props.project.joinRequest && this.props.project.joinRequest.includes(this.props.user.id)){
+  componentDidMount() {
+    if (
+      this.props.project.joinRequest &&
+      this.props.project.joinRequest.includes(this.props.user.id)
+    ) {
       this.setState({
         joinStatus: "requested"
-      })
+      });
     }
   }
 
-  componentWillReceiveProps(props){
-    if(props.project.joinRequest && props.project.joinRequest.includes(props.user.id)){
+  componentWillReceiveProps(props) {
+    if (
+      props.project.joinRequest &&
+      props.project.joinRequest.includes(props.user.id)
+    ) {
       this.setState({
         joinStatus: "requested"
-      })
+      });
     }
   }
 
   joinProject = () => {
-    if(this.props.isLoggedIn && this.state.joinStatus === "none"){
+    if (this.props.isLoggedIn && this.state.joinStatus === "none") {
       requestJoinProject(this.props.project).then(() => {
-        this.setState({joinStatus: "requested"})
-      })
-    } else if(this.state.joinStatus === "requested"){
+        this.setState({ joinStatus: "requested" });
+      });
+    } else if (this.state.joinStatus === "requested") {
       removeRequestProject(this.props.project).then(() => {
-        this.setState({joinStatus: "none"})
-      })
-    } else if(!this.props.isLoggedIn){
-      this.setState({displaySignup: true})
+        this.setState({ joinStatus: "none" });
+      });
+    } else if (!this.props.isLoggedIn) {
+      this.setState({ displaySignup: true });
     }
-  }
+  };
 
   hide = () => {
     this.setState({
       displaySignup: false,
-      displayLogin: false,
-    })
-  }
+      displayLogin: false
+    });
+  };
 
   render() {
-
-    let joinText = "Join Project"
-    if(this.state.joinStatus === "requested"){
-      joinText = "Remove request"
-    } else if (this.state.joinStatus === "joined"){
-      joinText = "Leave project"
+    let joinText = "Join Project";
+    if (this.state.joinStatus === "requested") {
+      joinText = "Remove request";
+    } else if (this.state.joinStatus === "joined") {
+      joinText = "Leave project";
     }
 
     return (
       <div style={styles.InfoContainer} class="row">
-        {this.state.displayLogin && <LoginForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
-        {this.state.displaySignup && <SignupForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
+        {this.state.displayLogin && (
+          <LoginForm hide={this.hide} switchDisplay={this.switchDisplay} />
+        )}
+        {this.state.displaySignup && (
+          <SignupForm hide={this.hide} switchDisplay={this.switchDisplay} />
+        )}
         <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
-          <h3 style={{textAlign: "left"}}>Description</h3>
+          <h3 style={{ textAlign: "left" }}>Description</h3>
           {this.props.project.description}
-          <Contributors developers = {this.props.project.developers} />
+          <Contributors developers={this.props.project.developers} />
         </div>
         <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
           <div class="row">
@@ -78,10 +86,7 @@ class ProjectInfo extends Component {
               class="col-md-12 col-sm-6 col-lg-12"
               style={{ marginBottom: "20px" }}
             >
-              <button
-                className="SeeThroughBtn"
-                onClick={this.joinProject}
-              >
+              <button className="SeeThroughBtn" onClick={this.joinProject}>
                 <h6>{joinText}</h6>
               </button>
             </div>
@@ -111,25 +116,25 @@ class ProjectInfo extends Component {
   }
 
   switchDisplay = () => {
-    if(this.state.displaySignup){
+    if (this.state.displaySignup) {
       this.setState({
         displaySignup: false,
-        displayLogin: true,
-      })
+        displayLogin: true
+      });
     } else {
       this.setState({
         displaySignup: true,
-        displayLogin: false,
-      })
+        displayLogin: false
+      });
     }
-  }
+  };
 
   hide = () => {
     this.setState({
       displaySignup: false,
-      displayLogin: false,
-    })
-  }
+      displayLogin: false
+    });
+  };
 }
 
 export default ProjectInfo;
@@ -145,7 +150,8 @@ const styles = {
     paddingLeft: "5%",
     marginRight: "0px",
     paddingTop: "20px",
-    paddingBottom: "20px"
+    paddingBottom: "20px",
+    minHeight: "50vh"
   },
   Sidebar: {
     color: "white",
@@ -160,6 +166,7 @@ const styles = {
     border: "solid var(--white-two) 1px",
     textAlign: "center",
     paddingLeft: "10px",
-    paddingRight: "10px"
+    paddingRight: "10px",
+    marginTop: "10px"
   }
 };

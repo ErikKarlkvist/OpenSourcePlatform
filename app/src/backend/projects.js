@@ -1,5 +1,5 @@
 import firebase from "./firebase";
-import {sendJoinRequestMail} from "./email"
+import { sendJoinRequestMail } from "./email";
 
 export async function getAllProjects() {
   const snapshots = await firebase
@@ -7,7 +7,7 @@ export async function getAllProjects() {
     .collection("projects")
     .get();
   let toolsData = [];
-  let developersData = [];
+  let ownersData = [];
   let creatorsData = [];
   let thumbnailsData = [];
   const projects = [];
@@ -19,7 +19,7 @@ export async function getAllProjects() {
       projects.push(data);
 
       toolsData.push(getToolsForProject(data));
-      developersData.push(getDevelopersForProject(data));
+      ownersData.push(getOwnersForProject(data));
       creatorsData.push(getCreatorForProject(data));
       thumbnailsData.push(getThumbnailsForProject(data));
     }
@@ -28,7 +28,7 @@ export async function getAllProjects() {
   //load in everything simultainously.
   //TODO: Add asyncstorage, redux (too complicated?) or some other system to cache the data.
   toolsData = await Promise.all(toolsData);
-  developersData = await Promise.all(developersData);
+  ownersData = await Promise.all(ownersData);
   creatorsData = await Promise.all(creatorsData);
   thumbnailsData = await Promise.all(thumbnailsData);
 
@@ -41,9 +41,9 @@ export async function getAllProjects() {
       }
     });
 
-    developersData.forEach(data => {
+    ownersData.forEach(data => {
       if (data.projectId === project.id) {
-        project.developers = data.developers;
+        project.owners = data.owners;
       }
     });
 
@@ -74,12 +74,12 @@ export async function getProject(id) {
     projectData.id = snapshot.id;
 
     const toolData = await getToolsForProject(projectData);
-    const developerData = await getDevelopersForProject(projectData);
+    const ownerData = await getOwnersForProject(projectData);
     const creatorData = await getCreatorForProject(projectData);
     const thumbnailData = await getThumbnailsForProject(projectData);
 
     projectData.tools = toolData.tools;
-    projectData.developers = developerData.developers;
+    projectData.owners = ownerData.owners;
     projectData.creator = creatorData.creator;
     projectData.thumbnails = thumbnailData.thumbnails;
     return Promise.resolve(projectData);
@@ -91,45 +91,51 @@ export async function getProject(id) {
 //adds a user to "joinRequest" array in the specified project - admin can now see who requesteded to join
 //user has to be signed in
 export async function requestJoinProject(project) {
-    if(!firebase.auth().currentUser){
-      throw new Error("Not logged in")
+  if (!firebase.auth().currentUser) {
+    throw new Error("Not logged in");
+  }
+
+  const userUid = firebase.auth().currentUser.uid;
+  const requests = project.joinRequest || [];
+
+  requests.forEach(uid => {
+    if (uid === userUid) {
+      throw new Error("User already requested");
     }
+  });
 
-    const userUid = firebase.auth().currentUser.uid;
-    const requests = project.joinRequest || [];
+  requests.push(userUid);
 
-    requests.forEach(uid => {
-      if(uid === userUid){
-        throw new Error("User already requested");
-      }
-    })
-
-    requests.push(userUid)
-
-    await firebase.firestore().collection("projects").doc(project.id).set({joinRequest: requests}, {merge:true})
-    //await sendJoinRequestMail(project.creator.email, user, project)
-    return Promise.resolve("success")
-
+  await firebase
+    .firestore()
+    .collection("projects")
+    .doc(project.id)
+    .set({ joinRequest: requests }, { merge: true });
+  //await sendJoinRequestMail(project.creator.email, user, project)
+  return Promise.resolve("success");
 }
 
 //removes a user from "joinRequest" array in the specified project. User has to be signed in
 export async function removeRequestProject(project) {
-    if(!firebase.auth().currentUser){
-      throw new Error("Not logged in")
-    }
+  if (!firebase.auth().currentUser) {
+    throw new Error("Not logged in");
+  }
 
-    const userUid = firebase.auth().currentUser.uid;
-    const requests = project.joinRequest || [];
+  const userUid = firebase.auth().currentUser.uid;
+  const requests = project.joinRequest || [];
 
-    const index = requests.indexOf(userUid);
-    requests.splice(index,1);
+  const index = requests.indexOf(userUid);
+  requests.splice(index, 1);
 
-    requests.push(userUid)
+  requests.push(userUid);
 
-    await firebase.firestore().collection("projects").doc(project.id).set({joinRequest: requests}, {merge:true})
-    //await sendJoinRequestMail(project.creator.email, user, project)
-    return Promise.resolve("success")
-
+  await firebase
+    .firestore()
+    .collection("projects")
+    .doc(project.id)
+    .set({ joinRequest: requests }, { merge: true });
+  //await sendJoinRequestMail(project.creator.email, user, project)
+  return Promise.resolve("success");
 }
 
 //----------------------------------_HELPER ---------------------------------
@@ -153,28 +159,31 @@ async function getToolsForProject(project) {
   return Promise.resolve(data);
 }
 
-//loads developers for specified project
-async function getDevelopersForProject(project) {
-  let developers = [];
-  project.developers.forEach(devUid => {
-    developers.push(
-      firebase
-        .firestore()
-        .collection("users")
-        .doc(devUid)
-        .get()
-        .then(snapshot => {
-          if (snapshot.exists) {
-            const developer = snapshot.data();
-            developer.uid = snapshot.id;
-            return Promise.resolve(developer);
-          }
-        })
-    );
+//loads owners for specified project
+async function getOwnersForProject(project) {
+  let snapshots = await firebase
+    .firestore()
+    .collection("projects")
+    .doc(project.id)
+    .collection("owners")
+    .get();
+  const owners = [];
+  const promises = [];
+  const ref = firebase.firestore().collection("users");
+  snapshots.forEach(snapshot => {
+    if (snapshot.exists) {
+      promises.push(
+        ref
+          .doc(snapshot.data().userID)
+          .get()
+          .then(userData => {
+            owners.push({ ...userData.data(), ...snapshot.data() });
+          })
+      );
+    }
   });
-
-  developers = await Promise.all(developers);
-  const data = { developers, projectId: project.id };
+  await Promise.all(promises);
+  const data = { owners, projectId: project.id };
   return Promise.resolve(data);
 }
 
