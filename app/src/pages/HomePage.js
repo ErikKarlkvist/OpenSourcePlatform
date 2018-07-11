@@ -35,7 +35,19 @@ class HomePage extends Component {
       });
     });
 
+    this.issueTest()
+
     this.setupAuthStateChange();
+  }
+
+  issueTest(){
+    //https://developer.github.com/v3/issues/#create-an-issue
+    var urlToGetAllOpenBugs = "https://api.github.com/repos/browsh-org/browsh/issues?state=open&page=1&direction=asc";
+    fetch(urlToGetAllOpenBugs).then((result) => {
+      return result.json()
+    }).then((res) => {
+      console.log(res)
+    })
   }
 
   setupAuthStateChange(){
@@ -93,9 +105,6 @@ class HomePage extends Component {
     );
   }
 
-  /*
-
-  */
 
   changeFilter = picked => {
     if (picked === "all") {
