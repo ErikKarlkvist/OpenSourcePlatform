@@ -1,5 +1,5 @@
 import firebase from "./firebase";
-import {sendJoinRequestMail} from "./email"
+import { sendJoinRequestMail } from "./email";
 
 export async function getAllProjects() {
   const snapshots = await firebase
@@ -37,25 +37,45 @@ export async function getAllProjects() {
   projects.forEach(project => {
     toolsData.forEach(data => {
       if (data.projectId === project.id) {
-        project.tools = data.tools;
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.tools = data.tools;
+        }
       }
     });
 
     developersData.forEach(data => {
       if (data.projectId === project.id) {
-        project.developers = data.developers;
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.developers = data.developers;
+        }
       }
     });
 
     creatorsData.forEach(data => {
       if (data.projectId === project.id) {
-        project.creator = data.creator;
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.creator = data.creator;
+        }
       }
     });
 
     thumbnailsData.forEach(data => {
       if (data.projectId === project.id) {
-        project.thumbnails = data.thumbnails;
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.thumbnails = data.thumbnails;
+        }
       }
     });
   });
@@ -91,128 +111,150 @@ export async function getProject(id) {
 //adds a user to "joinRequest" array in the specified project - admin can now see who requesteded to join
 //user has to be signed in
 export async function requestJoinProject(project) {
-    if(!firebase.auth().currentUser){
-      throw new Error("Not logged in")
+  if (!firebase.auth().currentUser) {
+    throw new Error("Not logged in");
+  }
+
+  const userUid = firebase.auth().currentUser.uid;
+  const requests = project.joinRequest || [];
+
+  requests.forEach(uid => {
+    if (uid === userUid) {
+      throw new Error("User already requested");
     }
+  });
 
-    const userUid = firebase.auth().currentUser.uid;
-    const requests = project.joinRequest || [];
+  requests.push(userUid);
 
-    requests.forEach(uid => {
-      if(uid === userUid){
-        throw new Error("User already requested");
-      }
-    })
-
-    requests.push(userUid)
-
-    await firebase.firestore().collection("projects").doc(project.id).set({joinRequest: requests}, {merge:true})
-    //await sendJoinRequestMail(project.creator.email, user, project)
-    return Promise.resolve("success")
-
+  await firebase
+    .firestore()
+    .collection("projects")
+    .doc(project.id)
+    .set({ joinRequest: requests }, { merge: true });
+  //await sendJoinRequestMail(project.creator.email, user, project)
+  return Promise.resolve("success");
 }
 
 //removes a user from "joinRequest" array in the specified project. User has to be signed in
 export async function removeRequestProject(project) {
-    if(!firebase.auth().currentUser){
-      throw new Error("Not logged in")
-    }
+  if (!firebase.auth().currentUser) {
+    throw new Error("Not logged in");
+  }
 
-    const userUid = firebase.auth().currentUser.uid;
-    const requests = project.joinRequest || [];
+  const userUid = firebase.auth().currentUser.uid;
+  const requests = project.joinRequest || [];
 
-    const index = requests.indexOf(userUid);
-    requests.splice(index,1);
+  const index = requests.indexOf(userUid);
+  requests.splice(index, 1);
 
-    requests.push(userUid)
+  requests.push(userUid);
 
-    await firebase.firestore().collection("projects").doc(project.id).set({joinRequest: requests}, {merge:true})
-    //await sendJoinRequestMail(project.creator.email, user, project)
-    return Promise.resolve("success")
-
+  await firebase
+    .firestore()
+    .collection("projects")
+    .doc(project.id)
+    .set({ joinRequest: requests }, { merge: true });
+  //await sendJoinRequestMail(project.creator.email, user, project)
+  return Promise.resolve("success");
 }
 
 //----------------------------------_HELPER ---------------------------------
 
 //loads tools for specified project
 async function getToolsForProject(project) {
-  let snapshots = await firebase
-    .firestore()
-    .collection("projects")
-    .doc(project.id)
-    .collection("tools")
-    .get();
-  const tools = [];
-  snapshots.forEach(snapshot => {
-    if (snapshot.exists) {
-      const data = snapshot.data();
-      tools.push(data);
-    }
-  });
-  const data = { tools, projectId: project.id };
-  return Promise.resolve(data);
+  try {
+    let snapshots = await firebase
+      .firestore()
+      .collection("projects")
+      .doc(project.id)
+      .collection("tools")
+      .get();
+    const tools = [];
+    snapshots.forEach(snapshot => {
+      if (snapshot.exists) {
+        const data = snapshot.data();
+        tools.push(data);
+      }
+    });
+    const data = { tools, projectId: project.id };
+    return Promise.resolve(data);
+  } catch (e) {
+    return Promise.resolve({ error: true, projectId: project.id });
+  }
 }
 
 //loads developers for specified project
 async function getDevelopersForProject(project) {
-  let developers = [];
-  project.developers.forEach(devUid => {
-    developers.push(
-      firebase
-        .firestore()
-        .collection("users")
-        .doc(devUid)
-        .get()
-        .then(snapshot => {
-          if (snapshot.exists) {
-            const developer = snapshot.data();
-            developer.uid = snapshot.id;
-            return Promise.resolve(developer);
-          }
-        })
-    );
-  });
+  try {
+    let developers = [];
+    project.developers.forEach(devUid => {
+      developers.push(
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(devUid)
+          .get()
+          .then(snapshot => {
+            if (snapshot.exists) {
+              const developer = snapshot.data();
+              developer.uid = snapshot.id;
+              return Promise.resolve(developer);
+            }
+          })
+      );
+    });
 
-  developers = await Promise.all(developers);
-  const data = { developers, projectId: project.id };
-  return Promise.resolve(data);
+    developers = await Promise.all(developers);
+    const data = { developers, projectId: project.id };
+    return Promise.resolve(data);
+  } catch (e) {
+    return Promise.resolve({ error: true, projectId: project.id });
+  }
 }
 
 //loads creator for specified project
 async function getCreatorForProject(project) {
-  const creator = await firebase
-    .firestore()
-    .collection("users")
-    .doc(project.creator)
-    .get()
-    .then(snapshot => {
-      if (snapshot.exists) {
-        const user = snapshot.data();
-        user.id = snapshot.id;
-        return Promise.resolve(user);
-      } else {
-        return Promise.resolve({ id: "No user" });
-      }
-    });
-  const data = { creator, projectId: project.id };
-  return Promise.resolve(data);
+  try {
+    const creator = await firebase
+      .firestore()
+      .collection("users")
+      .doc(project.creator)
+      .get()
+      .then(snapshot => {
+        if (snapshot.exists) {
+          const user = snapshot.data();
+          user.id = snapshot.id;
+          return Promise.resolve(user);
+        } else {
+          return Promise.resolve({ id: "No user" });
+        }
+      });
+    const data = { creator, projectId: project.id };
+    return Promise.resolve(data);
+  } catch (e) {
+    return Promise.resolve({ error: true, projectId: project.id });
+  }
 }
 
 //loads thumbnails for specified project
 async function getThumbnailsForProject(project) {
-  let snapshots = await firebase
-    .firestore()
-    .collection("projects")
-    .doc(project.id)
-    .collection("thumbnails")
-    .get();
-  const thumbnails = [];
-  snapshots.forEach(snapshot => {
-    if (snapshot.exists) {
-      const data = snapshot.data();
-      thumbnails.push(data);
-    }
-  });
-  const data = { thumbnails, projectId: project.id };
-  return Promise.resolve(data);
+  try {
+    let snapshots = await firebase
+      .firestore()
+      .collection("projects")
+      .doc(project.id)
+      .collection("thumbnails")
+      .get();
+    const thumbnails = [];
+    snapshots.forEach(snapshot => {
+      if (snapshot.exists) {
+        const data = snapshot.data();
+        thumbnails.push(data);
+      }
+    });
+    const data = { thumbnails, projectId: project.id };
+    return Promise.resolve(data);
+  } catch (e) {
+    return Promise.resolve({ error: true, projectId: project.id });
+  }
 }
