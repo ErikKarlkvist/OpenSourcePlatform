@@ -78,6 +78,11 @@ class HomePage extends Component {
             <FilterProjects changeFilter={this.changeFilter} />
           </div>
           <ProjectsDisplay projects={this.state.currentlyViewing} />
+
+        </div>
+      </div>
+    );
+  }
             <div style={{width:"1000px"}}>
               <UploadImage type={"headerImage"} id={"0C80Ksr7bjmDSrcLRqEo"} label={"Header Image to project 0C80Ksr7bjmDSrcLRqEo"}/>
               <UploadImage type={"thumbnailImage"} id={"0C80Ksr7bjmDSrcLRqEo"} label={"Thumbnail Image to project 0C80Ksr7bjmDSrcLRqEo"}/>
@@ -88,11 +93,6 @@ class HomePage extends Component {
               <UploadImage type={"headerImage"} id={"UfXbdgmpamNF7GmjURP1"} label={"Header Image to project UfXbdgmpamNF7GmjURP1"}/>
               <UploadImage type={"thumbnailImage"} id={"UfXbdgmpamNF7GmjURP1"} label={"Thumbnail Image to project UfXbdgmpamNF7GmjURP1"}/>
             </div>
-        </div>
-      </div>
-    );
-  }
-
            
 
   changeFilter = picked => {
