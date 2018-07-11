@@ -7,7 +7,7 @@ export async function getAllProjects() {
     .collection("projects")
     .get();
   let toolsData = [];
-  let developersData = [];
+  let ownersData = [];
   let creatorsData = [];
   let thumbnailsData = [];
   const projects = [];
@@ -19,7 +19,7 @@ export async function getAllProjects() {
       projects.push(data);
 
       toolsData.push(getToolsForProject(data));
-      developersData.push(getDevelopersForProject(data));
+      ownersData.push(getOwnersForProject(data));
       creatorsData.push(getCreatorForProject(data));
       thumbnailsData.push(getThumbnailsForProject(data));
     }
@@ -28,7 +28,7 @@ export async function getAllProjects() {
   //load in everything simultainously.
   //TODO: Add asyncstorage, redux (too complicated?) or some other system to cache the data.
   toolsData = await Promise.all(toolsData);
-  developersData = await Promise.all(developersData);
+  ownersData = await Promise.all(ownersData);
   creatorsData = await Promise.all(creatorsData);
   thumbnailsData = await Promise.all(thumbnailsData);
 
@@ -46,13 +46,13 @@ export async function getAllProjects() {
       }
     });
 
-    developersData.forEach(data => {
+    ownersData.forEach(data => {
       if (data.projectId === project.id) {
         if (data.error) {
           const index = projects.indexOf(project);
           projects.splice(index, 1);
         } else {
-          project.developers = data.developers;
+          project.owners = data.owners;
         }
       }
     });
@@ -94,12 +94,12 @@ export async function getProject(id) {
     projectData.id = snapshot.id;
 
     const toolData = await getToolsForProject(projectData);
-    const developerData = await getDevelopersForProject(projectData);
+    const ownerData = await getOwnersForProject(projectData);
     const creatorData = await getCreatorForProject(projectData);
     const thumbnailData = await getThumbnailsForProject(projectData);
 
     projectData.tools = toolData.tools;
-    projectData.developers = developerData.developers;
+    projectData.owners = ownerData.owners;
     projectData.creator = creatorData.creator;
     projectData.thumbnails = thumbnailData.thumbnails;
     return Promise.resolve(projectData);
@@ -183,33 +183,32 @@ async function getToolsForProject(project) {
   }
 }
 
-//loads developers for specified project
-async function getDevelopersForProject(project) {
-  try {
-    let developers = [];
-    project.developers.forEach(devUid => {
-      developers.push(
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(devUid)
+//loads owners for specified project
+async function getOwnersForProject(project) {
+  let snapshots = await firebase
+    .firestore()
+    .collection("projects")
+    .doc(project.id)
+    .collection("owners")
+    .get();
+  const owners = [];
+  const promises = [];
+  const ref = firebase.firestore().collection("users");
+  snapshots.forEach(snapshot => {
+    if (snapshot.exists) {
+      promises.push(
+        ref
+          .doc(snapshot.data().userID)
           .get()
-          .then(snapshot => {
-            if (snapshot.exists) {
-              const developer = snapshot.data();
-              developer.uid = snapshot.id;
-              return Promise.resolve(developer);
-            }
+          .then(userData => {
+            owners.push({ ...userData.data(), ...snapshot.data() });
           })
       );
-    });
-
-    developers = await Promise.all(developers);
-    const data = { developers, projectId: project.id };
-    return Promise.resolve(data);
-  } catch (e) {
-    return Promise.resolve({ error: true, projectId: project.id });
-  }
+    }
+  });
+  await Promise.all(promises);
+  const data = { owners, projectId: project.id };
+  return Promise.resolve(data);
 }
 
 //loads creator for specified project
