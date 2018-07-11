@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "../logo.svg";
 import "../resources/Main.css";
 import { getAllProjects } from "../backend/projects";
-import {getUser} from "../backend/users.js"
+import { getUser } from "../backend/users.js";
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister";
 import FilterProjects from "../components/FilterProjects";
@@ -20,7 +20,7 @@ class HenningsPage extends Component {
       currentlyViewing: [],
       loading: true,
       isLoggedIn: false,
-      hasFetchedUser: false,
+      hasFetchedUser: false
     };
   }
 
@@ -38,33 +38,28 @@ class HenningsPage extends Component {
     this.setupAuthStateChange();
   }
 
-  setupAuthStateChange(){
+  setupAuthStateChange() {
     const page = this;
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        getUser(user.uid).then((user) => {
+        getUser(user.uid).then(user => {
           page.setState({
             isLoggedIn: true,
             hasFetchedUser: true,
             user
-          })
-        })
-
+          });
+        });
       } else {
         page.setState({
           isLoggedIn: false,
-          hasFetchedUser: true,
-        })
+          hasFetchedUser: true
+        });
       }
     });
   }
 
   render() {
-    return (
-    	<div class="pageContainer">
-    	HELLO!
-    	</div>
-    );
+    return <div class="pageContainer">HELLO!</div>;
   }
 }
 export default HenningsPage;
