@@ -167,11 +167,7 @@ const styles = {
     paddingRight: "10px"
   },
   descriptionText: {
-<<<<<<< HEAD
     color: "white",
     fontSize: "16px"
-=======
-    color: "white"
->>>>>>> 5ebf9c82f7ae23adf9be3ab190837a29aaadc2e8
   }
 };
