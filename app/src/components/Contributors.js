@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../resources/Main.css"
+import "../resources/Main.css";
 
 class Contributors extends React.Component {
   static propTypes = {
@@ -16,6 +16,9 @@ class Contributors extends React.Component {
         <div class="d-none d-sm-none d-md-block">
           <img style={styles.image} src={d.profileImageURL} />
           <p style={styles.name}>{d.firstname}</p>
+          <p style={styles.name}>
+            <i>{d.role}</i>
+          </p>
         </div>
       ));
     }
@@ -23,7 +26,7 @@ class Contributors extends React.Component {
     return (
       <div style={styles.container}>
         <div class="d-none d-sm-none d-md-block">
-          <h3 style={{textAlign:"left"}}>Contributors</h3>
+          <h3 style={{ textAlign: "left" }}>Contributors</h3>
           <div style={styles.imageWrapper}>
             <div class="row">{items}</div>
 
@@ -43,11 +46,8 @@ class Contributors extends React.Component {
           </div>
         </div>
         <div class="d-block d-sm-none d-md-none">
-          <button
-            className="SeeThroughBtn"
-            onClick={() => {}}
-          >
-          <h6>View contributors</h6>
+          <button className="SeeThroughBtn" onClick={() => {}}>
+            <h6>View contributors</h6>
           </button>
           {/*TODO: Open contributor modal on click*/}
         </div>
@@ -82,7 +82,11 @@ const styles = {
   name: {
     color: "white",
     textAlign: "center",
-    marginTop: "10px"
+    marginTop: "10px",
+    marginBottom: "-10px"
+  },
+  italics: {
+    fontStyle: "italic"
   }
 };
 
