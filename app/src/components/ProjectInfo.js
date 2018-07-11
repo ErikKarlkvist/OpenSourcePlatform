@@ -77,7 +77,7 @@ class ProjectInfo extends Component {
         <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
           <h3 style={{ textAlign: "left" }}>Description</h3>
           <p style={styles.descriptionText}>{this.props.project.description}</p>
-          <Contributors developers={this.props.project.developers} />
+          <Contributors developers={this.props.project.owners} />
         </div>
         <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
           <div class="row">
@@ -167,7 +167,11 @@ const styles = {
     paddingRight: "10px"
   },
   descriptionText: {
+<<<<<<< HEAD
     color: "white",
     fontSize: "16px"
+=======
+    color: "white"
+>>>>>>> 5ebf9c82f7ae23adf9be3ab190837a29aaadc2e8
   }
 };
