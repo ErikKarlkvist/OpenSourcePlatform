@@ -12,6 +12,7 @@ import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
 import Readme from "../components/Readme";
 import CurrentState from "../components/CurrentState";
+import Line from "../components/Line";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -71,7 +72,7 @@ class ProjectPage extends Component {
     return (
       <div class="PageContainer">
         {!this.state.loading && (
-          <div>
+          <div class="Content">
             <ProjectHeader
               name={this.state.project.name}
               headerImageURL={this.state.project.headerImageURL}
@@ -80,13 +81,17 @@ class ProjectPage extends Component {
               user={this.state.user}
               hasFetchedUser={this.state.hasFetchedUser}
             />
-            <ProjectInfo
-              user={this.state.user}
-              isLoggedIn={this.state.isLoggedIn}
-              project={this.state.project}
-            />
-            <CurrentState project={this.state.project} />
-            <Readme project={this.state.project} />
+            <div class="Center">
+              <ProjectInfo
+                user={this.state.user}
+                isLoggedIn={this.state.isLoggedIn}
+                project={this.state.project}
+              />
+              <Line full={true} />
+              <CurrentState project={this.state.project} />
+              <Line full={true} />
+              <Readme project={this.state.project} />
+            </div>
           </div>
         )}
         <Spinner loading={this.state.loading} fillPage={true} />
@@ -94,6 +99,5 @@ class ProjectPage extends Component {
     );
   }
 }
-
 
 export default withRouter(ProjectPage);

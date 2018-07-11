@@ -76,7 +76,7 @@ class CurrentState extends Component {
     return (
       <div>
         <div className="currentStateContainer">
-          <h2 style={styles.Header}>Current State</h2>
+          <h3 style={styles.Header}>Current State</h3>
           <div class="row">{this.state.showing}</div>
 
           {this.state.images.length > cutoff &&
