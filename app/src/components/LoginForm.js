@@ -3,10 +3,10 @@ import "../resources/fonts.css";
 import "../resources/colors.css";
 import "../resources/Main.css";
 import Spinner from "./Spinner"
-import {login, resetPassword} from "../backend/auth"
+import { login, resetPassword } from "../backend/auth"
 
 class SignUpView extends Component {
- constructor(props, context) {
+  constructor(props, context) {
     super(props, context);
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,26 +32,26 @@ class SignUpView extends Component {
   render() {
     return (
       <div style={styles.background} >
-        <div style={styles.closer} onClick={this.props.hide}/>
+        <div style={styles.closer} onClick={this.props.hide} />
         <div style={styles.container} >
-          {this.state.loading && <Spinner loading={true} fillPage color ={"black"}/>}
-          <h1 style={{color:"var(--dark-teal)", textAlign: "center"}}>Log in</h1>
-          <form name="login" onSubmit={this.submit} style={{width:"100%"}}>
+          {this.state.loading && <Spinner loading={true} fillPage color={"black"} />}
+          <h1 style={{ color: "var(--dark-teal)", textAlign: "center" }}>Log in</h1>
+          <form name="login" onSubmit={this.submit} style={{ width: "100%" }}>
             <div style={styles.space}>
-              Email <br/>      
-              <input style={styles.input} type="email" name="email" placeholder="name@email.com "/><br/>
+              Email <br />
+              <input style={styles.input} type="email" name="email" placeholder="name@email.com " /><br />
             </div>
-            Password:<br/>
-            <input style={styles.input} type="password" name="password" placeholder="password" /><br/>
-            <br/>
+            Password:<br />
+            <input style={styles.input} type="password" name="password" placeholder="password" /><br />
+            <br />
             <div style={styles.container2}>
-            <a style= {styles.cancel} onClick={this.props.hide}> Cancel </a>
-            <input type="submit" value="Log in" class="LogInBtn"/>
+              <a style={styles.cancel} onClick={this.props.hide}> Cancel </a>
+              <input type="submit" value="Log in" class="LogInBtn" />
             </div>
             <div style={styles.container2}>
-            <a style= {styles.create} onClick={this.props.switchDisplay}>Create account</a>
-            <br/>
-            <a style= {styles.create} onClick={this.forgotPassword}>Forgot password</a>
+              <a style={styles.create} onClick={this.props.switchDisplay}>Create account</a>
+              <br />
+              <a style={styles.create} onClick={this.forgotPassword}>Forgot password</a>
             </div>
           </form>
         </div>
@@ -61,12 +61,12 @@ class SignUpView extends Component {
 
   forgotPassword = () => {
     const email = document.forms["login"]["email"].value;
-    if(!email){
+    if (!email) {
       alert("Please fill in email to reset password")
     } else {
-      this.setState({loading: true})
+      this.setState({ loading: true })
       resetPassword(email).then(() => {
-        this.setState({loading:false})
+        this.setState({ loading: false })
         alert(`An email has been sent to ${email}`)
       })
     }
@@ -78,16 +78,16 @@ class SignUpView extends Component {
     const password = document.forms["login"]["password"].value;
 
     const emailDomain = email.split("@")[1]
-    
-    if(emailDomain !== "dnb.no"){
+
+    if (emailDomain !== "dnb.no") {
       alert("Your email must end with @dnb.no")
     } else {
-      this.setState({loading:true})
+      this.setState({ loading: true })
       login(email, password).then(() => {
-        this.setState({loading: false})
+        this.setState({ loading: false })
         this.props.hide();
       }).catch((e) => {
-        this.setState({loading: false})
+        this.setState({ loading: false })
         alert(e.message)
       })
     }
@@ -101,9 +101,9 @@ const styles = {
     backgroundColor: "rgba(0, 52, 64, 0.6)",
     height: "100%",
     width: "100%",
-    display:"flex",
+    display: "flex",
     justifyContent: "center",
-    alignItems:"center",
+    alignItems: "center",
     position: "fixed",
     top: 0,
     left: 0,
@@ -115,7 +115,7 @@ const styles = {
     height: "425px",
     width: "400px",
     padding: 40,
-    color:"var(--dark-teal)",
+    color: "var(--dark-teal)",
     boxShadow: "5px 5px 10px black",
     zIndex: 4,
   },
@@ -133,25 +133,25 @@ const styles = {
     paddingLeft: 10,
     border: "1px solid var(--dark-teal)",
   },
-  container2:{
-    marginTop:"3%",
+  container2: {
+    marginTop: "3%",
     width: "100%",
-    display:"flex",
+    display: "flex",
     justifyContent: "center",
-    alignItems:"center",
+    alignItems: "center",
   },
   cancel: {
     margin: 20,
     cursor: "pointer"
   },
-  create:{
+  create: {
     cursor: "pointer",
-    margin:20,
-    textAlign:"center",
+    margin: 20,
+    textAlign: "center",
   },
-  space:{
+  space: {
     width: "100%",
-    marginBottom:20,
+    marginBottom: 20,
   },
 };
 

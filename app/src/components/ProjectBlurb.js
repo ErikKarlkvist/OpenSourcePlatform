@@ -47,14 +47,21 @@ class ProjectBlurb extends Component {
       >
         <img style={styles.BackgroundImage} src={this.props.project.imgURL} />
 
-        {!this.state.isHovering && (
-          <div>
-            <span style={styles.ProjectName}>{this.props.project.name}</span>
-            <div style={styles.ThumbnailHeads}>
-              <ThumbnailHeads owners={this.props.project.owners} />
-            </div>
+        <div>
+          <span style={styles.ProjectName}>{this.props.project.name}</span>
+          <div style={styles.ThumbnailHeads}>
+            <ThumbnailHeads owners={this.props.project.owners} />
           </div>
-        )}
+          <div style={styles.Ingress}>
+            {this.props.project.description.length > 120 ? (
+              <div>{this.props.project.description.slice(0, 120)}...</div>
+            ) : (
+              <div>{this.props.project.description}</div>
+            )}
+          </div>
+        </div>
+
+        {/*
         {this.state.isHovering && (
           <div className={"description"}>
             <h4 className={"descText"}>{this.props.project.name}</h4>
@@ -62,6 +69,7 @@ class ProjectBlurb extends Component {
             <p style={styles.BottomText}>Read More</p>
           </div>
         )}
+      */}
       </div>
     );
   }
@@ -76,6 +84,16 @@ const styles = {
     backgroundColor: "rgba(0, 52, 62, 1)",
     boxShadow: "1px 2px 4px rgba(0, 0, 0, .5)"
   },
+  Ingress: {
+    position: "absolute",
+    bottom: 0,
+    textOverflow: "ellipsis",
+    backgroundColor: "rgba(256, 256, 256, 0.65)",
+    backdropFilter: "blur(1.4px)",
+    color: "var(--dark-teal)",
+    height: "35%",
+    width: "100%"
+  },
   BackgroundImage: {
     position: "relative",
     opacity: 0.5,
@@ -87,7 +105,7 @@ const styles = {
     //Centers the text above the image
     position: "absolute",
     left: "50%",
-    top: "50%",
+    top: "30%",
     transform: "translate(-50%, -50%)",
 
     color: "white",
@@ -98,11 +116,11 @@ const styles = {
     textAlign: "right",
     position: "absolute",
     right: "5%",
-    bottom: 0
+    top: "20px"
   },
   ThumbnailHeads: {
     position: "absolute",
     right: "5%",
-    bottom: "2px"
+    top: "5%"
   }
 };
