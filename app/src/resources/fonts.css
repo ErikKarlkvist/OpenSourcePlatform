@@ -2,53 +2,35 @@
   font-family: "FedraSans";
   src: url("fedra_sans_book-webfont.woff2") format("woff2"),
     url("fedra_sans_book-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {
   font-family: "FedraSansLight";
   src: url("fedra_sans_light-webfont.woff2") format("woff2"),
     url("fedra_sans_light-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
+
 }
 
 /* h1---->Title/header */
 h1 {
   font-family: FedraSans;
-  font-size: 72px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
+  font-size: 75px;
   color: #ffffff;
   color: var(--white);
 }
 /* h2---->subtitle */
 h2 {
   font-family: FedraSansLight;
-  font-size: 48px;
+  font-size: 50px;
   font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
   color: #ffffff;
   color: var(--white);
 }
 /* h3---->subsubtitle */
 h3 {
   font-family: FedraSansLight;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
   color: #ffffff;
   color: var(--white);
 }
@@ -56,12 +38,6 @@ h3 {
 h4 {
   font-family: FedraSansLight;
   font-size: 20px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
   color: #ffffff;
   color: var(--white);
 }
@@ -83,7 +59,7 @@ h6 {
 
 /* project description header */
 p {
-  font-family: FedraSansLight;
+  font-family: Arial;
   font-size: 14px;
   color: #00343e;
   color: var(--dark-teal);
@@ -92,12 +68,6 @@ p {
 a {
   font-family: FedraSansLight;
   font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-decoration: none;
   color: #ffffff;
   color: var(--white);
 }
@@ -105,16 +75,86 @@ a {
 a:hover {
   font-family: FedraSansLight;
   font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-decoration: none;
   color: #ffffff;
   color: var(--white);
 }
 
 .f18 {
   font-size: 18px;
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-family: FedraSans;
+    font-size: 32px;
+    color: #ffffff;
+    color: var(--white);
+  }
+  h2 {
+    font-family: FedraSansLight;
+    font-size: 26px;
+    font-weight: 300;
+    color: #ffffff;
+    color: var(--white);
+  }
+  h3 {
+    font-family: FedraSansLight;
+    font-size: 22px;
+    font-weight: 300;
+    color: #ffffff;
+    color: var(--white);
+  }
+  h4 {
+    font-family: FedraSansLight;
+    font-size: 18px;
+    color: #ffffff;
+    color: var(--white);
+  }
+  h5 {
+    font-family: FedraSansLight;
+    font-size: 6px;
+    color: var(--white);
+  }
+
+  /* h6----> Project page sidebar subheaders*/
+  h6 {
+    font-family: FedraSansLight;
+    font-size: 5px;
+  }
+  p {
+    font-family: Arial;
+    font-size: 16px;
+    color: #00343e;
+    color: var(--dark-teal);
+  }
+
+  a {
+    font-family: FedraSansLight;
+    font-size: 10px;
+    color: #ffffff;
+    color: var(--white);
+  }
+
+  a:hover {
+    font-family: FedraSansLight;
+    font-size: 10px;
+    color: #ffffff;
+    color: var(--white);
+  }
+
+  .f18 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 1200px) {
+
 }

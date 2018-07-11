@@ -1,11 +1,10 @@
 @import "../resources/colors.css";
-
-.PageContainer {
-
+.Logo {
+  height: 40px;
 }
 
-.Logo {
-  height: 80px;
+.App-title {
+  margin-top: 40px;
 }
 
 .App-header {
@@ -17,13 +16,18 @@
 
 .Content {
   width: 100%;
-  margin: 0 auto;
+  flex: display;
+  justify-content: center;
   text-align: center;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .SeeThroughBtn {
@@ -43,6 +47,7 @@
   color: var(--dark-teal);
   cursor: pointer;
 }
+
 .LogInBtn {
   border: solid var(--dark-teal) 2px;
   background: none;
@@ -53,7 +58,54 @@
   transition: 0.2s;
   cursor: pointer;
 }
+
 .LogInBtn:hover {
   background: var(--dark-teal);
   color: var(--white);
+}
+
+.Center {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+@media (min-width: 576px) {
+  .Center {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .Logo {
+    height: 60px;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .Center {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .Logo {
+    height: 80px;
+  }
+}
+
+@media (min-width: 992px) {
+  .Center {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .Logo {
+    height: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Center {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .Logo {
+    height: 160px;
+  }
 }

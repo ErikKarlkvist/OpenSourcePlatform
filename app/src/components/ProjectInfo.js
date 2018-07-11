@@ -68,7 +68,7 @@ class ProjectInfo extends Component {
         {this.state.displaySignup && <SignupForm hide = {this.hide} switchDisplay={this.switchDisplay}/>}
         <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
           <h3 style={{textAlign: "left"}}>Description</h3>
-          {this.props.project.description}
+          <p style={styles.descriptionText}>{this.props.project.description}</p>
           <Contributors developers = {this.props.project.developers} />
         </div>
         <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
@@ -142,10 +142,10 @@ const styles = {
     textAlign: "left"
   },
   InfoContainer: {
-    paddingLeft: "5%",
-    marginRight: "0px",
-    paddingTop: "20px",
-    paddingBottom: "20px"
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "20px",
+    width: "800px"
   },
   Sidebar: {
     color: "white",
@@ -161,5 +161,8 @@ const styles = {
     textAlign: "center",
     paddingLeft: "10px",
     paddingRight: "10px"
+  },
+  descriptionText: {
+    color: "white",
   }
 };
