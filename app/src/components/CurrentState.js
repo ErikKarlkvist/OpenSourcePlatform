@@ -24,15 +24,26 @@ class CurrentState extends Component {
     const data = this.props.project.thumbnails;
     let items = [];
     if (data) {
-      items = data.map(d => (
+      items = data.map((d, i) => (
         <div class="Thumbnail col-md-6 col-sm-12 col-lg-4">
-          <img style={styles.Image} onClick={this.openLightbox} src={d.url} />
+          <img
+            style={styles.Image}
+            onClick={() => {
+              this.openLightbox();
+              this.setState({ currentImage: i });
+            }}
+            src={d.url}
+          />
         </div>
       ));
     }
 
-    const lightBoxImages = this.mapToLightbox()
-    this.setState({ images: items, showing: items.slice(0, cutoff), lightBoxImages });
+    const lightBoxImages = this.mapToLightbox();
+    this.setState({
+      images: items,
+      showing: items.slice(0, cutoff),
+      lightBoxImages
+    });
   }
 
   showAll = () => {
@@ -105,7 +116,8 @@ const styles = {
   Image: {
     border: "1px solid white",
     width: "100%",
-    height: "100%"
+    height: "100%",
+    objectFit: "cover"
   },
   Name: {
     color: "grey"
