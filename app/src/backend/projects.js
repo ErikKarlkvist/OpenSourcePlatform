@@ -37,25 +37,45 @@ export async function getAllProjects() {
   projects.forEach(project => {
     toolsData.forEach(data => {
       if (data.projectId === project.id) {
-        project.tools = data.tools;
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.tools = data.tools;
+        }
       }
     });
 
     ownersData.forEach(data => {
       if (data.projectId === project.id) {
-        project.owners = data.owners;
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.owners = data.owners;
+        }
       }
     });
 
     creatorsData.forEach(data => {
       if (data.projectId === project.id) {
-        project.creator = data.creator;
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.creator = data.creator;
+        }
       }
     });
 
     thumbnailsData.forEach(data => {
       if (data.projectId === project.id) {
-        project.thumbnails = data.thumbnails;
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.thumbnails = data.thumbnails;
+        }
       }
     });
   });
@@ -142,21 +162,25 @@ export async function removeRequestProject(project) {
 
 //loads tools for specified project
 async function getToolsForProject(project) {
-  let snapshots = await firebase
-    .firestore()
-    .collection("projects")
-    .doc(project.id)
-    .collection("tools")
-    .get();
-  const tools = [];
-  snapshots.forEach(snapshot => {
-    if (snapshot.exists) {
-      const data = snapshot.data();
-      tools.push(data);
-    }
-  });
-  const data = { tools, projectId: project.id };
-  return Promise.resolve(data);
+  try {
+    let snapshots = await firebase
+      .firestore()
+      .collection("projects")
+      .doc(project.id)
+      .collection("tools")
+      .get();
+    const tools = [];
+    snapshots.forEach(snapshot => {
+      if (snapshot.exists) {
+        const data = snapshot.data();
+        tools.push(data);
+      }
+    });
+    const data = { tools, projectId: project.id };
+    return Promise.resolve(data);
+  } catch (e) {
+    return Promise.resolve({ error: true, projectId: project.id });
+  }
 }
 
 //loads owners for specified project
@@ -189,39 +213,47 @@ async function getOwnersForProject(project) {
 
 //loads creator for specified project
 async function getCreatorForProject(project) {
-  const creator = await firebase
-    .firestore()
-    .collection("users")
-    .doc(project.creator)
-    .get()
-    .then(snapshot => {
-      if (snapshot.exists) {
-        const user = snapshot.data();
-        user.id = snapshot.id;
-        return Promise.resolve(user);
-      } else {
-        return Promise.resolve({ id: "No user" });
-      }
-    });
-  const data = { creator, projectId: project.id };
-  return Promise.resolve(data);
+  try {
+    const creator = await firebase
+      .firestore()
+      .collection("users")
+      .doc(project.creator)
+      .get()
+      .then(snapshot => {
+        if (snapshot.exists) {
+          const user = snapshot.data();
+          user.id = snapshot.id;
+          return Promise.resolve(user);
+        } else {
+          return Promise.resolve({ id: "No user" });
+        }
+      });
+    const data = { creator, projectId: project.id };
+    return Promise.resolve(data);
+  } catch (e) {
+    return Promise.resolve({ error: true, projectId: project.id });
+  }
 }
 
 //loads thumbnails for specified project
 async function getThumbnailsForProject(project) {
-  let snapshots = await firebase
-    .firestore()
-    .collection("projects")
-    .doc(project.id)
-    .collection("thumbnails")
-    .get();
-  const thumbnails = [];
-  snapshots.forEach(snapshot => {
-    if (snapshot.exists) {
-      const data = snapshot.data();
-      thumbnails.push(data);
-    }
-  });
-  const data = { thumbnails, projectId: project.id };
-  return Promise.resolve(data);
+  try {
+    let snapshots = await firebase
+      .firestore()
+      .collection("projects")
+      .doc(project.id)
+      .collection("thumbnails")
+      .get();
+    const thumbnails = [];
+    snapshots.forEach(snapshot => {
+      if (snapshot.exists) {
+        const data = snapshot.data();
+        thumbnails.push(data);
+      }
+    });
+    const data = { thumbnails, projectId: project.id };
+    return Promise.resolve(data);
+  } catch (e) {
+    return Promise.resolve({ error: true, projectId: project.id });
+  }
 }

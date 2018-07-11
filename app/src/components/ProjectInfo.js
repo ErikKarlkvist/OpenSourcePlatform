@@ -76,8 +76,8 @@ class ProjectInfo extends Component {
         )}
         <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
           <h3 style={{ textAlign: "left" }}>Description</h3>
-          {this.props.project.description}
-          <Contributors developers={this.props.project.developers} />
+          <p style={styles.descriptionText}>{this.props.project.description}</p>
+          <Contributors developers={this.props.project.owners} />
         </div>
         <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
           <div class="row">
@@ -147,11 +147,10 @@ const styles = {
     textAlign: "left"
   },
   InfoContainer: {
-    paddingLeft: "5%",
-    marginRight: "0px",
-    paddingTop: "20px",
-    paddingBottom: "20px",
-    minHeight: "50vh"
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "20px",
+    width: "800px"
   },
   Sidebar: {
     color: "white",
@@ -166,7 +165,9 @@ const styles = {
     border: "solid var(--white-two) 1px",
     textAlign: "center",
     paddingLeft: "10px",
-    paddingRight: "10px",
-    marginTop: "10px"
+    paddingRight: "10px"
+  },
+  descriptionText: {
+    color: "white"
   }
 };

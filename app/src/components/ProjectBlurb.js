@@ -40,6 +40,7 @@ class ProjectBlurb extends Component {
     }
     return (
       <div
+        class="ProjectCard"
         style={styles.Rectangle}
         onMouseEnter={this.onMouseOver.bind(this)}
         onMouseLeave={this.onMouseOut.bind(this)}
@@ -71,8 +72,6 @@ export default ProjectBlurb;
 const styles = {
   Rectangle: {
     position: "relative",
-    width: "100%",
-    height: "100%",
     border: "solid 3px #ffffff",
     backgroundColor: "rgba(0, 52, 62, 1)",
     boxShadow: "1px 2px 4px rgba(0, 0, 0, .5)"
