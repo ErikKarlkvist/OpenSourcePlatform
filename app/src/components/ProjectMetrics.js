@@ -5,14 +5,14 @@ class ProjectMetrics extends Component {
   constructor() {
     super();
     this.state = {
-      nmbrOfEts: []
+      nmbrOfEts: ""
     };
   }
 
   componentDidMount() {
     getFeatureRequestCount("https://github.com/browsh-org/browsh")
       .then(res => {
-        console.log(res);
+        this.setState({ nmbrOfEts: res });
       })
       .catch(e => {
         console.log(e);
@@ -30,7 +30,10 @@ class ProjectMetrics extends Component {
     //hooked with login
     return (
       <div style={this.container}>
-        <h1>Metrics</h1>
+        <h2 style={styles.HeaderText}>Metrics</h2>
+        <p style={styles.Description}>
+          {"This is where I'd put my Metrics component, IF I HAD ONE"}
+        </p>
       </div>
     );
   }
@@ -47,6 +50,14 @@ const styles = {
     position: "absolute",
     left: 0,
     right: 0
+  },
+  Description: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "left"
+  },
+  HeaderText: {
+    textAlign: "left"
   }
 };
 export default ProjectMetrics;
