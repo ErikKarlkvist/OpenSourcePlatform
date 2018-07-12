@@ -1,8 +1,10 @@
 .SubContainer {
     clear: both;
-    margin-top: 5%;
-
+    padding-top: 20px;
+    position: relative;
+    margin: 10px;
 }
+
 .TopHeader {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
