@@ -109,8 +109,11 @@ class ProjectInfo extends Component {
             <div class="col-md-6 col-sm-12 col-lg-6 BorderBottom BorderSides BottomPadding">
               <Contributors developers={this.props.project.owners} />
             </div>
-            <div class="col-md-6 col-sm-12 col-lg-6" className="BottomPadding">
-              <ProjectMetrics />
+            <div
+              class="col-md-6 col-sm-12 col-lg-6"
+              style={{ paddingLeft: "20px" }}
+            >
+              <ProjectMetrics gitURL={this.props.project.gitURL} />
             </div>
           </div>
         </div>

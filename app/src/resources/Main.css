@@ -31,19 +31,17 @@
 }
 
 .SeeThroughBtn {
-  border: solid var(--white-two) 3px;
+  border: solid var(--bluey-green) 3px;
   box-shadow: 1px 4px 1px 0px rgba(0, 0, 0, 0.5);
   background: none;
-  color: white;
-  padding-top: 10px;
-  width: inherit;
-  height: 100%;
+  color: var(--bluey-green);
+  padding: 5px;
   text-align: center;
   transition: 0.2s;
 }
 
 .SeeThroughBtn:hover {
-  background: var(--white-two);
+  background: var(--bluey-green);
   color: var(--dark-teal);
   cursor: pointer;
 }
@@ -77,7 +75,6 @@
   .Logo {
     height: 60px;
   }
-
 }
 
 @media (min-width: 768px) {
