@@ -76,11 +76,14 @@ class ProjectInfo extends Component {
         {this.state.displaySignup && (
           <SignupForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
-        <div class="container">
+        <div class="container" style={styles.Container}>
+          <h1 style={{ textAlign: "left" }}>{this.props.project.name}</h1>
           <div class="row" style={styles.TopRow}>
             {/*Project info top part: Description, Seeking, Image*/}
-            <div style={styles.Description} class="col-md-6 col-sm-12 col-lg-6">
-              <h3 style={styles.HeaderText}>Description</h3>
+            <div
+              style={styles.Description}
+              className="col-md-6 col-sm-12 col-lg-6"
+            >
               <p style={styles.Description}>{this.props.project.description}</p>
               <h3 style={styles.HeaderText}>Seeking</h3>
               <p style={styles.Description}>
@@ -148,7 +151,8 @@ const styles = {
   },
   TopRow: {
     borderTop: "1px solid var(--dark-teal)",
-    width: "100%"
+    width: "100%",
+    height: "30vh"
   },
   BottomRow: {
     borderBottom: "1px solid var(--dark-teal)",
@@ -164,9 +168,17 @@ const styles = {
   },
   MainImage: {
     width: "100%",
-    height: "100%"
+    height: "auto",
+    objectFit: "scale-down",
+    boxShadow: "1px 1px 1px 1px black"
   },
   HeaderText: {
     textAlign: "left"
+  },
+  Container: {
+    paddingRight: "0px",
+    paddingLeft: "0px",
+    height: "70vh",
+    alignContent: "space-between"
   }
 };
