@@ -13,7 +13,7 @@ class Contributors extends React.Component {
     let items = [];
     if (data) {
       items = data.map(d => (
-        <div class="d-none d-sm-none d-md-block">
+        <div class="d-none d-sm-none d-md-block" style={styles.owner}>
           <img style={styles.image} src={d.profileImageURL} />
           <p style={styles.name}>{d.firstname}</p>
           <p style={styles.name}>
@@ -26,7 +26,7 @@ class Contributors extends React.Component {
     return (
       <div style={styles.container}>
         <div class="d-none d-sm-none d-md-block">
-          <h3 style={{ textAlign: "left" }}>Contributors</h3>
+          <h3 style={{ textAlign: "left" }}>Owners</h3>
           <div style={styles.imageWrapper}>
             <div class="row">{items}</div>
 
@@ -47,7 +47,7 @@ class Contributors extends React.Component {
         </div>
         <div class="d-block d-sm-none d-md-none">
           <button className="SeeThroughBtn" onClick={() => {}}>
-            <h6>View contributors</h6>
+            <h6>View owners</h6>
           </button>
           {/*TODO: Open contributor modal on click*/}
         </div>
@@ -65,8 +65,8 @@ const styles = {
     backgroundColor: "white",
     height: "100px",
     width: "100px",
-    marginLeft: "15px",
-    marginRight: "15px",
+    marginLeft: "21px",
+    marginRight: "21px",
     borderRadius: "50%",
     border: "1px white ",
     objectFit: "cover"
@@ -76,17 +76,18 @@ const styles = {
     margin: "auto",
     display: "flex",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
-    marginTop: "30px"
+    alignItems: "flex-start"
+  },
+  owner: {
+    width: "142px"
   },
   name: {
     color: "white",
     textAlign: "center",
     marginTop: "10px",
-    marginBottom: "-10px"
-  },
-  italics: {
-    fontStyle: "italic"
+    marginBottom: "-10px",
+    marginLeft: "5px",
+    marginRight: "5px"
   }
 };
 
