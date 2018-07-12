@@ -24,15 +24,23 @@ class Seeking extends Component {
 
                 </div>
                 <div className="SubContainer">
-                    <h3>
-                        > Back-end programmer
-                </h3><br />
-                    <h3>
-                        > UX designer
-                </h3><br />
+                    <ul class="list-unstyled">
+                        <li>
+                            <h3>
+                                > Back-end programmer
+                            </h3>
+                        </li>
+                        <li>
+                            <h3>
+                                > UX designer
+                            </h3>
+
+                        </li>
+                    </ul>
+                    <br />
                     <p style={{ color: "white" }}>
                         Is this you? Don’t hesitate to contact us and join the team.
-                </p>
+                    </p>
                 </div>
 
             </div >
