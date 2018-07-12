@@ -8,6 +8,7 @@ import { requestJoinProject, removeRequestProject } from "../backend/projects";
 import firebase from "../backend/firebase";
 import Contributors from "./Contributors";
 import "../resources/fonts.css";
+import Line from "./Line.js";
 
 class ProjectInfo extends Component {
   //"joinStatus === joined, requested or none"
@@ -76,15 +77,22 @@ class ProjectInfo extends Component {
         {this.state.displaySignup && (
           <SignupForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
-        <div class="container">
+        <div class="container" style={styles.Container}>
+          <h1 style={{ textAlign: "left" }}>{this.props.project.name}</h1>
           <div class="row" style={styles.TopRow}>
             {/*Project info top part: Description, Seeking, Image*/}
-            <div style={styles.Description} class="col-md-6 col-sm-12 col-lg-6">
-              <h3 style={styles.HeaderText}>Description</h3>
+            <div
+              style={styles.Description}
+              className="col-md-6 col-sm-12 col-lg-6 BorderTop BorderSides"
+            >
+              <h3 style={styles.HeaderText}>
+                What is {this.props.project.name}?
+              </h3>
               <p style={styles.Description}>{this.props.project.description}</p>
-              <h3 style={styles.HeaderText}>Seeking</h3>
+              <div style={{ paddingTop: "40px" }} />
+              <h3 style={styles.HeaderText}>Looking for</h3>
               <p style={styles.Description}>
-                This is where I'd put my Seeking component, IF I HAD ONE
+                This is where I'd put my Looking For component, IF I HAD ONE
               </p>
             </div>
             <div class="col-md-6 col-sm-12 col-lg-6">
@@ -97,10 +105,10 @@ class ProjectInfo extends Component {
 
           {/*Project info bottom part: Owners, Metrics*/}
           <div class="row" style={styles.BottomRow}>
-            <div class="col-md-6 col-sm-12 col-lg-6">
+            <div class="col-md-6 col-sm-12 col-lg-6 BorderBottom BorderSides BottomPadding">
               <Contributors developers={this.props.project.owners} />
             </div>
-            <div class="col-md-6 col-sm-12 col-lg-6">
+            <div class="col-md-6 col-sm-12 col-lg-6" className="BottomPadding">
               <h3 style={styles.HeaderText}>Metrics</h3>
               <p style={styles.Description}>
                 {"This is where I'd put my Metrics component, IF I HAD ONE"}
@@ -148,15 +156,16 @@ const styles = {
   },
   TopRow: {
     borderTop: "1px solid var(--dark-teal)",
-    width: "100%"
+    width: "100%",
+    height: "auto"
   },
   BottomRow: {
     borderBottom: "1px solid var(--dark-teal)",
-    width: "100%",
-    paddingTop: "20px"
+    width: "100%"
   },
   InfoContainer: {
-    marginTop: "40px"
+    marginTop: "40px",
+    marginBottom: "40px"
   },
   Sidebar: {
     color: "white",
@@ -164,9 +173,17 @@ const styles = {
   },
   MainImage: {
     width: "100%",
-    height: "100%"
+    height: "auto",
+    objectFit: "scale-down",
+    boxShadow: "1px 1px 1px 1px black"
   },
   HeaderText: {
     textAlign: "left"
+  },
+  Container: {
+    paddingRight: "0px",
+    paddingLeft: "0px",
+    height: "auto",
+    alignContent: "space-between"
   }
 };
