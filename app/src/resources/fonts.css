@@ -146,6 +146,74 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+}h1 {
+  font-family: FedraSans;
+  font-size: 75px;
+  color: #ffffff;
+  color: var(--white);
+}
+/* h2---->subtitle */
+h2 {
+  font-family: FedraSansLight;
+  font-size: 50px;
+  font-weight: 300;
+  color: #ffffff;
+  color: var(--white);
+}
+/* h3---->subsubtitle */
+h3 {
+  font-family: FedraSansLight;
+  font-size: 36px;
+  font-weight: 300;
+  color: #ffffff;
+  color: var(--white);
+}
+/* h4---->Sign-up-Log-in */
+h4 {
+  font-family: FedraSansLight;
+  font-size: 20px;
+  color: #ffffff;
+  color: var(--white);
+}
+
+/* h5---->Project name */
+
+h5 {
+  font-family: FedraSansLight;
+  font-size: 18px;
+  color: var(--white);
+}
+
+/* h6----> Project page sidebar subheaders*/
+h6 {
+  font-family: FedraSansLight;
+  font-size: 16px;
+}
+
+/* project description header */
+p {
+  font-family: Arial;
+  font-size: 14px;
+  color: #00343e;
+  color: var(--dark-teal);
+}
+
+a {
+  font-family: FedraSansLight;
+  font-size: 16px;
+  color: #ffffff;
+  color: var(--white);
+}
+
+a:hover {
+  font-family: FedraSansLight;
+  font-size: 16px;
+  color: #ffffff;
+  color: var(--white);
+}
+
+.f18 {
+  font-size: 18px;
 }
 
 @media (max-width: 992px) {
