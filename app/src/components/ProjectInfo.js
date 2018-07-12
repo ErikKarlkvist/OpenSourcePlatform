@@ -8,6 +8,7 @@ import { requestJoinProject, removeRequestProject } from "../backend/projects";
 import firebase from "../backend/firebase";
 import Contributors from "./Contributors";
 import "../resources/fonts.css";
+import Line from "./Line.js";
 
 class ProjectInfo extends Component {
   //"joinStatus === joined, requested or none"
@@ -82,12 +83,16 @@ class ProjectInfo extends Component {
             {/*Project info top part: Description, Seeking, Image*/}
             <div
               style={styles.Description}
-              className="col-md-6 col-sm-12 col-lg-6"
+              className="col-md-6 col-sm-12 col-lg-6 BorderTop BorderSides"
             >
+              <h3 style={styles.HeaderText}>
+                What is {this.props.project.name}?
+              </h3>
               <p style={styles.Description}>{this.props.project.description}</p>
-              <h3 style={styles.HeaderText}>Seeking</h3>
+              <div style={{ paddingTop: "40px" }} />
+              <h3 style={styles.HeaderText}>Looking for</h3>
               <p style={styles.Description}>
-                This is where I'd put my Seeking component, IF I HAD ONE
+                This is where I'd put my Looking For component, IF I HAD ONE
               </p>
             </div>
             <div class="col-md-6 col-sm-12 col-lg-6">
@@ -100,10 +105,10 @@ class ProjectInfo extends Component {
 
           {/*Project info bottom part: Owners, Metrics*/}
           <div class="row" style={styles.BottomRow}>
-            <div class="col-md-6 col-sm-12 col-lg-6">
+            <div class="col-md-6 col-sm-12 col-lg-6 BorderBottom BorderSides BottomPadding">
               <Contributors developers={this.props.project.owners} />
             </div>
-            <div class="col-md-6 col-sm-12 col-lg-6">
+            <div class="col-md-6 col-sm-12 col-lg-6" className="BottomPadding">
               <h3 style={styles.HeaderText}>Metrics</h3>
               <p style={styles.Description}>
                 {"This is where I'd put my Metrics component, IF I HAD ONE"}
@@ -152,15 +157,15 @@ const styles = {
   TopRow: {
     borderTop: "1px solid var(--dark-teal)",
     width: "100%",
-    height: "30vh"
+    height: "auto"
   },
   BottomRow: {
     borderBottom: "1px solid var(--dark-teal)",
-    width: "100%",
-    paddingTop: "20px"
+    width: "100%"
   },
   InfoContainer: {
-    marginTop: "40px"
+    marginTop: "40px",
+    marginBottom: "40px"
   },
   Sidebar: {
     color: "white",
@@ -178,7 +183,7 @@ const styles = {
   Container: {
     paddingRight: "0px",
     paddingLeft: "0px",
-    height: "70vh",
+    height: "auto",
     alignContent: "space-between"
   }
 };
