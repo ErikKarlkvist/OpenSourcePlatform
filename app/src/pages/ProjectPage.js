@@ -14,6 +14,7 @@ import Readme from "../components/Readme";
 import CurrentState from "../components/CurrentState";
 import Line from "../components/Line";
 import logo from "../logo.svg";
+import ProjectMetrics from "../components/ProjectMetrics";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -94,6 +95,7 @@ class ProjectPage extends Component {
               <CurrentState project={this.state.project} />
               <Line full={true} />
               <Readme project={this.state.project} />
+              <ProjectMetrics />
             </div>
           </div>
         )}
