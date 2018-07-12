@@ -40,11 +40,11 @@ class HomePage extends Component {
     this.setupAuthStateChange();
   }
 
-  issueTest() {}
+  issueTest() { }
 
   setupAuthStateChange() {
     const page = this;
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         getUser(user.uid).then(user => {
           page.setState({
@@ -80,7 +80,7 @@ class HomePage extends Component {
           />
         </header>
         <div class="Content">
-          <h1 className="App-title">DNB Open Source</h1>
+          <h1 className="App-title Red Green">DNB Open Source</h1>
           <h2 className="App-intro">Contribute & Innovate</h2>
           <div style={{ marginTop: 30, marginBottom: 30 }}>
             <Line style={{ marginBottom: 10 }} />
