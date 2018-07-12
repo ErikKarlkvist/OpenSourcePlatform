@@ -40,22 +40,11 @@ class HomePage extends Component {
     this.setupAuthStateChange();
   }
 
-  issueTest() {
-    //https://developer.github.com/v3/issues/#create-an-issue
-    var urlToGetAllOpenBugs =
-      "https://api.github.com/repos/browsh-org/browsh/issues?state=open&page=1&direction=asc";
-    fetch(urlToGetAllOpenBugs)
-      .then(result => {
-        return result.json();
-      })
-      .then(res => {
-        console.log(res);
-      });
-  }
+  issueTest() {}
 
   setupAuthStateChange() {
     const page = this;
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         getUser(user.uid).then(user => {
           page.setState({
