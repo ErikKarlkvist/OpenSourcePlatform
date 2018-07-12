@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../resources/fonts.css";
 import "../resources/colors.css";
-import "./AnimatedMenu.css";
 import "../resources/Main.css";
 
 class Seeking extends Component {
@@ -24,12 +23,12 @@ class Seeking extends Component {
 
                 </div>
                 <div style={{ clear: "both", marginLeft: "5%", marginTop: "5%" }}>
-                    <h4>
+                    <h3>
                         > Back-end programmer
-                </h4><br />
-                    <h4>
+                </h3><br />
+                    <h3>
                         > UX designer
-                </h4><br />
+                </h3><br />
                     <p style={{ color: "white" }}>
                         Is this you? Don’t hesitate to contact us and join the team.
                 </p>

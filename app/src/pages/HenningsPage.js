@@ -13,6 +13,7 @@ import UploadImage from "../components/UploadImage";
 import firebase from "../backend/firebase";
 import LoginForm from "../components/LoginForm";
 import Seeking from "../components/Seeking";
+import "../resources/fonts.css"
 
 class HenningsPage extends Component {
   constructor() {
@@ -65,6 +66,23 @@ class HenningsPage extends Component {
       <div class="pageContainer">
         <div>
           <Seeking />
+        </div>
+        <div>
+          <h1>
+            HEI
+          </h1>
+          <h2>
+            HEI
+          </h2>
+          <h3>
+            HEI
+          </h3>
+          <h4>
+            HEI
+          </h4>
+
+
+
         </div>
       </div>
     );
