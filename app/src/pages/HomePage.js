@@ -55,7 +55,7 @@ class HomePage extends Component {
 
   setupAuthStateChange() {
     const page = this;
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         getUser(user.uid).then(user => {
           page.setState({
