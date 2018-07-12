@@ -1,36 +1,5 @@
 @import "../resources/colors.css";
 
-.description {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  height: 265px;
-  width: 265px;
-
-  background-color: white;
-  word-wrap: break-word;
-  padding: 15px;
-
-  transition: opacity 0.3s;
-  opacity: 0.5;
-}
-
-.description:hover {
-  opacity: 1;
-}
-
-.descText {
-  color: var(--dark-teal);
-  text-align: left;
-  font-size: 16;
-  right: 5%;
-  overflow: hidden;
-  max-height: 177px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
 .ProjectCard {
   height: 300px;
   width: 300px;
