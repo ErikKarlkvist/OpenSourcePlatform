@@ -4,7 +4,7 @@ import "../resources/Main.css";
 
 class Contributors extends React.Component {
   static propTypes = {
-    developers: PropTypes.object.isRequired
+    developers: PropTypes.array.isRequired
   };
 
   render() {

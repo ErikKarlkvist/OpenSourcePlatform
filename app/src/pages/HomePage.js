@@ -71,7 +71,7 @@ class HomePage extends Component {
         />
         <header className="App-header">
           <Link to="/">
-            <img src={logo} class="Logo" alt="logo" />
+            <img src={logo} className="Logo" alt="logo" />
           </Link>
           <LoginRegister
             isLoggedIn={this.state.isLoggedIn}

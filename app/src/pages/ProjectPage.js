@@ -72,7 +72,7 @@ class ProjectPage extends Component {
 
   render() {
     return (
-      <div class="PageContainer">
+      <div className="PageContainer">
         {!this.state.loading && (
           <div class="Content">
             <header className="App-header">
