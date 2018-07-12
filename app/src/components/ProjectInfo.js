@@ -9,6 +9,7 @@ import firebase from "../backend/firebase";
 import Contributors from "./Contributors";
 import "../resources/fonts.css";
 import Line from "./Line.js";
+import ProjectMetrics from "./ProjectMetrics";
 
 class ProjectInfo extends Component {
   //"joinStatus === joined, requested or none"
@@ -109,10 +110,7 @@ class ProjectInfo extends Component {
               <Contributors developers={this.props.project.owners} />
             </div>
             <div class="col-md-6 col-sm-12 col-lg-6" className="BottomPadding">
-              <h3 style={styles.HeaderText}>Metrics</h3>
-              <p style={styles.Description}>
-                {"This is where I'd put my Metrics component, IF I HAD ONE"}
-              </p>
+              <ProjectMetrics />
             </div>
           </div>
         </div>
