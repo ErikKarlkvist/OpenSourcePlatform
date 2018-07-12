@@ -12,7 +12,7 @@
     url("fedra_sans_light-webfont.woff") format("woff");
 }
 
-@media (min-width: 576px) {
+@media (min-width: 360px) {
 h1 {
   font-family: FedraSans;
   font-size: 32px;
@@ -83,29 +83,23 @@ a:hover {
 }
 }
 
-@media (min-width: 776px) {
+@media (min-width: 768px) {
   h1 {
     font-family: FedraSans;
-    font-size: 32px;
+    font-size: 40px;
     color: #ffffff;
     color: var(--white);
   }
-  
-  h1.Red {
-    color: var(--bluey-green);
-  }
-  /* h2---->subtitle */
   h2 {
     font-family: FedraSansLight;
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 300;
     color: #ffffff;
     color: var(--white);
   }
-  /* h3---->subsubtitle */
   h3 {
     font-family: FedraSansLight;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 300;
     color: #ffffff;
     color: var(--white);
@@ -159,7 +153,7 @@ a:hover {
   }
 }
 
-@media (min-width: 1200px){
+@media (min-width: 1199px){
   h1 {
     font-family: FedraSans;
     font-size: 48px;
