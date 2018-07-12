@@ -21,7 +21,7 @@ class HenningsPage extends Component {
       currentlyViewing: [],
       loading: true,
       isLoggedIn: false,
-      hasFetchedUser: false,
+      hasFetchedUser: false
     };
   }
 
@@ -43,24 +43,24 @@ class HenningsPage extends Component {
     const page = this;
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        getUser(user.uid).then((user) => {
+        getUser(user.uid).then(user => {
           page.setState({
             isLoggedIn: true,
             hasFetchedUser: true,
             user
-          })
-        })
-
+          });
+        });
       } else {
         page.setState({
           isLoggedIn: false,
-          hasFetchedUser: true,
-        })
+          hasFetchedUser: true
+        });
       }
     });
   }
 
   render() {
+
     return (
       <div class="pageContainer">
         <div>
@@ -68,6 +68,7 @@ class HenningsPage extends Component {
         </div>
       </div>
     );
+
   }
 }
 export default HenningsPage;

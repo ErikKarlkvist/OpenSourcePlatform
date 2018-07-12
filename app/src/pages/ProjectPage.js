@@ -13,6 +13,7 @@ import ProjectHeader from "../components/ProjectHeader";
 import Readme from "../components/Readme";
 import CurrentState from "../components/CurrentState";
 import Line from "../components/Line";
+import logo from "../logo.svg";
 
 class ProjectPage extends Component {
   static propTypes = {
@@ -73,14 +74,16 @@ class ProjectPage extends Component {
       <div class="PageContainer">
         {!this.state.loading && (
           <div class="Content">
-            <ProjectHeader
-              name={this.state.project.name}
-              headerImageURL={this.state.project.headerImageURL}
-              developers={this.state.project.developers}
-              isLoggedIn={this.state.isLoggedIn}
-              user={this.state.user}
-              hasFetchedUser={this.state.hasFetchedUser}
-            />
+            <header className="App-header">
+              <Link to="/">
+                <img src={logo} class="Logo" alt="logo" />
+              </Link>
+              <LoginRegister
+                isLoggedIn={this.state.isLoggedIn}
+                user={this.state.user}
+                hasFetchedUser={this.state.hasFetchedUser}
+              />
+            </header>
             <div class="Center">
               <ProjectInfo
                 user={this.state.user}

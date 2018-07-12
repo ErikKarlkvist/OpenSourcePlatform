@@ -39,12 +39,7 @@ class ProjectBlurb extends Component {
       return <div />;
     }
     return (
-      <div
-        class="ProjectCard"
-        style={styles.Rectangle}
-        onMouseEnter={this.onMouseOver.bind(this)}
-        onMouseLeave={this.onMouseOut.bind(this)}
-      >
+      <div class="ProjectCard" style={styles.Rectangle}>
         <img style={styles.BackgroundImage} src={this.props.project.imgURL} />
 
         <div>
@@ -87,10 +82,13 @@ const styles = {
   Ingress: {
     position: "absolute",
     bottom: 0,
+    paddingLeft: "5px",
+    paddingRight: "5px",
     textOverflow: "ellipsis",
-    backgroundColor: "rgba(256, 256, 256, 0.65)",
+    textAlign: "left",
+    backgroundColor: "rgba(256, 256, 256, 0.85)",
     backdropFilter: "blur(1.4px)",
-    color: "var(--dark-teal)",
+    color: "black",
     height: "35%",
     width: "100%"
   },
@@ -110,17 +108,20 @@ const styles = {
 
     color: "white",
     fontSize: "34px",
-    fontFamiliy: "FedraSans"
+    fontFamiliy: "FedraSans",
+    textShadow: "1px 1px 1px black"
   },
+  /*
   BottomText: {
     textAlign: "right",
     position: "absolute",
     right: "5%",
     top: "20px"
   },
+  */
   ThumbnailHeads: {
     position: "absolute",
-    right: "5%",
-    top: "5%"
+    right: "15px",
+    top: "10px"
   }
 };
