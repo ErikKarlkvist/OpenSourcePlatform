@@ -5,3 +5,21 @@
   height: 100%;
   text-align: center;
 }
+
+.BorderTop {
+  border-top: 3px solid var(--bluey-green);
+  padding-top: 20px;
+}
+
+.BorderBottom {
+  border-bottom: 3px solid var(--bluey-green);
+}
+
+.BorderSides {
+  border-left: 3px solid var(--bluey-green);
+  border-right: 3px solid var(--bluey-green);
+}
+
+.BottomPadding {
+  padding-top: 40px;
+}
