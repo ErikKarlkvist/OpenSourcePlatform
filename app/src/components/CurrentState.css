@@ -6,11 +6,8 @@
 }
 
 .Thumbnail {
-  height: 250px;
-  width: 250px;
   padding-bottom: 40px;
   background-color: var(--dark-teal);
-  opacity: 0.95;
   object-fit: cover;
 }
 .Thumbnail:hover {
