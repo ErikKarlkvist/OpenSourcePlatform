@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "../logo.svg";
 import "../resources/Main.css";
 import { getAllProjects } from "../backend/projects";
-import { getUser } from "../backend/users.js";
+import { getUser } from "../backend/users.js"
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister";
 import FilterProjects from "../components/FilterProjects";
@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import UploadImage from "../components/UploadImage";
 import firebase from "../backend/firebase";
 import LoginForm from "../components/LoginForm";
+import Seeking from "../components/Seeking";
 
 class HenningsPage extends Component {
   constructor() {
@@ -40,7 +41,7 @@ class HenningsPage extends Component {
 
   setupAuthStateChange() {
     const page = this;
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         getUser(user.uid).then(user => {
           page.setState({
@@ -59,7 +60,15 @@ class HenningsPage extends Component {
   }
 
   render() {
-    return <div class="pageContainer">HELLO!</div>;
+
+    return (
+      <div class="pageContainer">
+        <div>
+          <Seeking />
+        </div>
+      </div>
+    );
+
   }
 }
 export default HenningsPage;

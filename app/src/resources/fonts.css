@@ -8,7 +8,6 @@
   font-family: "FedraSansLight";
   src: url("fedra_sans_light-webfont.woff2") format("woff2"),
     url("fedra_sans_light-webfont.woff") format("woff");
-
 }
 
 /* h1---->Title/header */
@@ -29,7 +28,7 @@ h2 {
 /* h3---->subsubtitle */
 h3 {
   font-family: FedraSansLight;
-  font-size: 25px;
+  font-size: 36px;
   font-weight: 300;
   color: #ffffff;
   color: var(--white);
@@ -55,7 +54,6 @@ h6 {
   font-family: FedraSansLight;
   font-size: 16px;
 }
-
 
 /* project description header */
 p {
@@ -148,13 +146,10 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-
 }
 
 @media (max-width: 992px) {
-
 }
 
 @media (max-width: 1200px) {
-
 }
