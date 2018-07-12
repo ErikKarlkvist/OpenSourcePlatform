@@ -7,33 +7,39 @@ import "../resources/Main.css";
 class Seeking extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
-        this.state = {
-            term: ""
-        };
     }
 
     render() {
         return (
             <div>
-                <div>
-                    <button className="SeeThroughBtn" onClick={this.joinProject} />
-                    <h2>
-                        Seeking!!!
-                </h2>
-                </div>
-                <h4>
-                    > Back-end programmer
-                </h4><br />
-                <h4>
-                    > UX designer
-                </h4><br />
-                <p>
-                    Is this you? Don’t hesitate to contact us and join the team.
-                </p>
+                <div style={{ padding: "40px" }}>
+                    <h2 style={{ float: "left" }}>
+                        Looking for
+                    </h2>
+                    <button style={{ float: "right" }} className="SeeThroughBtn" onClick={this.mailContact}>
+                        <h3>
+                            Contact
+                        </h3>
+                    </button>
 
-            </div>
+                </div>
+                <div style={{ clear: "both", marginLeft: "5%", marginTop: "5%" }}>
+                    <h4>
+                        > Back-end programmer
+                </h4><br />
+                    <h4>
+                        > UX designer
+                </h4><br />
+                    <p style={{ color: "white" }}>
+                        Is this you? Don’t hesitate to contact us and join the team.
+                </p>
+                </div>
+
+            </div >
         );
     }
+    mailContact = () => {
+        window.location = "mailto:xyz.dnb.no";
+    };
 }
 export default Seeking;
