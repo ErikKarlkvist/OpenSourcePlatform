@@ -15,7 +15,9 @@ class Contributors extends React.Component {
       items = data.map(d => (
         <div class="d-none d-sm-none d-md-block" style={styles.owner}>
           <img style={styles.image} src={d.profileImageURL} />
-          <p style={styles.name}>{d.firstname}</p>
+          <p style={{ ...styles.name, ...{ marginBottom: "-10px" } }}>
+            {d.firstname}
+          </p>
           <p style={styles.name}>
             <i>{d.role}</i>
           </p>
@@ -58,8 +60,7 @@ class Contributors extends React.Component {
 
 const styles = {
   container: {
-    alignText: "left",
-    marginTop: "30px"
+    alignText: "left"
   },
   image: {
     backgroundColor: "white",
@@ -85,7 +86,6 @@ const styles = {
     color: "white",
     textAlign: "center",
     marginTop: "10px",
-    marginBottom: "-10px",
     marginLeft: "5px",
     marginRight: "5px"
   }
