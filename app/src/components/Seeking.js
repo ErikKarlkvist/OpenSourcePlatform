@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../resources/fonts.css";
 import "../resources/colors.css";
 import "../resources/Main.css";
+import "./Seeking.css"
 
 class Seeking extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Seeking extends Component {
     render() {
         return (
             <div>
-                <div style={{ padding: "40px" }}>
+                <div className="TopHeader">
                     <h2 style={{ float: "left" }}>
                         Looking for
                     </h2>
@@ -22,7 +23,7 @@ class Seeking extends Component {
                     </button>
 
                 </div>
-                <div style={{ clear: "both", marginLeft: "5%", marginTop: "5%" }}>
+                <div className="SubContainer">
                     <h3>
                         > Back-end programmer
                 </h3><br />
