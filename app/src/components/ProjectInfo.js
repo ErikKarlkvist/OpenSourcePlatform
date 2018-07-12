@@ -7,6 +7,7 @@ import SignupForm from "./SignupForm";
 import { requestJoinProject, removeRequestProject } from "../backend/projects";
 import firebase from "../backend/firebase";
 import Contributors from "./Contributors";
+import "../resources/fonts.css";
 
 class ProjectInfo extends Component {
   //"joinStatus === joined, requested or none"
@@ -67,39 +68,43 @@ class ProjectInfo extends Component {
     }
 
     return (
-      <div style={styles.InfoContainer} class="row">
+      <div style={styles.InfoContainer}>
+        {/*Login and signup modals, hidden until prompted */}
         {this.state.displayLogin && (
           <LoginForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
         {this.state.displaySignup && (
           <SignupForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
-        <div style={styles.Description} class="col-md-9 col-sm-12 col-lg-9">
-          <h3 style={{ textAlign: "left" }}>Description</h3>
-          <p style={styles.descriptionText}>{this.props.project.description}</p>
-          <Contributors developers={this.props.project.owners} />
-        </div>
-        <div style={styles.Sidebar} class="col-md-2 col-sm-12 col-lg-2">
-          <div class="row">
-            {/*Get code button*/}
-            <div
-              class="col-md-12 col-sm-6 col-lg-12"
-              style={{ marginBottom: "20px" }}
-            >
-              <button className="SeeThroughBtn" onClick={this.joinProject}>
-                <h6>{joinText}</h6>
-              </button>
+        <div class="container">
+          <div class="row" style={styles.TopRow}>
+            {/*Project info top part: Description, Seeking, Image*/}
+            <div style={styles.Description} class="col-md-6 col-sm-12 col-lg-6">
+              <h3 style={styles.HeaderText}>Description</h3>
+              <p style={styles.Description}>{this.props.project.description}</p>
+              <h3 style={styles.HeaderText}>Seeking</h3>
+              <p style={styles.Description}>
+                This is where I'd put my Seeking component, IF I HAD ONE
+              </p>
             </div>
+            <div class="col-md-6 col-sm-12 col-lg-6">
+              <img
+                src={this.props.project.headerImageURL}
+                style={styles.MainImage}
+              />
+            </div>
+          </div>
 
-            {/*Contact button*/}
-            <div
-              class="col-md-12 col-sm-6 col-lg-12"
-              style={{ marginBottom: "20px" }}
-            >
-              <button className="SeeThroughBtn" onClick={this.mailContact}>
-                <h6>Contact</h6>
-              </button>
-              {/*replace with this.props.project.contactMail when that is implemented*/}
+          {/*Project info bottom part: Owners, Metrics*/}
+          <div class="row" style={styles.BottomRow}>
+            <div class="col-md-6 col-sm-12 col-lg-6">
+              <Contributors developers={this.props.project.owners} />
+            </div>
+            <div class="col-md-6 col-sm-12 col-lg-6">
+              <h3 style={styles.HeaderText}>Metrics</h3>
+              <p style={styles.Description}>
+                {"This is where I'd put my Metrics component, IF I HAD ONE"}
+              </p>
             </div>
           </div>
         </div>
@@ -138,32 +143,30 @@ export default ProjectInfo;
 const styles = {
   Description: {
     color: "white",
-    fontSize: 18,
-    paddingBottom: "20px",
+    fontSize: 16,
     textAlign: "left"
   },
+  TopRow: {
+    borderTop: "1px solid var(--dark-teal)",
+    width: "100%"
+  },
+  BottomRow: {
+    borderBottom: "1px solid var(--dark-teal)",
+    width: "100%",
+    paddingTop: "20px"
+  },
   InfoContainer: {
-    marginTop: "40px",
-    display: "flex",
-    justifyContent: "space-between"
+    marginTop: "40px"
   },
   Sidebar: {
     color: "white",
     alignItems: "right"
   },
-  Email: {
-    textDecoration: "underline",
-    textAlign: "center",
-    fontSize: "14px"
+  MainImage: {
+    width: "100%",
+    height: "100%"
   },
-  Contact: {
-    border: "solid var(--white-two) 1px",
-    textAlign: "center",
-    paddingLeft: "10px",
-    paddingRight: "10px"
-  },
-  descriptionText: {
-    color: "white",
-    fontSize: "16px"
+  HeaderText: {
+    textAlign: "left"
   }
 };

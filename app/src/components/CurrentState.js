@@ -75,7 +75,7 @@ class CurrentState extends Component {
 
     return (
       <div>
-        <div className="currentStateContainer">
+        <div class="container" className="currentStateContainer">
           <h3 style={styles.Header}>Current State</h3>
           <div class="row">{this.state.showing}</div>
 
@@ -117,7 +117,8 @@ const styles = {
     border: "1px solid white",
     width: "100%",
     height: "100%",
-    objectFit: "cover"
+    objectFit: "cover",
+    overflow: "visible"
   },
   Name: {
     color: "grey"
