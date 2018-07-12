@@ -108,9 +108,9 @@ class ProjectInfo extends Component {
             <div class="col-md-6 col-sm-12 col-lg-6 BorderBottom BorderSides BottomPadding">
               <Contributors developers={this.props.project.owners} />
             </div>
-            <div class="col-md-6 col-sm-12 col-lg-6" className="BottomPadding">
+            <div class="col-md-6 col-sm-12 col-lg-6 BottomPadding">
               <h3 style={styles.HeaderText}>Metrics</h3>
-              <p style={styles.Description}>
+              <p style={styles.Description} className="">
                 {"This is where I'd put my Metrics component, IF I HAD ONE"}
               </p>
             </div>
