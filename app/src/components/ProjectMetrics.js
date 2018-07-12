@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { getFeatureRequestsFromGithub } from "../backend/metrics";
+import { getFeatureRequestCount } from "../backend/metrics";
 
-class Line extends Component {
+class ProjectMetrics extends Component {
   constructor() {
     super();
     this.state = {
@@ -10,7 +10,7 @@ class Line extends Component {
   }
 
   componentDidMount() {
-    getFeatureRequestsFromGithub("https://github.com/browsh-org/browsh")
+    getFeatureRequestCount("https://github.com/browsh-org/browsh")
       .then(res => {
         console.log(res);
       })
@@ -49,4 +49,4 @@ const styles = {
     right: 0
   }
 };
-export default Line;
+export default ProjectMetrics;
