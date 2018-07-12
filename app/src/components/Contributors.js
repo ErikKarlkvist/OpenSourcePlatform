@@ -49,24 +49,35 @@ class Contributors extends React.Component {
     this.setState({ ownersToShow: this.state.owners });
   };
 
+  collapseOwners = () => {
+    this.setState({ ownersToShow: this.state.owners.slice(0, 3) });
+  };
+
   render() {
     return (
       <div style={styles.container}>
         <div class="d-block d-sm-block d-md-block">
           <h3 style={{ textAlign: "left" }}>Owners</h3>
           <div style={styles.imageWrapper}>
-            <div class="row">
-              {this.state.ownersToShow}
-              {this.state.owners.length > 3 &&
-                this.state.ownersToShow.length < 4 && (
-                  <div>
-                    <a style={styles.seeAllLink} onClick={this.showAllOwners}>
-                      See {this.state.owners.length - 3} more
-                    </a>
-                  </div>
-                )}
-            </div>
+            <div class="row">{this.state.ownersToShow}</div>
           </div>
+
+          {this.state.owners.length > 3 &&
+            this.state.ownersToShow.length < 4 && (
+              <div>
+                <a style={styles.seeAllLink} onClick={this.showAllOwners}>
+                  See {this.state.owners.length - 3} more
+                </a>
+              </div>
+            )}
+          {this.state.owners.length > 3 &&
+            this.state.ownersToShow.length >= 4 && (
+              <div>
+                <a style={styles.seeAllLink} onClick={this.collapseOwners}>
+                  See fewer
+                </a>
+              </div>
+            )}
         </div>
       </div>
     );
