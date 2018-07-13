@@ -7,13 +7,22 @@ class Contributors extends React.Component {
     developers: PropTypes.array.isRequired
   };
 
-  render() {
+  constructor() {
+    super();
+    this.state = { owners: [], ownersToShow: [] };
+  }
+
+  componentDidMount() {
+    this.getOwners();
+  }
+
+  getOwners = () => {
     const data = this.props.developers;
 
     let items = [];
     if (data) {
       items = data.map(d => (
-        <div class="d-none d-sm-none d-md-block" style={styles.owner}>
+        <div class="d-block d-sm-block d-md-block" style={styles.owner}>
           <img style={styles.image} src={d.profileImageURL} />
           <p style={{ ...styles.name, ...{ marginBottom: "-10px" } }}>
             {d.firstname}
@@ -23,35 +32,52 @@ class Contributors extends React.Component {
           </p>
         </div>
       ));
-    }
+      const ownersLength = items.length;
 
+      this.setState({ owners: items, ownersToShow: items.slice(0, 3) });
+    }
+  };
+
+  componentDidUpdate(nextProps) {
+    console.log(nextProps);
+    if (!nextProps === this.props) {
+      this.getOwners();
+    }
+  }
+
+  showAllOwners = () => {
+    this.setState({ ownersToShow: this.state.owners });
+  };
+
+  collapseOwners = () => {
+    this.setState({ ownersToShow: this.state.owners.slice(0, 3) });
+  };
+
+  render() {
     return (
       <div style={styles.container}>
-        <div class="d-none d-sm-none d-md-block">
+        <div class="d-block d-sm-block d-md-block">
           <h3 style={{ textAlign: "left" }}>Owners</h3>
           <div style={styles.imageWrapper}>
-            <div class="row">{items}</div>
-
-            {items.length > 5 && (
-              <a
-                style={{
-                  textDecoration: "underline",
-                  marginBottom: 20,
-                  marginLeft: 20,
-                  fontSize: 14
-                }}
-                href="#"
-              >
-                See all
-              </a>
-            )}
+            <div class="row">{this.state.ownersToShow}</div>
           </div>
-        </div>
-        <div class="d-block d-sm-none d-md-none">
-          <button className="SeeThroughBtn" onClick={() => {}}>
-            <h6>View owners</h6>
-          </button>
-          {/*TODO: Open contributor modal on click*/}
+
+          {this.state.owners.length > 3 &&
+            this.state.ownersToShow.length < 4 && (
+              <div>
+                <a style={styles.seeAllLink} onClick={this.showAllOwners}>
+                  See {this.state.owners.length - 3} more
+                </a>
+              </div>
+            )}
+          {this.state.owners.length > 3 &&
+            this.state.ownersToShow.length >= 4 && (
+              <div>
+                <a style={styles.seeAllLink} onClick={this.collapseOwners}>
+                  See fewer
+                </a>
+              </div>
+            )}
         </div>
       </div>
     );
@@ -88,6 +114,13 @@ const styles = {
     marginTop: "10px",
     marginLeft: "5px",
     marginRight: "5px"
+  },
+  seeAllLink: {
+    color: "white",
+    float: "right",
+    textDecoration: "underline",
+    width: "100%",
+    cursor: "pointer"
   }
 };
 

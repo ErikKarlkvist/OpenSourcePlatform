@@ -10,6 +10,7 @@ import Contributors from "./Contributors";
 import "../resources/fonts.css";
 import Line from "./Line.js";
 import ProjectMetrics from "./ProjectMetrics";
+import Seeking from "./Seeking";
 
 class ProjectInfo extends Component {
   //"joinStatus === joined, requested or none"
@@ -91,10 +92,7 @@ class ProjectInfo extends Component {
               </h3>
               <p style={styles.Description}>{this.props.project.description}</p>
               <div style={{ paddingTop: "40px" }} />
-              <h3 style={styles.HeaderText}>Looking for</h3>
-              <p style={styles.Description}>
-                This is where I'd put my Looking For component, IF I HAD ONE
-              </p>
+              <Seeking />
             </div>
             <div class="col-md-6 col-sm-12 col-lg-6">
               <img

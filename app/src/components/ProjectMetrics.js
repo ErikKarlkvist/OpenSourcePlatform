@@ -4,8 +4,99 @@ import {
   getBugCount,
   getCollaboratorCount
 } from "../backend/metrics";
-import "../resources/fonts.css";
-import "../resources/colors.css";
+import Button from "./Button";
+
+const Container = props => {
+  return <div style={{ width: "100%" }}>{props.children}</div>;
+};
+
+const Title = props => {
+  return <h2 style={{ textAlign: "left" }}>Metrics</h2>;
+};
+
+const Metrics = props => {
+  const styles = {
+    title: {
+      fontSize: "20px"
+    },
+    subtitle: {
+      fontSize: "12px",
+      fontStyle: "italic"
+    }
+  };
+
+  return (
+    <div className="row" style={{ width: "100%", textAlign: "left" }}>
+      <div class="col-md-3 col-sm-12 col-lg-3">
+        <h3 style={styles.title}>{props.nmbrOfBugs} Bugs</h3>
+        <h6 style={styles.subtitle}>to be fixed</h6>
+      </div>
+      <div class="col-md-4 col-sm-12 col-lg-4">
+        <h3 style={styles.title}>{props.nmbrOfEts} Features</h3>
+        <h6 style={styles.subtitle}>to be implemented</h6>
+      </div>
+      <div class="col-md-5 col-sm-12 col-lg-5">
+        <h3 style={styles.title}>{props.nmbrOfBugs} Contributors</h3>
+        <h6 style={styles.subtitle}>has added code</h6>
+      </div>
+    </div>
+  );
+};
+
+const InfoText = props => {
+  const style = {
+    color: "white",
+    fontSize: 16,
+    textAlign: "left",
+    marginTop: 10
+  };
+
+  return (
+    <p style={style}>
+      Feel free to take a look at our issues and give an helping hand. Or why
+      not give your own suggestion for improvements and commit via Github.
+    </p>
+  );
+};
+
+const InputContainer = props => {
+  return (
+    <div
+      style={{
+        display: "inline-flex",
+        textAlign: "left",
+        width: "100%"
+      }}
+    >
+      {props.children}
+    </div>
+  );
+};
+
+const SuggestionLink = props => {
+  const styles = {
+    container: {
+      marginLeft: 20,
+      marginTop: 20
+    },
+    text: {
+      color: "white",
+      textAlign: "bottom"
+    },
+    suggestionLink: {
+      color: "var(--bluey-green)"
+    }
+  };
+  return (
+    <div style={styles.container}>
+      <pre style={styles.text}>
+        or{"  "}
+        <a style={styles.suggestionLink}>Send in a suggestion</a>
+      </pre>
+    </div>
+  );
+};
+
 class ProjectMetrics extends Component {
   constructor() {
     super();
@@ -52,65 +143,20 @@ class ProjectMetrics extends Component {
   }
 
   render() {
-    let style = styles.small;
-    if (this.props.full) {
-      style = styles.full;
-    }
-    //hooked with login
     return (
-      <div style={this.container}>
-        <h2 style={styles.HeaderText}>Metrics</h2>
-        <div class="row" style={{ width: "100%", textAlign: "left" }}>
-          <div class="col-md-3 col-sm-12 col-lg-3">
-            <h3 style={styles.title}>{this.state.nmbrOfBugs} Bugs</h3>
-            <h6 style={styles.subtitle}>to be fixed</h6>
-          </div>
-          <div class="col-md-4 col-sm-12 col-lg-4">
-            <h3 style={styles.title}>{this.state.nmbrOfEts} Features</h3>
-            <h6 style={styles.subtitle}>to be implemented</h6>
-          </div>
-          <div class="col-md-5 col-sm-12 col-lg-5">
-            <h3 style={styles.title}>{this.state.nmbrOfClb} Contributors</h3>
-            <h6 style={styles.subtitle}>has added code</h6>
-          </div>
-        </div>
-
-        <p style={styles.Description}>
-          {
-            "Feel free to take a look at our issues and give an helping hand. Or why not give your own suggestion for improvements and commit via Github."
-          }
-        </p>
-
-        <div
-          style={{
-            display: "inline-flex",
-            textAlign: "left",
-            width: "100%"
-          }}
-        >
-          <div style={styles.buttonContainer}>
-            <button
-              onClick={() => {
-                this.openGit;
-              }}
-              className="SeeThroughBtn"
-            >
-              Get the code!
-            </button>
-          </div>
-          <div
-            style={{
-              marginLeft: 20,
-              marginTop: 20
-            }}
-          >
-            <pre style={{ color: "white", textAlign: "bottom" }}>
-              or{"  "}
-              <a style={styles.suggestionLink}>Send in a suggestion</a>
-            </pre>
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Title />
+        <Metrics
+          nmbrOfBugs={this.state.nmbrOfBugs}
+          nmbrOfClb={this.state.nmbrOfClb}
+          nmbrOfEts={this.state.nmbrOfEts}
+        />
+        <InfoText />
+        <InputContainer>
+          <Button onClick={this.openGit}>Get the code!</Button>
+          <SuggestionLink />
+        </InputContainer>
+      </Container>
     );
   }
 
@@ -118,34 +164,4 @@ class ProjectMetrics extends Component {
     window.location = this.props.gitURL;
   };
 }
-
-const styles = {
-  container: {
-    width: "100%",
-    textAlign: "left"
-  },
-  Description: {
-    color: "white",
-    fontSize: 16,
-    textAlign: "left",
-    marginTop: 10
-  },
-  HeaderText: {
-    textAlign: "left",
-    width: "100%"
-  },
-  metrics: {
-    display: "flex"
-  },
-  title: {
-    fontSize: "20px"
-  },
-  subtitle: {
-    fontSize: "12px",
-    fontStyle: "italic"
-  },
-  suggestionLink: {
-    color: "var(--bluey-green)"
-  }
-};
 export default ProjectMetrics;

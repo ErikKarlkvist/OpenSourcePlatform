@@ -11,158 +11,14 @@
   src: url("fedra_sans_light-webfont.woff2") format("woff2"),
     url("fedra_sans_light-webfont.woff") format("woff");
 }
-h1 {
-  font-family: FedraSans;
-  font-size: 75px;
-  color: #ffffff;
-  color: var(--white);
-}
-h2 {
-  font-family: FedraSansLight;
-  font-size: 50px;
-  font-weight: 300;
-  color: #ffffff;
-  color: var(--white);
-}
-/* h3---->subsubtitle */
-h3 {
-  font-family: FedraSansLight;
-  font-size: 36px;
-  font-weight: 300;
-  color: #ffffff;
-  color: var(--white);
-}
-/* h4---->Sign-up-Log-in */
-h4 {
-  font-family: FedraSansLight;
-  font-size: 20px;
-  color: #ffffff;
-  color: var(--white);
-}
 
-/* h5---->Project name */
-
-h5 {
-  font-family: FedraSansLight;
-  font-size: 18px;
-  color: var(--white);
-}
-
-/* h6----> Project page sidebar subheaders*/
-h6 {
-  font-family: FedraSansLight;
-  font-size: 16px;
-}
-
-/* project description header */
-p {
-  font-family: Arial;
-  font-size: 14px;
-  color: #00343e;
-  color: var(--dark-teal);
-}
-
-a {
-  font-family: FedraSansLight;
-  font-size: 16px;
-  color: #ffffff;
-  color: var(--white);
-}
-
-a:hover {
-  font-family: FedraSansLight;
-  font-size: 16px;
-  color: #ffffff;
-  color: var(--white);
-}
-
-.f18 {
-  font-size: 18px;
-}
-
-@media (min-width: 576px) {
+@media (min-width: 360px) {
   h1 {
     font-family: FedraSans;
-    font-size: 75px;
+    font-size: 32px;
     color: #ffffff;
     color: var(--white);
   }
-  h2 {
-    font-family: FedraSansLight;
-    font-size: 50px;
-    font-weight: 300;
-    color: #ffffff;
-    color: var(--white);
-  }
-  /* h3---->subsubtitle */
-  h3 {
-    font-family: FedraSansLight;
-    font-size: 36px;
-    font-weight: 300;
-    color: #ffffff;
-    color: var(--white);
-  }
-  /* h4---->Sign-up-Log-in */
-  h4 {
-    font-family: FedraSansLight;
-    font-size: 20px;
-    color: #ffffff;
-    color: var(--white);
-  }
-
-  /* h5---->Project name */
-
-  h5 {
-    font-family: FedraSansLight;
-    font-size: 18px;
-    color: var(--white);
-  }
-
-  /* h6----> Project page sidebar subheaders*/
-  h6 {
-    font-family: FedraSansLight;
-    font-size: 16px;
-  }
-
-  /* project description header */
-  p {
-    font-family: Arial;
-    font-size: 14px;
-    color: #00343e;
-    color: var(--dark-teal);
-  }
-
-  a {
-    font-family: FedraSansLight;
-    font-size: 16px;
-    color: #ffffff;
-    color: var(--white);
-  }
-
-  a:hover {
-    font-family: FedraSansLight;
-    font-size: 16px;
-    color: #ffffff;
-    color: var(--white);
-  }
-
-  .f18 {
-    font-size: 18px;
-  }
-}
-
-@media (min-width: 776px) {
-  h1 {
-    font-family: FedraSans;
-    font-size: 320px;
-    color: #ffffff;
-    color: var(--white);
-  }
-
-  h1.Red {
-    color: var(--bluey-green);
-  }
-  /* h2---->subtitle */
   h2 {
     font-family: FedraSansLight;
     font-size: 26px;
@@ -227,7 +83,77 @@ a:hover {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
+  h1 {
+    font-family: FedraSans;
+    font-size: 40px;
+    color: #ffffff;
+    color: var(--white);
+  }
+  h2 {
+    font-family: FedraSansLight;
+    font-size: 32px;
+    font-weight: 300;
+    color: #ffffff;
+    color: var(--white);
+  }
+  h3 {
+    font-family: FedraSansLight;
+    font-size: 24px;
+    font-weight: 300;
+    color: #ffffff;
+    color: var(--white);
+  }
+  /* h4---->Sign-up-Log-in */
+  h4 {
+    font-family: FedraSansLight;
+    font-size: 18px;
+    color: #ffffff;
+    color: var(--white);
+  }
+
+  /* h5---->Project name */
+
+  h5 {
+    font-family: FedraSansLight;
+    font-size: 18px;
+    color: var(--white);
+  }
+
+  /* h6----> Project page sidebar subheaders*/
+  h6 {
+    font-family: FedraSansLight;
+    font-size: 16px;
+  }
+
+  /* project description header */
+  p {
+    font-family: Arial;
+    font-size: 14px;
+    color: #00343e;
+    color: var(--dark-teal);
+  }
+
+  a {
+    font-family: FedraSansLight;
+    font-size: 16px;
+    color: #ffffff;
+    color: var(--white);
+  }
+
+  a:hover {
+    font-family: FedraSansLight;
+    font-size: 16px;
+    color: #ffffff;
+    color: var(--white);
+  }
+
+  .f18 {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1199px) {
   h1 {
     font-family: FedraSans;
     font-size: 48px;
