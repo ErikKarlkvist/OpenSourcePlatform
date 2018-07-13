@@ -7,7 +7,7 @@ import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/common/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
 import Readme from "../components/Readme";
