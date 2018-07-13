@@ -12,7 +12,6 @@ class SignUpView extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      value: "",
       loading: false,
       validEmail: true
     };
@@ -98,6 +97,18 @@ class SignUpView extends Component {
               />
               <br />
             </div>
+            <div style={styles.space}>
+              Confirm password
+              <br />
+              <input
+                style={styles.input}
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm password"
+                required
+              />
+              <br />
+            </div>
             <div style={styles.container2}>
               <a style={styles.cancel} onClick={this.props.hide}>
                 {" "}
@@ -123,11 +134,14 @@ class SignUpView extends Component {
     const lastname = document.forms["signup"]["lastname"].value;
     const email = document.forms["signup"]["email"].value;
     const password = document.forms["signup"]["password"].value;
+    const confirmPassword = document.forms["signup"]["confirmPassword"].value;
 
     const emailDomain = email.split("@")[1];
 
     if (emailDomain !== "dnb.no") {
       alert("Your email must end with @dnb.no");
+    } else if (password !== confirmPassword) {
+      alert("Passwords do not match");
     } else {
       this.setState({ loading: true });
       register(firstname, lastname, email, password)
