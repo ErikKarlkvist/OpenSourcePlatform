@@ -9,7 +9,6 @@ const Routing = () => (
     <div>
       <Route exact path="/" component={Home} />
       <Route path="/project/:projectId" component={Project} />
-      <Route path="/hside" component={HenningsPage} />
     </div>
   </Router>
 );
