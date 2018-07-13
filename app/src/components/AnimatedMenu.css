@@ -20,7 +20,7 @@ label {
 }
 
 .MenuItem:hover {
-
+  cursor: pointer;
 }
 .MenuItem:before{
   content: "";

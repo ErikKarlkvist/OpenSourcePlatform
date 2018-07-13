@@ -80,9 +80,6 @@ class HenningsPage extends Component {
           <h4>
             HEI
           </h4>
-
-
-
         </div>
       </div>
     );
