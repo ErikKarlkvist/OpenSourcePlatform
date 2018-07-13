@@ -5,7 +5,7 @@ const ThumbnailHeads = props => {
   const data = props.owners;
   let items = [];
   if (data) {
-    items = data.slice(0, 3).map(d => (
+    items = data.slice(0, 4).map(d => (
       <div>
         <img style={styles.image} src={d.profileImageURL} />
       </div>
@@ -36,12 +36,11 @@ const styles = {
   },
   ellipses: {
     fontSize: 12,
-    marginTop: "20px"
+    marginTop: "20px",
+    color: "var(--dark-teal)"
   },
   container: {
-    position: "absolute",
-    right: "15px",
-    top: "10px"
+    marginLeft: 5
   }
 };
 
