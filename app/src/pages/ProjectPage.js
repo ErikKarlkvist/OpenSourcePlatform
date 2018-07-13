@@ -11,7 +11,7 @@ import Spinner from "../components/common/Spinner";
 import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
 import Readme from "../components/Readme";
-import CurrentState from "../components/CurrentState";
+import Updates from "../components/Updates";
 import Line from "../components/common/Line";
 import logo from "../logo.svg";
 
@@ -91,7 +91,7 @@ class ProjectPage extends Component {
                 project={this.state.project}
               />
               <Line full={true} />
-              <CurrentState project={this.state.project} />
+              <Updates project={this.state.project} />
               <Line full={true} />
               <Readme project={this.state.project} />
             </div>

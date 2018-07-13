@@ -13,11 +13,15 @@ const Container = props => {
   const styles = {
     normal: {
       cursor: "pointer",
-      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
+      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+      height: "500px",
+      width: "300px"
     },
     hover: {
       boxShadow: "0 -2px 8px 0 var(--bluey-green)",
-      cursor: "pointer"
+      cursor: "pointer",
+      height: "500px",
+      width: "300px"
     }
   };
   let style = styles.normal;
@@ -42,12 +46,12 @@ const Image = props => {
     image: {
       marginTop: -1,
       marginLeft: -1,
-      width: "313px",
+      width: "101%",
       height: "300px",
       objectFit: "cover"
     },
     container: {
-      width: "300px",
+      width: "100%",
       height: "300px"
     }
   };
@@ -59,9 +63,6 @@ const Image = props => {
         alt="Card image cap"
         style={styles.image}
       />
-      <a>
-        <div class="mask rgba-white-slight" />
-      </a>
     </div>
   );
 };
@@ -92,7 +93,6 @@ const Description = props => {
   };
 
   let description = props.description;
-  console.log(description.length);
   if (description.length > 120) {
     description = description.slice(0, 120);
     description += "...";
