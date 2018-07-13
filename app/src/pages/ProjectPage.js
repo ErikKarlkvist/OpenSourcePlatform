@@ -12,7 +12,7 @@ import ProjectInfo from "../components/ProjectInfo";
 import ProjectHeader from "../components/ProjectHeader";
 import Readme from "../components/Readme";
 import CurrentState from "../components/CurrentState";
-import Line from "../components/Line";
+import Line from "../components/common/Line";
 import logo from "../logo.svg";
 
 class ProjectPage extends Component {

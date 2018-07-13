@@ -7,9 +7,9 @@ import { requestJoinProject, removeRequestProject } from "../backend/projects";
 import firebase from "../backend/firebase";
 import Contributors from "./projectPage/Contributors";
 import "../resources/fonts.css";
-import Line from "./Line.js";
+import Line from "./common/Line.js";
 import ProjectMetrics from "./ProjectMetrics";
-import Seeking from "./Seeking";
+import Seeking from "./projectPage/Seeking";
 
 class ProjectInfo extends Component {
   //"joinStatus === joined, requested or none"
