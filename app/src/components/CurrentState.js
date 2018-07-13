@@ -1,9 +1,56 @@
 import React, { Component } from "react";
 import Lightbox from "react-images";
-import "./CurrentState.css";
+import "../resources/Main.css";
 
 //Sets how many pictures are shown if "show more" has not been pressed
 const cutoff = 6;
+
+const Container = props => {
+  const style = { paddingTop: "40px" };
+  return <div style={style}>{props.children}</div>;
+};
+
+const Title = props => {
+  const style = { textAlign: "left" };
+  return <h3 style={style}>Current State</h3>;
+};
+
+const ImageContainer = props => {
+  return <div class="row">{props.showing}</div>;
+};
+
+const ToggleMore = props => {
+  return (
+    <div>
+      {props.imagesLength > cutoff &&
+        props.showingLength < props.imagesLength && (
+          <a onClick={this.showAll}>Show more</a>
+        )}
+      {props.showingLength > cutoff && (
+        <a onClick={this.showLess} style={{ alignSelf: "flex-end" }}>
+          Show less
+        </a>
+      )}
+    </div>
+  );
+};
+
+const Thumbnail = props => {
+  const styles = {
+    Image: {
+      border: "1px solid white",
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      overflow: "visible"
+    }
+  };
+  return (
+    <div class="Thumbnail col-md-6 col-sm-12 col-lg-4">
+      <img style={styles.Image} onClick={props.onClick} src={props.url} />
+    </div>
+  );
+};
 
 class CurrentState extends Component {
   constructor() {
@@ -25,16 +72,13 @@ class CurrentState extends Component {
     let items = [];
     if (data) {
       items = data.map((d, i) => (
-        <div class="Thumbnail col-md-6 col-sm-12 col-lg-4">
-          <img
-            style={styles.Image}
-            onClick={() => {
-              this.openLightbox();
-              this.setState({ currentImage: i });
-            }}
-            src={d.url}
-          />
-        </div>
+        <Thumbnail
+          onClick={() => {
+            this.openLightbox();
+            this.setState({ currentImage: i });
+          }}
+          url={d.url}
+        />
       ));
     }
 
@@ -75,20 +119,15 @@ class CurrentState extends Component {
 
     return (
       <div>
-        <div class="container" className="currentStateContainer">
-          <h3 style={styles.Header}>Current State</h3>
-          <div class="row">{this.state.showing}</div>
+        <Container>
+          <Title />
+          <ImageContainer showing={this.state.showing} />
+          <ToggleMore
+            imagesLength={this.state.images.length}
+            showingLength={this.state.showingLength}
+          />
+        </Container>
 
-          {this.state.images.length > cutoff &&
-            this.state.showing.length < this.state.images.length && (
-              <a onClick={this.showAll}>Show more</a>
-            )}
-          {this.state.showing.length > cutoff && (
-            <a onClick={this.showLess} className="ShowLess">
-              Show less
-            </a>
-          )}
-        </div>
         <Lightbox
           images={this.state.lightBoxImages}
           isOpen={this.state.showLightbox}
@@ -113,18 +152,8 @@ class CurrentState extends Component {
   }
 }
 const styles = {
-  Image: {
-    border: "1px solid white",
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    overflow: "visible"
-  },
   Name: {
     color: "grey"
-  },
-  Header: {
-    textAlign: "left"
   }
 };
 

@@ -7,7 +7,7 @@ import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister";
 import FilterProjects from "../components/homePage/FilterProjects";
 import Line from "../components/Line";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/common/Spinner";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from "../backend/firebase";
 

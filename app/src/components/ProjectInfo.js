@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./ProjectInfo.css";
-import Tools from "./Tools.js";
 import "../resources/Main.css";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
