@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Lightbox from "react-images";
 import "../resources/Main.css";
+import Thumbnail from "./Thumbnail";
 
 //Sets how many pictures are shown if "show more" has not been pressed
 const cutoff = 6;
@@ -35,22 +36,22 @@ const ToggleMore = props => {
   );
 };
 
-const Thumbnail = props => {
-  const styles = {
-    Image: {
-      border: "1px solid white",
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      overflow: "visible"
-    }
-  };
-  return (
-    <div class="Thumbnail col-md-6 col-sm-12 col-lg-4">
-      <img style={styles.Image} onClick={props.onClick} src={props.url} />
-    </div>
-  );
-};
+// const Thumbnail = props => {
+//   const styles = {
+//     Image: {
+//       border: "1px solid white",
+//       width: "100%",
+//       height: "100%",
+//       objectFit: "cover",
+//       overflow: "visible"
+//     }
+//   };
+//   return (
+//     <div class="Thumbnail col-md-6 col-sm-12 col-lg-4">
+//       <img style={styles.Image} onClick={props.onClick} src={props.url} />
+//     </div>
+//   );
+// };
 
 class CurrentState extends Component {
   constructor() {
@@ -73,11 +74,12 @@ class CurrentState extends Component {
     if (data) {
       items = data.map((d, i) => (
         <Thumbnail
+          description={"tmp"}
           onClick={() => {
             this.openLightbox();
             this.setState({ currentImage: i });
           }}
-          url={d.url}
+          imgURL={d.url}
         />
       ));
     }
