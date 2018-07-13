@@ -6,7 +6,7 @@ import { getUser } from "../backend/users.js";
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister";
 import FilterProjects from "../components/homePage/FilterProjects";
-import Line from "../components/Line";
+import Line from "../components/common/Line";
 import Spinner from "../components/common/Spinner";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from "../backend/firebase";
