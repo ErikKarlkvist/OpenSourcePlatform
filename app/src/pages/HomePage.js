@@ -5,13 +5,11 @@ import { getAllProjects } from "../backend/projects";
 import { getUser } from "../backend/users.js";
 import ProjectsDisplay from "../components/ProjectsDisplay";
 import LoginRegister from "../components/LoginRegister";
-import FilterProjects from "../components/FilterProjects";
+import FilterProjects from "../components/homePage/FilterProjects";
 import Line from "../components/Line";
 import Spinner from "../components/Spinner";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import UploadImage from "../components/UploadImage";
 import firebase from "../backend/firebase";
-import LoginForm from "../components/LoginForm";
 
 class HomePage extends Component {
   constructor() {
@@ -40,11 +38,11 @@ class HomePage extends Component {
     this.setupAuthStateChange();
   }
 
-  issueTest() { }
+  issueTest() {}
 
   setupAuthStateChange() {
     const page = this;
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         getUser(user.uid).then(user => {
           page.setState({

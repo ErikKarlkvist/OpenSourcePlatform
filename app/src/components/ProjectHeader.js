@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import ProjectBlurb from "./ProjectBlurb";
 import "../resources/Main.css";
 import LoginRegister from "../components/LoginRegister";
 import logo from "../logo.svg";
-import Contributors from "./Contributors";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class ProjectsDisplay extends Component {
