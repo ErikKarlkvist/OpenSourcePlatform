@@ -3,7 +3,7 @@ import "../resources/fonts.css";
 import "../resources/colors.css";
 import "../resources/Main.css";
 import "./Seeking.css";
-import Button from "./Button";
+import Button from "./common/Button";
 
 class Seeking extends Component {
   constructor(props) {

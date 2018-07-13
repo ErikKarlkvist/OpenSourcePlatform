@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../resources/Main.css";
+import "../../resources/Main.css";
 
 const Button = props => {
   let cName = "SeeThroughBtn";

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../resources/Main.css";
+import "../../resources/Main.css";
 
 class Contributors extends React.Component {
   static propTypes = {

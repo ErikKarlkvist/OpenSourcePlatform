@@ -4,7 +4,7 @@ import {
   getBugCount,
   getCollaboratorCount
 } from "../backend/metrics";
-import Button from "./Button";
+import Button from "./common/Button";
 
 const Container = props => {
   return (
@@ -55,8 +55,8 @@ const InfoText = props => {
 
   return (
     <p style={style}>
-      Feel free to take a look at our issues and give an helping hand. Or why
-      not give your own suggestion for improvements and commit via Github.
+      Feel free to take a look at our issues and give a helping hand. Or why not
+      give your own suggestion for improvements and commit via Github.
     </p>
   );
 };
@@ -155,9 +155,7 @@ class ProjectMetrics extends Component {
         />
         <InfoText />
         <InputContainer>
-          <Button onClick={this.openGit}>
-            <h2>Get the code!</h2>
-          </Button>
+          <Button onClick={this.openGit}>Get the code!</Button>
           <SuggestionLink />
         </InputContainer>
       </Container>

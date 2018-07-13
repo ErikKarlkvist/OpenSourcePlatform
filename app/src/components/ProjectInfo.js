@@ -6,7 +6,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import { requestJoinProject, removeRequestProject } from "../backend/projects";
 import firebase from "../backend/firebase";
-import Contributors from "./Contributors";
+import Contributors from "./projectPage/Contributors";
 import "../resources/fonts.css";
 import Line from "./Line.js";
 import ProjectMetrics from "./ProjectMetrics";
