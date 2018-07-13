@@ -3,6 +3,7 @@ import "../resources/fonts.css";
 import "../resources/colors.css";
 import "../resources/Main.css";
 import "./Seeking.css";
+import Button from "./Button";
 
 class Seeking extends Component {
   constructor(props) {
@@ -14,13 +15,9 @@ class Seeking extends Component {
       <div>
         <div className="TopHeader">
           <h2 style={{ float: "left" }}>Looking for</h2>
-          <button
-            style={{ float: "right" }}
-            className="SeeThroughBtn"
-            onClick={this.mailContact}
-          >
-            <h3>Contact</h3>
-          </button>
+          <Button style={{ float: "right" }} onClick={this.mailContact}>
+            Contact{" "}
+          </Button>
         </div>
         <div className="SubContainer">
           <ul class="list-unstyled">

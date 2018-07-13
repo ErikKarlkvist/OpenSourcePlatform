@@ -7,7 +7,9 @@ import {
 import Button from "./Button";
 
 const Container = props => {
-  return <div style={{ width: "100%" }}>{props.children}</div>;
+  return (
+    <div style={{ width: "100%", marginTop: "20px" }}>{props.children}</div>
+  );
 };
 
 const Title = props => {
@@ -153,7 +155,9 @@ class ProjectMetrics extends Component {
         />
         <InfoText />
         <InputContainer>
-          <Button onClick={this.openGit}>Get the code!</Button>
+          <Button onClick={this.openGit}>
+            <h2>Get the code!</h2>
+          </Button>
           <SuggestionLink />
         </InputContainer>
       </Container>
