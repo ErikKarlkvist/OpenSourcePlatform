@@ -1,34 +1,28 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-class ThumbnailHeads extends React.Component {
-  static propTypes = {
-    owners: PropTypes.object.isRequired
-  };
-  render() {
-    const data = this.props.owners;
-    console.log("!", this.props);
-    let items = [];
-    if (data) {
-      items = data.slice(0, 3).map(d => (
-        <div>
-          <img style={styles.image} src={d.profileImageURL} />
-        </div>
-      ));
-    }
-
-    return (
-      <div class="row align-bottom">
-        {items}
-        {data.length > 3 && (
-          <span style={styles.ellipses} class="align-bottom">
-            and {data.length - 3} more
-          </span>
-        )}
+//this is for the owners head on thumbnails
+const ThumbnailHeads = props => {
+  const data = props.owners;
+  let items = [];
+  if (data) {
+    items = data.slice(0, 3).map(d => (
+      <div>
+        <img style={styles.image} src={d.profileImageURL} />
       </div>
-    );
+    ));
   }
-}
+
+  return (
+    <div style={styles.container} class="row align-bottom">
+      {items}
+      {data.length > 3 && (
+        <span style={styles.ellipses} class="align-bottom">
+          and {data.length - 3} more
+        </span>
+      )}
+    </div>
+  );
+};
 
 const styles = {
   image: {
@@ -43,6 +37,11 @@ const styles = {
   ellipses: {
     fontSize: 12,
     marginTop: "20px"
+  },
+  container: {
+    position: "absolute",
+    right: "15px",
+    top: "10px"
   }
 };
 

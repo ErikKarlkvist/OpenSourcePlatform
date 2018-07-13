@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Image } from "react-bootstrap";
-import "./ProjectBlurb.css";
 import "../resources/colors.css";
 import ThumbnailHeads from "./ThumbnailHeads";
 
@@ -9,7 +7,48 @@ import ThumbnailHeads from "./ThumbnailHeads";
 * On hover, the description of the project is shown
 * On click, opens the ProjectPage. This is handled in ProjectDisplay.js
 */
-class ProjectBlurb extends Component {
+
+const Container = props => {
+  const style = {
+    rectangle: {
+      height: "300px",
+      width: "300px",
+      position: "relative",
+      border: "solid 3px #ffffff",
+      backgroundColor: "rgba(0, 52, 62, 1)",
+      boxShadow: "1px 2px 4px rgba(0, 0, 0, .5)"
+    }
+  };
+  return <div style={styles.Rectangle}>{props.children}</div>;
+};
+
+const BackgroundImage = props => {
+  const style = {
+    position: "relative",
+    opacity: 0.5,
+    width: "100%",
+    height: "100%",
+    objectFit: "cover"
+  };
+  return <img style={style} src={props.imgURL} />;
+};
+
+const Title = props => {
+  const style = {
+    position: "absolute",
+    left: "50%",
+    top: "30%",
+    transform: "translate(-50%, -50%)",
+
+    color: "white",
+    fontSize: "34px",
+    fontFamiliy: "FedraSans",
+    textShadow: "1px 1px 1px black"
+  };
+  return <span style={style}>{props.name}</span>;
+};
+
+class Thumbnail extends Component {
   constructor() {
     super();
     this.state = {
@@ -39,14 +78,13 @@ class ProjectBlurb extends Component {
       return <div />;
     }
     return (
-      <div class="ProjectCard" style={styles.Rectangle}>
-        <img style={styles.BackgroundImage} src={this.props.project.imgURL} />
-
+      <Container>
+        <BackgroundImage imgURL={this.props.project.imgURL} />
         <div>
-          <span style={styles.ProjectName}>{this.props.project.name}</span>
-          <div style={styles.ThumbnailHeads}>
+          <Title name={this.props.project.name} />
+          {this.props.renderHeads && (
             <ThumbnailHeads owners={this.props.project.owners} />
-          </div>
+          )}
           <div style={styles.Ingress}>
             {this.props.project.description.length > 120 ? (
               <div>{this.props.project.description.slice(0, 120)}...</div>
@@ -65,20 +103,14 @@ class ProjectBlurb extends Component {
           </div>
         )}
       */}
-      </div>
+      </Container>
     );
   }
 }
 
-export default ProjectBlurb;
+export default Thumbnail;
 
 const styles = {
-  Rectangle: {
-    position: "relative",
-    border: "solid 3px #ffffff",
-    backgroundColor: "rgba(0, 52, 62, 1)",
-    boxShadow: "1px 2px 4px rgba(0, 0, 0, .5)"
-  },
   Ingress: {
     position: "absolute",
     bottom: 0,
@@ -91,26 +123,8 @@ const styles = {
     color: "black",
     height: "35%",
     width: "100%"
-  },
-  BackgroundImage: {
-    position: "relative",
-    opacity: 0.5,
-    width: "100%",
-    height: "100%",
-    objectFit: "cover"
-  },
-  ProjectName: {
-    //Centers the text above the image
-    position: "absolute",
-    left: "50%",
-    top: "30%",
-    transform: "translate(-50%, -50%)",
+  }
 
-    color: "white",
-    fontSize: "34px",
-    fontFamiliy: "FedraSans",
-    textShadow: "1px 1px 1px black"
-  },
   /*
   BottomText: {
     textAlign: "right",
@@ -119,9 +133,4 @@ const styles = {
     top: "20px"
   },
   */
-  ThumbnailHeads: {
-    position: "absolute",
-    right: "15px",
-    top: "10px"
-  }
 };
