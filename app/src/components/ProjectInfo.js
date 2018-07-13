@@ -85,14 +85,14 @@ class ProjectInfo extends Component {
             {/*Project info top part: Description, Seeking, Image*/}
             <div
               style={styles.Description}
-              className="col-md-6 col-sm-12 col-lg-6 BorderTop BorderSides"
+              className="col-md-6 col-sm-12 col-lg-6 BorderTop BorderSides BorderBottom"
             >
               <h3 style={styles.HeaderText}>
                 What is {this.props.project.name}?
               </h3>
               <p style={styles.Description}>{this.props.project.description}</p>
               <div style={{ paddingTop: "40px" }} />
-              <Seeking />
+              <Seeking project={this.props.project} />
             </div>
             <div class="col-md-6 col-sm-12 col-lg-6">
               <img
@@ -104,7 +104,7 @@ class ProjectInfo extends Component {
 
           {/*Project info bottom part: Owners, Metrics*/}
           <div class="row" style={styles.BottomRow}>
-            <div class="col-md-6 col-sm-12 col-lg-6 BorderBottom BorderSides BottomPadding">
+            <div class="col-md-6 col-sm-12 col-lg-6  BottomPadding">
               <Contributors developers={this.props.project.owners} />
             </div>
             <div
@@ -172,8 +172,8 @@ const styles = {
   },
   MainImage: {
     width: "100%",
-    height: "auto",
-    objectFit: "scale-down",
+    height: "100%",
+    objectFit: "cover",
     boxShadow: "1px 1px 1px 1px black"
   },
   HeaderText: {
