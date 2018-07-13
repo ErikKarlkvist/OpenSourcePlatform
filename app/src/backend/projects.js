@@ -93,14 +93,10 @@ export async function getProject(id) {
     let projectData = snapshot.data();
     projectData.id = snapshot.id;
 
-    const toolData = await getToolsForProject(projectData);
     const ownerData = await getOwnersForProject(projectData);
-    const creatorData = await getCreatorForProject(projectData);
     const thumbnailData = await getThumbnailsForProject(projectData);
 
-    projectData.tools = toolData.tools;
     projectData.owners = ownerData.owners;
-    projectData.creator = creatorData.creator;
     projectData.thumbnails = thumbnailData.thumbnails;
     return Promise.resolve(projectData);
   } else {

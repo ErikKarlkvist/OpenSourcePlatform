@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "../resources/colors.css";
 import ThumbnailHeads from "./ThumbnailHeads";
 
@@ -9,70 +10,136 @@ import ThumbnailHeads from "./ThumbnailHeads";
 */
 
 const Container = props => {
-  const style = {
-    height: "300px",
-    width: "300px",
-    position: "relative",
-    border: "solid 3px #ffffff",
-    backgroundColor: "rgba(0, 52, 62, 1)",
-    boxShadow: "1px 2px 4px rgba(0, 0, 0, .5)"
+  const styles = {
+    normal: {
+      cursor: "pointer",
+      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
+    },
+    hover: {
+      boxShadow: "0 -2px 8px 0 var(--bluey-green)",
+      cursor: "pointer"
+    }
   };
-  return <div style={style}>{props.children}</div>;
-};
-
-const BackgroundImage = props => {
-  const style = {
-    position: "relative",
-    opacity: 0.5,
-    width: "100%",
-    height: "100%",
-    objectFit: "cover"
-  };
-  return <img style={style} src={props.imgURL} />;
-};
-
-const Title = props => {
-  const style = {
-    position: "absolute",
-    left: "50%",
-    top: "30%",
-    transform: "translate(-50%, -50%)",
-
-    color: "white",
-    fontSize: "34px",
-    fontFamiliy: "FedraSans",
-    textShadow: "1px 1px 1px black"
-  };
-  return <span style={style}>{props.name}</span>;
-};
-
-const Ingress = props => {
-  const style = {
-    position: "absolute",
-    bottom: 0,
-    paddingLeft: "5px",
-    paddingRight: "5px",
-    textOverflow: "ellipsis",
-    textAlign: "left",
-    backgroundColor: "rgba(256, 256, 256, 0.85)",
-    backdropFilter: "blur(1.4px)",
-    color: "black",
-    height: "35%",
-    width: "100%"
-  };
-
+  let style = styles.normal;
+  if (props.isHovering) {
+    style = styles.hover;
+  }
   return (
-    <div style={style}>
-      {props.description.length > 120 ? (
-        <div>{props.description.slice(0, 120)}...</div>
-      ) : (
-        <div>{props.description}</div>
-      )}
+    <div
+      onMouseOver={props.onMouseOver}
+      onMouseOut={props.onMouseOut}
+      onClick={props.onClick}
+      class="card"
+      style={style}
+    >
+      {props.children}
     </div>
   );
 };
 
+const Image = props => {
+  const styles = {
+    image: {
+      marginTop: -1,
+      marginLeft: -1,
+      width: "313px",
+      height: "300px",
+      objectFit: "cover"
+    },
+    container: {
+      width: "300px",
+      height: "300px"
+    }
+  };
+  return (
+    <div style={styles.container} class="view overlay">
+      <img
+        class="card-img-top"
+        src={props.imgURL}
+        alt="Card image cap"
+        style={styles.image}
+      />
+      <a>
+        <div class="mask rgba-white-slight" />
+      </a>
+    </div>
+  );
+};
+
+const Body = props => {
+  return <div class="card-body">{props.children}</div>;
+};
+
+const Title = props => {
+  const style = {
+    color: "var(--dark-teal)",
+    textAlign: "left"
+  };
+
+  return (
+    <h4 style={style} class="card-title">
+      {props.name}
+    </h4>
+  );
+};
+
+const Description = props => {
+  const style = {
+    textAlign: "left",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    color: "var(--dark-teal)"
+  };
+
+  let description = props.description;
+  console.log(description.length);
+  if (description.length > 120) {
+    description = description.slice(0, 120);
+    description += "...";
+  }
+  return (
+    <p style={style} class="card-text">
+      {description}
+    </p>
+  );
+};
+
+const ReadMore = props => {
+  const style = {
+    marginRight: "10px",
+    color: "var(--dark-teal)"
+  };
+  return (
+    <a style={style} href="#!" class="black-text d-flex justify-content-end">
+      <h5 style={style}>Read more</h5>
+    </a>
+  );
+};
+
+const Hover = props => {
+  const style = {
+    position: "absolute",
+    backgroundColor: "rgba(0,0,0,0.5)",
+    width: "100%",
+    height: "100%",
+    top: 0,
+    left: 0
+  };
+
+  if (props.isHovering) {
+    return <div style={style} />;
+  } else {
+    return <div />;
+  }
+};
+
 class Thumbnail extends Component {
+  static propTypes = {
+    imgURL: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  };
+
   constructor() {
     super();
     this.state = {
@@ -80,16 +147,17 @@ class Thumbnail extends Component {
       project: {}
     };
   }
+
   componentDidMount() {
     this.setState({ project: this.props.project });
   }
-  onMouseOver(e) {
+  onMouseOver = e => {
     this.setState({ isHovering: true });
-  }
+  };
 
-  onMouseOut(e) {
+  onMouseOut = e => {
     this.setState({ isHovering: false });
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.project !== nextProps.project) {
@@ -98,43 +166,29 @@ class Thumbnail extends Component {
   }
 
   render() {
-    if (this.props.project === undefined) {
+    if (this.props.imgURL === undefined) {
       return <div />;
     }
     return (
-      <Container>
-        <BackgroundImage imgURL={this.props.imgURL} />
-        <div>
+      <Container
+        isHovering={this.state.isHovering}
+        onClick={this.props.onClick}
+        onMouseOver={this.onMouseOver}
+        onMouseOut={this.onMouseOut}
+      >
+        <Image imgURL={this.props.imgURL} />
+        <Body>
           <Title name={this.props.name} />
+          <hr />
+          <Description description={this.props.description} />
           {this.props.renderHeads && (
             <ThumbnailHeads owners={this.props.owners} />
           )}
-          <Ingress description={this.props.description} />
-        </div>
-
-        {/*
-        {this.state.isHovering && (
-          <div className={"description"}>
-            <h4 className={"descText"}>{this.props.project.name}</h4>
-            <p className={"descText"}>{this.props.project.description}</p>
-            <p style={styles.BottomText}>Read More</p>
-          </div>
-        )}
-      */}
+        </Body>
+        <ReadMore />
       </Container>
     );
   }
 }
 
 export default Thumbnail;
-
-const styles = {
-  /*
-  BottomText: {
-    textAlign: "right",
-    position: "absolute",
-    right: "5%",
-    top: "20px"
-  },
-  */
-};
