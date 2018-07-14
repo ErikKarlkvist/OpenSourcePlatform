@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Lightbox from "react-images";
-import "../resources/Main.css";
+import "../../resources/Main.css";
 
 //Sets how many pictures are shown if "show more" has not been pressed
 const cutoff = 6;

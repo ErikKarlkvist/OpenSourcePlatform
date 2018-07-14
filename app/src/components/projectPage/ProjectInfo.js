@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import "./ProjectInfo.css";
-import "../resources/Main.css";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
-import { requestJoinProject, removeRequestProject } from "../backend/projects";
-import firebase from "../backend/firebase";
-import Contributors from "./projectPage/Contributors";
-import "../resources/fonts.css";
-import Line from "./common/Line.js";
+import "../../resources/Main.css";
+import LoginForm from "../common/LoginForm";
+import SignupForm from "../common/SignupForm";
+import {
+  requestJoinProject,
+  removeRequestProject
+} from "../../backend/projects";
+import firebase from "../../backend/firebase";
+import Contributors from "./Contributors";
+import "../../resources/fonts.css";
+import Line from "../common/Line.js";
 import ProjectMetrics from "./ProjectMetrics";
-import Seeking from "./projectPage/Seeking";
+import Seeking from "./Seeking";
 
 class ProjectInfo extends Component {
   //"joinStatus === joined, requested or none"

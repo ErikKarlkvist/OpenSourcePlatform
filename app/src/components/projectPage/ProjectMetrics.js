@@ -3,8 +3,8 @@ import {
   getFeatureRequestCount,
   getBugCount,
   getCollaboratorCount
-} from "../backend/metrics";
-import Button from "./common/Button";
+} from "../../backend/metrics";
+import Button from "../common/Button";
 
 const Container = props => {
   return (
