@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import Spinner from "../components/common/Spinner";
 import ProjectInfo from "../components/projectPage/ProjectInfo";
 import Readme from "../components/projectPage/Readme";
-import CurrentState from "../components/projectPage/CurrentState";
+import Updates from "../components/Updates";
 import Line from "../components/common/Line";
 import logo from "../logo.svg";
 
@@ -90,7 +90,7 @@ class ProjectPage extends Component {
                 project={this.state.project}
               />
               <Line full={true} />
-              <CurrentState project={this.state.project} />
+              <Updates project={this.state.project} />
               <Line full={true} />
               <Readme project={this.state.project} />
             </div>
