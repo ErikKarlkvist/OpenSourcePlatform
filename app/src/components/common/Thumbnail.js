@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "../resources/colors.css";
 import ThumbnailHeads from "./ThumbnailHeads";
 
 /*

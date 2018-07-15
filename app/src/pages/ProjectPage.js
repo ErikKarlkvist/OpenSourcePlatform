@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import Spinner from "../components/common/Spinner";
 import ProjectInfo from "../components/projectPage/ProjectInfo";
 import Readme from "../components/projectPage/Readme";
-import Updates from "../components/Updates";
+import Updates from "../components/projectPage/Updates";
 import Line from "../components/common/Line";
 import logo from "../logo.svg";
 

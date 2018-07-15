@@ -3,7 +3,7 @@ import logo from "../logo.svg";
 import "../resources/Main.css";
 import { getAllProjects } from "../backend/projects";
 import { getUser } from "../backend/users.js";
-import ProjectsDisplay from "../components/ProjectsDisplay";
+import ProjectsDisplay from "../components/homePage/ProjectsDisplay";
 import LoginRegister from "../components/common/LoginRegister";
 import FilterProjects from "../components/homePage/FilterProjects";
 import Line from "../components/common/Line";

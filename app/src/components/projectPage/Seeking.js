@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import "../../resources/fonts.css";
-import "../../resources/colors.css";
-import "../../resources/Main.css";
 import Button from "../common/Button";
 
 const Header = props => {
