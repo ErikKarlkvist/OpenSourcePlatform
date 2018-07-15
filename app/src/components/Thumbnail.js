@@ -7,6 +7,7 @@ import ThumbnailHeads from "./ThumbnailHeads";
 * Displays the name and thumbnail image of a project
 * On hover, the description of the project is shown
 * On click, opens the ProjectPage. This is handled in ProjectDisplay.js
+* Classes are from bootstrap
 */
 
 const Container = props => {
@@ -14,14 +15,14 @@ const Container = props => {
     normal: {
       cursor: "pointer",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-      height: "500px",
-      width: "300px"
+      width: "300px",
+      height: "600px"
     },
     hover: {
       boxShadow: "0 -2px 8px 0 var(--bluey-green)",
       cursor: "pointer",
-      height: "500px",
-      width: "300px"
+      width: "300px",
+      height: "600px"
     }
   };
   let style = styles.normal;
@@ -46,7 +47,7 @@ const Image = props => {
     image: {
       marginTop: -1,
       marginLeft: -1,
-      width: "101%",
+      width: "300px",
       height: "300px",
       objectFit: "cover"
     },
