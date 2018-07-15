@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Thumbnail from "./Thumbnail";
-import "../resources/Main.css";
+import Thumbnail from "../common/Thumbnail";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class ProjectsDisplay extends Component {
