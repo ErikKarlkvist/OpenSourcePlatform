@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import Routing from "./pages/Routing";
 import "./resources/fonts.css";
 import "./resources/colors.css";
+import "./resources/Main.css";
 class App extends Component {
   constructor() {
     super();

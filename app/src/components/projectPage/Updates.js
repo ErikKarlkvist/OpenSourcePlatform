@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Lightbox from "react-images";
-import "../resources/Main.css";
+import Thumbnail from "../common/Thumbnail";
 
 //Sets how many pictures are shown if "show more" has not been pressed
 const cutoff = 6;
@@ -12,7 +12,7 @@ const Container = props => {
 
 const Title = props => {
   const style = { textAlign: "left" };
-  return <h3 style={style}>Current State</h3>;
+  return <h3 style={style}>Updates</h3>;
 };
 
 const ImageContainer = props => {
@@ -31,23 +31,6 @@ const ToggleMore = props => {
           Show less
         </a>
       )}
-    </div>
-  );
-};
-
-const Thumbnail = props => {
-  const styles = {
-    Image: {
-      border: "1px solid white",
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      overflow: "visible"
-    }
-  };
-  return (
-    <div class="Thumbnail col-md-6 col-sm-12 col-lg-4">
-      <img style={styles.Image} onClick={props.onClick} src={props.url} />
     </div>
   );
 };
@@ -72,13 +55,17 @@ class CurrentState extends Component {
     let items = [];
     if (data) {
       items = data.map((d, i) => (
-        <Thumbnail
-          onClick={() => {
-            this.openLightbox();
-            this.setState({ currentImage: i });
-          }}
-          url={d.url}
-        />
+        <div style={{ marginBottom: 30 }} class="col-md-6 col-sm-12 col-lg-4">
+          <Thumbnail
+            description={d.description || ""}
+            onClick={() => {
+              this.openLightbox();
+              this.setState({ currentImage: i });
+            }}
+            imgURL={d.url}
+            name={d.name}
+          />
+        </div>
       ));
     }
 

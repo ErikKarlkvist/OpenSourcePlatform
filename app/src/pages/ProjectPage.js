@@ -3,16 +3,15 @@ import firebase from "../backend/firebase";
 import "../resources/Main.css";
 import { getUser } from "../backend/users.js";
 import { getProject } from "../backend/projects";
-import LoginRegister from "../components/LoginRegister";
+import LoginRegister from "../components/common/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import Spinner from "../components/common/Spinner";
-import ProjectInfo from "../components/ProjectInfo";
-import ProjectHeader from "../components/ProjectHeader";
-import Readme from "../components/Readme";
-import CurrentState from "../components/CurrentState";
-import Line from "../components/Line";
+import ProjectInfo from "../components/projectPage/ProjectInfo";
+import Readme from "../components/projectPage/Readme";
+import Updates from "../components/projectPage/Updates";
+import Line from "../components/common/Line";
 import logo from "../logo.svg";
 
 class ProjectPage extends Component {
@@ -91,7 +90,7 @@ class ProjectPage extends Component {
                 project={this.state.project}
               />
               <Line full={true} />
-              <CurrentState project={this.state.project} />
+              <Updates project={this.state.project} />
               <Line full={true} />
               <Readme project={this.state.project} />
             </div>

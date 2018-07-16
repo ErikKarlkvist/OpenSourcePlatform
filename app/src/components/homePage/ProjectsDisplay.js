@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import ProjectBlurb from "./ProjectBlurb";
-import "../resources/Main.css";
+import Thumbnail from "../common/Thumbnail";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class ProjectsDisplay extends Component {
@@ -11,7 +10,13 @@ class ProjectsDisplay extends Component {
       items = data.map(d => (
         <div style={{ marginBottom: 30 }} class="col-md-6 col-sm-12 col-lg-4">
           <Link to={`project/${d.id}`}>
-            <ProjectBlurb project={d} />
+            <Thumbnail
+              renderHeads={true}
+              name={d.name}
+              owners={d.owners}
+              description={d.description}
+              imgURL={d.imgURL}
+            />
           </Link>
         </div>
       ));

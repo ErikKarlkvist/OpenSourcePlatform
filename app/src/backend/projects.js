@@ -1,89 +1,36 @@
 import firebase from "./firebase";
 import { sendJoinRequestMail } from "./email";
 
+const storage = window.localStorage;
+
 export async function getAllProjects() {
-  const snapshots = await firebase
-    .firestore()
-    .collection("projects")
-    .get();
-  let toolsData = [];
-  let ownersData = [];
-  let creatorsData = [];
-  let thumbnailsData = [];
-  const projects = [];
-  snapshots.forEach(snapshot => {
-    if (snapshot.exists) {
-      const data = snapshot.data();
-      data.id = snapshot.id;
-
-      projects.push(data);
-
-      toolsData.push(getToolsForProject(data));
-      ownersData.push(getOwnersForProject(data));
-      creatorsData.push(getCreatorForProject(data));
-      thumbnailsData.push(getThumbnailsForProject(data));
-    }
-  });
-
-  //load in everything simultainously.
-  //TODO: Add asyncstorage, redux (too complicated?) or some other system to cache the data.
-  toolsData = await Promise.all(toolsData);
-  ownersData = await Promise.all(ownersData);
-  creatorsData = await Promise.all(creatorsData);
-  thumbnailsData = await Promise.all(thumbnailsData);
-
-  //loop everything to correct place.
-  //TODO: Should be a better way, maybe ignore some if they are not necessery like toolsData & creatorsData
-  projects.forEach(project => {
-    toolsData.forEach(data => {
-      if (data.projectId === project.id) {
-        if (data.error) {
-          const index = projects.indexOf(project);
-          projects.splice(index, 1);
-        } else {
-          project.tools = data.tools;
-        }
-      }
-    });
-
-    ownersData.forEach(data => {
-      if (data.projectId === project.id) {
-        if (data.error) {
-          const index = projects.indexOf(project);
-          projects.splice(index, 1);
-        } else {
-          project.owners = data.owners;
-        }
-      }
-    });
-
-    creatorsData.forEach(data => {
-      if (data.projectId === project.id) {
-        if (data.error) {
-          const index = projects.indexOf(project);
-          projects.splice(index, 1);
-        } else {
-          project.creator = data.creator;
-        }
-      }
-    });
-
-    thumbnailsData.forEach(data => {
-      if (data.projectId === project.id) {
-        if (data.error) {
-          const index = projects.indexOf(project);
-          projects.splice(index, 1);
-        } else {
-          project.thumbnails = data.thumbnails;
-        }
-      }
-    });
-  });
-
-  return Promise.resolve(projects);
+  const allProjects = storage.getItem("projects");
+  if (allProjects) {
+    //fetch new data in background
+    getAllProjectsHelper();
+    return Promise.resolve(JSON.parse(allProjects));
+  } else {
+    //get all data and return when fetched
+    return getAllProjectsHelper();
+  }
 }
 
 export async function getProject(id) {
+  let allProjects = storage.getItem("projects");
+  if (allProjects) {
+    allProjects = JSON.parse(allProjects);
+    let foundProject = undefined;
+
+    //use normal for loop instead of forEach so that one can return project directly
+    for (let i = 0; i < allProjects.length; i++) {
+      if (allProjects[i].id === id) {
+        //update all projects in background
+        getAllProjectsHelper();
+        return Promise.resolve(allProjects[i]);
+      }
+    }
+  }
+  //retrieve single project directly if allProjects does not exists or project not found
   const snapshot = await firebase
     .firestore()
     .collection("projects")
@@ -93,15 +40,14 @@ export async function getProject(id) {
     let projectData = snapshot.data();
     projectData.id = snapshot.id;
 
-    const toolData = await getToolsForProject(projectData);
     const ownerData = await getOwnersForProject(projectData);
-    const creatorData = await getCreatorForProject(projectData);
     const thumbnailData = await getThumbnailsForProject(projectData);
 
-    projectData.tools = toolData.tools;
     projectData.owners = ownerData.owners;
-    projectData.creator = creatorData.creator;
     projectData.thumbnails = thumbnailData.thumbnails;
+
+    //update all projects in background
+    getAllProjectsHelper();
     return Promise.resolve(projectData);
   } else {
     // doc.data() will be undefined in this case
@@ -159,6 +105,89 @@ export async function removeRequestProject(project) {
 }
 
 //----------------------------------_HELPER ---------------------------------
+
+async function getAllProjectsHelper() {
+  const snapshots = await firebase
+    .firestore()
+    .collection("projects")
+    .get();
+  let toolsData = [];
+  let ownersData = [];
+  let creatorsData = [];
+  let thumbnailsData = [];
+  const projects = [];
+  snapshots.forEach(snapshot => {
+    if (snapshot.exists) {
+      const data = snapshot.data();
+      data.id = snapshot.id;
+
+      projects.push(data);
+
+      ownersData.push(getOwnersForProject(data));
+      creatorsData.push(getCreatorForProject(data));
+      toolsData.push(getToolsForProject(data));
+      thumbnailsData.push(getThumbnailsForProject(data));
+    }
+  });
+
+  //load in everything simultainously.
+  //TODO: Add asyncstorage, redux (too complicated?) or some other system to cache the data.
+
+  toolsData = await Promise.all(toolsData);
+  thumbnailsData = await Promise.all(thumbnailsData);
+  creatorsData = await Promise.all(creatorsData);
+  ownersData = await Promise.all(ownersData);
+
+  //loop everything to correct place.
+  //TODO: Should be a better way, maybe ignore some if they are not necessery like toolsData & creatorsData
+  projects.forEach(project => {
+    ownersData.forEach(data => {
+      if (data.projectId === project.id) {
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.owners = data.owners;
+        }
+      }
+    });
+
+    toolsData.forEach(data => {
+      if (data.projectId === project.id) {
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.tools = data.tools;
+        }
+      }
+    });
+
+    creatorsData.forEach(data => {
+      if (data.projectId === project.id) {
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.creator = data.creator;
+        }
+      }
+    });
+
+    thumbnailsData.forEach(data => {
+      if (data.projectId === project.id) {
+        if (data.error) {
+          const index = projects.indexOf(project);
+          projects.splice(index, 1);
+        } else {
+          project.thumbnails = data.thumbnails;
+        }
+      }
+    });
+  });
+  storage.setItem("projects", JSON.stringify(projects));
+  return Promise.resolve(projects);
+}
 
 //loads tools for specified project
 async function getToolsForProject(project) {

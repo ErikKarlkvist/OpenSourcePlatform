@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../AnimatedMenu.css";
+import "../common/AnimatedMenu.css";
 
 class FilterProjects extends Component {
   constructor() {
