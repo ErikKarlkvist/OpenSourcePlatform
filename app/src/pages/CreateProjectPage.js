@@ -2,19 +2,36 @@ import React, { Component } from "react";
 import firebase from "../backend/firebase";
 import "../resources/Main.css";
 import { getUser } from "../backend/users.js";
-import { getProject } from "../backend/projects";
 import LoginRegister from "../components/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { withRouter } from "react-router";
-import PropTypes from "prop-types";
 import Spinner from "../components/common/Spinner";
-import ProjectInfo from "../components/ProjectInfo";
-import ProjectHeader from "../components/ProjectHeader";
-import Readme from "../components/Readme";
-import CurrentState from "../components/CurrentState";
-import Line from "../components/Line";
 import logo from "../logo.svg";
+import "../resources/Main.css";
 
+const Form = () => {
+  return (
+    <div>
+      <form>
+        <label>
+          Project Title
+          <input type="text" name="projectTitle" />
+        </label>
+        <label>
+          Description
+          <input type="text" name="description" />
+        </label>
+        <label>
+          Looking for
+          <input type="text" name="projectTitle" />
+        </label>
+        <label>
+          Current state
+          <input type="text" name="projectTitle" />
+        </label>
+      </form>
+    </div>
+  );
+};
 class CreateProjectPage extends Component {
   constructor() {
     super();
@@ -62,7 +79,11 @@ class CreateProjectPage extends Component {
             hasFetchedUser={this.state.hasFetchedUser}
           />
         </header>
-        <h1>Create Project</h1>
+
+        <div class="Content">
+          <h1>Create Project</h1>
+          <Form />
+        </div>
       </div>
     );
   }
