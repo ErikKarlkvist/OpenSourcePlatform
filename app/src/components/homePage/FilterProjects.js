@@ -11,7 +11,6 @@ class FilterProjects extends Component {
   }
 
   render() {
-    console.log(this.state.picked);
     let liveStyle = "";
     let allStyle = "";
     let graduateStyle = "";
@@ -51,7 +50,6 @@ class FilterProjects extends Component {
 
   setStyle = picked => {
     this.setState({ picked: picked });
-    console.log(picked);
     this.props.changeFilter(picked);
   };
 }
