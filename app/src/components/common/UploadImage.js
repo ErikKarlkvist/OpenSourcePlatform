@@ -4,7 +4,7 @@ import {
   uploadHeaderImage,
   uploadThumbnailImage,
   uploadProfileImage
-} from "../backend/storage";
+} from "../../backend/storage";
 import "./UploadImage.css";
 import Spinner from "./Spinner";
 
@@ -62,8 +62,10 @@ class UploadImage extends Component {
     if (this.props.type === "headerImage") {
       uploadHeaderImage(e.target.files[0], this.props.id)
         .then(output => {
-          newUrl = output.url;
           this.setState({ uploading: false });
+          if (this.props.recieveURL) {
+            this.props.recieveURL(output.downloadURL);
+          }
         })
         .catch(error => {
           console.log(error);
@@ -71,8 +73,10 @@ class UploadImage extends Component {
     } else if (this.props.type === "thumbnailImage") {
       uploadThumbnailImage(e.target.files[0], this.props.id)
         .then(output => {
-          newUrl = output.url;
           this.setState({ uploading: false });
+          if (this.props.recieveURL) {
+            this.props.recieveURL(output.downloadURL);
+          }
         })
         .catch(error => {
           console.log(error);
@@ -80,8 +84,10 @@ class UploadImage extends Component {
     } else if (this.props.type === "profileImage") {
       uploadProfileImage(e.target.files[0], this.props.id)
         .then(output => {
-          newUrl = output.url;
           this.setState({ uploading: false });
+          if (this.props.recieveURL) {
+            this.props.recieveURL(output.downloadURL);
+          }
         })
         .catch(error => {
           console.log(error);
@@ -90,9 +96,6 @@ class UploadImage extends Component {
       this.setState({ uploading: false });
     }
 
-    if (this.props.recieveURL) {
-      this.props.recieveURL(newUrl);
-    }
     //
   };
 }
