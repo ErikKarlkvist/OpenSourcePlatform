@@ -37,11 +37,12 @@ const Paragraph = () => {
 };
 
 const LookingForList = props => {
+  console.log(props);
   const style = {
     marginBottom: "20px"
   };
   const listItems = [];
-  props.lookinFor.forEach(item => {
+  props.lookingFor.forEach(item => {
     const listElem = (
       <li>
         <h3>> {item}</h3>
@@ -57,11 +58,11 @@ const LookingForList = props => {
 };
 
 const Seeking = props => {
-  const lookinFor = [
+  /*const lookinFor = [
     "Back-end Programmer",
     "UX designer",
     "Front-end developer"
-  ];
+  ];*/
 
   const mailContact = () => {
     window.location = "mailto:xyz.dnb.no";
@@ -79,7 +80,7 @@ const Seeking = props => {
         </Button>
       </Header>
       <SubContainer>
-        <LookingForList lookinFor={lookinFor} />
+        <LookingForList lookingFor={props.lookingFor} />
         <Paragraph />
       </SubContainer>
     </div>
