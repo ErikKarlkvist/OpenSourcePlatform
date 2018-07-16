@@ -173,7 +173,7 @@ const styles = {
   },
   container: {
     backgroundColor: "var(--white-three)",
-    height: "600px",
+    height: "650px",
     width: "400px",
     padding: 40,
     color: "var(--dark-teal)",
