@@ -37,6 +37,7 @@ const Paragraph = () => {
 };
 
 const LookingForList = props => {
+  console.log(props);
   const style = {
     marginBottom: "20px"
   };
