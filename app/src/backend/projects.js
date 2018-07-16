@@ -1,5 +1,6 @@
 import firebase from "./firebase";
 import { sendJoinRequestMail } from "./email";
+import { uploadHeaderImage } from "./storage";
 
 const storage = window.localStorage;
 
@@ -102,6 +103,30 @@ export async function removeRequestProject(project) {
     .set({ joinRequest: requests }, { merge: true });
   //await sendJoinRequestMail(project.creator.email, user, project)
   return Promise.resolve("success");
+}
+
+export async function createNewProjectID() {
+  return firebase
+    .firestore()
+    .collection("projects")
+    .doc().id;
+}
+
+export async function createNewProject(projectData, id) {
+  console.log(projectData);
+  await firebase
+    .firestore()
+    .collection("projects")
+    .doc(id)
+    .set(projectData)
+    .then(function() {
+      console.log("Document successfully written!");
+    })
+    .catch(function(error) {
+      console.error("Error writing document: ", error);
+    });
+
+  uploadHeaderImage(projectData.headerImageURL, projectData.name);
 }
 
 //----------------------------------_HELPER ---------------------------------

@@ -21,12 +21,6 @@ export async function uploadHeaderImage(file, projectId) {
     //get downloadURL
     const url = await ref.getDownloadURL();
 
-    //store downloadURL
-    await databaseService
-      .collection("projects")
-      .doc(projectId)
-      .set({ headerImageURL: url }, { merge: true });
-
     //return downloadURL in case we want to load the image
     return Promise.resolve({ status: "Success", downloadURL: url });
   } catch (e) {
@@ -45,15 +39,6 @@ export async function uploadThumbnailImage(file, projectId) {
       .child(file.name);
     await uploadImage(ref, file);
     const url = await ref.getDownloadURL();
-
-    await databaseService
-      .collection("projects")
-      .doc(projectId)
-      .collection("thumbnails")
-      .add({
-        url,
-        nameInStorage: file.name
-      });
 
     return Promise.resolve({ status: "Success", downloadURL: url });
   } catch (e) {
