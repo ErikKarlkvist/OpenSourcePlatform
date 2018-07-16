@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import firebase from "../backend/firebase";
 import "../resources/Main.css";
 import { getUser } from "../backend/users.js";
-import LoginRegister from "../components/LoginRegister";
+import LoginRegister from "../components/common/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Spinner from "../components/common/Spinner";
 import logo from "../logo.svg";
