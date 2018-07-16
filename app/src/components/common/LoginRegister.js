@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./AnimatedMenu.css";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { logout } from "../../backend/auth";
+
 class LoginRegister extends Component {
   constructor() {
     super();
@@ -55,9 +57,9 @@ class LoginRegister extends Component {
           <div style={styles.line} />
           <div style={styles.optionsContainer}>
             <div style={styles.option}>
-              <a className={"MenuItem"} onClick={() => {}}>
-                Create Project
-              </a>
+              <Link to={`\createProject`}>
+                <a className={"MenuItem"}>Create Project</a>
+              </Link>
             </div>
             <div style={styles.option}>
               <a className={"MenuItem"} onClick={() => {}}>
