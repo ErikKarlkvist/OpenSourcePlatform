@@ -94,7 +94,7 @@ class ProjectInfo extends Component {
               </h3>
               <p style={styles.Description}>{this.props.project.description}</p>
               <div style={{ paddingTop: "40px" }} />
-              <Seeking project={this.props.project} />
+              <Seeking lookingFor={this.props.project.lookingFor} />
             </div>
             <div class="col-md-6 col-sm-12 col-lg-6">
               <img
