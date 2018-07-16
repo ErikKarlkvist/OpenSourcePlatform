@@ -3,7 +3,7 @@ import "./AnimatedMenu.css";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { logout } from "../backend/auth";
+import { logout } from ".../backend/auth";
 class LoginRegister extends Component {
   constructor() {
     super();
