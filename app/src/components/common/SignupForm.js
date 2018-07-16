@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import "../resources/fonts.css";
-import "../resources/colors.css";
-import "../resources/Main.css";
-import { register } from "../backend/auth";
-import Spinner from "./common/Spinner";
+import "../../resources/fonts.css";
+import "../../resources/colors.css";
+import "../../resources/Main.css";
+import { register } from "../../backend/auth";
+import Spinner from "../common/Spinner";
 
 class SignUpView extends Component {
   constructor(props, context) {
