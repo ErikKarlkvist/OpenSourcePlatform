@@ -16,6 +16,7 @@ class ProjectsDisplay extends Component {
               owners={d.owners}
               description={d.description}
               imgURL={d.imgURL}
+              size="medium"
             />
           </Link>
         </div>

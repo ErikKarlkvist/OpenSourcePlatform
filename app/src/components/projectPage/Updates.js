@@ -35,45 +35,115 @@ const ToggleMore = props => {
   );
 };
 
-class CurrentState extends Component {
+const FullScreenImage = props => {
+  const styles = {
+    container: {
+      position: "fixed",
+      width: "100%",
+      height: "100vh",
+      backgroundColor: "rgba(0,0,0,0.8)",
+      zIndex: 5,
+      top: 0,
+      left: 0,
+
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      overflowY: "auto"
+    },
+    content: {
+      height: "80vh",
+      margin: "20%",
+      textAlign: "left",
+      backgroundColor: "white"
+    },
+    image: {
+      width: "100%",
+      objectFit: "scale-down"
+    },
+    title: {
+      paddingLeft: "5%",
+      paddingRight: "5%",
+      paddingTop: 10,
+      paddingBottom: 10,
+      color: "var(--dark-teal)",
+      backgroundColor: "white"
+    },
+    desc: {
+      marginTop: -10,
+      paddingLeft: "5%",
+      paddingRight: "5%",
+      paddingTop: 10,
+      paddingBottom: 10,
+      color: "var(--dark-teal)",
+      backgroundColor: "white"
+    }
+  };
+  console.log(props);
+  return (
+    <div style={styles.container} onClick={props.toggleFullScreen}>
+      <div style={styles.content}>
+        <img src={props.content.url} style={styles.image} />
+        <h2 style={styles.title}>{props.content.name}</h2>
+        <p style={styles.desc}>{props.content.description}</p>
+      </div>
+    </div>
+  );
+};
+
+class Updates extends Component {
   constructor() {
     super();
+
     this.state = {
-      images: [],
+      items: [],
       showing: [],
       showLightbox: false,
-      currentImage: 0,
-      lightBoxImages: []
+      currentItem: 0,
+      lightBoxImages: [],
+      sizes: [],
+      showFullScreen: false
     };
 
-    this.openLightbox = this.openLightbox.bind(this);
-    this.closeLightbox = this.closeLightbox.bind(this);
+    console.log("tet");
   }
 
   componentDidMount() {
+    this.setupThumbnails();
+  }
+
+  toggleFullScreen = index => {
+    this.setState((prevState, props) => {
+      return { showFullScreen: !prevState.showFullScreen, currentItem: index };
+    });
+  };
+
+  setupThumbnails(index) {
     const data = this.props.project.thumbnails;
     let items = [];
     if (data) {
-      items = data.map((d, i) => (
-        <div style={{ marginBottom: 30 }} class="col-md-6 col-sm-12 col-lg-4">
-          <Thumbnail
-            description={d.description || ""}
-            onClick={() => {
-              this.openLightbox();
-              this.setState({ currentImage: i });
-            }}
-            imgURL={d.url}
-            name={d.name}
-          />
-        </div>
-      ));
+      items = data.map((d, i) => {
+        return (
+          <div
+            style={{ marginBottom: 30 }}
+            class={"col-md-3 col-sm-12 col-lg-3"}
+          >
+            <Thumbnail
+              description={d.description || ""}
+              onClick={() => {
+                this.toggleFullScreen(i);
+              }}
+              imgURL={d.url}
+              name={d.name}
+              size={"small"}
+            />
+          </div>
+        );
+      });
     }
-
-    const lightBoxImages = this.mapToLightbox();
     this.setState({
-      images: items,
-      showing: items.slice(0, cutoff),
-      lightBoxImages
+      items,
+      showing: items.slice(0, cutoff)
     });
   }
 
@@ -85,22 +155,15 @@ class CurrentState extends Component {
     this.setState({ showing: this.state.images.slice(0, cutoff) });
   };
 
-  openLightbox() {
-    this.setState({ showLightbox: true });
-  }
-
-  closeLightbox() {
-    this.setState({ showLightbox: false });
-  }
   //TODO: Should only call in componentDidMount
   mapToLightbox = () => {
     return this.props.project.thumbnails.map(d => {
-      return { src: d.url };
+      return { src: d.url, caption: d.description };
     });
   };
 
   render() {
-    if (!this.state.images) {
+    if (!this.state.items) {
       return <div />;
     }
 
@@ -110,30 +173,16 @@ class CurrentState extends Component {
           <Title />
           <ImageContainer showing={this.state.showing} />
           <ToggleMore
-            imagesLength={this.state.images.length}
-            showingLength={this.state.showingLength}
+            imagesLength={this.state.items.length}
+            showingLength={this.state.showing.length}
           />
         </Container>
-
-        <Lightbox
-          images={this.state.lightBoxImages}
-          isOpen={this.state.showLightbox}
-          backdropClosesModal={true}
-          onClose={this.closeLightbox}
-          currentImage={this.state.currentImage}
-          onClickPrev={() =>
-            this.setState({
-              currentImage:
-                (this.state.currentImage - 1) % this.state.images.length
-            })
-          }
-          onClickNext={() =>
-            this.setState({
-              currentImage:
-                (this.state.currentImage + 1) % this.state.images.length
-            })
-          }
-        />
+        {this.state.showFullScreen && (
+          <FullScreenImage
+            toggleFullScreen={this.toggleFullScreen}
+            content={this.props.project.thumbnails[this.state.currentItem]}
+          />
+        )}
       </div>
     );
   }
@@ -143,5 +192,4 @@ const styles = {
     color: "grey"
   }
 };
-
-export default CurrentState;
+export default Updates;
