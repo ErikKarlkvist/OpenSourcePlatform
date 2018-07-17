@@ -20,7 +20,6 @@ export async function getProject(id) {
   let allProjects = storage.getItem("projects");
   if (allProjects) {
     allProjects = JSON.parse(allProjects);
-    let foundProject = undefined;
 
     //use normal for loop instead of forEach so that one can return project directly
     for (let i = 0; i < allProjects.length; i++) {
