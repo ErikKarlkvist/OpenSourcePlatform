@@ -31,8 +31,8 @@ class SignUpView extends Component {
 
   checkEmail = e => {
     const split = e.split("@");
-    console.log("EMAIL", e, split, split.length === 2 && split[1] === "dnb.no");
-    this.setState({ validEmail: split.length === 2 && split[1] === "dnb.no" });
+    console.log("EMAIL", e, split, split.length === 2 && split[1] == "dnb.no");
+    this.setState({ validEmail: split.length === 2 && split[1] == "dnb.no" });
   };
 
   render() {

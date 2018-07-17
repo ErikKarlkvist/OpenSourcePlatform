@@ -23,7 +23,7 @@ class Contributors extends React.Component {
     if (data) {
       items = data.map(d => (
         <div class="d-block d-sm-block d-md-block" style={styles.owner}>
-          <img style={styles.image} src={d.profileImageURL} alt={d.firstname} />
+          <img style={styles.image} src={d.profileImageURL} />
           <p style={{ ...styles.name, ...{ marginBottom: "-10px" } }}>
             {d.firstname}
           </p>
@@ -32,6 +32,7 @@ class Contributors extends React.Component {
           </p>
         </div>
       ));
+      const ownersLength = items.length;
 
       this.setState({ owners: items, ownersToShow: items.slice(0, 3) });
     }

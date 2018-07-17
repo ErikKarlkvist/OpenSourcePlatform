@@ -7,7 +7,7 @@ const ThumbnailHeads = props => {
   if (data) {
     items = data.slice(0, 4).map(d => (
       <div>
-        <img style={styles.image} src={d.profileImageURL} alt={d.firstName} />
+        <img style={styles.image} src={d.profileImageURL} />
       </div>
     ));
   }
