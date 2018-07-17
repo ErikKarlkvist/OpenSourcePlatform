@@ -6,6 +6,7 @@ import Routing from "./pages/Routing";
 import "./resources/fonts.css";
 import "./resources/colors.css";
 import "./resources/Main.css";
+import "./resources/Input.css";
 
 class App extends Component {
   constructor() {
