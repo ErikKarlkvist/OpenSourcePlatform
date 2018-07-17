@@ -206,18 +206,19 @@ class CreateProjectPage extends Component {
             hasFetchedUser={this.state.hasFetchedUser}
           />
         </header>
-
-        <div class="Content">
-          <div class="Center">
-            <h1>Create Project</h1>
-            <Form
-              values={this.state}
-              handleInputChange={this.handleInputChange}
-              recieveURL={this.recieveURL}
-            />
-            <Button onClick={this.submitProject}>Submit(N/A)</Button>
+        {this.state.hasFetchedUser && (
+          <div class="Content">
+            <div class="Center">
+              <h1>Create Project</h1>
+              <Form
+                values={this.state}
+                handleInputChange={this.handleInputChange}
+                recieveURL={this.recieveURL}
+              />
+              <Button onClick={this.submitProject}>Submit(N/A)</Button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
