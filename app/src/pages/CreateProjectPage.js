@@ -9,114 +9,9 @@ import logo from "../logo.svg";
 import "../resources/Main.css";
 import Button from "../components/common/Button";
 import { createNewProject, createNewProjectID } from "../backend/projects";
-import UploadImage from "../components/common/UploadImage";
+import Form from "../components/createProjectPage/Form";
+import InputTextBox from "../components/createProjectPage/InputTextBox";
 
-const Form = props => {
-  const styles = {
-    inputTextBox: {
-      width: "100%",
-      border: "3px dotted grey",
-      backgroundColor: "rgba(1, 1, 1, 0)",
-      color: "white",
-      height: "40px",
-      marginBottom: "20px",
-      paddingLeft: "12px",
-      boxSizing: "border-box",
-      borderRadius: "4px"
-    }
-  };
-
-  return (
-    <div>
-      <div>
-        Project Name
-        <input
-          type="text"
-          name="projectName"
-          placeholder="Project Name"
-          style={styles.inputTextBox}
-          value={props.values.projectName}
-          onChange={e => props.handleInputChange(e)}
-        />
-      </div>
-      <div>
-        Description
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          style={styles.inputTextBox}
-          value={props.values.description}
-          onChange={e => props.handleInputChange(e)}
-        />
-      </div>
-      <div>
-        Looking for
-        <input
-          type="text"
-          name="lookingFor"
-          placeholder="Looking for"
-          style={styles.inputTextBox}
-          value={props.values.lookingFor}
-          onChange={e => props.handleInputChange(e)}
-        />
-      </div>
-      {/*}
-        <div>
-          Current state
-          <input type="text" name="currentState" />
-        </div>
-  */}
-      <div>
-        Link to GitHub page
-        <input
-          type="text"
-          name="gitURL"
-          placeholder="URL of Code Repository"
-          style={styles.inputTextBox}
-          value={props.values.gitURL}
-          onChange={e => props.handleInputChange(e)}
-        />
-      </div>
-      <div>
-        Link to Github readme (raw file)
-        <input
-          type="text"
-          name="readmeURL"
-          placeholder="URL to raw README.md file"
-          style={styles.inputTextBox}
-          value={props.values.readmeURL}
-          onChange={e => props.handleInputChange(e)}
-        />
-      </div>
-      <div>
-        Contact mail
-        <input
-          type="text"
-          name="contactMail"
-          placeholder="Your email, so that people can contact you about your project"
-          style={styles.inputTextBox}
-          value={props.values.contactMail}
-          onChange={e => props.handleInputChange(e)}
-        />
-      </div>
-      <UploadImage
-        type={"headerImage"}
-        id={props.projectID}
-        recieveURL={props.recieveURL}
-      />
-      {props.values.headerImageURL !== "" && (
-        <div>
-          <img src={props.values.headerImageURL} />
-        </div>
-      )}
-      <div>
-        Owners
-        <input type="text" name="owners" />
-      </div>
-    </div>
-  );
-};
 class CreateProjectPage extends Component {
   constructor() {
     super();
@@ -207,8 +102,8 @@ class CreateProjectPage extends Component {
           />
         </header>
         {this.state.hasFetchedUser && (
-          <div class="Content">
-            <div class="Center">
+          <div className="Content">
+            <div className="Center">
               <h1>Create Project</h1>
               <Form
                 values={this.state}

@@ -1,5 +1,6 @@
-inputTextBox {
+.inputTextBox {
   width: 100%;
+  height: auto;
   border: 3px dotted grey;
   background-color: rgba(1, 1, 1, 0);
   color: white;
@@ -8,9 +9,4 @@ inputTextBox {
   padding-left: 12px;
   box-sizing: border-box;
   border-radius: 4px;
-}
-
-::placeholder {
-  color: white;
-  opacity: 1;
 }
