@@ -3,6 +3,10 @@ import "./ProjectInfo.css";
 import "../../resources/Main.css";
 import LoginForm from "../common/LoginForm";
 import SignupForm from "../common/SignupForm";
+import {
+  requestJoinProject,
+  removeRequestProject
+} from "../../backend/projects";
 import Contributors from "./Contributors";
 import "../../resources/fonts.css";
 import ProjectMetrics from "./ProjectMetrics";
@@ -83,11 +87,7 @@ const Image = props => {
   };
   return (
     <div class="col-md-6 col-sm-12 col-lg-6">
-      <img
-        src={props.project.headerImageURL}
-        style={style}
-        alt="Project header"
-      />
+      <img src={props.project.headerImageURL} style={style} />
     </div>
   );
 };
@@ -194,3 +194,43 @@ class ProjectInfo extends Component {
 }
 
 export default ProjectInfo;
+
+const styles = {
+  Description: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "left"
+  },
+  TopRow: {
+    borderTop: "1px solid var(--dark-teal)",
+    width: "100%",
+    height: "auto"
+  },
+  BottomRow: {
+    borderBottom: "1px solid var(--dark-teal)",
+    width: "100%"
+  },
+  InfoContainer: {
+    marginTop: "40px",
+    marginBottom: "40px"
+  },
+  Sidebar: {
+    color: "white",
+    alignItems: "right"
+  },
+  MainImage: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    boxShadow: "1px 1px 1px 1px black"
+  },
+  HeaderText: {
+    textAlign: "left"
+  },
+  Container: {
+    paddingRight: "0px",
+    paddingLeft: "0px",
+    height: "auto",
+    alignContent: "space-between"
+  }
+};

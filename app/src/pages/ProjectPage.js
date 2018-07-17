@@ -4,7 +4,7 @@ import "../resources/Main.css";
 import { getUser } from "../backend/users.js";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/common/LoginRegister";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import Spinner from "../components/common/Spinner";
