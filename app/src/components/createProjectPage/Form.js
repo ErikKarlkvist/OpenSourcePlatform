@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UploadImage from "../common/UploadImage";
 import InputTextBox from "./InputTextBox";
+import UserSearch from "../common/UserSearch";
 import "./Form.css";
 
 class Form extends Component {
@@ -8,12 +9,17 @@ class Form extends Component {
     return (
       <div>
         <InputTextBox
-          title="Project Name"
+          title="Project Title"
           placeholder="Project Title"
           name="projectName"
           maxChars={100}
           value={this.props.values.projectName}
           handleInputChange={this.props.handleInputChange}
+        />
+        <UserSearch
+          removeOwner={this.props.removeOwner}
+          addOwner={this.props.addOwner}
+          recieveURL={this.props.recieveURL}
         />
         <div>
           Description
