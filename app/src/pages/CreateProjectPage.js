@@ -11,39 +11,10 @@ import Button from "../components/common/Button";
 import { createNewProject, createNewProjectID } from "../backend/projects";
 import UploadImage from "../components/common/UploadImage";
 import "../resources/Input.css";
+import ProjectInfo from "../components/createProjectPage/CreateProjectInfo";
 
 
 
-const AddTitle = props => { 
-  return(
-    <div>
-      <input
-        type="text"
-        name="projectName"
-        placeholder="Add Project Title"
-        className="Title"
-        value={props.description}
-        onChange={e => props.handleInputChange(e)}
-      />
-    </div>
-  )
-}
-
-const Description = props => { 
-  return(
-    <div>
-      <textarea
-        type="text"
-        name="description"
-        color="white"
-        placeholder="Add descriptive text for your project. Max 200 characters."
-        className="Description"
-        value={props.description}
-        onChange={e => props.handleInputChange(e)}
-      />
-    </div>
-  )
-}
 
 const Form = props => {
   const styles = {
@@ -243,9 +214,7 @@ class CreateProjectPage extends Component {
 
         <div class="Content">
           <div class="Center">
-            <h1>Create Project</h1>
-            <AddTitle projectName={this.state.name} handleInputChange={this.handleInputChange} />
-            <Description description = {this.state.description} handleInputChange={this.handleInputChange}/>
+            <ProjectInfo values={this.state} handleInputChange={this.handleInputChange}/>
             <Form
               values={this.state}
               handleInputChange={this.handleInputChange}
