@@ -30,13 +30,25 @@ class CreateProjectPage extends Component {
       owners: []
     };
   }
+
   componentDidMount() {
     this.setupAuthStateChange();
     createNewProjectID().then(id => {
-      console.log(id);
       this.setState({ projectID: id });
     });
   }
+
+  addOwner = userID => {
+    console.log(this.state.owners);
+    const newOwners = this.state.owners.concat([userID]);
+    console.log(newOwners);
+    this.setState({ owners: newOwners });
+  };
+
+  removeOwner = userID => {
+    const newOwners = this.state.owners.filter(item => item !== userID);
+    this.setState({ owners: newOwners });
+  };
 
   handleInputChange = event => {
     const target = event.target;
@@ -108,8 +120,11 @@ class CreateProjectPage extends Component {
               <Form
                 values={this.state}
                 handleInputChange={this.handleInputChange}
+                addOwner={this.addOwner}
+                removeOwner={this.removeOwner}
                 recieveURL={this.recieveURL}
               />
+
               <Button onClick={this.submitProject}>Submit(N/A)</Button>
             </div>
           </div>
