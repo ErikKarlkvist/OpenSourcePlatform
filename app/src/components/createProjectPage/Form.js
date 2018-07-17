@@ -1,22 +1,20 @@
 import React, { Component } from "react";
 import UploadImage from "../common/UploadImage";
+import InputTextBox from "./InputTextBox";
 import "./Form.css";
 
 class Form extends Component {
   render() {
     return (
       <div>
-        <div>
-          Project Name
-          <input
-            type="text"
-            name="projectName"
-            placeholder="Project Name"
-            className="inputTextBox"
-            value={this.props.values.projectName}
-            onChange={e => this.props.handleInputChange(e)}
-          />
-        </div>
+        <InputTextBox
+          title="Project Name"
+          placeholder="Project Title"
+          name="projectName"
+          maxChars={100}
+          value={this.props.values.projectName}
+          handleInputChange={this.props.handleInputChange}
+        />
         <div>
           Description
           <input
