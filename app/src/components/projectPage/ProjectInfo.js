@@ -112,6 +112,7 @@ class ProjectInfo extends Component {
 
   componentDidMount() {
     if (
+      this.props.project && 
       this.props.project.joinRequest &&
       this.props.project.joinRequest.includes(this.props.user.id)
     ) {
@@ -139,6 +140,9 @@ class ProjectInfo extends Component {
   };
 
   render() {
+    if(this.props.project === undefined){
+      return <div/>
+    }
     return (
       <InfoContainer>
         {/*Login and signup modals, hidden until prompted */}
