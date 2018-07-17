@@ -9,21 +9,39 @@ import ThumbnailHeads from "./ThumbnailHeads";
 * Classes are from bootstrap
 */
 
+const smallW = "200px";
+const mediumW = "300px";
+
+const smallH = "300px";
+const mediumH = "600px";
+
 const Container = props => {
+  let width = mediumW;
+  let height = mediumH;
+
+  if (props.size === "small") {
+    width = smallW;
+    height = smallH;
+  } else if (props.size === "expanded") {
+    width = smallW;
+    height = "auto";
+  }
+
   const styles = {
     normal: {
       cursor: "pointer",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-      width: "300px",
-      height: "600px"
+      width,
+      height
     },
     hover: {
       boxShadow: "0 -2px 8px 0 var(--bluey-green)",
       cursor: "pointer",
-      width: "300px",
-      height: "600px"
+      width,
+      height
     }
   };
+
   let style = styles.normal;
   if (props.isHovering) {
     style = styles.hover;
@@ -42,17 +60,25 @@ const Container = props => {
 };
 
 const Image = props => {
+  let width = mediumW;
+  let height = mediumW;
+
+  if (props.size === "small" || props.size === "expanded") {
+    width = smallW;
+    height = smallW;
+  }
+
   const styles = {
     image: {
       marginTop: -1,
       marginLeft: -1,
-      width: "300px",
-      height: "300px",
+      width,
+      height,
       objectFit: "cover"
     },
     container: {
-      width: "100%",
-      height: "300px"
+      width,
+      height
     }
   };
   return (
@@ -76,15 +102,32 @@ const Title = props => {
     color: "var(--dark-teal)",
     textAlign: "left"
   };
-
-  return (
-    <h4 style={style} class="card-title">
-      {props.name}
-    </h4>
-  );
+  if (props.size === "medium") {
+    return (
+      <h4 style={style} class="card-title">
+        {props.name}
+      </h4>
+    );
+  } else {
+    return (
+      <h5 style={style} class="card-title">
+        {props.name}
+      </h5>
+    );
+  }
 };
 
 const Description = props => {
+  let cutoff = 120;
+
+  let description = props.description;
+  if (props.size === "small") {
+    cutoff = null;
+    description = "";
+  } else if (props.size === "expanded") {
+    cutoff = 10000;
+  }
+
   const style = {
     textAlign: "left",
     overflow: "hidden",
@@ -92,11 +135,11 @@ const Description = props => {
     color: "var(--dark-teal)"
   };
 
-  let description = props.description;
-  if (description.length > 120) {
-    description = description.slice(0, 120);
+  if (description.length > cutoff) {
+    description = description.slice(0, cutoff);
     description += "...";
   }
+
   return (
     <p style={style} class="card-text">
       {description}
@@ -137,7 +180,8 @@ class Thumbnail extends Component {
   static propTypes = {
     imgURL: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired
   };
 
   constructor() {
@@ -175,17 +219,21 @@ class Thumbnail extends Component {
         onClick={this.props.onClick}
         onMouseOver={this.onMouseOver}
         onMouseOut={this.onMouseOut}
+        size={this.props.size}
       >
-        <Image imgURL={this.props.imgURL} />
+        <Image imgURL={this.props.imgURL} size={this.props.size} />
         <Body>
-          <Title name={this.props.name} />
+          <Title name={this.props.name} size={this.props.size} />
           <hr />
-          <Description description={this.props.description} />
+          <Description
+            description={this.props.description}
+            size={this.props.size}
+          />
           {this.props.renderHeads && (
             <ThumbnailHeads owners={this.props.owners} />
           )}
         </Body>
-        <ReadMore />
+        {this.props.size === "medium" && <ReadMore />}
       </Container>
     );
   }
