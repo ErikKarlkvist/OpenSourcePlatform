@@ -127,6 +127,7 @@ class Updates extends Component {
       items = data.map((d, i) => {
         return (
           <div
+            key={i}
             style={{ marginBottom: 30 }}
             class={"col-md-3 col-sm-12 col-lg-3"}
           >

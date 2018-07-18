@@ -5,8 +5,8 @@ const ThumbnailHeads = props => {
   const data = props.owners;
   let items = [];
   if (data) {
-    items = data.slice(0, 4).map(d => (
-      <div>
+    items = data.slice(0, 4).map((d, i) => (
+      <div key={i}>
         <img style={styles.image} src={d.profileImageURL} />
       </div>
     ));
