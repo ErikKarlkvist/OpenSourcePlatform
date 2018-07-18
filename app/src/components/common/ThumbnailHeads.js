@@ -13,10 +13,10 @@ const ThumbnailHeads = props => {
   }
 
   return (
-    <div style={styles.container} class="row align-bottom">
+    <div style={styles.container} className="row align-bottom">
       {items}
       {data.length > 3 && (
-        <span style={styles.ellipses} class="align-bottom">
+        <span style={styles.ellipses} className="align-bottom">
           and {data.length - 3} more
         </span>
       )}
