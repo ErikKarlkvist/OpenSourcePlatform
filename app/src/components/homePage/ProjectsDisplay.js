@@ -11,7 +11,7 @@ class ProjectsDisplay extends Component {
         <div
           style={{ marginBottom: 30 }}
           key={i}
-          class="col-md-6 col-sm-12 col-lg-4"
+          className="col-md-6 col-sm-12 col-lg-4"
         >
           <Link to={`project/${d.id}`}>
             <Thumbnail
@@ -27,7 +27,7 @@ class ProjectsDisplay extends Component {
       ));
     }
 
-    return <div class="row">{items}</div>;
+    return <div className="row">{items}</div>;
   }
 }
 
