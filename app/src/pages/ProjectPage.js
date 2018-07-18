@@ -98,7 +98,7 @@ class ProjectPage extends Component {
     return (
       <div className="PageContainer">
         {!this.state.loading && (
-          <div class="Content">
+          <div className="Content">
             <FixedBackgroundImage
               headerImageURL={this.state.project.headerImageURL}
             />
@@ -122,7 +122,7 @@ class ProjectPage extends Component {
             <Line full={true} />
             <Updates project={this.state.project} />
             <Line full={true} />
-            <div class="Center">
+            <div className="Center">
               <Readme project={this.state.project} />
             </div>
           </div>
