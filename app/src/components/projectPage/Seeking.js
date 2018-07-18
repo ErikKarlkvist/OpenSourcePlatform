@@ -3,6 +3,7 @@ import Button from "../common/Button";
 
 const Header = props => {
   const style = {
+    width: "100%",
     paddingBottom: "20px"
   };
   return <div style={style}>{props.children}</div>;
@@ -17,6 +18,7 @@ const Title = () => {
 
 const SubContainer = props => {
   const style = {
+    textAlign: "left",
     clear: "both",
     paddingTop: "20px",
     position: "relative",
@@ -26,7 +28,8 @@ const SubContainer = props => {
 };
 const Paragraph = () => {
   const style = {
-    color: "white"
+    color: "white",
+    marginTop: "3%"
   };
   return (
     <p style={style}>
@@ -72,15 +75,12 @@ const Seeking = props => {
     <div>
       <Header>
         <Title />
-        <Button
-          style={{ float: "right", width: "150px" }}
-          onClick={mailContact}
-        >
-          Contact{" "}
-        </Button>
       </Header>
       <SubContainer>
         <LookingForList lookingFor={props.lookingFor} />
+        <Button style={{ width: "150px" }} onClick={mailContact}>
+          Contact{" "}
+        </Button>
         <Paragraph />
       </SubContainer>
     </div>
