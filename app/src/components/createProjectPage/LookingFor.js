@@ -8,7 +8,7 @@ class LookingFor extends Component {
     super();
     this.state = {
       value: "",
-      submitted: ["Dude", "Lady"]
+      submitted: []
     };
   }
 
