@@ -33,10 +33,6 @@ class Form extends Component {
             onChange={e => this.props.handleInputChange(e)}
           />
         </div>
-        <div>
-          Looking for
-          <LookingFor />
-        </div>
         {/*}
           <div>
             Current state

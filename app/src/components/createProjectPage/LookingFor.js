@@ -12,9 +12,9 @@ class LookingFor extends Component {
     };
   }
 
-  onChange(e) {
+  onChange = e => {
     this.setState({ value: e.target.value });
-  }
+  };
 
   submitField = () => {
     const newValue = this.state.value + "";
@@ -22,6 +22,19 @@ class LookingFor extends Component {
       submitted: [...this.state.submitted, newValue],
       value: ""
     });
+  };
+
+  handleKeyPress = e => {
+    if (e.key === "Enter") {
+      this.submitField();
+    }
+  };
+
+  removeItem = item => {
+    const newItems = this.state.submitted.filter(d => {
+      return d !== item;
+    });
+    this.setState({ submitted: newItems });
   };
 
   render() {
@@ -39,13 +52,17 @@ class LookingFor extends Component {
                 this.onChange(e);
                 this.props.handleInputChange(e);
               }}
+              onKeyPress={e => this.handleKeyPress(e)}
             />
           </div>
           <div className="col-4">
             <Button onClick={this.submitField}>Submit</Button>
           </div>
         </div>
-        <Seeking lookingFor={this.state.submitted} />
+        <Seeking
+          lookingFor={this.state.submitted}
+          removeItem={this.removeItem}
+        />
       </div>
     );
   }
