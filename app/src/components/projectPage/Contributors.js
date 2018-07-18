@@ -2,6 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../../resources/Main.css";
 
+const RemoveSubmittedUser = props => {
+  return (
+    <p
+      style={{ color: "white", cursor: "pointer", textDecoration: "underline" }}
+      onClick={props.removeUser}
+    >
+      Remove owner
+    </p>
+  );
+};
 class Contributors extends React.Component {
   static propTypes = {
     developers: PropTypes.array.isRequired
@@ -30,6 +40,10 @@ class Contributors extends React.Component {
           <p style={styles.name}>
             <i>{d.role}</i>
           </p>
+          {/*Allows for removal of user in createProjectPage/UserSearch*/}
+          {this.props.removeUser && (
+            <RemoveSubmittedUser removeUser={this.props.removeUser} />
+          )}
         </div>
       ));
 
@@ -49,12 +63,10 @@ class Contributors extends React.Component {
   }
 
   showAllOwners = () => {
-    console.log("SHOWALL");
     this.setState({ ownersToShow: this.state.owners, showAll: true });
   };
 
   collapseOwners = () => {
-    console.log("COLLAPSE");
     this.setState({
       ownersToShow: this.state.owners.slice(0, 3),
       showAll: false
