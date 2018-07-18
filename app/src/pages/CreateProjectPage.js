@@ -42,9 +42,7 @@ class CreateProjectPage extends Component {
   }
 
   addOwner = userID => {
-    const newOwners = this.state.owners.concat([userID]);
-    console.log(newOwners);
-    this.setState({ owners: newOwners });
+    this.setState({ owners: this.state.owners.concat([userID]) });
   };
 
   removeOwner = userID => {
@@ -93,7 +91,7 @@ class CreateProjectPage extends Component {
       contactMail: this.state.contactMail,
       creator: this.state.user.id,
       headerImageURL: this.state.headerImageURL,
-      owners: [{ userID: this.state.user.id, role: "Creator" }]
+      owners: this.state.owners
     });
   };
 
