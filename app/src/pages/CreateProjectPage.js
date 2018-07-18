@@ -9,13 +9,12 @@ import logo from "../logo.svg";
 import "../resources/Main.css";
 import Button from "../components/common/Button";
 import { createNewProject, createNewProjectID } from "../backend/projects";
-import UploadImage from "../components/common/UploadImage";
+import UploadImage from "../components/createProjectPage/UploadImage";
 import "../resources/Input.css";
+import AddThumbnails from "../components/createProjectPage/AddThumbnails";
 
-
-
-const AddTitle = props => { 
-  return(
+const AddTitle = props => {
+  return (
     <div>
       <input
         type="text"
@@ -26,11 +25,11 @@ const AddTitle = props => {
         onChange={e => props.handleInputChange(e)}
       />
     </div>
-  )
-}
+  );
+};
 
-const Description = props => { 
-  return(
+const Description = props => {
+  return (
     <div>
       <textarea
         type="text"
@@ -42,8 +41,8 @@ const Description = props => {
         onChange={e => props.handleInputChange(e)}
       />
     </div>
-  )
-}
+  );
+};
 
 const Form = props => {
   const styles = {
@@ -158,7 +157,7 @@ class CreateProjectPage extends Component {
       isLoggedIn: false,
       hasFetchedUser: false,
       user: {},
-      projectID: "",
+      projectID: undefined,
       projectName: "",
       description: "",
       lookingFor: "",
@@ -166,14 +165,14 @@ class CreateProjectPage extends Component {
       readmeURL: "",
       contactMail: "",
       headerImageURL: "",
-      owners: []
+      owners: [],
+      loading: true
     };
   }
   componentDidMount() {
     this.setupAuthStateChange();
     createNewProjectID().then(id => {
-      console.log(id);
-      this.setState({ projectID: id });
+      this.setState({ projectID: id, loading: false });
     });
   }
 
@@ -227,9 +226,13 @@ class CreateProjectPage extends Component {
   };
 
   render() {
+    console.log(this.state.projectID);
     return (
       <div className="PageContainer">
-        <Spinner loading={!this.state.hasFetchedUser} fillPage={true} />
+        <Spinner
+          loading={!this.state.hasFetchedUser && !this.state.loading}
+          fillPage={true}
+        />
         <header className="App-header">
           <Link to="/">
             <img src={logo} className="Logo" alt="logo" />
@@ -244,13 +247,25 @@ class CreateProjectPage extends Component {
         <div class="Content">
           <div class="Center">
             <h1>Create Project</h1>
-            <AddTitle projectName={this.state.name} handleInputChange={this.handleInputChange} />
-            <Description description = {this.state.description} handleInputChange={this.handleInputChange}/>
-            <Form
-              values={this.state}
+            <AddTitle
+              projectName={this.state.name}
               handleInputChange={this.handleInputChange}
-              recieveURL={this.recieveURL}
             />
+            <Description
+              description={this.state.description}
+              handleInputChange={this.handleInputChange}
+            />
+            {this.state.projectID && (
+              <Form
+                values={this.state}
+                handleInputChange={this.handleInputChange}
+                recieveURL={this.recieveURL}
+                projectID={this.state.projectID}
+              />
+            )}
+            {this.state.projectID && (
+              <AddThumbnails projectID={this.state.projectID} />
+            )}
             <Button onClick={this.submitProject}>Submit(N/A)</Button>
           </div>
         </div>
