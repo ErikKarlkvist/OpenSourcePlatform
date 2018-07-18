@@ -21,7 +21,6 @@ class InputTextBox extends Component {
         {this.props.title}{" "}
         {this.props.maxChars && this.state.chars + "/" + this.props.maxChars}
         <textarea
-          contenteditable="true"
           type="text"
           name={this.props.name}
           placeholder={this.props.placeholder}
