@@ -27,19 +27,23 @@ class LookingFor extends Component {
   render() {
     return (
       <div>
-        <div class="row">
-          <input
-            type="text"
-            name="lookingFor"
-            placeholder="Looking for"
-            className="LookingFor"
-            value={this.state.value}
-            onChange={e => {
-              this.onChange(e);
-              this.props.handleInputChange(e);
-            }}
-          />
-          <Button onClick={this.submitField}>Submit</Button>
+        <div className="row">
+          <div className="col-8">
+            <input
+              type="text"
+              name="lookingFor"
+              placeholder="Looking for"
+              className="inputTextBox"
+              value={this.state.value}
+              onChange={e => {
+                this.onChange(e);
+                this.props.handleInputChange(e);
+              }}
+            />
+          </div>
+          <div className="col-4">
+            <Button onClick={this.submitField}>Submit</Button>
+          </div>
         </div>
         <Seeking lookingFor={this.state.submitted} />
       </div>
