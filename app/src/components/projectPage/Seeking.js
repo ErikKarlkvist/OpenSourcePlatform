@@ -55,10 +55,7 @@ const LookingForList = props => {
       <li key={i}>
         <h3>> {props.lookingFor[i]}</h3>
         {props.removeItem && (
-          <a
-            onClick={() => props.removeItem(props.lookingFor[i])}
-            style={styles.removeText}
-          >
+          <a onClick={() => props.removeItem(i)} style={styles.removeText}>
             Remove
           </a>
         )}
