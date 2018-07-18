@@ -3,13 +3,22 @@ import PropTypes from "prop-types";
 import "../common/AnimatedMenu.css";
 
 const RemoveSubmittedUser = props => {
+  const styles = {
+    container: {
+      textAlign: "center"
+    },
+    text: {
+      color: "white",
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  };
   return (
-    <p
-      style={{ color: "white", cursor: "pointer", textDecoration: "underline" }}
-      onClick={() => props.removeUser(props.user)}
-    >
-      Remove owner
-    </p>
+    <div style={styles.container}>
+      <p style={styles.text} onClick={() => props.removeUser(props.user)}>
+        Remove owner
+      </p>
+    </div>
   );
 };
 class Contributors extends React.Component {

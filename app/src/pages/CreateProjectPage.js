@@ -96,7 +96,6 @@ class CreateProjectPage extends Component {
   };
 
   render() {
-    console.log(this.state.projectID);
     return (
       <div className="PageContainer">
         <Spinner
