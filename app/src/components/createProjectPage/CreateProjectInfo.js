@@ -46,6 +46,7 @@ const LookingFor = props => {
 	)
 }
 
+
 class CreateProjectInfo extends Component {
 
 
@@ -54,7 +55,7 @@ class CreateProjectInfo extends Component {
 			<div style={this.styles.container}>
 				<div>
 					<AddTitle projectName={this.props.values.projectName} handleInputChange={this.props.handleInputChange} />
-	            	<div style={this.styles.greenBox}>
+	            	<div className={"GreenBox"}>
 	            		<h3 style={{textAlign: "left", marginLeft: "40px"}}>What is {this.props.values.projectName}?</h3>
 	            		<Description description = {this.props.values.description} handleInputChange={this.props.handleInputChange}/>
 	            		
@@ -73,13 +74,6 @@ class CreateProjectInfo extends Component {
 			display: "flex",
 			marginTop: "60px"
 		},
-		greenBox: {
-			width: "552px",
-			height: "654px",
-			paddingTop: "20px",
-			marginTop: "10px",
-			border: "solid 1px var(--bluey-green)"
-		}
 	}
 }
 

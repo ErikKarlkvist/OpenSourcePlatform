@@ -41,6 +41,14 @@ textarea[type="text"]::placeholder {
   background-color: rgba(0, 0, 0, 0);
 }
 
+.GreenBox: {
+      width: 552px;
+      height: 654px;
+      padding-top: 20px;
+      margin-top: 10px;
+      border: solid 1px var(--bluey-green);
+}
+
 @media (min-width: 360px) {
   .Title {
     width: 300px;
@@ -54,6 +62,13 @@ textarea[type="text"]::placeholder {
   .LookingFor {
     width: 300px;
     font-size: 16px;
+  }
+  .GreenBox {
+    width: 380px;
+    height: 654px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
   }
 }
 
@@ -69,6 +84,13 @@ textarea[type="text"]::placeholder {
   .LookingFor {
     width: 372px;
   }
+  .GreenBox {
+    width: 452px;
+    height: 654px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
 }
 
 @media (min-width: 992px) {
@@ -83,6 +105,13 @@ textarea[type="text"]::placeholder {
   .LookingFor {
     width: 372px;
   }
+  .GreenBox {
+    width: 452px;
+    height: 654px;
+    padding-top: 20px;
+    margin-top: 10px;  
+    border: solid 1px var(--bluey-green);
+  }
 }
 
 @media (min-width: 1200px) {
@@ -96,5 +125,12 @@ textarea[type="text"]::placeholder {
   }
   .LookingFor {
     width: 472px;
+  }
+  .GreenBox {
+    width: 552px;
+    height: 654px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
   }
 }
