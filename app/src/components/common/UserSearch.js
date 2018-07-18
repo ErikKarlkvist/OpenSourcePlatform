@@ -73,7 +73,7 @@ class UserSearchField extends Component {
 
   handleClick = user => {
     this.props.addOwner(user.id);
-    this.setState({ value: "" });
+    this.setState({ value: "", suggestions: [] });
   };
 
   render() {
@@ -82,7 +82,11 @@ class UserSearchField extends Component {
     return (
       <div>
         USER SEARCH
-        <input className="search-input" onChange={e => this.onChange(e)} />
+        <input
+          className="search-input"
+          onChange={e => this.onChange(e)}
+          value={this.state.value}
+        />
         {suggestions.length < this.state.users.length && (
           <div className="suggestions-container">{suggestions}</div>
         )}
