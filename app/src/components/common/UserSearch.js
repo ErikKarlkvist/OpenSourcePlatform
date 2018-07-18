@@ -122,7 +122,6 @@ class UserSearchField extends Component {
 
   removeSubmittedUser = user => {
     const newUsers = this.state.submittedUsers.filter(d => {
-      console.log(user, d);
       return user.id !== d.id;
     });
     this.setState({ submittedUsers: newUsers });

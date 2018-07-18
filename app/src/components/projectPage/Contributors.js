@@ -63,14 +63,10 @@ class Contributors extends React.Component {
   };
 
   collapseOwners = () => {
-<<<<<<< HEAD
     this.setState({
       ownersToShow: this.state.owners.slice(0, 3),
       showAll: false
     });
-=======
-    this.setState({ ownersToShow: this.state.owners.slice(0, 2) });
->>>>>>> 67250d137172f6edfe82c32faa99ec50fc3c492d
   };
 
   render() {
