@@ -72,7 +72,7 @@ const Seeking = props => {
   };
 
   return (
-    <div class="ProjectTopInfo">
+    <div className="ProjectTopInfo">
       <Header>
         <Title />
       </Header>
