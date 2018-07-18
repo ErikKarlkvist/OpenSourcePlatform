@@ -23,21 +23,34 @@ const Container = props => {
     height: "auto",
     alignContent: "space-between"
   };
+  return <div class="row">{props.children}</div>;
+};
+
+const LeftContent = props => {
+  const style = {};
   return (
-    <div style={style} class="container">
+    <div style={style} class={"col-md-12 col-sm-12 col-lg-6"}>
       {props.children}
     </div>
   );
 };
 
-const TopRow = props => {
+const RightContent = props => {
+  const style = {};
+  return (
+    <div style={style} class={"col-md-12 col-sm-12 col-lg-6"}>
+      {props.children}
+    </div>
+  );
+};
+
+const GreenBox = props => {
   const style = {
-    borderTop: "1px solid var(--dark-teal)",
-    width: "100%",
-    height: "auto"
+    paddingLeft: "20px",
+    paddingRight: "20px"
   };
   return (
-    <div style={style} class="row">
+    <div style={style} class="GreenBox">
       {props.children}
     </div>
   );
@@ -51,57 +64,29 @@ const Description = props => {
     Description: {
       color: "white",
       fontSize: 16,
-      textAlign: "left"
-    },
-    MainImage: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      boxShadow: "1px 1px 1px 1px black"
+      textAlign: "left",
+      width: "100%"
     }
   };
   return (
-    <div
-      style={styles.Description}
-      className="col-md-6 col-sm-12 col-lg-6 BorderTop BorderSides BorderBottom"
-    >
+    <div style={styles.Description}>
       {props.children}
       <h3 style={styles.HeaderText}>What is {props.project.name}?</h3>
       <p style={styles.Description}>{props.project.description}</p>
       <div style={{ paddingTop: "40px" }} />
-      <Seeking lookingFor={props.project.lookingFor} />
     </div>
   );
 };
 
 const Image = props => {
   const style = {
-    width: "100%",
-    height: "100%",
+    width: "519px",
+    height: "374px",
     objectFit: "cover",
-    boxShadow: "1px 1px 1px 1px black"
+    boxShadow: "1px 1px 1px 1px black",
+    marginTop: "10px"
   };
-  return (
-    <div class="col-md-6 col-sm-12 col-lg-6">
-      <img src={props.project.headerImageURL} style={style} />
-    </div>
-  );
-};
-const BottomRow = props => {
-  const style = {
-    borderBottom: "1px solid var(--dark-teal)",
-    width: "100%"
-  };
-  return (
-    <div class="row" style={style}>
-      <div class="col-md-6 col-sm-12 col-lg-6  BottomPadding">
-        <Contributors developers={props.project.owners} />
-      </div>
-      <div class="col-md-6 col-sm-12 col-lg-6" style={{ paddingLeft: "20px" }}>
-        <ProjectMetrics gitURL={props.project.gitURL} />
-      </div>
-    </div>
-  );
+  return <img src={props.project.headerImageURL} style={style} />;
 };
 
 class ProjectInfo extends Component {
@@ -112,7 +97,7 @@ class ProjectInfo extends Component {
 
   componentDidMount() {
     if (
-      this.props.project && 
+      this.props.project &&
       this.props.project.joinRequest &&
       this.props.project.joinRequest.includes(this.props.user.id)
     ) {
@@ -140,8 +125,8 @@ class ProjectInfo extends Component {
   };
 
   render() {
-    if(this.props.project === undefined){
-      return <div/>
+    if (this.props.project === undefined) {
+      return <div />;
     }
     return (
       <InfoContainer>
@@ -152,16 +137,21 @@ class ProjectInfo extends Component {
         {this.state.displaySignup && (
           <SignupForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
+        <h1 style={{ textAlign: "left", marginTop: "80px" }}>
+          {this.props.project.name}
+        </h1>
         <Container>
-          <h1 style={{ textAlign: "left" }}>{this.props.project.name}</h1>
-          <TopRow>
-            {/*Project info top part: Description, Seeking, Image*/}
-            <Description project={this.props.project} />
+          <LeftContent>
+            <GreenBox>
+              <Description project={this.props.project} />
+              <Seeking lookingFor={this.props.project.lookingFor} />
+              <Contributors developers={this.props.project.owners} />
+            </GreenBox>
+          </LeftContent>
+          <RightContent>
             <Image project={this.props.project} />
-          </TopRow>
-
-          {/*Project info bottom part: Owners, Metrics*/}
-          <BottomRow project={this.props.project} />
+            <ProjectMetrics gitURL={this.props.project.gitURL} />
+          </RightContent>
         </Container>
       </InfoContainer>
     );

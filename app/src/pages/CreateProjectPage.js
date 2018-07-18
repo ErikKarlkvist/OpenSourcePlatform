@@ -9,10 +9,10 @@ import logo from "../logo.svg";
 import "../resources/Main.css";
 import Button from "../components/common/Button";
 import { createNewProject, createNewProjectID } from "../backend/projects";
-import UploadImage from "../components/common/UploadImage";
 import "../resources/Input.css";
 import Form from "../components/createProjectPage/Form";
 import ProjectInfo from "../components/createProjectPage/CreateProjectInfo";
+import AddThumbnails from "../components/createProjectPage/AddThumbnails";
 
 class CreateProjectPage extends Component {
   constructor() {
@@ -21,7 +21,7 @@ class CreateProjectPage extends Component {
       isLoggedIn: false,
       hasFetchedUser: false,
       user: {},
-      projectID: "",
+      projectID: undefined,
       projectName: "",
       description: "",
       lookingFor: "",
@@ -29,14 +29,15 @@ class CreateProjectPage extends Component {
       readmeURL: "",
       contactMail: "",
       headerImageURL: "",
-      owners: []
+      owners: [],
+      loading: true
     };
   }
 
   componentDidMount() {
     this.setupAuthStateChange();
     createNewProjectID().then(id => {
-      this.setState({ projectID: id });
+      this.setState({ projectID: id, loading: false });
     });
   }
 
@@ -97,9 +98,13 @@ class CreateProjectPage extends Component {
   };
 
   render() {
+    console.log(this.state.projectID);
     return (
       <div className="PageContainer">
-        <Spinner loading={!this.state.hasFetchedUser} fillPage={true} />
+        <Spinner
+          loading={!this.state.hasFetchedUser && !this.state.loading}
+          fillPage={true}
+        />
         <header className="App-header">
           <Link to="/">
             <img src={logo} className="Logo" alt="logo" />
@@ -125,6 +130,12 @@ class CreateProjectPage extends Component {
                 removeOwner={this.removeOwner}
                 recieveURL={this.recieveURL}
               />
+<<<<<<< HEAD
+=======
+              {this.state.projectID && (
+                <AddThumbnails projectID={this.state.projectID} />
+              )}
+>>>>>>> 8e951bd13e6d18d7a4374a9396d3568b97732e75
             </div>
           </div>
         )}

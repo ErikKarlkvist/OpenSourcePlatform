@@ -77,6 +77,14 @@
   height: 40px;
 }
 
+.GreenBox {
+  width: 552px;
+  height: 654px;
+  padding-top: 20px;
+  margin-top: 10px;
+  border: solid 1px var(--bluey-green);
+}
+
 @media (min-width: 576px) {
   .Center {
     max-width: 300px;
@@ -84,6 +92,14 @@
   }
   .Logo {
     height: 60px;
+  }
+
+  .GreenBox {
+    width: 380px;
+    height: 654px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
   }
 }
 
@@ -95,6 +111,14 @@
   .Logo {
     height: 80px;
   }
+
+  .GreenBox {
+    width: 452px;
+    height: 654px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
 }
 
 @media (min-width: 992px) {
@@ -105,6 +129,14 @@
   .Logo {
     height: 80px;
   }
+
+  .GreenBox {
+    width: 452px;
+    height: 654px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
 }
 
 @media (min-width: 1200px) {
@@ -114,5 +146,12 @@
   }
   .Logo {
     height: 80px;
+  }
+  .GreenBox {
+    width: 500px;
+    height: 654px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
   }
 }
