@@ -44,16 +44,22 @@ const LookingForList = props => {
     marginBottom: "20px"
   };
   const listItems = [];
-  props.lookingFor.forEach(item => {
+  for (let i = 0; i < props.lookingFor.length; i++) {
     const listElem = (
+<<<<<<< HEAD
       <li>
         <h5>> {item}</h5>
+=======
+      <li key={i}>
+        <h3>> {props.lookingFor[i]}</h3>
+>>>>>>> 883d20d70002cef24942b4567be81a7cbadc813b
       </li>
     );
     listItems.push(listElem);
-  });
+  }
+
   return (
-    <ul style={style} class="list-unstyled">
+    <ul style={style} className="list-unstyled">
       {listItems}
     </ul>
   );
