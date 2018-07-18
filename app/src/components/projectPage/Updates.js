@@ -6,7 +6,10 @@ import Thumbnail from "../common/Thumbnail";
 const cutoff = 6;
 
 const Container = props => {
-  const style = { paddingTop: "40px" };
+  const style = {
+    paddingTop: "40px",
+    backgroundColor: "var(--dark-teal)"
+  };
   return <div style={style}>{props.children}</div>;
 };
 
@@ -169,13 +172,16 @@ class Updates extends Component {
     return (
       <div>
         <Container>
-          <Title />
-          <ImageContainer showing={this.state.showing} />
-          <ToggleMore
-            imagesLength={this.state.items.length}
-            showingLength={this.state.showing.length}
-          />
+          <div class="Center">
+            <Title />
+            <ImageContainer showing={this.state.showing} />
+            <ToggleMore
+              imagesLength={this.state.items.length}
+              showingLength={this.state.showing.length}
+            />
+          </div>
         </Container>
+
         {this.state.showFullScreen && (
           <FullScreenImage
             toggleFullScreen={this.toggleFullScreen}
