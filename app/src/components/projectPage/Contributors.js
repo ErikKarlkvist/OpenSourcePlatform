@@ -2,6 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../common/AnimatedMenu.css";
 
+const RemoveSubmittedUser = props => {
+  return (
+    <p
+      style={{ color: "white", cursor: "pointer", textDecoration: "underline" }}
+      onClick={() => props.removeUser(props.user)}
+    >
+      Remove owner
+    </p>
+  );
+};
 class Contributors extends React.Component {
   static propTypes = {
     developers: PropTypes.array.isRequired
@@ -30,6 +40,10 @@ class Contributors extends React.Component {
           <p style={styles.name}>
             <i>{d.role}</i>
           </p>
+          {/*Allows for removal of user in createProjectPage/UserSearch*/}
+          {this.props.removeUser && (
+            <RemoveSubmittedUser removeUser={this.props.removeUser} user={d} />
+          )}
         </div>
       ));
 
@@ -45,12 +59,14 @@ class Contributors extends React.Component {
   }
 
   showAllOwners = () => {
-    console.log("SHOWALL");
     this.setState({ ownersToShow: this.state.owners, showAll: true });
   };
 
   collapseOwners = () => {
-    this.setState({ ownersToShow: this.state.owners.slice(0, 2) });
+    this.setState({
+      ownersToShow: this.state.owners.slice(0, 3),
+      showAll: false
+    });
   };
 
   render() {
