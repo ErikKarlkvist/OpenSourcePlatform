@@ -9,16 +9,6 @@ const UserImage = props => {
 };
 
 const SearchResult = props => {
-  const style = {
-    backgroundColor: "white",
-    height: "40px",
-    textAlign: "left",
-    color: "black",
-    paddingLeft: "20px",
-    justifyContent: "center",
-    borderBottom: "1px solid grey"
-  };
-
   return (
     <div
       //style={style}
@@ -31,7 +21,7 @@ const SearchResult = props => {
   );
 };
 
-const ShowUser = props => {
+const ShowSelectedUser = props => {
   return (
     <div>
       {props.user.image}
@@ -40,7 +30,8 @@ const ShowUser = props => {
         <input
           onChange={e => props.onRoleChange(e)}
           value={props.role}
-          placeholder={props.user.name.split()[0] + "'s role"}
+          placeholder={props.user.firstname + "'s role"}
+          onKeyDown={e => props.submitOnEnter(e)}
         />
       </div>
       <Button onClick={() => props.submitUser(props.user)}>Submit user</Button>
@@ -116,11 +107,17 @@ class UserSearchField extends Component {
 
   submitUser = user => {
     const subUser = { userID: user.id, role: this.state.role, ...user };
-    console.log("!", subUser);
     this.setState({
       submittedUsers: [...this.state.submittedUsers, subUser]
     });
     this.removeSelectedUser();
+  };
+
+  submitOnEnter = e => {
+    console.log(e);
+    if (e.key === "Enter") {
+      this.submitUser(this.state.selected);
+    }
   };
 
   render() {
@@ -143,11 +140,12 @@ class UserSearchField extends Component {
           </div>
           {this.state.selected.name !== undefined && (
             <div class="col-md-6 col-sm-6 col-lg-6">
-              <ShowUser
+              <ShowSelectedUser
                 user={this.state.selected}
                 role={this.state.role}
                 onRoleChange={this.onRoleChange}
                 submitUser={this.submitUser}
+                submitOnEnter={this.submitOnEnter}
               />
             </div>
           )}
