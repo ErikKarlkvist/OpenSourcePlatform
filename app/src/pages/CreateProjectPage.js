@@ -41,7 +41,6 @@ class CreateProjectPage extends Component {
   }
 
   addOwner = userID => {
-    console.log(this.state.owners);
     const newOwners = this.state.owners.concat([userID]);
     console.log(newOwners);
     this.setState({ owners: newOwners });
@@ -57,9 +56,6 @@ class CreateProjectPage extends Component {
     this.setState({
       [target.name]: target.value
     });
-    setTimeout(() => {
-      console.log(this.state, true && this.state.headerImage);
-    }, 500);
   };
 
   setupAuthStateChange = () => {
@@ -83,7 +79,6 @@ class CreateProjectPage extends Component {
   };
 
   recieveURL = url => {
-    console.log(url);
     this.setState({ headerImageURL: url });
   };
 
@@ -118,7 +113,10 @@ class CreateProjectPage extends Component {
         {this.state.hasFetchedUser && (
           <div className="Content">
             <div className="Center">
-              <ProjectInfo values={this.state} handleInputChange={this.handleInputChange}/>
+              <ProjectInfo
+                values={this.state}
+                handleInputChange={this.handleInputChange}
+              />
 
               <Form
                 values={this.state}
@@ -127,9 +125,9 @@ class CreateProjectPage extends Component {
                 removeOwner={this.removeOwner}
                 recieveURL={this.recieveURL}
               />
-              </div>
-              </div>
-          )}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
