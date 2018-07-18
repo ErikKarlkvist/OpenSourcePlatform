@@ -153,9 +153,13 @@ const ReadMore = props => {
     color: "var(--dark-teal)"
   };
   return (
-    <a style={style} href="#!" class="black-text d-flex justify-content-end">
+    <div
+      style={style}
+      href="#!"
+      className="black-text d-flex justify-content-end"
+    >
       <h5 style={style}>Read more</h5>
-    </a>
+    </div>
   );
 };
 
