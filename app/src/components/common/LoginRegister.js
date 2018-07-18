@@ -57,14 +57,24 @@ class LoginRegister extends Component {
           <div style={styles.line} />
           <div style={styles.optionsContainer}>
             <div style={styles.option}>
-              <Link to={`\createProject`}>
-                <a className={"MenuItem"}>Create Project</a>
+              <Link to={`/createProject`} style={{ textDecoration: "none" }}>
+                <div>
+                  <a
+                    className={"MenuItem"}
+                    style={{ textDecoration: "none" }}
+                    onClick={() => {}}
+                  >
+                    Create Project
+                  </a>
+                </div>
               </Link>
             </div>
             <div style={styles.option}>
-              <a className={"MenuItem"} onClick={() => {}}>
-                Your Projects
-              </a>
+              <Link to={"/createProject"} style={{ textDecoration: "none" }}>
+                <a className={"MenuItem"} onClick={() => {}}>
+                  Your Projects
+                </a>
+              </Link>
             </div>
             <div style={styles.option}>
               <a className={"MenuItem"} onClick={this.logout}>
