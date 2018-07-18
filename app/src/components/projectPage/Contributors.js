@@ -41,7 +41,11 @@ class Contributors extends React.Component {
     let items = [];
     if (data) {
       items = data.map((d, i) => (
-        <div class="d-block d-sm-block d-md-block" style={styles.owner} key={i}>
+        <div
+          className="d-block d-sm-block d-md-block"
+          style={styles.owner}
+          key={i}
+        >
           <img style={styles.image} src={d.profileImageURL} alt={"profile"} />
           <p style={{ ...styles.name, ...{ marginBottom: "-10px" } }}>
             {d.firstname}
@@ -81,10 +85,10 @@ class Contributors extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        <div class="d-block d-sm-block d-md-block">
+        <div className="d-block d-sm-block d-md-block">
           <h3 style={{ textAlign: "left" }}>Owners</h3>
           <div style={styles.imageWrapper}>
-            <div class="row">{this.state.ownersToShow}</div>
+            <div className="row">{this.state.ownersToShow}</div>
           </div>
 
           {this.state.owners.length > 2 &&

@@ -19,7 +19,7 @@ const Title = props => {
 };
 
 const ImageContainer = props => {
-  return <div class="row">{props.showing}</div>;
+  return <div className="row">{props.showing}</div>;
 };
 
 const ToggleMore = props => {
@@ -129,7 +129,7 @@ class Updates extends Component {
           <div
             key={i}
             style={{ marginBottom: 30 }}
-            class={"col-md-3 col-sm-12 col-lg-3"}
+            className={"col-md-3 col-sm-12 col-lg-3"}
           >
             <Thumbnail
               description={d.description || ""}
@@ -173,7 +173,7 @@ class Updates extends Component {
     return (
       <div>
         <Container>
-          <div class="Center">
+          <div className="Center">
             <Title />
             <ImageContainer showing={this.state.showing} />
             <ToggleMore

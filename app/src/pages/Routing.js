@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from "./HomePage";
 import Project from "./ProjectPage";
 import CreateProject from "./CreateProjectPage";
-import HenningsPage from "./HenningsPage";
 
 const Routing = () => (
   <Router>
