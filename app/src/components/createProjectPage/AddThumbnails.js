@@ -21,8 +21,8 @@ const ThumbnailUpload = props => {
       height: "200px"
     },
     circle: {
-      width: "200px",
-      height: "200px",
+      width: "50px",
+      height: "50px",
       borderRadius: "100px",
       border: "solid 1px white"
     }
@@ -59,8 +59,10 @@ const FullScreenImage = props => {
       overflowY: "auto"
     },
     content: {
-      height: "80vh",
+      // height: "80vh",
+      width: "800px",
       margin: "20%",
+      border: "solid 1px red",
       textAlign: "left",
       backgroundColor: "white"
     },
@@ -73,6 +75,7 @@ const FullScreenImage = props => {
       paddingRight: "5%",
       paddingTop: 10,
       paddingBottom: 10,
+      border: "solid 1px green",
       color: "var(--dark-teal)",
       backgroundColor: "white"
     },
@@ -82,6 +85,7 @@ const FullScreenImage = props => {
       paddingRight: "5%",
       paddingTop: 10,
       paddingBottom: 10,
+      border: "solid 1px blue",
       color: "var(--dark-teal)",
       backgroundColor: "white"
     }
@@ -91,7 +95,14 @@ const FullScreenImage = props => {
       <div style={styles.content}>
         <img src={"no image"} style={styles.image} />
         <h2 style={styles.title}>{"byt till input field"}</h2>
-        <p style={styles.desc}>{"byt till input field"}</p>
+        <div style={styles.desc}>
+          <input 
+            type="text"
+            name="fullScreen"
+            placeholder="Add a description of your image"
+            onChange={e => props.handleInputChange(e)}
+          />
+        </div>
       </div>
     </div>
   );
