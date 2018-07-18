@@ -9,7 +9,7 @@ class Contributors extends React.Component {
 
   constructor() {
     super();
-    this.state = { owners: [], ownersToShow: [] };
+    this.state = { owners: [], ownersToShow: [], showAll: false };
   }
 
   componentDidMount() {
@@ -18,7 +18,7 @@ class Contributors extends React.Component {
 
   getOwners = () => {
     const data = this.props.developers;
-
+    console.log(data);
     let items = [];
     if (data) {
       items = data.map(d => (
@@ -32,21 +32,21 @@ class Contributors extends React.Component {
           </p>
         </div>
       ));
-      const ownersLength = items.length;
 
       this.setState({ owners: items, ownersToShow: items.slice(0, 2) });
     }
   };
 
   componentDidUpdate(nextProps) {
-    console.log(nextProps);
-    if (!nextProps === this.props) {
+    if (nextProps.developers !== this.props.developers) {
+      console.log(nextProps);
       this.getOwners();
     }
   }
 
   showAllOwners = () => {
-    this.setState({ ownersToShow: this.state.owners });
+    console.log("SHOWALL");
+    this.setState({ ownersToShow: this.state.owners, showAll: true });
   };
 
   collapseOwners = () => {
