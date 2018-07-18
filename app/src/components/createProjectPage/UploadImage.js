@@ -6,7 +6,7 @@ import {
   uploadProfileImage
 } from "../../backend/storage";
 import "./UploadImage.css";
-import Spinner from "./Spinner";
+import Spinner from "../common/Spinner";
 
 /*
 WARNING HOW TO USE:
@@ -31,17 +31,20 @@ class UploadImage extends Component {
   };
 
   render() {
-    //hooka med login
     if (this.state.uploading) {
       return (
-        <div style={styles.container}>
+        <div style={this.styles.container}>
           <Spinner loading={true} />
         </div>
       );
     } else {
+      const textColor = this.props.color
+        ? { color: this.props.color }
+        : { color: "white" };
+
       return (
-        <div style={styles.container}>
-          <label style={styles.uploadLabel}>
+        <div style={this.styles.container}>
+          <label style={{ ...this.styles.uploadLabel, ...textColor }}>
             <input
               type="file"
               onChange={e => {
@@ -98,19 +101,20 @@ class UploadImage extends Component {
 
     //
   };
-}
 
-const styles = {
-  container: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    height: "120px"
-  },
-  uploadLabel: {
-    cursor: "pointer",
-    textDecoration: "underline"
-  }
-};
+  styles = {
+    container: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      height: "120px"
+    },
+    uploadLabel: {
+      cursor: "pointer",
+      textDecoration: "underline",
+      fontStyle: "italic"
+    }
+  };
+}
 
 export default UploadImage;
