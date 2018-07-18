@@ -3,10 +3,6 @@ import "./ProjectInfo.css";
 import "../../resources/Main.css";
 import LoginForm from "../common/LoginForm";
 import SignupForm from "../common/SignupForm";
-import {
-  requestJoinProject,
-  removeRequestProject
-} from "../../backend/projects";
 import Contributors from "./Contributors";
 import "../../resources/fonts.css";
 import ProjectMetrics from "./ProjectMetrics";

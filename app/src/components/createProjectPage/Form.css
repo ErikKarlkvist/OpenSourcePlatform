@@ -1,6 +1,6 @@
 .inputTextBox {
   width: 100%;
-  height: auto;
+  height: "200px";
   border: 3px dotted grey;
   background-color: rgba(1, 1, 1, 0);
   color: white;
