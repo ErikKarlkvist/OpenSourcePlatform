@@ -6,7 +6,7 @@ const RemoveSubmittedUser = props => {
   return (
     <p
       style={{ color: "white", cursor: "pointer", textDecoration: "underline" }}
-      onClick={props.removeUser}
+      onClick={() => props.removeUser(props.user)}
     >
       Remove owner
     </p>
@@ -42,7 +42,7 @@ class Contributors extends React.Component {
           </p>
           {/*Allows for removal of user in createProjectPage/UserSearch*/}
           {this.props.removeUser && (
-            <RemoveSubmittedUser removeUser={this.props.removeUser} />
+            <RemoveSubmittedUser removeUser={this.props.removeUser} user={d} />
           )}
         </div>
       ));
