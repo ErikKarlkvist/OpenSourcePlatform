@@ -40,21 +40,21 @@ const Paragraph = () => {
 };
 
 const LookingForList = props => {
-  console.log(props);
   const style = {
     marginBottom: "20px"
   };
   const listItems = [];
-  props.lookingFor.forEach(item => {
+  for (let i = 0; i < props.lookingFor.length; i++) {
     const listElem = (
-      <li>
-        <h3>> {item}</h3>
+      <li key={i}>
+        <h3>> {props.lookingFor[i]}</h3>
       </li>
     );
     listItems.push(listElem);
-  });
+  }
+
   return (
-    <ul style={style} class="list-unstyled">
+    <ul style={style} className="list-unstyled">
       {listItems}
     </ul>
   );
