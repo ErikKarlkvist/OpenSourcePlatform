@@ -120,6 +120,11 @@ class UserSearchField extends Component {
     }
   };
 
+  removeSubmittedUser = user => {
+    const newUsers = this.state.submittedUsers.filter(d => user.id === d.id);
+    this.setState({ submittedUsers: newUsers });
+  };
+
   render() {
     const { value, suggestions } = this.state;
 
@@ -150,7 +155,10 @@ class UserSearchField extends Component {
             </div>
           )}
         </div>
-        <Contributors developers={this.state.submittedUsers} />
+        <Contributors
+          developers={this.state.submittedUsers}
+          removeUser={this.removeSubmittedUser}
+        />
       </div>
     );
   }
