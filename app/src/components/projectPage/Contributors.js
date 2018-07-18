@@ -42,8 +42,8 @@ class Contributors extends React.Component {
   };
 
   componentDidUpdate(nextProps) {
-    console.log(nextProps);
     if (nextProps.developers !== this.props.developers) {
+      console.log(nextProps);
       this.getOwners();
     }
   }
