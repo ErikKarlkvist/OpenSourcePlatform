@@ -13,7 +13,7 @@ const Title = () => {
   const style = {
     float: "left"
   };
-  return <h2 style={style}>Looking for</h2>;
+  return <h3 style={style}>Looking for</h3>;
 };
 
 const SubContainer = props => {
@@ -22,7 +22,7 @@ const SubContainer = props => {
     clear: "both",
     paddingTop: "20px",
     position: "relative",
-    margin: "10px"
+    marginTop: "10px"
   };
   return <div style={style}>{props.children}</div>;
 };
@@ -40,21 +40,21 @@ const Paragraph = () => {
 };
 
 const LookingForList = props => {
-  console.log(props);
   const style = {
     marginBottom: "20px"
   };
   const listItems = [];
-  props.lookingFor.forEach(item => {
+  for (let i = 0; i < props.lookingFor.length; i++) {
     const listElem = (
-      <li>
-        <h3>> {item}</h3>
+      <li key={i}>
+        <h3>> {props.lookingFor[i]}</h3>
       </li>
     );
     listItems.push(listElem);
-  });
+  }
+
   return (
-    <ul style={style} class="list-unstyled">
+    <ul style={style} className="list-unstyled">
       {listItems}
     </ul>
   );
@@ -72,7 +72,7 @@ const Seeking = props => {
   };
 
   return (
-    <div>
+    <div class="ProjectTopInfo">
       <Header>
         <Title />
       </Header>

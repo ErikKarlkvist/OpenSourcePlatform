@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../../resources/Main.css";
+import "../common/AnimatedMenu.css";
 
 const RemoveSubmittedUser = props => {
   return (
@@ -47,11 +47,7 @@ class Contributors extends React.Component {
         </div>
       ));
 
-      if (this.state.showAll) {
-        this.setState({ owners: items, ownersToShow: items });
-      } else {
-        this.setState({ owners: items, ownersToShow: items.slice(0, 3) });
-      }
+      this.setState({ owners: items, ownersToShow: items.slice(0, 2) });
     }
   };
 
@@ -67,10 +63,14 @@ class Contributors extends React.Component {
   };
 
   collapseOwners = () => {
+<<<<<<< HEAD
     this.setState({
       ownersToShow: this.state.owners.slice(0, 3),
       showAll: false
     });
+=======
+    this.setState({ ownersToShow: this.state.owners.slice(0, 2) });
+>>>>>>> 67250d137172f6edfe82c32faa99ec50fc3c492d
   };
 
   render() {
@@ -82,18 +82,18 @@ class Contributors extends React.Component {
             <div class="row">{this.state.ownersToShow}</div>
           </div>
 
-          {this.state.owners.length > 3 &&
-            !this.state.showAll && (
+          {this.state.owners.length > 2 &&
+            this.state.ownersToShow.length < 3 && (
               <div>
-                <a style={styles.seeAllLink} onClick={this.showAllOwners}>
-                  See {this.state.owners.length - 3} more
+                <a className="MenuItem" onClick={this.showAllOwners}>
+                  See {this.state.owners.length - 2} more
                 </a>
               </div>
             )}
-          {this.state.owners.length > 3 &&
-            this.state.showAll && (
+          {this.state.owners.length > 2 &&
+            this.state.ownersToShow.length >= 3 && (
               <div>
-                <a style={styles.seeAllLink} onClick={this.collapseOwners}>
+                <a className="MenuItem" onClick={this.collapseOwners}>
                   See fewer
                 </a>
               </div>
@@ -106,16 +106,15 @@ class Contributors extends React.Component {
 
 const styles = {
   container: {
-    alignText: "left"
+    textAlign: "left"
   },
   image: {
     backgroundColor: "white",
-    height: "100px",
-    width: "100px",
-    marginLeft: "21px",
-    marginRight: "21px",
+    height: "80px",
+    width: "80px",
+    marginLeft: "28px",
+    marginRight: "28px",
     borderRadius: "50%",
-    border: "1px white ",
     objectFit: "cover"
   },
   imageWrapper: {
@@ -132,15 +131,13 @@ const styles = {
     color: "white",
     textAlign: "center",
     marginTop: "10px",
-    marginLeft: "5px",
+
     marginRight: "5px"
   },
   seeAllLink: {
     color: "white",
-    float: "right",
-    textDecoration: "underline",
-    width: "100%",
-    cursor: "pointer"
+    cursor: "pointer",
+    textAlign: "left"
   }
 };
 
