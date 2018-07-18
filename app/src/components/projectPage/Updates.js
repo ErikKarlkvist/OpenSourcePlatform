@@ -79,7 +79,6 @@ const FullScreenImage = props => {
       backgroundColor: "white"
     }
   };
-  console.log(props);
   return (
     <div style={styles.container} onClick={props.toggleFullScreen}>
       <div style={styles.content}>

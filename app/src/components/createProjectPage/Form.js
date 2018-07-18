@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UploadImage from "../common/UploadImage";
+import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
 import UserSearch from "../common/UserSearch";
 import "./Form.css";
