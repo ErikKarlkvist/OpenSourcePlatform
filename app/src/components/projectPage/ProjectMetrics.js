@@ -27,15 +27,15 @@ const Metrics = props => {
 
   return (
     <div className="row" style={{ width: "100%", textAlign: "left" }}>
-      <div class="col-md-3 col-sm-12 col-lg-3">
+      <div className="col-md-3 col-sm-12 col-lg-3">
         <h3 style={styles.title}>{props.nmbrOfBugs} Bugs</h3>
         <h6 style={styles.subtitle}>to be fixed</h6>
       </div>
-      <div class="col-md-4 col-sm-12 col-lg-4">
+      <div className="col-md-4 col-sm-12 col-lg-4">
         <h3 style={styles.title}>{props.nmbrOfEts} Features</h3>
         <h6 style={styles.subtitle}>to be implemented</h6>
       </div>
-      <div class="col-md-5 col-sm-12 col-lg-5">
+      <div className="col-md-5 col-sm-12 col-lg-5">
         <h3 style={styles.title}>{props.nmbrOfBugs} Contributors</h3>
         <h6 style={styles.subtitle}>has added code</h6>
       </div>
