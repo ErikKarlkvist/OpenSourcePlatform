@@ -51,7 +51,7 @@ const Container = props => {
       onMouseOver={props.onMouseOver}
       onMouseOut={props.onMouseOut}
       onClick={props.onClick}
-      class="card"
+      className="card"
       style={style}
     >
       {props.children}
@@ -82,9 +82,9 @@ const Image = props => {
     }
   };
   return (
-    <div style={styles.container} class="view overlay">
+    <div style={styles.container} className="view overlay">
       <img
-        class="card-img-top"
+        className="card-img-top"
         src={props.imgURL}
         alt="Card image cap"
         style={styles.image}
@@ -94,7 +94,7 @@ const Image = props => {
 };
 
 const Body = props => {
-  return <div class="card-body">{props.children}</div>;
+  return <div className="card-body">{props.children}</div>;
 };
 
 const Title = props => {
@@ -104,13 +104,13 @@ const Title = props => {
   };
   if (props.size === "medium") {
     return (
-      <h4 style={style} class="card-title">
+      <h4 style={style} className="card-title">
         {props.name}
       </h4>
     );
   } else {
     return (
-      <h5 style={style} class="card-title">
+      <h5 style={style} className="card-title">
         {props.name}
       </h5>
     );
@@ -141,7 +141,7 @@ const Description = props => {
   }
 
   return (
-    <p style={style} class="card-text">
+    <p style={style} className="card-text">
       {description}
     </p>
   );
