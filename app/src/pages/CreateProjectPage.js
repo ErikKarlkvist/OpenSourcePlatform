@@ -130,12 +130,9 @@ class CreateProjectPage extends Component {
                 removeOwner={this.removeOwner}
                 recieveURL={this.recieveURL}
               />
-<<<<<<< HEAD
-=======
               {this.state.projectID && (
                 <AddThumbnails projectID={this.state.projectID} />
               )}
->>>>>>> 8e951bd13e6d18d7a4374a9396d3568b97732e75
             </div>
           </div>
         )}
