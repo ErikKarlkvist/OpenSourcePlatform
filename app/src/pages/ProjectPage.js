@@ -72,10 +72,10 @@ class ProjectPage extends Component {
     return (
       <div className="PageContainer">
         {!this.state.loading && (
-          <div class="Content">
+          <div className="Content">
             <header className="App-header">
               <Link to="/">
-                <img src={logo} class="Logo" alt="logo" />
+                <img src={logo} className="Logo" alt="logo" />
               </Link>
               <LoginRegister
                 isLoggedIn={this.state.isLoggedIn}
@@ -83,7 +83,7 @@ class ProjectPage extends Component {
                 hasFetchedUser={this.state.hasFetchedUser}
               />
             </header>
-            <div class="Center">
+            <div className="Center">
               <ProjectInfo
                 user={this.state.user}
                 isLoggedIn={this.state.isLoggedIn}

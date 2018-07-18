@@ -62,7 +62,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div class="PageContainer">
+      <div className="PageContainer">
         <Spinner
           loading={this.state.loading || !this.state.hasFetchedUser}
           fillPage={true}
@@ -77,14 +77,14 @@ class HomePage extends Component {
             hasFetchedUser={this.state.hasFetchedUser}
           />
         </header>
-        <div class="Content">
+        <div className="Content">
           <h1 className="App-title Red Green">DNB Open Source</h1>
           <h2 className="App-intro">Contribute & Innovate</h2>
           <div style={{ marginTop: 30, marginBottom: 30 }}>
             <Line style={{ marginBottom: 10 }} />
             <FilterProjects changeFilter={this.changeFilter} />
           </div>
-          <div class="Center">
+          <div className="Center">
             <ProjectsDisplay projects={this.state.currentlyViewing} />
           </div>
         </div>
