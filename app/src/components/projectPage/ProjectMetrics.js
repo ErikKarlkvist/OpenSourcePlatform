@@ -7,13 +7,11 @@ import {
 import Button from "../common/Button";
 
 const Container = props => {
-  return (
-    <div style={{ width: "100%", marginTop: "20px" }}>{props.children}</div>
-  );
+  return <div style={{ width: "100%" }}>{props.children}</div>;
 };
 
 const Title = props => {
-  return <h2 style={{ textAlign: "left" }}>Metrics</h2>;
+  return <h3 style={{ textAlign: "left" }}>Metrics</h3>;
 };
 
 const Metrics = props => {

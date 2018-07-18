@@ -26,31 +26,22 @@ const Container = props => {
   return <div class="row">{props.children}</div>;
 };
 
-const LeftContent = props => {
-  const style = {};
-  return (
-    <div style={style} class={"col-md-12 col-sm-12 col-lg-6"}>
-      {props.children}
-    </div>
-  );
-};
-
-const RightContent = props => {
-  const style = {};
-  return (
-    <div style={style} class={"col-md-12 col-sm-12 col-lg-6"}>
-      {props.children}
-    </div>
-  );
-};
-
-const GreenBox = props => {
+const Big = props => {
   const style = {
-    paddingLeft: "20px",
-    paddingRight: "20px"
+    borderRight: "solid 2px white",
+    paddingRight: "30px"
   };
   return (
-    <div style={style} class="GreenBox">
+    <div class={"col-md-7 col-sm-12 col-lg-7 ProjectInfoLeft"}>
+      {props.children}
+    </div>
+  );
+};
+
+const Small = props => {
+  const style = {};
+  return (
+    <div class={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
       {props.children}
     </div>
   );
@@ -64,29 +55,16 @@ const Description = props => {
     Description: {
       color: "white",
       fontSize: 16,
-      textAlign: "left",
-      width: "100%"
+      textAlign: "left"
     }
   };
   return (
-    <div style={styles.Description}>
+    <div>
       {props.children}
       <h3 style={styles.HeaderText}>What is {props.project.name}?</h3>
       <p style={styles.Description}>{props.project.description}</p>
-      <div style={{ paddingTop: "40px" }} />
     </div>
   );
-};
-
-const Image = props => {
-  const style = {
-    width: "519px",
-    height: "374px",
-    objectFit: "cover",
-    boxShadow: "1px 1px 1px 1px black",
-    marginTop: "10px"
-  };
-  return <img src={props.project.headerImageURL} style={style} />;
 };
 
 class ProjectInfo extends Component {
@@ -134,24 +112,28 @@ class ProjectInfo extends Component {
         {this.state.displayLogin && (
           <LoginForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
+
         {this.state.displaySignup && (
           <SignupForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
+
         <h1 style={{ textAlign: "left", marginTop: "80px" }}>
           {this.props.project.name}
         </h1>
+
         <Container>
-          <LeftContent>
-            <GreenBox>
-              <Description project={this.props.project} />
-              <Seeking lookingFor={this.props.project.lookingFor} />
-              <Contributors developers={this.props.project.owners} />
-            </GreenBox>
-          </LeftContent>
-          <RightContent>
-            <Image project={this.props.project} />
+          <Big>
+            <Description project={this.props.project} />
+          </Big>
+          <Small>
+            <Seeking lookingFor={this.props.project.lookingFor} />
+          </Small>
+          <Big>
             <ProjectMetrics gitURL={this.props.project.gitURL} />
-          </RightContent>
+          </Big>
+          <Small>
+            <Contributors developers={this.props.project.owners} />
+          </Small>
         </Container>
       </InfoContainer>
     );
@@ -184,43 +166,3 @@ class ProjectInfo extends Component {
 }
 
 export default ProjectInfo;
-
-const styles = {
-  Description: {
-    color: "white",
-    fontSize: 16,
-    textAlign: "left"
-  },
-  TopRow: {
-    borderTop: "1px solid var(--dark-teal)",
-    width: "100%",
-    height: "auto"
-  },
-  BottomRow: {
-    borderBottom: "1px solid var(--dark-teal)",
-    width: "100%"
-  },
-  InfoContainer: {
-    marginTop: "40px",
-    marginBottom: "40px"
-  },
-  Sidebar: {
-    color: "white",
-    alignItems: "right"
-  },
-  MainImage: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    boxShadow: "1px 1px 1px 1px black"
-  },
-  HeaderText: {
-    textAlign: "left"
-  },
-  Container: {
-    paddingRight: "0px",
-    paddingLeft: "0px",
-    height: "auto",
-    alignContent: "space-between"
-  }
-};
