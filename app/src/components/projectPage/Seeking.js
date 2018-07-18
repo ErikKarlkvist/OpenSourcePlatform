@@ -40,21 +40,35 @@ const Paragraph = () => {
 };
 
 const LookingForList = props => {
-  const style = {
-    marginBottom: "20px"
+  const styles = {
+    list: {
+      marginBottom: "20px"
+    },
+    removeText: {
+      color: "white",
+      cursor: "pointer"
+    }
   };
   const listItems = [];
   for (let i = 0; i < props.lookingFor.length; i++) {
     const listElem = (
       <li key={i}>
         <h3>> {props.lookingFor[i]}</h3>
+        {props.removeItem && (
+          <a
+            onClick={() => props.removeItem(props.lookingFor[i])}
+            style={styles.removeText}
+          >
+            Remove
+          </a>
+        )}
       </li>
     );
     listItems.push(listElem);
   }
 
   return (
-    <ul style={style} className="list-unstyled">
+    <ul style={styles.list} className="list-unstyled">
       {listItems}
     </ul>
   );
@@ -77,7 +91,10 @@ const Seeking = props => {
         <Title />
       </Header>
       <SubContainer>
-        <LookingForList lookingFor={props.lookingFor} />
+        <LookingForList
+          lookingFor={props.lookingFor}
+          removeItem={props.removeItem}
+        />
         <Button style={{ width: "150px" }} onClick={mailContact}>
           Contact{" "}
         </Button>
