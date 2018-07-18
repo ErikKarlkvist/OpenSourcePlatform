@@ -30,10 +30,9 @@ class LookingFor extends Component {
     }
   };
 
-  removeItem = item => {
-    const newItems = this.state.submitted.filter(d => {
-      return d !== item;
-    });
+  //Remove item 'index' from the submitted list. Index = int
+  removeItem = index => {
+    const newItems = [...this.state.submitted].filter((d, i) => i !== index);
     this.setState({ submitted: newItems });
   };
 
