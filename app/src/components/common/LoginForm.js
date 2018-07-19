@@ -5,28 +5,94 @@ import "../../resources/Main.css";
 import Spinner from "../common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
 
-class SignUpView extends Component {
+const Header = () => {
+  const style = {
+    color: "var(--dark-teal)",
+    textAlign: "center",
+    paddingBottom: "20px"
+  };
+  return <h1 style={style}>Log in</h1>;
+};
+
+const Inputs = () => {
+  const styles = {
+    input: {
+      width: "100%",
+      backgroundColor: "var(--white-three)",
+      paddingLeft: "10px",
+      marginBottom: "25px",
+      border: "1px solid var(--dark-teal)"
+    }
+  };
+
+  return (
+    <div>
+      Email
+      <input
+        style={styles.input}
+        type="email"
+        name="email"
+        placeholder="name@email.com "
+      />
+      Password:
+      <input
+        style={styles.input}
+        type="password"
+        name="password"
+        placeholder="password"
+      />
+    </div>
+  );
+};
+
+const Buttons = props => {
+  const styles = {
+    container2: {
+      marginTop: "3%",
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    },
+    cancel: {
+      margin: 20,
+      cursor: "pointer"
+    },
+    create: {
+      cursor: "pointer",
+      margin: 20,
+      textAlign: "center"
+    }
+  };
+  return (
+    <div>
+      <div style={styles.container2}>
+        <a style={styles.cancel} onClick={props.hide}>
+          Cancel
+        </a>
+        <input type="submit" value="Log in" className="LogInBtn" />
+      </div>
+      <div style={styles.container2}>
+        <a style={styles.create} onClick={props.switchDisplay}>
+          Create account
+        </a>
+        <br />
+        <a style={styles.create} onClick={props.forgotPassword}>
+          Forgot password
+        </a>
+      </div>
+    </div>
+  );
+};
+
+class LoginView extends Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       value: "",
       loading: false
     };
-  }
-
-  getValidationState() {
-    const length = this.state.value.length;
-    if (length > 10) return "success";
-    else if (length > 5) return "warning";
-    else if (length > 0) return "error";
-    return null;
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value });
   }
 
   render() {
@@ -37,45 +103,14 @@ class SignUpView extends Component {
           {this.state.loading && (
             <Spinner loading={true} fillPage color={"black"} />
           )}
-          <h1 style={{ color: "var(--dark-teal)", textAlign: "center" }}>
-            Log in
-          </h1>
+          <Header />
           <form name="login" onSubmit={this.submit} style={{ width: "100%" }}>
-            <div style={styles.space}>
-              Email <br />
-              <input
-                style={styles.input}
-                type="email"
-                name="email"
-                placeholder="name@email.com "
-              />
-              <br />
-            </div>
-            Password:<br />
-            <input
-              style={styles.input}
-              type="password"
-              name="password"
-              placeholder="password"
+            <Inputs />
+            <Buttons
+              hide={this.props.hide}
+              switchDisplay={this.props.switchDisplay}
+              forgotPassword={this.forgotPassword}
             />
-            <br />
-            <br />
-            <div style={styles.container2}>
-              <a style={styles.cancel} onClick={this.props.hide}>
-                {" "}
-                Cancel{" "}
-              </a>
-              <input type="submit" value="Log in" className="LogInBtn" />
-            </div>
-            <div style={styles.container2}>
-              <a style={styles.create} onClick={this.props.switchDisplay}>
-                Create account
-              </a>
-              <br />
-              <a style={styles.create} onClick={this.forgotPassword}>
-                Forgot password
-              </a>
-            </div>
           </form>
         </div>
       </div>
@@ -99,7 +134,6 @@ class SignUpView extends Component {
     e.preventDefault();
     const email = document.forms["login"]["email"].value;
     const password = document.forms["login"]["password"].value;
-
     const emailDomain = email.split("@")[1];
 
     if (emailDomain !== "dnb.no") {
@@ -149,33 +183,7 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 3
-  },
-  input: {
-    width: "100%",
-    backgroundColor: "var(--white-three)",
-    paddingLeft: 10,
-    border: "1px solid var(--dark-teal)"
-  },
-  container2: {
-    marginTop: "3%",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  cancel: {
-    margin: 20,
-    cursor: "pointer"
-  },
-  create: {
-    cursor: "pointer",
-    margin: 20,
-    textAlign: "center"
-  },
-  space: {
-    width: "100%",
-    marginBottom: 20
   }
 };
 
-export default SignUpView;
+export default LoginView;
