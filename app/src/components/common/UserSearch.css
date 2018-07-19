@@ -1,6 +1,6 @@
 .search-input {
   padding: 10px 20px;
-  border: 1px solid #aaa;
+  border: 1px solid var(--white-three);
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   width: 100%;
