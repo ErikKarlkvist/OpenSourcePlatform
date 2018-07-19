@@ -129,7 +129,7 @@ class Updates extends Component {
           <div
             key={i}
             style={{ marginBottom: 30 }}
-            className={"col-md-3 col-sm-12 col-lg-3"}
+            className={"col-md-4 col-sm-12 col-lg-3"}
           >
             <Thumbnail
               description={d.description || ""}
