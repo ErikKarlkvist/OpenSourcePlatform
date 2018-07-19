@@ -73,7 +73,7 @@ const InputContainer = props => {
   );
 };
 
-const SuggestionLink = props => {
+/*const SuggestionLink = props => {
   const styles = {
     container: {
       marginLeft: 20,
@@ -84,18 +84,19 @@ const SuggestionLink = props => {
       textAlign: "bottom"
     },
     suggestionLink: {
-      color: "var(--bluey-green)"
+      color: "white",
+      textDecoration: "underline"
     }
   };
   return (
     <div style={styles.container}>
       <pre style={styles.text}>
         or{"  "}
-        <a style={styles.suggestionLink}>Send in a suggestion</a>
+         <a style={styles.suggestionLink}>Send in a suggestion</a>
       </pre>
     </div>
   );
-};
+}; */
 
 class ProjectMetrics extends Component {
   constructor() {
@@ -153,8 +154,8 @@ class ProjectMetrics extends Component {
         />
         <InfoText />
         <InputContainer>
-          <Button onClick={this.openGit}>Get the code!</Button>
-          <SuggestionLink />
+          <Button solidBtn={true} onClick={this.openGit}>Get the code!</Button>
+          <Button>Send in suggestion</Button> 
         </InputContainer>
       </Container>
     );

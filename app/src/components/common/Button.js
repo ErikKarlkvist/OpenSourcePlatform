@@ -8,6 +8,8 @@ const Button = props => {
     cName = "SeeThroughBtn";
   } else if (props.logIn) {
     cName = "LogInBtn";
+  } else if (props.solidBtn) {
+    cName = "SolidBtn";
   }
 
   return (
