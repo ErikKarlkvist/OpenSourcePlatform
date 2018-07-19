@@ -39,8 +39,8 @@
 }
 
 .SeeThroughBtn:hover {
-  background: var(--bluey-green);
-  border: solid var(--bluey-green) 2px;
+  background: var(--light-teal);
+  border: solid var(--light-teal) 2px;
   color: var(--dark-teal);
   cursor: pointer;
 }
@@ -53,14 +53,13 @@
   background: var(--bluey-green);
   color: white;
   padding: 5px;
-  
   text-align: center;
   transition: 0.2s;
 }
 
 .SolidBtn:hover {
-  background: var(--bluey-green);
-  border: solid var(--bluey-green) 2px;
+  background: var(--light-teal);
+  border: solid var(--light-teal) 2px;
   color: var(--dark-teal);
   cursor: pointer;
 }
