@@ -94,6 +94,18 @@ class AddThumbnails extends Component {
     this.toggleFullScreen(null);
   };
 
+  removeThumbnail = () => {
+    console.log(this.state.currentItem);
+    if (this.state.currentItem !== null) {
+      let { thumbnails } = this.state;
+      console.log(thumbnails);
+      thumbnails.splice(this.state.currentItem, 1);
+      console.log(thumbnails);
+      this.setState({ thumbnails });
+    }
+    this.toggleFullScreen(null);
+  };
+
   render() {
     const { thumbnails } = this.state;
     const thumbnailsToShow = [];
@@ -104,7 +116,7 @@ class AddThumbnails extends Component {
         <div class={"col-md-3 col-sm-12 col-lg-3"}>
           <Thumbnail
             description={data.description || ""}
-            onClick={() => {}}
+            onClick={() => this.toggleFullScreen(i)}
             imgURL={data.url}
             name={data.name}
             size={"small"}
@@ -133,6 +145,7 @@ class AddThumbnails extends Component {
               projectID={this.props.projectID}
               data={this.state.thumbnails[this.state.currentItem]}
               addThumbnail={this.addThumbnail}
+              removeThumbnail={this.removeThumbnail}
             />
           )}
         </div>
