@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Form.css";
 import Seeking from "../projectPage/Seeking";
 import Button from "../common/Button";
 
@@ -39,6 +38,10 @@ class LookingFor extends Component {
   render() {
     return (
       <div>
+        <Seeking
+          lookingFor={this.state.submitted}
+          removeItem={this.removeItem}
+        />
         <div className="row">
           <div className="col-8">
             <input
@@ -58,10 +61,6 @@ class LookingFor extends Component {
             <Button onClick={this.submitField}>Submit</Button>
           </div>
         </div>
-        <Seeking
-          lookingFor={this.state.submitted}
-          removeItem={this.removeItem}
-        />
       </div>
     );
   }

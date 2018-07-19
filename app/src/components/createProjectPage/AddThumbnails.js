@@ -1,5 +1,20 @@
 import React, { Component } from "react";
-import UploadImage from "./UploadImage";
+import Line from "../common/Line.js";
+import CreateUpdatePost from "./CreateUpdatePost";
+import Thumbnail from "../common/Thumbnail";
+
+const Container = props => {
+  const style = {
+    textAlign: "left",
+    marginBottom: "50vh"
+  };
+  return <div style={style}>{props.children}</div>;
+};
+
+const Title = props => {
+  const style = { paddingTop: "50px" };
+  return <h3 style={style}>Updates</h3>;
+};
 
 const ThumbnailUpload = props => {
   const styles = {
@@ -9,101 +24,27 @@ const ThumbnailUpload = props => {
       border: "solid 1px gray",
       backgroundColor: "white"
     },
-    uploadImage: {
-      paddingTop: "80px",
-      backgroundColor: "#d8d8d8",
-      width: "198px",
-      height: "200px"
-    },
-    img: {
-      objectFit: "cover",
-      width: "200px",
-      height: "200px"
-    },
     circle: {
-      width: "50px",
-      height: "50px",
-      borderRadius: "100px",
-      border: "solid 1px white"
-    }
-  };
-
-  if (props.imageURL) {
-    return (
-      <div style={styles.container}>
-        {props.imageURL && <img style={styles.img} src={props.imageURL} />}
-        <div style={styles.circle} onClick={() => props.addNewThumbnail()} />
-      </div>
-    );
-  } else {
-    return (
-      <div style={styles.circle} onClick={() => props.addNewThumbnail()} />
-    );
-  }
-};
-
-const FullScreenImage = props => {
-  const styles = {
-    container: {
-      position: "fixed",
-      width: "100%",
-      height: "100vh",
-      backgroundColor: "rgba(0,0,0,0.8)",
-      zIndex: 5,
-      top: 0,
-      left: 0,
-
+      width: "200px",
+      height: "300px",
+      border: "solid 1px white",
+      cursor: "pointer",
+      borderRadius: "5px",
+      backgroundColor: "white",
       display: "flex",
       justifyContent: "center",
-      alignItems: "center",
-      overflowY: "auto"
+      alignItems: "center"
     },
-    content: {
-      // height: "80vh",
-      width: "800px",
-      margin: "20%",
-      border: "solid 1px red",
-      textAlign: "left",
-      backgroundColor: "white"
-    },
-    image: {
-      width: "100%",
-      objectFit: "scale-down"
-    },
-    title: {
-      paddingLeft: "5%",
-      paddingRight: "5%",
-      paddingTop: 10,
-      paddingBottom: 10,
-      border: "solid 1px green",
+    plus: {
       color: "var(--dark-teal)",
-      backgroundColor: "white"
-    },
-    desc: {
-      marginTop: -10,
-      paddingLeft: "5%",
-      paddingRight: "5%",
-      paddingTop: 10,
-      paddingBottom: 10,
-      border: "solid 1px blue",
-      color: "var(--dark-teal)",
-      backgroundColor: "white"
+      fontSize: "80px",
+      marginTop: "20px",
+      fontFamily: "FedraSansLight"
     }
   };
   return (
-    <div style={styles.container} onClick={props.toggleFullScreen}>
-      <div style={styles.content}>
-        <img src={"no image"} style={styles.image} />
-        <h2 style={styles.title}>{"byt till input field"}</h2>
-        <div style={styles.desc}>
-          <input 
-            type="text"
-            name="fullScreen"
-            placeholder="Add a description of your image"
-            onChange={e => props.handleInputChange(e)}
-          />
-        </div>
-      </div>
+    <div style={styles.circle} onClick={() => props.addNewThumbnail()}>
+      <p style={styles.plus}>+</p>
     </div>
   );
 };
@@ -146,32 +87,69 @@ class AddThumbnails extends Component {
     });
   };
 
+  addThumbnail = thumbnail => {
+    const { thumbnails } = this.state;
+    thumbnails.push(thumbnail);
+    this.setState({ thumbnails });
+    this.toggleFullScreen(null);
+  };
+
+  removeThumbnail = () => {
+    console.log(this.state.currentItem);
+    if (this.state.currentItem !== null) {
+      let { thumbnails } = this.state;
+      console.log(thumbnails);
+      thumbnails.splice(this.state.currentItem, 1);
+      console.log(thumbnails);
+      this.setState({ thumbnails });
+    }
+    this.toggleFullScreen(null);
+  };
+
   render() {
     const { thumbnails } = this.state;
     const thumbnailsToShow = [];
-    for (let i = 0; i <= thumbnails.length; i++) {
+    for (let i = 0; i < thumbnails.length; i++) {
+      const data = thumbnails[i];
+      console.log(data);
       thumbnailsToShow.push(
         <div class={"col-md-3 col-sm-12 col-lg-3"}>
-          <ThumbnailUpload
-            projectID={this.props.projectID}
-            index={i}
-            recieveURL={this.recieveURL}
-            imageURL={thumbnails[i] ? thumbnails[i].url : undefined}
-            addNewThumbnail={this.toggleFullScreen}
+          <Thumbnail
+            description={data.description || ""}
+            onClick={() => this.toggleFullScreen(i)}
+            imgURL={data.url}
+            name={data.name}
+            size={"small"}
           />
         </div>
       );
     }
-    return (
-      <div className="row">
-        {thumbnailsToShow}
-        {this.state.showFullScreen && (
-          <FullScreenImage
-            toggleFullScreen={this.toggleFullScreen}
-            projectID={this.props.projectID}
-          />
-        )}
+    thumbnailsToShow.push(
+      <div class={"col-md-3 col-sm-12 col-lg-3"}>
+        <ThumbnailUpload
+          index={thumbnails.length}
+          recieveURL={this.recieveURL}
+          addNewThumbnail={this.toggleFullScreen}
+        />
       </div>
+    );
+    return (
+      <Container>
+        <Line full={true} />
+        <Title />
+        <div className="row">
+          {thumbnailsToShow}
+          {this.state.showFullScreen && (
+            <CreateUpdatePost
+              toggleFullScreen={this.toggleFullScreen}
+              projectID={this.props.projectID}
+              data={this.state.thumbnails[this.state.currentItem]}
+              addThumbnail={this.addThumbnail}
+              removeThumbnail={this.removeThumbnail}
+            />
+          )}
+        </div>
+      </Container>
     );
   }
 }

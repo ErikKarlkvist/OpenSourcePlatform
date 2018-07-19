@@ -13,32 +13,7 @@ import Readme from "../components/projectPage/Readme";
 import Updates from "../components/projectPage/Updates";
 import Line from "../components/common/Line";
 import logo from "../logo.svg";
-
-const FixedBackgroundImage = props => {
-  const styles = {
-    container: {
-      position: "fixed",
-      width: "100%",
-      height: "100vh",
-      zIndex: -1,
-      top: 0,
-      left: 0
-    },
-    test: {
-      //blur etc
-      objectFit: "cover",
-      width: "100%",
-      height: "100%",
-      filter: "blur(10px)",
-      opacity: 0.4
-    }
-  };
-  return (
-    <div style={styles.container}>
-      <img style={styles.test} src={props.headerImageURL} />
-    </div>
-  );
-};
+import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
 
 class ProjectPage extends Component {
   static propTypes = {

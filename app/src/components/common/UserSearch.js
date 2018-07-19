@@ -131,9 +131,12 @@ class UserSearchField extends Component {
     const { value, suggestions } = this.state;
 
     return (
-      <div class="container">
-        USER SEARCH
-        <div class="row" style={{ height: "500px" }}>
+      <div>
+        <Contributors
+          developers={this.state.submittedUsers}
+          removeUser={this.removeSubmittedUser}
+        />
+        <div class="row">
           <div class="col-md-6 col-sm-6 col-lg-6">
             <input
               className="search-input"
@@ -157,10 +160,6 @@ class UserSearchField extends Component {
             </div>
           )}
         </div>
-        <Contributors
-          developers={this.state.submittedUsers}
-          removeUser={this.removeSubmittedUser}
-        />
       </div>
     );
   }

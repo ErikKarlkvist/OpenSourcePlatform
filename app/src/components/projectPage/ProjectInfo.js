@@ -7,6 +7,7 @@ import Contributors from "./Contributors";
 import "../../resources/fonts.css";
 import ProjectMetrics from "./ProjectMetrics";
 import Seeking from "./Seeking";
+import Contact from "./Contact";
 
 const InfoContainer = props => {
   const style = {
@@ -46,6 +47,9 @@ const Small = props => {
     </div>
   );
 };
+const mailContact = () => {
+  window.location = "mailto:xyz.dnb.no";
+};
 
 const Description = props => {
   const styles = {
@@ -58,6 +62,7 @@ const Description = props => {
       textAlign: "left"
     }
   };
+
   return (
     <div>
       {props.children}
@@ -127,6 +132,7 @@ class ProjectInfo extends Component {
           </Big>
           <Small>
             <Seeking lookingFor={this.props.project.lookingFor} />
+            <Contact />
           </Small>
           <Big>
             <ProjectMetrics gitURL={this.props.project.gitURL} />

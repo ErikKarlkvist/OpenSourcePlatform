@@ -8,13 +8,14 @@ const cutoff = 6;
 const Container = props => {
   const style = {
     paddingTop: "40px",
-    backgroundColor: "var(--dark-teal)"
+    backgroundColor: "var(--light-teal)",
+    opacity: "0.8"
   };
   return <div style={style}>{props.children}</div>;
 };
 
 const Title = props => {
-  const style = { textAlign: "left" };
+  const style = { textAlign: "left", color: "var(--dark-teal)"};
   return <h3 style={style}>Updates</h3>;
 };
 
