@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import InputTextBox from "./InputTextBox";
 import Readme from "../projectPage/Readme";
+import Line from "../common/Line";
+
+const Container = props => {
+  const style = {
+    textAlign: "left",
+    paddingTop: "80px",
+    paddingBottom: "80px"
+  };
+  return <div style={style}>{props.children}</div>;
+};
 
 const InvalidText = () => {
   const style = {
@@ -27,22 +37,25 @@ class ReadmeInput extends Component {
 
   render() {
     return (
-      <div>
-        Link to readme.md file
-        <InputTextBox
-          handleInputChange={this.handleInputChange}
-          name="readmeURL"
-          value={this.state.value}
-        />
-        {this.state.validLink && (
-          <Readme
-            project={{ readmeURL: this.state.value }}
-            projectName={this.props.values.projectName}
+      <Container>
+        <Line full={true} />
+        <div style={{ marginTop: "40px" }}>
+          <InputTextBox
+            handleInputChange={this.handleInputChange}
+            name="readmeURL"
+            value={this.state.value}
+            placeholder="Link to raw README.md"
           />
-        )}
-        {!this.state.validLink &&
-          this.state.value.length > 3 && <InvalidText />}
-      </div>
+          {this.state.validLink && (
+            <Readme
+              project={{ readmeURL: this.state.value }}
+              projectName={this.props.values.projectName}
+            />
+          )}
+          {!this.state.validLink &&
+            this.state.value.length > 3 && <InvalidText />}
+        </div>
+      </Container>
     );
   }
 }
