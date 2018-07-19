@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
-import AddThumbnails from "./AddThumbnails";
+import Button from "../common/Button";
 
 const Container = props => {
   const style = {
@@ -46,6 +46,39 @@ const Closer = props => {
   return <div style={style} onClick={props.toggleFullScreen} />;
 };
 
+const Buttons = props => {
+  const styles = {
+    container: {
+      display: "flex",
+      justifyContent: "space-between",
+      paddingTop: "20px",
+      paddingRight: "15px",
+      paddingLeft: "15px",
+      paddingBottom: "15px",
+      backgroundColor: "white",
+      marginTop: "-10px"
+    },
+    rightButton: {
+      color: "grey"
+    },
+    leftButton: {}
+  };
+
+  return (
+    <div style={styles.container}>
+      <Button
+        style={styles.leftButton}
+        warning={true}
+        onClick={this.addThumbnail}
+      >
+        Remove update
+      </Button>
+      <Button style={styles.rightButton} onClick={this.addThumbnail}>
+        Submit update
+      </Button>
+    </div>
+  );
+};
 class CreateUpdatePost extends Component {
   constructor() {
     super();
@@ -59,6 +92,22 @@ class CreateUpdatePost extends Component {
   recieveURL = url => {
     console.log(url);
     this.setState({ url });
+  };
+
+  addThumbnail = () => {
+    if (!this.state.url) {
+      alert("Please upload an image");
+    } else if (!this.state.name) {
+      alert("Please provide a title");
+    } else if (!this.state.description) {
+      alert("Please provide description");
+    } else {
+      this.props.addThumbnail({
+        url: this.state.url,
+        name: this.state.name,
+        description: this.state.description
+      });
+    }
   };
 
   render() {
@@ -80,10 +129,10 @@ class CreateUpdatePost extends Component {
           <InputTextBox
             title="Title"
             placeholder="Title"
-            name="title"
+            name="name"
             maxChars={20}
             textColor={"var(--dark-teal)"}
-            value={this.state.title}
+            value={this.state.name}
             handleInputChange={this.handleInputChange}
             className={"UpdateTitle"}
           />
@@ -98,6 +147,7 @@ class CreateUpdatePost extends Component {
             className={"UpdateDescription"}
             multiline={true}
           />
+          <Buttons />
         </Content>
       </Container>
     );

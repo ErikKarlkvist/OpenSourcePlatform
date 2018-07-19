@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Line from "../common/Line.js";
 import CreateUpdatePost from "./CreateUpdatePost";
+import Thumbnail from "../common/Thumbnail";
 
 const Container = props => {
   const style = {
@@ -41,20 +42,11 @@ const ThumbnailUpload = props => {
       fontFamily: "FedraSansLight"
     }
   };
-
-  if (props.imageURL) {
-    return (
-      <div style={styles.container}>
-        {props.imageURL && <img style={styles.img} src={props.imageURL} />}
-      </div>
-    );
-  } else {
-    return (
-      <div style={styles.circle} onClick={() => props.addNewThumbnail()}>
-        <p style={styles.plus}>+</p>
-      </div>
-    );
-  }
+  return (
+    <div style={styles.circle} onClick={() => props.addNewThumbnail()}>
+      <p style={styles.plus}>+</p>
+    </div>
+  );
 };
 
 /*
@@ -95,22 +87,40 @@ class AddThumbnails extends Component {
     });
   };
 
+  addThumbnail = thumbnail => {
+    const { thumbnails } = this.state;
+    thumbnails.push(thumbnail);
+    this.setState({ thumbnails });
+    this.toggleFullScreen(null);
+  };
+
   render() {
     const { thumbnails } = this.state;
     const thumbnailsToShow = [];
-    for (let i = 0; i <= thumbnails.length; i++) {
+    for (let i = 0; i < thumbnails.length; i++) {
+      const data = thumbnails[i];
+      console.log(data);
       thumbnailsToShow.push(
         <div class={"col-md-3 col-sm-12 col-lg-3"}>
-          <ThumbnailUpload
-            projectID={this.props.projectID}
-            index={i}
-            recieveURL={this.recieveURL}
-            imageURL={thumbnails[i] ? thumbnails[i].url : undefined}
-            addNewThumbnail={this.toggleFullScreen}
+          <Thumbnail
+            description={data.description || ""}
+            onClick={() => {}}
+            imgURL={data.url}
+            name={data.name}
+            size={"small"}
           />
         </div>
       );
     }
+    thumbnailsToShow.push(
+      <div class={"col-md-3 col-sm-12 col-lg-3"}>
+        <ThumbnailUpload
+          index={thumbnails.length}
+          recieveURL={this.recieveURL}
+          addNewThumbnail={this.toggleFullScreen}
+        />
+      </div>
+    );
     return (
       <Container>
         <Line full={true} />
@@ -121,6 +131,8 @@ class AddThumbnails extends Component {
             <CreateUpdatePost
               toggleFullScreen={this.toggleFullScreen}
               projectID={this.props.projectID}
+              data={this.state.thumbnails[this.state.currentItem]}
+              addThumbnail={this.addThumbnail}
             />
           )}
         </div>

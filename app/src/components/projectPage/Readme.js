@@ -24,14 +24,6 @@ class Readme extends Component {
   render() {
     return (
       <div className="readmeContainer">
-        <h2
-          style={{
-            paddingBottom: "30px",
-            textAlign: "left"
-          }}
-        >
-          README
-        </h2>
         <div className="markdown">
           <Markdown source={this.state.text} className="markdownInner" />
         </div>
