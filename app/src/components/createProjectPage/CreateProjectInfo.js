@@ -116,8 +116,10 @@ class CreateProjectInfo extends Component {
             </div>
           </Small>
           <Big>
+            {
+              //add project metrics here
+            }
             <div>
-              Link to GitHub page
               <input
                 type="text"
                 name="gitURL"

@@ -95,12 +95,9 @@ class AddThumbnails extends Component {
   };
 
   removeThumbnail = () => {
-    console.log(this.state.currentItem);
     if (this.state.currentItem !== null) {
       let { thumbnails } = this.state;
-      console.log(thumbnails);
       thumbnails.splice(this.state.currentItem, 1);
-      console.log(thumbnails);
       this.setState({ thumbnails });
     }
     this.toggleFullScreen(null);
