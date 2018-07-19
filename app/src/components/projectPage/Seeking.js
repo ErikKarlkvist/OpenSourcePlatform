@@ -3,6 +3,7 @@ import Button from "../common/Button";
 
 const Header = props => {
   const style = {
+    width: "100%",
     paddingBottom: "20px"
   };
   return <div style={style}>{props.children}</div>;
@@ -12,21 +13,23 @@ const Title = () => {
   const style = {
     float: "left"
   };
-  return <h2 style={style}>Looking for</h2>;
+  return <h3 style={style}>Looking for</h3>;
 };
 
 const SubContainer = props => {
   const style = {
+    textAlign: "left",
     clear: "both",
     paddingTop: "20px",
     position: "relative",
-    margin: "10px"
+    marginTop: "10px"
   };
   return <div style={style}>{props.children}</div>;
 };
 const Paragraph = () => {
   const style = {
-    color: "white"
+    color: "white",
+    marginTop: "3%"
   };
   return (
     <p style={style}>
@@ -37,21 +40,21 @@ const Paragraph = () => {
 };
 
 const LookingForList = props => {
-  console.log(props);
   const style = {
     marginBottom: "20px"
   };
   const listItems = [];
-  props.lookingFor.forEach(item => {
+  for (let i = 0; i < props.lookingFor.length; i++) {
     const listElem = (
-      <li>
-        <h3>> {item}</h3>
+      <li key={i}>
+        <h3>> {props.lookingFor[i]}</h3>
       </li>
     );
     listItems.push(listElem);
-  });
+  }
+
   return (
-    <ul style={style} class="list-unstyled">
+    <ul style={style} className="list-unstyled">
       {listItems}
     </ul>
   );
@@ -69,18 +72,15 @@ const Seeking = props => {
   };
 
   return (
-    <div>
+    <div class="ProjectTopInfo">
       <Header>
         <Title />
-        <Button
-          style={{ float: "right", width: "150px" }}
-          onClick={mailContact}
-        >
-          Contact{" "}
-        </Button>
       </Header>
       <SubContainer>
         <LookingForList lookingFor={props.lookingFor} />
+        <Button style={{ width: "150px" }} onClick={mailContact}>
+          Contact{" "}
+        </Button>
         <Paragraph />
       </SubContainer>
     </div>

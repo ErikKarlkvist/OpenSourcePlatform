@@ -65,7 +65,7 @@ class SignUpView extends Component {
                 {" "}
                 Cancel{" "}
               </a>
-              <input type="submit" value="Log in" class="LogInBtn" />
+              <input type="submit" value="Log in" className="LogInBtn" />
             </div>
             <div style={styles.container2}>
               <a style={styles.create} onClick={this.props.switchDisplay}>

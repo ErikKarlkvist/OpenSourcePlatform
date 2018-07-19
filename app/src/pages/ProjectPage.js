@@ -14,6 +14,32 @@ import Updates from "../components/projectPage/Updates";
 import Line from "../components/common/Line";
 import logo from "../logo.svg";
 
+const FixedBackgroundImage = props => {
+  const styles = {
+    container: {
+      position: "fixed",
+      width: "100%",
+      height: "100vh",
+      zIndex: -1,
+      top: 0,
+      left: 0
+    },
+    test: {
+      //blur etc
+      objectFit: "cover",
+      width: "100%",
+      height: "100%",
+      filter: "blur(10px)",
+      opacity: 0.4
+    }
+  };
+  return (
+    <div style={styles.container}>
+      <img style={styles.test} src={props.headerImageURL} />
+    </div>
+  );
+};
+
 class ProjectPage extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -73,9 +99,12 @@ class ProjectPage extends Component {
       <div className="PageContainer">
         {!this.state.loading && (
           <div class="Content">
+            <FixedBackgroundImage
+              headerImageURL={this.state.project.headerImageURL}
+            />
             <header className="App-header">
               <Link to="/">
-                <img src={logo} class="Logo" alt="logo" />
+                <img src={logo} className="Logo" alt="logo" />
               </Link>
               <LoginRegister
                 isLoggedIn={this.state.isLoggedIn}
@@ -83,15 +112,17 @@ class ProjectPage extends Component {
                 hasFetchedUser={this.state.hasFetchedUser}
               />
             </header>
-            <div class="Center">
+            <div className="Center">
               <ProjectInfo
                 user={this.state.user}
                 isLoggedIn={this.state.isLoggedIn}
                 project={this.state.project}
               />
-              <Line full={true} />
-              <Updates project={this.state.project} />
-              <Line full={true} />
+            </div>
+            <Line full={true} />
+            <Updates project={this.state.project} />
+            <Line full={true} />
+            <div class="Center">
               <Readme project={this.state.project} />
             </div>
           </div>
