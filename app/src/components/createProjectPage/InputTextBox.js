@@ -20,7 +20,9 @@ class InputTextBox extends Component {
   }
 
   checkInputLength = e => {
-    if (this.props.maxChars && e.target.value.length <= this.props.maxChars) {
+    if (this.props.maxChars === undefined) {
+      this.props.handleInputChange(e);
+    } else if (e.target.value.length <= this.props.maxChars) {
       this.props.handleInputChange(e);
       this.setState({ chars: e.target.value.length });
     }
