@@ -24,6 +24,7 @@ class ReadmeInput extends Component {
   checkLink = link => {
     this.setState({ validLink: link.split(".").slice(-1)[0] === "md" });
   };
+
   render() {
     return (
       <div>
@@ -34,7 +35,10 @@ class ReadmeInput extends Component {
           value={this.state.value}
         />
         {this.state.validLink && (
-          <Readme project={{ readmeURL: this.state.value }} />
+          <Readme
+            project={{ readmeURL: this.state.value }}
+            projectName={this.props.values.projectName}
+          />
         )}
         {!this.state.validLink &&
           this.state.value.length > 3 && <InvalidText />}
