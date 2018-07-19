@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import firebase from "../backend/firebase";
-import "../resources/Main.css";
 import { getUser } from "../backend/users.js";
 import LoginRegister from "../components/common/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Spinner from "../components/common/Spinner";
 import logo from "../logo.svg";
-import "../resources/Main.css";
-import Button from "../components/common/Button";
 import { createNewProject, createNewProjectID } from "../backend/projects";
-import "../resources/Input.css";
 import Form from "../components/createProjectPage/Form";
 import ProjectInfo from "../components/createProjectPage/CreateProjectInfo";
 import AddThumbnails from "../components/createProjectPage/AddThumbnails";

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Form.css";
 import Seeking from "../projectPage/Seeking";
 import Button from "../common/Button";
 
