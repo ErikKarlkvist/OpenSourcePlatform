@@ -6,7 +6,7 @@ import Thumbnail from "../common/Thumbnail";
 const Container = props => {
   const style = {
     textAlign: "left",
-    marginBottom: "50vh"
+    paddingTop: "80px"
   };
   return <div style={style}>{props.children}</div>;
 };
