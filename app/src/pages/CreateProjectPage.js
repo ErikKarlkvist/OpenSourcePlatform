@@ -9,6 +9,7 @@ import { createNewProject, createNewProjectID } from "../backend/projects";
 import Form from "../components/createProjectPage/Form";
 import ProjectInfo from "../components/createProjectPage/CreateProjectInfo";
 import AddThumbnails from "../components/createProjectPage/AddThumbnails";
+import ReadmeInput from "../components/createProjectPage/ReadmeInput";
 
 class CreateProjectPage extends Component {
   constructor() {
@@ -114,6 +115,11 @@ class CreateProjectPage extends Component {
               <ProjectInfo
                 values={this.state}
                 handleInputChange={this.handleInputChange}
+              />
+
+              <ReadmeInput
+                handleInputChange={this.handleInputChange}
+                values={this.state}
               />
 
               <Form
