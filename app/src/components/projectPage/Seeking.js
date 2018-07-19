@@ -26,18 +26,6 @@ const SubContainer = props => {
   };
   return <div style={style}>{props.children}</div>;
 };
-const Paragraph = () => {
-  const style = {
-    color: "white",
-    marginTop: "3%"
-  };
-  return (
-    <p style={style}>
-      {" "}
-      Is this you? Don’t hesitate to contact us and join the team.
-    </p>
-  );
-};
 
 const LookingForList = props => {
   const styles = {
@@ -78,10 +66,6 @@ const Seeking = props => {
     "Front-end developer"
   ];*/
 
-  const mailContact = () => {
-    window.location = "mailto:xyz.dnb.no";
-  };
-
   return (
     <div className="ProjectTopInfo">
       <Header>
@@ -92,10 +76,6 @@ const Seeking = props => {
           lookingFor={props.lookingFor}
           removeItem={props.removeItem}
         />
-        <Button style={{ width: "150px" }} onClick={mailContact}>
-          Contact{" "}
-        </Button>
-        <Paragraph />
       </SubContainer>
     </div>
   );
