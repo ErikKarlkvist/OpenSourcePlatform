@@ -29,8 +29,8 @@ const FixedBackgroundImage = props => {
       objectFit: "cover",
       width: "100%",
       height: "100%",
-      filter: "blur(5px)",
-      opacity: 0.7
+      filter: "blur(7px)",
+      opacity: 0.4
     }
   };
   return (
