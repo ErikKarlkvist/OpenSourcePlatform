@@ -23,7 +23,7 @@ const Container = props => {
     height: "auto",
     alignContent: "space-between"
   };
-  return <div class="row">{props.children}</div>;
+  return <div className="row">{props.children}</div>;
 };
 
 const Big = props => {
@@ -32,7 +32,7 @@ const Big = props => {
     paddingRight: "30px"
   };
   return (
-    <div class={"col-md-7 col-sm-12 col-lg-7 ProjectInfoLeft"}>
+    <div className={"col-md-7 col-sm-12 col-lg-7 ProjectInfoLeft"}>
       {props.children}
     </div>
   );
@@ -41,7 +41,7 @@ const Big = props => {
 const Small = props => {
   const style = {};
   return (
-    <div class={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
+    <div className={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
       {props.children}
     </div>
   );

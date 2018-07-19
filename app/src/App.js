@@ -9,10 +9,6 @@ import "./resources/Main.css";
 import "./resources/Input.css";
 
 class App extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return <Routing />;
   }
