@@ -11,19 +11,14 @@ const InvalidText = () => {
 class ReadmeInput extends Component {
   constructor() {
     super();
-    this.state = { value: "", validLink: true };
+    this.state = { value: "", validLink: false };
   }
 
   handleInputChange = e => {
     const link = e.target.value;
     this.setState({ value: link });
-    //this.checkLink(link);
+    this.checkLink(link);
     this.props.handleInputChange(e);
-    console.log(
-      "ReadmeInput handleChange",
-      e.target.value,
-      this.state.validLink
-    );
   };
 
   checkLink = link => {
@@ -31,7 +26,7 @@ class ReadmeInput extends Component {
   };
   render() {
     return (
-      <div style={{ border: "1px solid red" }}>
+      <div>
         Link to readme.md file
         <InputTextBox
           handleInputChange={this.handleInputChange}
