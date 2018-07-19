@@ -43,10 +43,8 @@ export async function getFeatureRequestCount(url) {
   let features = [];
   let started = false;
   while (features.length === 30 || !started) {
-    console.log("running");
     started = true;
     features = await getIssueFromGithub(url, index, "enhancement");
-    console.log(features);
     count += features.length;
     index++;
   }
