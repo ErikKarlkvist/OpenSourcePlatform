@@ -115,7 +115,21 @@ class CreateProjectInfo extends Component {
               />
             </div>
           </Small>
-          <Big />
+          <Big>
+            {
+              //add project metrics here
+            }
+            <div>
+              <input
+                type="text"
+                name="gitURL"
+                placeholder="URL of Code Repository"
+                className="inputTextBox"
+                value={this.props.values.gitURL}
+                onChange={e => this.props.handleInputChange(e)}
+              />
+            </div>
+          </Big>
           <Small>
             <UserSearch
               removeOwner={this.props.removeOwner}
