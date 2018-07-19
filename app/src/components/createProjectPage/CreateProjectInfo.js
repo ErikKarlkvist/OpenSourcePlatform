@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import LookingFor from "./LookingFor";
+import Contact from "../projectPage/Contact";
+import UserSearch from "../common/UserSearch";
 
 const AddTitle = props => {
   return (
-    <div>
+    <div style={{ marginLeft: "5%" }}>
       <input
         type="text"
         name="projectName"
@@ -31,6 +33,36 @@ const Description = props => {
     </div>
   );
 };
+const Container = props => {
+  const style = {
+    paddingRight: "0px",
+    paddingLeft: "0px",
+    height: "auto",
+    alignContent: "space-between"
+  };
+  return <div className="row">{props.children}</div>;
+};
+
+const Big = props => {
+  const style = {
+    borderRight: "solid 2px white",
+    paddingRight: "30px"
+  };
+  return (
+    <div className={"col-md-7 col-sm-12 col-lg-7 ProjectInfoLeft"}>
+      {props.children}
+    </div>
+  );
+};
+
+const Small = props => {
+  const style = {};
+  return (
+    <div className={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
+      {props.children}
+    </div>
+  );
+};
 
 /*
 const LookingFor = props => {
@@ -53,12 +85,12 @@ class CreateProjectInfo extends Component {
   render() {
     return (
       <div style={this.styles.container}>
-        <div>
+        <Container>
           <AddTitle
             projectName={this.props.values.projectName}
             handleInputChange={this.props.handleInputChange}
           />
-          <div className={"GreenBox"}>
+          <Big>
             <h3 style={{ textAlign: "left", marginLeft: "40px" }}>
               What is {this.props.values.projectName}?
             </h3>
@@ -66,12 +98,32 @@ class CreateProjectInfo extends Component {
               description={this.props.values.description}
               handleInputChange={this.props.handleInputChange}
             />
+          </Big>
+          <Small>
             <LookingFor
               value={this.props.values.lookingFor}
               handleInputChange={this.props.handleInputChange}
             />
-          </div>
-        </div>
+            <div>
+              <input
+                type="text"
+                name="contactMail"
+                placeholder="Your email, so that people can contact you about your project"
+                className="inputTextBox"
+                value={this.props.values.contactMail}
+                onChange={e => this.props.handleInputChange(e)}
+              />
+            </div>
+          </Small>
+          <Big />
+          <Small>
+            <UserSearch
+              removeOwner={this.props.removeOwner}
+              addOwner={this.props.addOwner}
+              recieveURL={this.props.recieveURL}
+            />
+          </Small>
+        </Container>
       </div>
     );
   }
