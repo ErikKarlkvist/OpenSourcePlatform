@@ -65,6 +65,25 @@
   cursor: pointer;
 }
 
+.WarningBtn {
+  border: solid var(--bright-orange) 2px;
+  width: 170px;
+  border-radius: 3px;
+  box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
+  background: var(--bright-orange);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.WarningBtn:hover {
+  background: var(--bright-orange);
+  border: solid var(--bright-orange) 2px;
+  color: var(--dark-teal);
+  cursor: pointer;
+}
+
 .LogInBtn {
   border: solid var(--dark-teal) 2px;
   background: none;
