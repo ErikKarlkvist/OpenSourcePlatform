@@ -64,11 +64,7 @@ const Buttons = props => {
 
   return (
     <div style={styles.container}>
-      <Button
-        style={styles.leftButton}
-        warning={true}
-        onClick={() => props.remove(props.index)}
-      >
+      <Button style={styles.leftButton} warning={true} onClick={props.remove}>
         Remove update
       </Button>
       <Button
@@ -76,23 +72,32 @@ const Buttons = props => {
         style={styles.rightButton}
         onClick={props.addThumbnail}
       >
-        Submit update
+        Save update
       </Button>
     </div>
   );
 };
+
 class CreateUpdatePost extends Component {
-  constructor() {
-    super();
-    this.state = {
-      url: "",
-      title: "",
-      description: ""
-    };
+  constructor(props) {
+    super(props);
+    console.log(props);
+    if (props.data) {
+      this.state = {
+        url: props.data.url || "",
+        name: props.data.name || "",
+        description: props.data.description || ""
+      };
+    } else {
+      this.state = {
+        url: "",
+        name: "",
+        description: ""
+      };
+    }
   }
 
   recieveURL = url => {
-    console.log(url);
     this.setState({ url });
   };
 
@@ -111,8 +116,6 @@ class CreateUpdatePost extends Component {
       });
     }
   };
-
-  remove = () => {};
 
   render() {
     return (
@@ -151,7 +154,10 @@ class CreateUpdatePost extends Component {
             className={"UpdateDescription"}
             multiline={true}
           />
-          <Buttons remove={this.remove} addThumbnail={this.addThumbnail} />
+          <Buttons
+            remove={this.props.removeThumbnail}
+            addThumbnail={this.addThumbnail}
+          />
         </Content>
       </Container>
     );
