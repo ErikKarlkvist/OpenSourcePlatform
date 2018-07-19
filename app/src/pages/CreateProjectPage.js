@@ -115,18 +115,13 @@ class CreateProjectPage extends Component {
               <ProjectInfo
                 values={this.state}
                 handleInputChange={this.handleInputChange}
-              />
-
-              <ReadmeInput
-                handleInputChange={this.handleInputChange}
-                values={this.state}
+                addOwner={this.addOwner}
+                removeOwner={this.removeOwner}
               />
 
               <Form
                 values={this.state}
                 handleInputChange={this.handleInputChange}
-                addOwner={this.addOwner}
-                removeOwner={this.removeOwner}
                 recieveURL={this.recieveURL}
               />
               {this.state.projectID && (
