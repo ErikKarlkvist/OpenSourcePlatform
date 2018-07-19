@@ -6,10 +6,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Spinner from "../components/common/Spinner";
 import logo from "../logo.svg";
 import { createNewProject, createNewProjectID } from "../backend/projects";
-import Form from "../components/createProjectPage/Form";
+import Line from "../components/common/Line";
 import ProjectInfo from "../components/createProjectPage/CreateProjectInfo";
 import AddThumbnails from "../components/createProjectPage/AddThumbnails";
 import ReadmeInput from "../components/createProjectPage/ReadmeInput";
+import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
+import UploadImage from "../components/createProjectPage/UploadImage";
 
 class CreateProjectPage extends Component {
   constructor() {
@@ -95,22 +97,19 @@ class CreateProjectPage extends Component {
   render() {
     return (
       <div className="PageContainer">
-        <Spinner
-          loading={!this.state.hasFetchedUser && !this.state.loading}
-          fillPage={true}
-        />
-        <header className="App-header">
-          <Link to="/">
-            <img src={logo} className="Logo" alt="logo" />
-          </Link>
-          <LoginRegister
-            isLoggedIn={this.state.isLoggedIn}
-            user={this.state.user}
-            hasFetchedUser={this.state.hasFetchedUser}
-          />
-        </header>
         {this.state.hasFetchedUser && (
           <div className="Content">
+            <FixedBackgroundImage headerImageURL={this.state.headerImageURL} />
+            <header className="App-header">
+              <Link to="/">
+                <img src={logo} className="Logo" alt="logo" />
+              </Link>
+              <LoginRegister
+                isLoggedIn={this.state.isLoggedIn}
+                user={this.state.user}
+                hasFetchedUser={this.state.hasFetchedUser}
+              />
+            </header>
             <div className="Center">
               <ProjectInfo
                 values={this.state}
@@ -118,18 +117,27 @@ class CreateProjectPage extends Component {
                 addOwner={this.addOwner}
                 removeOwner={this.removeOwner}
               />
-
-              <Form
-                values={this.state}
-                handleInputChange={this.handleInputChange}
-                recieveURL={this.recieveURL}
-              />
               {this.state.projectID && (
                 <AddThumbnails projectID={this.state.projectID} />
               )}
+
+              <ReadmeInput
+                handleInputChange={this.handleInputChange}
+                values={this.state}
+              />
+
+              <UploadImage
+                type={"headerImage"}
+                id={this.state.projectID}
+                recieveURL={this.recieveURL}
+              />
             </div>
           </div>
         )}
+        <Spinner
+          loading={!this.state.hasFetchedUser && !this.state.loading}
+          fillPage={true}
+        />
       </div>
     );
   }
