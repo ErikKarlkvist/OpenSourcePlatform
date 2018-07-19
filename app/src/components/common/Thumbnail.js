@@ -228,7 +228,10 @@ class Thumbnail extends Component {
         <Image imgURL={this.props.imgURL} size={this.props.size} />
         <Body>
           <Title name={this.props.name} size={this.props.size} />
-          <hr />
+
+          {/*hr somehow renders a line between title and description, don't show if small*/}
+          {this.props.size !== "small" && <hr />}
+
           <Description
             description={this.props.description}
             size={this.props.size}

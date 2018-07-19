@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
 import UserSearch from "../common/UserSearch";
-import LookingFor from "./LookingFor";
-import "./Form.css";
 
 class Form extends Component {
   render() {
