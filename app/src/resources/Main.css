@@ -27,10 +27,12 @@
 }
 
 .SeeThroughBtn {
-  border: solid var(--bluey-green) 3px;
-  box-shadow: 1px 4px 1px 0px rgba(0, 0, 0, 0.5);
+  border: solid white 2px;
+  width: 170px;
+  border-radius: 3px;
+  box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
   background: none;
-  color: var(--bluey-green);
+  color: white;
   padding: 5px;
   text-align: center;
   transition: 0.2s;
@@ -38,6 +40,27 @@
 
 .SeeThroughBtn:hover {
   background: var(--bluey-green);
+  border: solid var(--bluey-green) 2px;
+  color: var(--dark-teal);
+  cursor: pointer;
+}
+
+.SolidBtn {
+  border: solid var(--bluey-green) 2px;
+  width: 150px;
+  border-radius: 3px;
+  box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
+  background: var(--bluey-green);
+  color: white;
+  padding: 5px;
+  margin-right: 10px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.SolidBtn:hover {
+  background: var(--bluey-green);
+  border: solid var(--bluey-green) 2px;
   color: var(--dark-teal);
   cursor: pointer;
 }
