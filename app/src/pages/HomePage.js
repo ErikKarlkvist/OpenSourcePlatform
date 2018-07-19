@@ -8,7 +8,7 @@ import LoginRegister from "../components/common/LoginRegister";
 import FilterProjects from "../components/homePage/FilterProjects";
 import Line from "../components/common/Line";
 import Spinner from "../components/common/Spinner";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import firebase from "../backend/firebase";
 
 class HomePage extends Component {

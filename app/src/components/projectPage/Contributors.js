@@ -2,6 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../common/AnimatedMenu.css";
 
+const RemoveSubmittedUser = props => {
+  const styles = {
+    container: {
+      textAlign: "center"
+    },
+    text: {
+      color: "white",
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  };
+  return (
+    <div style={styles.container}>
+      <p style={styles.text} onClick={() => props.removeUser(props.user)}>
+        Remove owner
+      </p>
+    </div>
+  );
+};
 class Contributors extends React.Component {
   static propTypes = {
     developers: PropTypes.array.isRequired
@@ -21,15 +40,23 @@ class Contributors extends React.Component {
     console.log(data);
     let items = [];
     if (data) {
-      items = data.map(d => (
-        <div class="d-block d-sm-block d-md-block" style={styles.owner}>
-          <img style={styles.image} src={d.profileImageURL} />
+      items = data.map((d, i) => (
+        <div
+          className="d-block d-sm-block d-md-block"
+          style={styles.owner}
+          key={i}
+        >
+          <img style={styles.image} src={d.profileImageURL} alt={"profile"} />
           <p style={{ ...styles.name, ...{ marginBottom: "-10px" } }}>
             {d.firstname}
           </p>
           <p style={styles.name}>
             <i>{d.role}</i>
           </p>
+          {/*Allows for removal of user in createProjectPage/UserSearch*/}
+          {this.props.removeUser && (
+            <RemoveSubmittedUser removeUser={this.props.removeUser} user={d} />
+          )}
         </div>
       ));
 
@@ -45,21 +72,23 @@ class Contributors extends React.Component {
   }
 
   showAllOwners = () => {
-    console.log("SHOWALL");
     this.setState({ ownersToShow: this.state.owners, showAll: true });
   };
 
   collapseOwners = () => {
-    this.setState({ ownersToShow: this.state.owners.slice(0, 2) });
+    this.setState({
+      ownersToShow: this.state.owners.slice(0, 3),
+      showAll: false
+    });
   };
 
   render() {
     return (
       <div style={styles.container}>
-        <div class="d-block d-sm-block d-md-block">
+        <div className="d-block d-sm-block d-md-block">
           <h3 style={{ textAlign: "left" }}>Owners</h3>
           <div style={styles.imageWrapper}>
-            <div class="row">{this.state.ownersToShow}</div>
+            <div className="row">{this.state.ownersToShow}</div>
           </div>
 
           {this.state.owners.length > 2 &&

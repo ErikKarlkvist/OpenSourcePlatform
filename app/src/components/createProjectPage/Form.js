@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
 import UserSearch from "../common/UserSearch";
+import LookingFor from "./LookingFor";
 import "./Form.css";
 
 class Form extends Component {
@@ -29,17 +30,6 @@ class Form extends Component {
             placeholder="Description"
             className="inputTextBox"
             value={this.props.values.description}
-            onChange={e => this.props.handleInputChange(e)}
-          />
-        </div>
-        <div>
-          Looking for
-          <input
-            type="text"
-            name="lookingFor"
-            placeholder="Looking for"
-            className="inputTextBox"
-            value={this.props.values.lookingFor}
             onChange={e => this.props.handleInputChange(e)}
           />
         </div>
