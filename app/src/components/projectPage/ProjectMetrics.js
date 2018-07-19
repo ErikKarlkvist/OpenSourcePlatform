@@ -154,8 +154,14 @@ class ProjectMetrics extends Component {
         />
         <InfoText />
         <InputContainer>
-          <Button solidBtn={true} onClick={this.openGit}>Get the code!</Button>
-          <Button>Send in suggestion</Button> 
+          <Button 
+            solidBtn={true} 
+            onClick={this.openGit} 
+            style={{marginRight: "10px"}}
+          >
+            Get the code!
+          </Button>
+          <Button style={{ width: "170px" }} onClick={this.openIssues}>Send in suggestion</Button> 
         </InputContainer>
       </Container>
     );
@@ -164,5 +170,10 @@ class ProjectMetrics extends Component {
   openGit = () => {
     window.location = this.props.gitURL;
   };
+
+  openIssues = () => {
+    const url = this.props.gitURL + "/issues";
+    window.location = url;
+  }
 }
 export default ProjectMetrics;
