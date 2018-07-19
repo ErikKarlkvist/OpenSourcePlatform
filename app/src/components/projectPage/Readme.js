@@ -38,14 +38,15 @@ class Readme extends Component {
 
   fetchLink = link => {
     fetch(link)
-      .then(response => response.text())
+      .then(response => {
+        return response.text();
+      })
       .then(text => {
         this.setState({ text });
       });
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.project.readmeURL, this.props.project.readmeURL);
     if (nextProps.project.readmeURL !== this.props.project.readmeURL) {
       this.fetchLink(nextProps.project.readmeURL);
     }
