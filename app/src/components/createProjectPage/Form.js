@@ -7,17 +7,6 @@ class Form extends Component {
     return (
       <div>
         <div>
-          Link to GitHub page
-          <input
-            type="text"
-            name="gitURL"
-            placeholder="URL of Code Repository"
-            className="inputTextBox"
-            value={this.props.values.gitURL}
-            onChange={e => this.props.handleInputChange(e)}
-          />
-        </div>
-        <div>
           Link to Github readme (raw file)
           <input
             type="text"

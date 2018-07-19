@@ -5,7 +5,7 @@ import UserSearch from "../common/UserSearch";
 
 const AddTitle = props => {
   return (
-    <div style={{ marginLeft: "5%" }}>
+    <div style={{ marginLeft: "3%" }}>
       <input
         type="text"
         name="projectName"
@@ -108,14 +108,26 @@ class CreateProjectInfo extends Component {
               <input
                 type="text"
                 name="contactMail"
-                placeholder="Your email, so that people can contact you about your project"
+                placeholder="Your contact email"
                 className="inputTextBox"
                 value={this.props.values.contactMail}
                 onChange={e => this.props.handleInputChange(e)}
               />
             </div>
           </Small>
-          <Big />
+          <Big>
+            <div>
+              Link to GitHub page
+              <input
+                type="text"
+                name="gitURL"
+                placeholder="URL of Code Repository"
+                className="inputTextBox"
+                value={this.props.values.gitURL}
+                onChange={e => this.props.handleInputChange(e)}
+              />
+            </div>
+          </Big>
           <Small>
             <UserSearch
               removeOwner={this.props.removeOwner}
