@@ -42,21 +42,26 @@ class Readme extends Component {
         return response.text();
       })
       .then(text => {
-        this.setState({ text });
+        this.setState({ text: text });
       });
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.project.readmeURL !== this.props.project.readmeURL) {
+    if (nextProps !== this.props) {
       this.fetchLink(nextProps.project.readmeURL);
     }
   }
 
+  addHeader = text => {
+    return <h1>Readme from {this.props.projectName}'s repo</h1>;
+  };
+
   render() {
     return (
       <div className="readmeContainer">
-        <Header />
         <div className="markdown">
+          {this.props.projectName !== "" && this.addHeader()}
+
           <Markdown source={this.state.text} className="markdownInner" />
         </div>
       </div>
