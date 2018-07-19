@@ -23,21 +23,25 @@ const Container = props => {
     height: "auto",
     alignContent: "space-between"
   };
+  return <div class="row">{props.children}</div>;
+};
+
+const Big = props => {
+  const style = {
+    borderRight: "solid 2px white",
+    paddingRight: "30px"
+  };
   return (
-    <div style={style} class="container">
+    <div class={"col-md-7 col-sm-12 col-lg-7 ProjectInfoLeft"}>
       {props.children}
     </div>
   );
 };
 
-const TopRow = props => {
-  const style = {
-    borderTop: "1px solid var(--dark-teal)",
-    width: "100%",
-    height: "auto"
-  };
+const Small = props => {
+  const style = {};
   return (
-    <div style={style} class="row">
+    <div class={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
       {props.children}
     </div>
   );
@@ -52,54 +56,13 @@ const Description = props => {
       color: "white",
       fontSize: 16,
       textAlign: "left"
-    },
-    MainImage: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      boxShadow: "1px 1px 1px 1px black"
     }
   };
   return (
-    <div
-      style={styles.Description}
-      className="col-md-6 col-sm-12 col-lg-6 BorderTop BorderSides BorderBottom"
-    >
+    <div>
       {props.children}
       <h3 style={styles.HeaderText}>What is {props.project.name}?</h3>
       <p style={styles.Description}>{props.project.description}</p>
-      <div style={{ paddingTop: "40px" }} />
-      <Seeking lookingFor={props.project.lookingFor} />
-    </div>
-  );
-};
-
-const Image = props => {
-  const style = {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    boxShadow: "1px 1px 1px 1px black"
-  };
-  return (
-    <div class="col-md-6 col-sm-12 col-lg-6">
-      <img src={props.project.headerImageURL} style={style} />
-    </div>
-  );
-};
-const BottomRow = props => {
-  const style = {
-    borderBottom: "1px solid var(--dark-teal)",
-    width: "100%"
-  };
-  return (
-    <div class="row" style={style}>
-      <div class="col-md-6 col-sm-12 col-lg-6  BottomPadding">
-        <Contributors developers={props.project.owners} />
-      </div>
-      <div class="col-md-6 col-sm-12 col-lg-6" style={{ paddingLeft: "20px" }}>
-        <ProjectMetrics gitURL={props.project.gitURL} />
-      </div>
     </div>
   );
 };
@@ -112,7 +75,7 @@ class ProjectInfo extends Component {
 
   componentDidMount() {
     if (
-      this.props.project && 
+      this.props.project &&
       this.props.project.joinRequest &&
       this.props.project.joinRequest.includes(this.props.user.id)
     ) {
@@ -140,8 +103,8 @@ class ProjectInfo extends Component {
   };
 
   render() {
-    if(this.props.project === undefined){
-      return <div/>
+    if (this.props.project === undefined) {
+      return <div />;
     }
     return (
       <InfoContainer>
@@ -149,19 +112,28 @@ class ProjectInfo extends Component {
         {this.state.displayLogin && (
           <LoginForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
+
         {this.state.displaySignup && (
           <SignupForm hide={this.hide} switchDisplay={this.switchDisplay} />
         )}
-        <Container>
-          <h1 style={{ textAlign: "left" }}>{this.props.project.name}</h1>
-          <TopRow>
-            {/*Project info top part: Description, Seeking, Image*/}
-            <Description project={this.props.project} />
-            <Image project={this.props.project} />
-          </TopRow>
 
-          {/*Project info bottom part: Owners, Metrics*/}
-          <BottomRow project={this.props.project} />
+        <h1 style={{ textAlign: "left", marginTop: "80px" }}>
+          {this.props.project.name}
+        </h1>
+
+        <Container>
+          <Big>
+            <Description project={this.props.project} />
+          </Big>
+          <Small>
+            <Seeking lookingFor={this.props.project.lookingFor} />
+          </Small>
+          <Big>
+            <ProjectMetrics gitURL={this.props.project.gitURL} />
+          </Big>
+          <Small>
+            <Contributors developers={this.props.project.owners} />
+          </Small>
         </Container>
       </InfoContainer>
     );
@@ -194,4 +166,3 @@ class ProjectInfo extends Component {
 }
 
 export default ProjectInfo;
-

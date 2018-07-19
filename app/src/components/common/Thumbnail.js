@@ -71,7 +71,7 @@ const Image = props => {
   const styles = {
     image: {
       marginTop: -1,
-      marginLeft: -1,
+      marginLeft: -2,
       width,
       height,
       objectFit: "cover"

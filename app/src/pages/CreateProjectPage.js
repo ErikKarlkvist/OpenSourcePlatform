@@ -42,10 +42,7 @@ class CreateProjectPage extends Component {
   }
 
   addOwner = userID => {
-    console.log(this.state.owners);
-    const newOwners = this.state.owners.concat([userID]);
-    console.log(newOwners);
-    this.setState({ owners: newOwners });
+    this.setState({ owners: this.state.owners.concat([userID]) });
   };
 
   removeOwner = userID => {
@@ -58,9 +55,6 @@ class CreateProjectPage extends Component {
     this.setState({
       [target.name]: target.value
     });
-    setTimeout(() => {
-      console.log(this.state, true && this.state.headerImage);
-    }, 500);
   };
 
   setupAuthStateChange = () => {
@@ -84,7 +78,6 @@ class CreateProjectPage extends Component {
   };
 
   recieveURL = url => {
-    console.log(url);
     this.setState({ headerImageURL: url });
   };
 
@@ -98,7 +91,7 @@ class CreateProjectPage extends Component {
       contactMail: this.state.contactMail,
       creator: this.state.user.id,
       headerImageURL: this.state.headerImageURL,
-      owners: [{ userID: this.state.user.id, role: "Creator" }]
+      owners: this.state.owners
     });
   };
 
