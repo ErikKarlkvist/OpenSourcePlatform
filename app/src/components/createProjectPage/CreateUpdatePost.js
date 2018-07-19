@@ -58,9 +58,7 @@ const Buttons = props => {
       backgroundColor: "white",
       marginTop: "-10px"
     },
-    rightButton: {
-      color: "grey"
-    },
+    rightButton: {},
     leftButton: {}
   };
 
@@ -69,11 +67,15 @@ const Buttons = props => {
       <Button
         style={styles.leftButton}
         warning={true}
-        onClick={this.addThumbnail}
+        onClick={() => props.remove(props.index)}
       >
         Remove update
       </Button>
-      <Button style={styles.rightButton} onClick={this.addThumbnail}>
+      <Button
+        solidBtn={true}
+        style={styles.rightButton}
+        onClick={props.addThumbnail}
+      >
         Submit update
       </Button>
     </div>
@@ -109,6 +111,8 @@ class CreateUpdatePost extends Component {
       });
     }
   };
+
+  remove = () => {};
 
   render() {
     return (
@@ -147,7 +151,7 @@ class CreateUpdatePost extends Component {
             className={"UpdateDescription"}
             multiline={true}
           />
-          <Buttons />
+          <Buttons remove={this.remove} addThumbnail={this.addThumbnail} />
         </Content>
       </Container>
     );

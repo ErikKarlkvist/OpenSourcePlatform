@@ -67,7 +67,7 @@
 .WarningBtn {
   border: solid var(--bright-orange) 2px;
   width: 170px;
-  border-radius: 3px;
+  border-radius: 1px;
   box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
   background: var(--bright-orange);
   color: white;
