@@ -15,6 +15,15 @@ import Line from "../components/common/Line";
 import logo from "../logo.svg";
 import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
 
+const ProjectNotFound = props => {
+  return (
+    <div className="PageContainer">
+      <div className="Center">
+        <h1 style={{ marginTop: "100px" }}>Project not found</h1>
+      </div>
+    </div>
+  );
+};
 class ProjectPage extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -32,17 +41,32 @@ class ProjectPage extends Component {
       },
       user: {},
       isLoggedIn: false,
-      hasFetchedUser: false
+      hasFetchedUser: false,
+      foundProject: false
     };
   }
 
   componentDidMount() {
     if (this.props.match && this.props.match.params.projectId) {
       getProject(this.props.match.params.projectId).then(project => {
-        this.setState({
-          loading: false,
-          project
-        });
+        if (project) {
+          this.setState({
+            loading: false,
+            project,
+            foundProject: true
+          });
+        } else {
+          this.setState({
+            loading: false,
+            foundProject: false
+          });
+        }
+        console.log(project);
+      });
+    } else {
+      this.setState({
+        loading: false,
+        foundProject: false
       });
     }
 
@@ -70,9 +94,9 @@ class ProjectPage extends Component {
   }
 
   render() {
-    return (
-      <div className="PageContainer">
-        {!this.state.loading && (
+    if (!this.state.loading) {
+      return (
+        <div className="PageContainer">
           <div className="Content">
             <FixedBackgroundImage
               headerImageURL={this.state.project.headerImageURL}
@@ -87,24 +111,30 @@ class ProjectPage extends Component {
                 hasFetchedUser={this.state.hasFetchedUser}
               />
             </header>
-            <div className="Center">
-              <ProjectInfo
-                user={this.state.user}
-                isLoggedIn={this.state.isLoggedIn}
-                project={this.state.project}
-              />
-            </div>
-            <Line full={true} />
-            <Updates project={this.state.project} />
-            <Line full={true} />
-            <div className="Center">
-              <Readme project={this.state.project} />
-            </div>
+            {this.state.foundProject && (
+              <div>
+                <div className="Center">
+                  <ProjectInfo
+                    user={this.state.user}
+                    isLoggedIn={this.state.isLoggedIn}
+                    project={this.state.project}
+                  />
+                </div>
+                <Line full={true} />
+                <Updates project={this.state.project} />
+                <Line full={true} />
+                <div className="Center">
+                  <Readme project={this.state.project} />
+                </div>
+              </div>
+            )}
+            {!this.state.foundProject && <ProjectNotFound state={this.state} />}
           </div>
-        )}
-        <Spinner loading={this.state.loading} fillPage={true} />
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return <Spinner loading={this.state.loading} fillPage={true} />;
+    }
   }
 }
 

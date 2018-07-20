@@ -28,7 +28,8 @@ const Content = props => {
     minWidth: "80vh",
     textAlign: "left",
     backgroundColor: "white",
-    zIndex: 4
+    zIndex: 4,
+    position: "relative"
   };
   return <div style={style}>{props.children}</div>;
 };
@@ -56,7 +57,12 @@ const Buttons = props => {
       paddingLeft: "15px",
       paddingBottom: "15px",
       backgroundColor: "white",
-      marginTop: "-10px"
+      marginTop: "-10px",
+
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      width: "100%"
     },
     rightButton: {},
     leftButton: {}

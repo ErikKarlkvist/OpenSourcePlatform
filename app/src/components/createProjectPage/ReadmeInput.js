@@ -6,7 +6,7 @@ import Line from "../common/Line";
 const Container = props => {
   const style = {
     textAlign: "left",
-    paddingTop: "80px",
+
     paddingBottom: "80px"
   };
   return <div style={style}>{props.children}</div>;
@@ -38,7 +38,6 @@ class ReadmeInput extends Component {
   render() {
     return (
       <Container>
-        <Line full={true} />
         <div style={{ marginTop: "40px" }}>
           <InputTextBox
             handleInputChange={this.handleInputChange}

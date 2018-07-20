@@ -6,7 +6,9 @@ import Thumbnail from "../common/Thumbnail";
 const Container = props => {
   const style = {
     textAlign: "left",
-    paddingTop: "80px"
+    marginTop: "80px",
+    paddingBottom: "80px",
+    backgroundColor: "var(--bluey-green)"
   };
   return <div style={style}>{props.children}</div>;
 };
@@ -49,18 +51,6 @@ const ThumbnailUpload = props => {
   );
 };
 
-/*
-{!props.imageURL && (
-        <div style={styles.uploadImage}>
-          <UploadImage
-            type={"thumbnailImage"}
-            id={props.projectID}
-            recieveURL={url => props.recieveURL(url, props.index)}
-            color={"var(--dark-teal)"}
-          />
-        </div>
-      )}*/
-
 class AddThumbnails extends Component {
   constructor() {
     super();
@@ -90,6 +80,7 @@ class AddThumbnails extends Component {
   addThumbnail = thumbnail => {
     const { thumbnails } = this.state;
     thumbnails.push(thumbnail);
+    this.props.setThumbnails(thumbnails);
     this.setState({ thumbnails });
     this.toggleFullScreen(null);
   };
@@ -98,17 +89,42 @@ class AddThumbnails extends Component {
     if (this.state.currentItem !== null) {
       let { thumbnails } = this.state;
       thumbnails.splice(this.state.currentItem, 1);
+      this.props.setThumbnails(thumbnails);
       this.setState({ thumbnails });
     }
     this.toggleFullScreen(null);
   };
 
   render() {
+    const thumbnailsToShow = this.getThumbnailsToShow();
+
+    return (
+      <Container>
+        <Line full={true} />
+        <div className="Center">
+          <Title />
+          <div className="row">
+            {thumbnailsToShow}
+            {this.state.showFullScreen && (
+              <CreateUpdatePost
+                toggleFullScreen={this.toggleFullScreen}
+                projectID={this.props.projectID}
+                data={this.state.thumbnails[this.state.currentItem]}
+                addThumbnail={this.addThumbnail}
+                removeThumbnail={this.removeThumbnail}
+              />
+            )}
+          </div>
+        </div>
+      </Container>
+    );
+  }
+
+  getThumbnailsToShow() {
     const { thumbnails } = this.state;
     const thumbnailsToShow = [];
     for (let i = 0; i < thumbnails.length; i++) {
       const data = thumbnails[i];
-      console.log(data);
       thumbnailsToShow.push(
         <div class={"col-md-3 col-sm-12 col-lg-3"}>
           <Thumbnail
@@ -130,24 +146,8 @@ class AddThumbnails extends Component {
         />
       </div>
     );
-    return (
-      <Container>
-        <Line full={true} />
-        <Title />
-        <div className="row">
-          {thumbnailsToShow}
-          {this.state.showFullScreen && (
-            <CreateUpdatePost
-              toggleFullScreen={this.toggleFullScreen}
-              projectID={this.props.projectID}
-              data={this.state.thumbnails[this.state.currentItem]}
-              addThumbnail={this.addThumbnail}
-              removeThumbnail={this.removeThumbnail}
-            />
-          )}
-        </div>
-      </Container>
-    );
+
+    return thumbnailsToShow;
   }
 }
 
