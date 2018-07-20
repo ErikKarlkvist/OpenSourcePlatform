@@ -6,12 +6,42 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Spinner from "../components/common/Spinner";
 import logo from "../logo.svg";
 import { createNewProject, createNewProjectID } from "../backend/projects";
-import Line from "../components/common/Line";
 import ProjectInfo from "../components/createProjectPage/CreateProjectInfo";
-import AddThumbnails from "../components/createProjectPage/AddThumbnails";
+import CreateUpdates from "../components/createProjectPage/CreateUpdates";
 import ReadmeInput from "../components/createProjectPage/ReadmeInput";
 import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
-import UploadImage from "../components/createProjectPage/UploadImage";
+import Line from "../components/common/Line";
+import Button from "../components/common/Button";
+
+const Buttons = props => {
+  const styles = {
+    container: {
+      display: "flex",
+      justifyContent: "space-between",
+      paddingTop: "30px",
+      paddingBottom: "30px",
+      marginTop: "-10px",
+      width: "100%"
+    },
+    rightButton: {},
+    leftButton: {}
+  };
+
+  return (
+    <div style={styles.container}>
+      <Button style={styles.leftButton} onClick={props.preview}>
+        Preview project
+      </Button>
+      <Button
+        solidBtn={true}
+        style={styles.rightButton}
+        onClick={props.createProject}
+      >
+        Create project
+      </Button>
+    </div>
+  );
+};
 
 class CreateProjectPage extends Component {
   constructor() {
@@ -29,7 +59,8 @@ class CreateProjectPage extends Component {
       contactMail: "",
       headerImageURL: "",
       owners: [],
-      loading: true
+      loading: true,
+      thumbnails: {}
     };
   }
 
@@ -80,19 +111,39 @@ class CreateProjectPage extends Component {
     this.setState({ headerImageURL: url });
   };
 
-  submitProject = () => {
-    createNewProject({
+  getProjectFromState() {
+    return {
       name: this.state.projectName,
       description: this.state.description,
       lookingFor: [this.state.lookingFor],
-      gitURL: this.state.description,
+      gitURL: this.state.gitURL,
       readmeURL: this.state.readmeURL,
       contactMail: this.state.contactMail,
       creator: this.state.user.id,
       headerImageURL: this.state.headerImageURL,
-      owners: this.state.owners
-    });
+      owners: this.state.owners,
+      thumbnails: this.state.thumbnails,
+      projectID: this.state.projectID
+    };
+  }
+
+  submitProject = () => {
+    createNewProject(this.getProjectFromState());
   };
+
+  setThumbnails = thumbnails => {
+    this.setState({ thumbnails });
+  };
+
+  preview = () => {
+    const project = this.getProjectFromState();
+    const projectString = JSON.stringify(project);
+    const url = `/preview-project/${projectString}`;
+    var win = window.open(url, "_blank");
+    win.focus();
+  };
+
+  createProject = () => {};
 
   render() {
     return (
@@ -119,13 +170,19 @@ class CreateProjectPage extends Component {
                 projectID={this.state.projectID}
                 recieveURL={this.recieveURL}
               />
-              {this.state.projectID && (
-                <AddThumbnails projectID={this.state.projectID} />
-              )}
-
+            </div>
+            {this.state.projectID && (
+              <CreateUpdates projectID={this.state.projectID} />
+            )}
+            <Line full={true} />
+            <div className="Center">
               <ReadmeInput
                 handleInputChange={this.handleInputChange}
                 values={this.state}
+              />
+              <Buttons
+                preview={this.preview}
+                createProject={this.createProject}
               />
             </div>
           </div>

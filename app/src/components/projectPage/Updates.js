@@ -15,7 +15,7 @@ const Container = props => {
 };
 
 const Title = props => {
-  const style = { textAlign: "left", color: "var(--dark-teal)"};
+  const style = { textAlign: "left", color: "var(--dark-teal)" };
   return <h3 style={style}>Updates</h3>;
 };
 
