@@ -138,7 +138,7 @@ class CreateProjectInfo extends Component {
             <div>
               <InputTextBox
                 title="GitURL"
-                placeholder="Github repositry url (needed for metrics, get code button)"
+                placeholder="Github repository url (needed for metrics, get code button)"
                 name="gitURL"
                 value={this.props.values.gitURL}
                 handleInputChange={e => this.props.handleInputChange(e)}
