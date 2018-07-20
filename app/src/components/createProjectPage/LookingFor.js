@@ -18,10 +18,12 @@ class LookingFor extends Component {
 
   submitField = () => {
     const newValue = this.state.value + "";
+    const submitted = [...this.state.submitted, newValue];
     this.setState({
-      submitted: [...this.state.submitted, newValue],
+      submitted,
       value: ""
     });
+    this.props.setSeeking(submitted);
   };
 
   handleKeyPress = e => {
@@ -43,20 +45,25 @@ class LookingFor extends Component {
           lookingFor={this.state.submitted}
           removeItem={this.removeItem}
         />
-        <div className="row" style={{justifyContent:"space-between", marginLeft: "5px", marginRight:"5px"}}>
+        <div
+          className="row"
+          style={{
+            justifyContent: "space-between",
+            marginLeft: "5px",
+            marginRight: "5px"
+          }}
+        >
           <div className="col-7">
-            <input
+            <InputTextBox
               type="text"
               name="lookingFor"
               placeholder="Role"
               className="LookingFor"
               value={this.state.value}
-              onChange={e => {
+              handleInputChange={e => {
                 this.onChange(e);
-                this.props.handleInputChange(e);
               }}
               onKeyPress={e => this.handleKeyPress(e)}
-
             />
           </div>
           <div className="col-5">

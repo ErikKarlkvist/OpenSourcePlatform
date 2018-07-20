@@ -76,13 +76,7 @@ class UserSearchField extends Component {
     const suggestions = this.state.users
       .filter(d => d.name.toLowerCase().includes(value.toLowerCase()))
       .map(d => {
-        return (
-          <SearchResult
-            user={d}
-            addOwner={this.props.addOwner}
-            handleClick={this.handleClick}
-          />
-        );
+        return <SearchResult user={d} handleClick={this.handleClick} />;
       });
 
     this.setState({ suggestions });
@@ -93,7 +87,6 @@ class UserSearchField extends Component {
   };
 
   handleClick = user => {
-    this.props.addOwner(user.id);
     this.setState({ value: "", suggestions: [], selected: user });
   };
 
@@ -107,14 +100,17 @@ class UserSearchField extends Component {
 
   submitUser = user => {
     const subUser = { userID: user.id, role: this.state.role, ...user };
+    const users = [...this.state.submittedUsers, subUser];
+    console.log(users);
+    console.log(this.props.setOwners);
+    this.props.setOwners(users);
     this.setState({
-      submittedUsers: [...this.state.submittedUsers, subUser]
+      submittedUsers: users
     });
     this.removeSelectedUser();
   };
 
   submitOnEnter = e => {
-    console.log(e);
     if (e.key === "Enter") {
       this.submitUser(this.state.selected);
     }
@@ -124,6 +120,7 @@ class UserSearchField extends Component {
     const newUsers = this.state.submittedUsers.filter(d => {
       return user.id !== d.id;
     });
+    this.props.setOwners(newUsers);
     this.setState({ submittedUsers: newUsers });
   };
 
