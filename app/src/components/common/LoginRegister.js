@@ -59,7 +59,7 @@ class LoginRegister extends Component {
             <div style={styles.option}>
               <Link
                 className={"MenuItem"}
-                to={"/createProject"}
+                to={"/create-project"}
                 style={{ textDecoration: "none" }}
                 onClick={() => {}}
               >
@@ -69,7 +69,7 @@ class LoginRegister extends Component {
             <div style={styles.option}>
               <Link
                 className={"MenuItem"}
-                to={"/createProject"}
+                to={"/create-project"}
                 style={{ textDecoration: "none" }}
                 onClick={() => {}}
               >
