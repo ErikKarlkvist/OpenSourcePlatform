@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import LookingFor from "./LookingFor";
 import Contact from "../projectPage/Contact";
 import UserSearch from "../common/UserSearch";
+import UploadImage from "./UploadImage";
+import InputTextBox from "./InputTextBox";
 
 const AddTitle = props => {
   return (
@@ -79,6 +81,13 @@ const LookingFor = props => {
 		</div>
 	)
 }
+
+          <UploadImage
+            type={"headerImage"}
+            id={this.state.projectID}
+            recieveURL={this.recieveURL}
+            uploadLabel={"Upload header image"}
+          />
 */
 
 class CreateProjectInfo extends Component {
@@ -90,6 +99,7 @@ class CreateProjectInfo extends Component {
             projectName={this.props.values.projectName}
             handleInputChange={this.props.handleInputChange}
           />
+
           <Big>
             <h3 style={{ textAlign: "left", marginLeft: "40px" }}>
               What is {this.props.values.projectName}?
@@ -105,13 +115,14 @@ class CreateProjectInfo extends Component {
               handleInputChange={this.props.handleInputChange}
             />
             <div>
-              <input
-                type="text"
-                name="contactMail"
+              <InputTextBox
+                title="Contact email"
                 placeholder="Your contact email"
-                className="inputTextBox"
+                name="contactMail"
+                maxChars={25}
                 value={this.props.values.contactMail}
-                onChange={e => this.props.handleInputChange(e)}
+                handleInputChange={e => this.props.handleInputChange(e)}
+                className={"inputTextBox"}
               />
             </div>
           </Small>
