@@ -74,13 +74,9 @@ class CreateProjectPage extends Component {
     });
   }
 
-  addOwner = userID => {
-    this.setState({ owners: this.state.owners.concat([userID]) });
-  };
-
-  removeOwner = userID => {
-    const newOwners = this.state.owners.filter(item => item !== userID);
-    this.setState({ owners: newOwners });
+  setOwners = owners => {
+    console.log(owners);
+    this.setState({ owners: owners });
   };
 
   handleInputChange = event => {
@@ -118,7 +114,7 @@ class CreateProjectPage extends Component {
     return {
       name: this.state.projectName,
       description: this.state.description,
-      lookingFor: [this.state.lookingFor],
+      lookingFor: this.state.lookingFor,
       gitURL: this.state.gitURL,
       readmeURL: this.state.readmeURL,
       contactMail: this.state.contactMail,
@@ -136,6 +132,10 @@ class CreateProjectPage extends Component {
 
   setThumbnails = thumbnails => {
     this.setState({ thumbnails });
+  };
+
+  setSeeking = lookingFor => {
+    this.setState({ lookingFor });
   };
 
   preview = () => {
@@ -169,10 +169,10 @@ class CreateProjectPage extends Component {
               <ProjectInfo
                 values={this.state}
                 handleInputChange={this.handleInputChange}
-                addOwner={this.addOwner}
-                removeOwner={this.removeOwner}
+                setOwners={this.setOwners}
                 projectID={this.state.projectID}
                 recieveURL={this.recieveURL}
+                setSeeking={this.setSeeking}
               />
             </div>
             {this.state.projectID && (

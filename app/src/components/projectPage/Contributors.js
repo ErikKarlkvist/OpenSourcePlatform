@@ -37,7 +37,6 @@ class Contributors extends React.Component {
 
   getOwners = () => {
     const data = this.props.developers;
-    console.log(data);
     let items = [];
     if (data) {
       items = data.map((d, i) => (
@@ -46,7 +45,11 @@ class Contributors extends React.Component {
           style={styles.owner}
           key={i}
         >
-          <img style={styles.image} src={d.profileImageURL} alt={"profile"} />
+          <img
+            style={styles.image}
+            src={d.profileImageURL || d.blankProfileUrl}
+            alt={"profile"}
+          />
           <p style={{ ...styles.name, ...{ marginBottom: "-10px" } }}>
             {d.firstname}
           </p>
