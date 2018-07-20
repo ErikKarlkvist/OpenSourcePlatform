@@ -116,6 +116,8 @@ class CreateProjectPage extends Component {
                 handleInputChange={this.handleInputChange}
                 addOwner={this.addOwner}
                 removeOwner={this.removeOwner}
+                projectID={this.state.projectID}
+                recieveURL={this.recieveURL}
               />
               {this.state.projectID && (
                 <AddThumbnails projectID={this.state.projectID} />

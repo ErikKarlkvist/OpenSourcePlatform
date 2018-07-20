@@ -66,6 +66,33 @@ const Small = props => {
   );
 };
 
+const Top = props => {
+  const styles = {
+    container: {
+      width: "100%"
+    }
+  };
+  return (
+    <div style={styles.container} className="row">
+      <div className="col-md-7 col-sm-12 col-lg-7">
+        <AddTitle
+          projectName={props.projectName}
+          handleInputChange={props.handleInputChange}
+        />
+      </div>
+      <div className="col-md-5 col-sm-12 col-lg-5">
+        <UploadImage
+          type={"headerImage"}
+          id={props.projectID}
+          recieveURL={props.recieveURL}
+          label="Upload header image"
+          loadingType="round"
+        />
+      </div>
+    </div>
+  );
+};
+
 /*
 const LookingFor = props => {
 	return(
@@ -82,12 +109,7 @@ const LookingFor = props => {
 	)
 }
 
-          <UploadImage
-            type={"headerImage"}
-            id={this.state.projectID}
-            recieveURL={this.recieveURL}
-            uploadLabel={"Upload header image"}
-          />
+          
 */
 
 class CreateProjectInfo extends Component {
@@ -95,11 +117,12 @@ class CreateProjectInfo extends Component {
     return (
       <div style={this.styles.container}>
         <Container>
-          <AddTitle
+          <Top
             projectName={this.props.values.projectName}
             handleInputChange={this.props.handleInputChange}
+            projectID={this.props.projectID}
+            recieveURL={this.props.recieveURL}
           />
-
           <Big>
             <h3 style={{ textAlign: "left", marginLeft: "40px" }}>
               What is {this.props.values.projectName}?
