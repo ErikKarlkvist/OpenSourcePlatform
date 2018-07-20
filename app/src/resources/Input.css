@@ -1,13 +1,13 @@
-input[type="text"]::placeholder {
-  color: grey;
-  font-style: italic;
-}
-
-textarea[type="text"]::placeholder {
+input[type="text"]::placeholder, textarea::placeholder {
   color: grey;
   font-style: italic;
   font-family: FedraSansLight;
 }
+input[type="text"]:focus, textarea:focus {
+  border: 1px solid var(--light-teal) !important; 
+}
+
+
 
 .Title {
   width: 98%;
