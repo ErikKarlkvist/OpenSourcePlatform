@@ -7,7 +7,7 @@ import InputTextBox from "./InputTextBox";
 
 const AddTitle = props => {
   return (
-    <div style={{ marginLeft: "3%" }}>
+    <div>
       <InputTextBox
         title="Project title"
         placeholder="Add project title"
@@ -70,18 +70,46 @@ const Small = props => {
   );
 };
 
+const Top = props => {
+  const styles = {
+    container: {
+      width: "100%"
+    }
+  };
+  return (
+    <div style={styles.container} className="row">
+      <div className="col-md-7 col-sm-12 col-lg-7">
+        <AddTitle
+          projectName={props.projectName}
+          handleInputChange={props.handleInputChange}
+        />
+      </div>
+      <div className="col-md-5 col-sm-12 col-lg-5">
+        <UploadImage
+          type={"headerImage"}
+          id={props.projectID}
+          recieveURL={props.recieveURL}
+          label="Upload header image"
+          loadingType="round"
+        />
+      </div>
+    </div>
+  );
+};
+
 class CreateProjectInfo extends Component {
   render() {
     return (
       <div style={this.styles.container}>
         <Container>
-          <AddTitle
+          <Top
             projectName={this.props.values.projectName}
             handleInputChange={this.props.handleInputChange}
+            projectID={this.props.projectID}
+            recieveURL={this.props.recieveURL}
           />
-
           <Big>
-            <h3 style={{ textAlign: "left", marginLeft: "40px" }}>
+            <h3 style={{ textAlign: "left", marginLeft: "30px" }}>
               What is {this.props.values.projectName}?
             </h3>
             <Description
@@ -95,7 +123,7 @@ class CreateProjectInfo extends Component {
               handleInputChange={this.props.handleInputChange}
             />
             <div>
-              <InputTextBox
+              <InputTextBox 
                 title="Contact email"
                 placeholder="Your contact email"
                 name="contactMail"

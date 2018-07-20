@@ -124,12 +124,22 @@ class CreateUpdatePost extends Component {
         <Content>
           {this.state.url && <img src={this.state.url} style={styles.image} />}
           {!this.state.url && (
-            <div style={{ marginTop: "100px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "100px",
+                marginBottom: "80px"
+              }}
+            >
               <UploadImage
                 type={"thumbnailImage"}
                 id={this.props.projectID}
                 recieveURL={this.recieveURL}
                 color="grey"
+                loadingColor="var(--bluey-green)"
+                loadingType="round"
               />
             </div>
           )}

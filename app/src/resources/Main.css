@@ -28,7 +28,7 @@
 
 .SeeThroughBtn {
   border: solid white 2px;
-  width: 150px;
+  width: 100%;
   border-radius: 1px;
   box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
   background: none;

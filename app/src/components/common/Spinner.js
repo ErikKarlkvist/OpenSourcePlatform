@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { PropagateLoader } from "react-spinners";
+import { PropagateLoader, CircleLoader } from "react-spinners";
 
 class Spinner extends React.Component {
   static propTypes = {
@@ -11,11 +11,19 @@ class Spinner extends React.Component {
     const style = this.props.fillPage ? styles.fillPage : {};
 
     if (this.props.loading) {
-      return (
-        <div style={style}>
-          <PropagateLoader color={this.props.color || "white"} size={10} />
-        </div>
-      );
+      if (this.props.type === "round") {
+        return (
+          <div style={style}>
+            <CircleLoader color={this.props.color || "white"} size={40} />
+          </div>
+        );
+      } else {
+        return (
+          <div style={style}>
+            <PropagateLoader color={this.props.color || "white"} size={10} />
+          </div>
+        );
+      }
     } else {
       return <div />;
     }
