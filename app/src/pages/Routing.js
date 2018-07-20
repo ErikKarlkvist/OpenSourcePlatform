@@ -9,7 +9,8 @@ const Routing = () => (
     <div>
       <Route exact path="/" component={Home} />
       <Route path="/project/:projectId" component={Project} />
-      <Route path="/createProject" component={CreateProject} />
+      <Route path="/create-project" component={CreateProject} />
+      <Route path="/preview-project/:project" component={Project} />
     </div>
   </Router>
 );
