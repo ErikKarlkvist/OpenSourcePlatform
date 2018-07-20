@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Seeking from "../projectPage/Seeking";
 import Button from "../common/Button";
+import InputTextBox from "./InputTextBox";
 
 class LookingFor extends Component {
   constructor() {
@@ -42,12 +43,12 @@ class LookingFor extends Component {
           lookingFor={this.state.submitted}
           removeItem={this.removeItem}
         />
-        <div className="row">
-          <div className="col-6">
+        <div className="row" style={{justifyContent:"space-between", marginLeft: "5px", marginRight:"5px"}}>
+          <div className="col-7">
             <input
               type="text"
               name="lookingFor"
-              placeholder="Looking for"
+              placeholder="Role"
               className="LookingFor"
               value={this.state.value}
               onChange={e => {
@@ -55,10 +56,11 @@ class LookingFor extends Component {
                 this.props.handleInputChange(e);
               }}
               onKeyPress={e => this.handleKeyPress(e)}
+
             />
           </div>
-          <div className="col-6">
-            <Button onClick={this.submitField}>Submit</Button>
+          <div className="col-5">
+            <Button onClick={this.submitField}>Add</Button>
           </div>
         </div>
       </div>
