@@ -209,6 +209,7 @@
 
 @media (min-width: 992px) {
   .Center {
+    max-width: 1000px;
     margin: 0 auto;
   }
   .Logo {
@@ -241,6 +242,7 @@
 
 @media (min-width: 1200px) {
   .Center {
+    max-width: 1000px;
     margin: 0 auto;
   }
   .Logo {
