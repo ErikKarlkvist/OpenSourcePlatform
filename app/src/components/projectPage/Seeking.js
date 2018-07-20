@@ -9,11 +9,11 @@ const Header = props => {
   return <div style={style}>{props.children}</div>;
 };
 
-const Title = () => {
+const Title = props => {
   const style = {
     float: "left"
   };
-  return <h3 style={style}>Looking for</h3>;
+  return <h3 style={style}>{props.children}</h3>;
 };
 
 const SubContainer = props => {
@@ -60,16 +60,18 @@ const LookingForList = props => {
 };
 
 const Seeking = props => {
-  /*const lookinFor = [
-    "Back-end Programmer",
-    "UX designer",
-    "Front-end developer"
-  ];*/
+  /*if (!props.lookingFor || props.lookingFor <= 0) {
+    return (
+      <Header>
+        <Title>Join us!</Title>
+      </Header>
+    );
+  }*/
 
   return (
     <div className="ProjectTopInfo">
       <Header>
-        <Title />
+        <Title>Seeking</Title>
       </Header>
       <SubContainer>
         <LookingForList

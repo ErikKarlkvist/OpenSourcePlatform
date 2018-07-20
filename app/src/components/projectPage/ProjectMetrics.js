@@ -144,27 +144,33 @@ class ProjectMetrics extends Component {
   }
 
   render() {
-    return (
-      <Container>
-        <Title />
-        <Metrics
-          nmbrOfBugs={this.state.nmbrOfBugs}
-          nmbrOfClb={this.state.nmbrOfClb}
-          nmbrOfEts={this.state.nmbrOfEts}
-        />
-        <InfoText />
-        <InputContainer>
-          <Button 
-            solidBtn={true} 
-            onClick={this.openGit} 
-            style={{marginRight: "10px"}}
-          >
-            Get the code!
-          </Button>
-          <Button style={{ width: "170px" }} onClick={this.openIssues}>Send in suggestion</Button> 
-        </InputContainer>
-      </Container>
-    );
+    if (this.props.gitURL) {
+      return (
+        <Container>
+          <Title />
+          <Metrics
+            nmbrOfBugs={this.state.nmbrOfBugs}
+            nmbrOfClb={this.state.nmbrOfClb}
+            nmbrOfEts={this.state.nmbrOfEts}
+          />
+          <InfoText />
+          <InputContainer>
+            <Button
+              solidBtn={true}
+              onClick={this.openGit}
+              style={{ marginRight: "10px" }}
+            >
+              Get the code!
+            </Button>
+            <Button style={{ width: "170px" }} onClick={this.openIssues}>
+              Send in suggestion
+            </Button>
+          </InputContainer>
+        </Container>
+      );
+    } else {
+      return <div />;
+    }
   }
 
   openGit = () => {
@@ -174,6 +180,6 @@ class ProjectMetrics extends Component {
   openIssues = () => {
     const url = this.props.gitURL + "/issues";
     window.location = url;
-  }
+  };
 }
 export default ProjectMetrics;

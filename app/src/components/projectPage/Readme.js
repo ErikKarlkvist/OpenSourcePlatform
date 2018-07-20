@@ -57,6 +57,9 @@ class Readme extends Component {
   };
 
   render() {
+    if (!this.props.readmeURL) {
+      return <div />;
+    }
     return (
       <div className="readmeContainer">
         <div className="markdown">

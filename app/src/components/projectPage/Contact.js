@@ -16,12 +16,7 @@ const Paragraph = () => {
     color: "white",
     marginTop: "3%"
   };
-  return (
-    <p style={style}>
-      {" "}
-      Is this you? Don’t hesitate to contact us and join the team.
-    </p>
-  );
+  return <p style={style}> Don’t hesitate to contact us and join the team.</p>;
 };
 
 const Contact = props => {
