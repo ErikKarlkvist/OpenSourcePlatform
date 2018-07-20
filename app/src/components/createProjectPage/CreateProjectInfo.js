@@ -121,16 +121,17 @@ class CreateProjectInfo extends Component {
             <LookingFor
               value={this.props.values.lookingFor}
               handleInputChange={this.props.handleInputChange}
+              setSeeking={this.props.setSeeking}
             />
-              <InputTextBox 
-                title="Contact email"
-                placeholder="Your contact email"
-                name="contactMail"
-                maxChars={25}
-                value={this.props.values.contactMail}
-                handleInputChange={e => this.props.handleInputChange(e)}
-                className={"inputTextBox"}
-              />
+            <InputTextBox
+              title="Contact email"
+              placeholder="Your contact email"
+              name="contactMail"
+              maxChars={25}
+              value={this.props.values.contactMail}
+              handleInputChange={e => this.props.handleInputChange(e)}
+              className={"inputTextBox"}
+            />
           </Small>
           <Big>
             {
@@ -151,7 +152,7 @@ class CreateProjectInfo extends Component {
           <Small>
             <UserSearch
               removeOwner={this.props.removeOwner}
-              addOwner={this.props.addOwner}
+              setOwners={this.props.setOwners}
               recieveURL={this.props.recieveURL}
             />
           </Small>
