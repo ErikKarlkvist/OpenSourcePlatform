@@ -4,6 +4,7 @@ import Contact from "../projectPage/Contact";
 import UserSearch from "../common/UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
+import ProjectMetrics from "../projectPage/ProjectMetrics";
 
 const AddTitle = props => {
   return (
@@ -134,13 +135,10 @@ class CreateProjectInfo extends Component {
             />
           </Small>
           <Big>
-            {
-              //add project metrics here
-            }
             <div>
               <InputTextBox
                 title="GitURL"
-                placeholder="URL of Code Repository"
+                placeholder="Github repositry url (needed for metrics, get code button)"
                 name="gitURL"
                 value={this.props.values.gitURL}
                 handleInputChange={e => this.props.handleInputChange(e)}
@@ -148,6 +146,9 @@ class CreateProjectInfo extends Component {
                 className={"inputTextBox"}
               />
             </div>
+            {this.validateGithubURL(this.props.values.gitURL) && (
+              <ProjectMetrics gitURL={this.props.values.gitURL} />
+            )}
           </Big>
           <Small>
             <UserSearch
@@ -159,6 +160,10 @@ class CreateProjectInfo extends Component {
         </Container>
       </div>
     );
+  }
+
+  validateGithubURL(gitURL) {
+    return gitURL.includes("https://github.com/");
   }
 
   styles = {
