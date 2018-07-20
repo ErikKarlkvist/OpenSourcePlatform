@@ -8,13 +8,15 @@ import InputTextBox from "./InputTextBox";
 const AddTitle = props => {
   return (
     <div style={{ marginLeft: "3%" }}>
-      <input
-        type="text"
+      <InputTextBox
+        title="Project title"
+        placeholder="Add project title"
         name="projectName"
-        placeholder="Add Project Title"
-        className="Title"
+        maxChars={20}
         value={props.projectName}
         onChange={e => props.handleInputChange(e)}
+        handleInputChange={e => props.handleInputChange(e)}
+        className={"Title"}
       />
     </div>
   );
@@ -23,14 +25,16 @@ const AddTitle = props => {
 const Description = props => {
   return (
     <div>
-      <textarea
-        type="text"
+      <InputTextBox
+        title="Project Info"
+        placeholder="Add a descriptive text for your project. Max 300 characters."
         name="description"
-        color="white"
-        placeholder="Add a descriptive text for your project. Max 200 characters."
-        className="Description"
+        maxChars={300}
         value={props.description}
         onChange={e => props.handleInputChange(e)}
+        handleInputChange={e => props.handleInputChange(e)}
+        className={"Description"}
+        multiline={true}
       />
     </div>
   );
@@ -65,30 +69,6 @@ const Small = props => {
     </div>
   );
 };
-
-/*
-const LookingFor = props => {
-	return(
-		<div>
-			<input
-				type="text"
-				name="lookingFor"
-				placeholder="What role are you looking for?"
-				className="LookingFor"
-				value={props.lookingFor}
-				onChange={e => props.handleInputChange(e)}
-			/>
-		</div>
-	)
-}
-
-          <UploadImage
-            type={"headerImage"}
-            id={this.state.projectID}
-            recieveURL={this.recieveURL}
-            uploadLabel={"Upload header image"}
-          />
-*/
 
 class CreateProjectInfo extends Component {
   render() {
@@ -131,13 +111,14 @@ class CreateProjectInfo extends Component {
               //add project metrics here
             }
             <div>
-              <input
-                type="text"
-                name="gitURL"
+              <InputTextBox
+                title="GitURL"
                 placeholder="URL of Code Repository"
-                className="inputTextBox"
+                name="gitURL"
                 value={this.props.values.gitURL}
+                handleInputChange={e => this.props.handleInputChange(e)}
                 onChange={e => this.props.handleInputChange(e)}
+                className={"inputTextBox"}
               />
             </div>
           </Big>
