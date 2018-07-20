@@ -26,7 +26,7 @@ const Description = props => {
   return (
     <div>
       <InputTextBox
-        title="Project Info"
+        title="Project Description"
         placeholder="Add a descriptive text for your project. Max 300 characters."
         name="description"
         maxChars={300}
