@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import UploadImage from "./UploadImage";
-import InputTextBox from "./InputTextBox";
 
 class Form extends Component {
   render() {
@@ -17,11 +15,6 @@ class Form extends Component {
             onChange={e => this.props.handleInputChange(e)}
           />
         </div>
-        <UploadImage
-          type={"headerImage"}
-          id={this.props.projectID}
-          recieveURL={this.props.recieveURL}
-        />
         {this.props.values.headerImageURL !== "" && (
           <div>
             <img src={this.props.values.headerImageURL} />

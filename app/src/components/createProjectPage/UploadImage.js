@@ -34,7 +34,11 @@ class UploadImage extends Component {
     if (this.state.uploading) {
       return (
         <div style={this.styles.container}>
-          <Spinner loading={true} />
+          <Spinner
+            loading={true}
+            color={this.props.loadingColor || "white"}
+            type={this.props.loadingType}
+          />
         </div>
       );
     } else {
@@ -104,15 +108,18 @@ class UploadImage extends Component {
 
   styles = {
     container: {
-      width: "100%",
       display: "flex",
-      justifyContent: "center",
-      height: "120px"
+      justifyContent: "flex-start",
+      marginTop: "20px",
+      marginLeft: "20px",
+      width: "200px"
     },
     uploadLabel: {
       cursor: "pointer",
       textDecoration: "underline",
-      fontStyle: "italic"
+      fontStyle: "italic",
+      width: "200px",
+      textAlign: "center"
     }
   };
 }

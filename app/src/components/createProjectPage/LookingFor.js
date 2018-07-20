@@ -43,12 +43,12 @@ class LookingFor extends Component {
           removeItem={this.removeItem}
         />
         <div className="row">
-          <div className="col-8">
+          <div className="col-6">
             <input
               type="text"
               name="lookingFor"
               placeholder="Looking for"
-              className="inputTextBox"
+              className="LookingFor"
               value={this.state.value}
               onChange={e => {
                 this.onChange(e);
@@ -57,7 +57,7 @@ class LookingFor extends Component {
               onKeyPress={e => this.handleKeyPress(e)}
             />
           </div>
-          <div className="col-4">
+          <div className="col-6">
             <Button onClick={this.submitField}>Submit</Button>
           </div>
         </div>
