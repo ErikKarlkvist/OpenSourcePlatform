@@ -53,11 +53,14 @@ class Readme extends Component {
   }
 
   addHeader = text => {
-    return <h1>Readme from {this.props.projectName}'s repo</h1>;
+    const title = this.props.projectName
+      ? this.props.projectName
+      : this.props.project.name;
+    return <h1>{title}'s Readme</h1>;
   };
 
   render() {
-    if (!this.props.readmeURL) {
+    if (!this.props.readmeURL && !this.props.project.readmeURL) {
       return <div />;
     }
     return (
