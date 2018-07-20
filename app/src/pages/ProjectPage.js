@@ -14,6 +14,7 @@ import Updates from "../components/projectPage/Updates";
 import Line from "../components/common/Line";
 import logo from "../logo.svg";
 import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
+import { getProjectFromDraft } from "../backend/projectDrafts";
 
 const ProjectNotFound = props => {
   return (
@@ -24,6 +25,7 @@ const ProjectNotFound = props => {
     </div>
   );
 };
+
 class ProjectPage extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -47,22 +49,11 @@ class ProjectPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.match);
     if (this.props.match && this.props.match.params.projectId) {
-      getProject(this.props.match.params.projectId).then(project => {
-        if (project) {
-          this.setState({
-            loading: false,
-            project,
-            foundProject: true
-          });
-        } else {
-          this.setState({
-            loading: false,
-            foundProject: false
-          });
-        }
-        console.log(project);
-      });
+      this.loadLiveProject();
+    } else if (this.props.match && this.props.match.params.draftId) {
+      this.loadDraftProject();
     } else {
       this.setState({
         loading: false,
@@ -71,6 +62,41 @@ class ProjectPage extends Component {
     }
 
     this.setupAuthStateChange();
+  }
+
+  loadDraftProject() {
+    getProjectFromDraft(this.props.match.params.draftId)
+      .then(project => {
+        this.setState({
+          loading: false,
+          foundProject: true,
+          project
+        });
+      })
+      .catch(e => {
+        console.error(e);
+        this.setState({
+          loading: false,
+          foundProject: false
+        });
+      });
+  }
+
+  loadLiveProject() {
+    getProject(this.props.match.params.projectId).then(project => {
+      if (project) {
+        this.setState({
+          loading: false,
+          project,
+          foundProject: true
+        });
+      } else {
+        this.setState({
+          loading: false,
+          foundProject: false
+        });
+      }
+    });
   }
 
   setupAuthStateChange() {

@@ -12,18 +12,21 @@ import ReadmeInput from "../components/createProjectPage/ReadmeInput";
 import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
 import Line from "../components/common/Line";
 import Button from "../components/common/Button";
+import { saveToLocalDraft } from "../backend/projectDrafts";
 
 const Buttons = props => {
   const styles = {
     container: {
       display: "flex",
-      justifyContent: "space-between",
+      justifyContent: "flex-end",
       paddingTop: "30px",
       paddingBottom: "30px",
       marginTop: "-10px",
       width: "100%"
     },
-    rightButton: {},
+    rightButton: {
+      marginLeft: "30px"
+    },
     leftButton: {}
   };
 
@@ -60,7 +63,7 @@ class CreateProjectPage extends Component {
       headerImageURL: "",
       owners: [],
       loading: true,
-      thumbnails: {}
+      thumbnails: []
     };
   }
 
@@ -137,10 +140,11 @@ class CreateProjectPage extends Component {
 
   preview = () => {
     const project = this.getProjectFromState();
-    const projectString = JSON.stringify(project);
-    const url = `/preview-project/${projectString}`;
-    var win = window.open(url, "_blank");
-    win.focus();
+    saveToLocalDraft(project.projectID, project).then(() => {
+      const url = `/preview-project/${project.projectID}`;
+      var win = window.open(url, "_blank");
+      win.focus();
+    });
   };
 
   createProject = () => {};
@@ -172,7 +176,10 @@ class CreateProjectPage extends Component {
               />
             </div>
             {this.state.projectID && (
-              <CreateUpdates projectID={this.state.projectID} />
+              <CreateUpdates
+                projectID={this.state.projectID}
+                setThumbnails={this.setThumbnails}
+              />
             )}
             <Line full={true} />
             <div className="Center">

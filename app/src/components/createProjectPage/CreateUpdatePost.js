@@ -23,7 +23,7 @@ const Container = props => {
 
 const Content = props => {
   const style = {
-    height: "80vh",
+    minHeight: "80vh",
     margin: "20%",
     minWidth: "80vh",
     textAlign: "left",

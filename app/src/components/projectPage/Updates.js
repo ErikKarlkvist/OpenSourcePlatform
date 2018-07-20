@@ -167,7 +167,8 @@ class Updates extends Component {
   };
 
   render() {
-    if (!this.state.items) {
+    console.log(this.state.items);
+    if (!this.state.items || this.state.items.length <= 0) {
       return <div />;
     }
 
