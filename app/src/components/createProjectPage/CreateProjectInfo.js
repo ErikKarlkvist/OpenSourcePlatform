@@ -122,7 +122,6 @@ class CreateProjectInfo extends Component {
               value={this.props.values.lookingFor}
               handleInputChange={this.props.handleInputChange}
             />
-            <div>
               <InputTextBox 
                 title="Contact email"
                 placeholder="Your contact email"
@@ -132,7 +131,6 @@ class CreateProjectInfo extends Component {
                 handleInputChange={e => this.props.handleInputChange(e)}
                 className={"inputTextBox"}
               />
-            </div>
           </Small>
           <Big>
             {
