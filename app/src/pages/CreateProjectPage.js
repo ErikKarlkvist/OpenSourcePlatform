@@ -125,12 +125,6 @@ class CreateProjectPage extends Component {
                 handleInputChange={this.handleInputChange}
                 values={this.state}
               />
-
-              <UploadImage
-                type={"headerImage"}
-                id={this.state.projectID}
-                recieveURL={this.recieveURL}
-              />
             </div>
           </div>
         )}
