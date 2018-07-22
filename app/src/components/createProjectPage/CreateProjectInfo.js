@@ -75,6 +75,21 @@ const Top = props => {
   const styles = {
     container: {
       width: "100%"
+    },
+    removeLabel: {
+      cursor: "pointer",
+      textDecoration: "underline",
+      fontStyle: "italic",
+      width: "200px",
+      textAlign: "center"
+    },
+    removeLabelContainer: {
+      display: "flex",
+      justifyContent: "flex-start",
+      marginTop: "20px",
+      marginLeft: "20px",
+      width: "200px",
+      marginBottom: "20px"
     }
   };
   return (
@@ -86,13 +101,22 @@ const Top = props => {
         />
       </div>
       <div className="col-md-5 col-sm-12 col-lg-5">
-        <UploadImage
-          type={"headerImage"}
-          id={props.projectID}
-          recieveURL={props.recieveURL}
-          label="Upload header image"
-          loadingType="round"
-        />
+        {!props.headerImageURL && (
+          <UploadImage
+            type={"headerImage"}
+            id={props.projectID}
+            recieveURL={props.recieveURL}
+            label="Upload header image"
+            loadingType="round"
+          />
+        )}
+        {props.headerImageURL && (
+          <div style={styles.removeLabelContainer}>
+            <a onClick={props.removeHeaderImage} style={styles.removeLabel}>
+              Remove header image
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -108,6 +132,8 @@ class CreateProjectInfo extends Component {
             handleInputChange={this.props.handleInputChange}
             projectID={this.props.projectID}
             recieveURL={this.props.recieveURL}
+            headerImageURL={this.props.values.headerImageURL}
+            removeHeaderImage={this.props.removeHeaderImage}
           />
           <Big>
             <h3 style={{ textAlign: "left", marginLeft: "30px" }}>
