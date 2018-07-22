@@ -19,7 +19,7 @@ class ProjectsDisplay extends Component {
               name={d.name}
               owners={d.owners}
               description={d.description}
-              imgURL={d.imgURL}
+              imgURL={d.headerImageURL}
               size="medium"
             />
           </Link>

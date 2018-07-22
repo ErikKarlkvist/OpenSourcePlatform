@@ -149,6 +149,10 @@ class CreateProjectPage extends Component {
 
   createProject = () => {};
 
+  removeHeaderImage = () => {
+    this.setState({ headerImageURL: "" });
+  };
+
   render() {
     return (
       <div className="PageContainer">
@@ -173,6 +177,7 @@ class CreateProjectPage extends Component {
                 projectID={this.state.projectID}
                 recieveURL={this.recieveURL}
                 setSeeking={this.setSeeking}
+                removeHeaderImage={this.removeHeaderImage}
               />
             </div>
             {this.state.projectID && (
