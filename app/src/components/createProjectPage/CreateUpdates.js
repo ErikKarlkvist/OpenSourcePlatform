@@ -8,13 +8,14 @@ const Container = props => {
     textAlign: "left",
     marginTop: "80px",
     paddingBottom: "80px",
-    backgroundColor: "var(--bluey-green)"
+    backgroundColor: "var(--light-teal)",
+    opacity: "0.8"
   };
   return <div style={style}>{props.children}</div>;
 };
 
 const Title = props => {
-  const style = { paddingTop: "50px" };
+  const style = { paddingTop: "50px", color: "var(--dark-teal)"};
   return <h3 style={style}>Updates</h3>;
 };
 

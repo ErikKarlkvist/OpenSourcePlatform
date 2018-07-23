@@ -1,3 +1,4 @@
+@import "../resources/colors.css";
 .App-title {
   margin-top: 40px;
 }
@@ -25,7 +26,6 @@
   }
 }
 
-<<<<<<< HEAD:app/src/resources/Main.css
 .SeeThroughBtn {
   border: solid white 2px;
   width: 100%;
@@ -85,7 +85,6 @@
   background: none;
   color: var(--dark-teal);
   width: 100px;
-  height: 50px;
   text-align: center;
   transition: 0.2s;
   cursor: pointer;
@@ -99,7 +98,6 @@
 .CancelBtn {
   border: none;
   width: 100px;
-  height: 50px;
   padding: 5px;
   text-align: center;
   background-color: var(--white-three);
@@ -110,8 +108,6 @@
   cursor: pointer;
 }
 
-=======
->>>>>>> 16f29e18f80686a0c6f3f51316cd60222531e853:app/src/resources/Styles/Main.css
 .Thumbnail {
   padding-bottom: 40px;
   background-color: var(--dark-teal);
