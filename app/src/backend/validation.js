@@ -1,5 +1,12 @@
 export function validateGithubURL(gitURL) {
-  return gitURL.includes("https://github.com/");
+  if (gitURL.includes("https://github.com/")) {
+    gitURL = gitURL.replace("https://github.com/", "");
+    let split = gitURL.split("/");
+    if (gitURL.split("/").length === 2) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export function validateEmail(email) {

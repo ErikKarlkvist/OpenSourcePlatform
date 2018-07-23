@@ -1,0 +1,286 @@
+.App-title {
+  margin-top: 40px;
+}
+
+.App-header {
+  height: 80px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Content {
+  width: 100%;
+  flex: display;
+  justify-content: center;
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+<<<<<<< HEAD:app/src/resources/Main.css
+.SeeThroughBtn {
+  border: solid white 2px;
+  width: 100%;
+  border-radius: 1px;
+  background: none;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  transition: 0.2s;
+  resize: flex;
+}
+
+.SeeThroughBtn:hover {
+  background: var(--light-teal);
+  border: solid var(--light-teal) 2px;
+  color: var(--dark-teal);
+  cursor: pointer;
+}
+
+.SolidBtn {
+  border: solid var(--bluey-green) 2px;
+  width: 150px;
+  border-radius: 1px;
+  background: var(--bluey-green);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.SolidBtn:hover {
+  background: var(--light-teal);
+  border: solid var(--light-teal) 2px;
+  color: var(--dark-teal);
+  cursor: pointer;
+}
+
+.WarningBtn {
+  border: solid var(--bright-orange) 2px;
+  width: 150px;
+  border-radius: 1px;
+  color: var(--bright-orange);
+  padding: 5px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.WarningBtn:hover {
+  background: var(--bright-orange);
+  border: solid var(--bright-orange) 2px;
+  color: white;
+  cursor: pointer;
+}
+
+.LogInBtn {
+  border: solid var(--dark-teal) 2px;
+  background: none;
+  color: var(--dark-teal);
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.LogInBtn:hover {
+  background: var(--dark-teal);
+  color: var(--white);
+}
+
+.CancelBtn {
+  border: none;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  text-align: center;
+  background-color: var(--white-three);
+}
+
+.CancelBtn:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+=======
+>>>>>>> 16f29e18f80686a0c6f3f51316cd60222531e853:app/src/resources/Styles/Main.css
+.Thumbnail {
+  padding-bottom: 40px;
+  background-color: var(--dark-teal);
+  object-fit: cover;
+}
+.Thumbnail:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.Center {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.Logo {
+  height: 40px;
+}
+
+.GreenBox {
+  width: 300px;
+  padding: 20px;
+  margin-top: 10px;
+  border: solid 1px var(--bluey-green);
+}
+
+.HeaderImage {
+  width: 300px;
+  height: 230px;
+}
+
+.ProjectInfoLeft {
+  border-bottom: solid 2px white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.ProjectInfoRight {
+  border-bottom: solid 2px white;
+  padding-top: 20px;
+}
+
+@media (min-width: 576px) {
+  .Center {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .Logo {
+    height: 60px;
+  }
+
+  .GreenBox {
+    width: 350px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
+
+  .HeaderImage {
+    width: 350px;
+    height: 251px;
+  }
+
+  .ProjectInfoLeft {
+    border-bottom: solid 2px white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .ProjectInfoRight {
+    border-bottom: solid 2px white;
+    padding-top: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .Center {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .Logo {
+    height: 80px;
+  }
+
+  .GreenBox {
+    width: 300px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
+
+  .HeaderImage {
+    width: 300px;
+    height: 215px;
+  }
+
+  .ProjectInfoLeft {
+    border-right: solid 2px white;
+    padding-right: 20px;
+    border-bottom: none;
+  }
+
+  .ProjectInfoRight {
+    padding-left: 30px;
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .Center {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .Logo {
+    height: 80px;
+  }
+
+  .GreenBox {
+    width: 452px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
+
+  .HeaderImage {
+    width: 480px;
+    height: 345px;
+  }
+
+  .ProjectInfoLeft {
+    border-right: solid 2px white;
+    padding-right: 20px;
+    border-bottom: none;
+  }
+
+  .ProjectInfoRight {
+    padding-left: 30px;
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Center {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .Logo {
+    height: 80px;
+  }
+  .GreenBox {
+    width: 500px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
+
+  .HeaderImage {
+    width: 519px;
+    height: 374px;
+  }
+
+  .ProjectInfoLeft {
+    border-right: solid 2px white;
+    padding-right: 20px;
+    border-bottom: none;
+  }
+
+  .ProjectInfoRight {
+    padding-left: 30px;
+    border-bottom: none;
+  }
+}
