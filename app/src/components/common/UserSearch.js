@@ -139,7 +139,7 @@ class UserSearchField extends Component {
         />
         <div class="row">
           {this.state.selected.name == undefined && (
-            <div class="col-md-6 col-sm-6 col-lg-6">
+            <div class="col-md-12 col-sm-12 col-lg-12">
               <input
                 className="search-input"
                 onChange={e => this.onChange(e)}
@@ -152,7 +152,7 @@ class UserSearchField extends Component {
             </div>
           )}
           {this.state.selected.name !== undefined && (
-            <div class="col-md-6 col-sm-6 col-lg-6">
+            <div class="col-md-12 col-sm-12 col-lg-12">
               <ShowSelectedUser
                 user={this.state.selected}
                 role={this.state.role}
