@@ -13,6 +13,7 @@ import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
 import Line from "../components/common/Line";
 import Button from "../components/common/Button";
 import { saveToLocalDraft } from "../backend/projectDrafts";
+import { validateGithubURL, validateEmail } from "../backend/validation";
 
 const Buttons = props => {
   const styles = {
@@ -127,6 +128,11 @@ class CreateProjectPage extends Component {
   }
 
   submitProject = () => {
+    //validateEmail
+    //validateGithubURL if exists
+    //check title exists
+    //check description exists
+    //check atleast one owner exists
     createNewProject(this.getProjectFromState());
   };
 

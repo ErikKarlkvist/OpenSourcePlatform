@@ -155,10 +155,12 @@ class CreateProjectInfo extends Component {
               title="Contact email"
               placeholder="Your contact email"
               name="contactMail"
-              maxChars={25}
+              type="email"
               value={this.props.values.contactMail}
               handleInputChange={e => this.props.handleInputChange(e)}
               className={"inputTextBox"}
+              validate={validateEmail}
+              invalidText={"Not an email"}
             />
           </Small>
           <Big>
