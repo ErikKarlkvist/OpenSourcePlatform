@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import Spinner from "../common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
+import { withRouter } from "react-router";
+import PropTypes from "prop-types";
 
 class SignUpView extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
   constructor(props, context) {
     super(props, context);
 
@@ -58,7 +66,12 @@ class SignUpView extends Component {
             <br />
             <br />
             <div style={styles.container2}>
-              <input type="cancel" value="Cancel" className="CancelBtn" onClick={this.props.hide}/>
+              <input
+                type="cancel"
+                value="Cancel"
+                className="CancelBtn"
+                onClick={this.props.hide}
+              />
               <input type="submit" value="Log in" className="LogInBtn" />
             </div>
             <div style={styles.container2}>
@@ -103,7 +116,11 @@ class SignUpView extends Component {
       login(email, password)
         .then(() => {
           this.setState({ loading: false });
-          this.props.hide();
+          if (this.props.navigateTo) {
+            this.props.history.push(this.props.navigateTo);
+          } else {
+            this.props.hide();
+          }
         })
         .catch(e => {
           this.setState({ loading: false });
@@ -168,4 +185,4 @@ const styles = {
   }
 };
 
-export default SignUpView;
+export default withRouter(SignUpView);

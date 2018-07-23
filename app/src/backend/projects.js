@@ -112,21 +112,61 @@ export async function createNewProjectID() {
     .doc().id;
 }
 
+/* PROJECTDATA
+  name: 
+      description: 
+      lookingFor: 
+      gitURL:
+      readmeURL:
+      contactMail: 
+      creator: 
+      headerImageURL:,
+      owners: 
+      thumbnails: 
+  */
 export async function createNewProject(projectData, id) {
-  console.log(projectData);
+  const owners = projectData.owners.slice();
+  const thumbnails = projectData.thumbnails.slice();
+
+  delete projectData.owners;
+  delete projectData.thumbnails;
+
+  projectData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+  console.log(owners);
+  console.log(thumbnails);
+
   await firebase
     .firestore()
     .collection("projects")
     .doc(id)
-    .set(projectData)
-    .then(function() {
-      console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-      console.error("Error writing document: ", error);
-    });
+    .set(projectData, { merge: true });
 
-  uploadHeaderImage(projectData.headerImageURL, projectData.name);
+  const promises = [];
+  for (let i = 0; i < thumbnails.length; i++) {
+    promises.push(
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(id)
+        .collection("thumbnails")
+        .add(thumbnails[i])
+    );
+  }
+
+  for (let j = 0; j < owners.length; j++) {
+    promises.push(
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(id)
+        .collection("owners")
+        .doc((j + 1).toString())
+        .set({ role: owners[j].role, userID: owners[j].id })
+    );
+  }
+
+  await Promise.all(promises);
+  return Promise.resolve(true);
 }
 
 //----------------------------------_HELPER ---------------------------------
