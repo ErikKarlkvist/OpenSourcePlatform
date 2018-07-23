@@ -26,22 +26,10 @@ const Routing = () => {
     <Router>
       <div>
         <ScrollToTop />
-        <Route exact path="/" component={Home} onChange={handleUpdate} />
-        <Route
-          path="/project/:projectId"
-          component={Project}
-          onChange={handleUpdate}
-        />
-        <Route
-          path="/create-project"
-          component={CreateProject}
-          onChange={handleUpdate}
-        />
-        <Route
-          path="/preview-project/:draftId"
-          component={Project}
-          onChange={handleUpdate}
-        />
+        <Route exact path="/" component={Home} />
+        <Route path="/project/:projectId" component={Project} />
+        <Route path="/create-project" component={CreateProject} />
+        <Route path="/preview-project/:draftId" component={Project} />
       </div>
     </Router>
   );
