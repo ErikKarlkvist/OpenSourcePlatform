@@ -130,14 +130,12 @@ export async function createNewProject(projectData, id) {
   delete projectData.thumbnails;
 
   projectData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
-  console.log(owners);
-  console.log(thumbnails);
 
   await firebase
     .firestore()
     .collection("projects")
     .doc(id)
-    .set(projectData, { merge: true });
+    .set(projectData);
 
   const promises = [];
   for (let i = 0; i < thumbnails.length; i++) {
@@ -164,6 +162,65 @@ export async function createNewProject(projectData, id) {
   }
 
   await Promise.all(promises);
+  //reload all project on update
+  await getAllProjectsHelper();
+  return Promise.resolve(true);
+}
+
+export async function updateProject(projectData, id) {
+  const owners = projectData.owners.slice();
+  const thumbnails = projectData.thumbnails.slice();
+
+  delete projectData.owners;
+  delete projectData.thumbnails;
+
+  projectData.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+
+  await firebase
+    .firestore()
+    .collection("projects")
+    .doc(id)
+    .set(projectData, { merge: true });
+
+  const promises = [];
+  for (let i = 0; i < thumbnails.length; i++) {
+    if (thumbnails[i].id) {
+      promises.push(
+        firebase
+          .firestore()
+          .collection("projects")
+          .doc(id)
+          .collection("thumbnails")
+          .doc(thumbnails[i].id)
+          .set(thumbnails[i], { merge: true })
+      );
+    } else {
+      promises.push(
+        firebase
+          .firestore()
+          .collection("projects")
+          .doc(id)
+          .collection("thumbnails")
+          .add(thumbnails[i])
+      );
+    }
+  }
+
+  for (let j = 0; j < owners.length; j++) {
+    promises.push(
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(id)
+        .collection("owners")
+        .doc((j + 1).toString())
+        .set({ role: owners[j].role, userID: owners[j].id })
+    );
+  }
+
+  await Promise.all(promises);
+  //reload all project on update
+  await getAllProjectsHelper();
   return Promise.resolve(true);
 }
 
@@ -265,6 +322,7 @@ async function getToolsForProject(project) {
     snapshots.forEach(snapshot => {
       if (snapshot.exists) {
         const data = snapshot.data();
+        data.id = snapshot.id;
         tools.push(data);
       }
     });
@@ -324,6 +382,7 @@ async function getThumbnailsForProject(project) {
     snapshots.forEach(snapshot => {
       if (snapshot.exists) {
         const data = snapshot.data();
+        data.id = snapshot.id;
         thumbnails.push(data);
       }
     });

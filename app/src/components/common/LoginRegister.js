@@ -5,6 +5,36 @@ import SignupForm from "./SignupForm";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { logout } from "../../backend/auth";
 
+const RouteLink = props => {
+  const style = {
+    marginTop: 10,
+    textAlign: "right"
+  };
+  return (
+    <div style={style}>
+      <Link
+        className={"MenuItem"}
+        to={props.to}
+        style={{ textDecoration: "none" }}
+        onClick={props.onClick}
+      >
+        <span>{props.text}</span>
+      </Link>
+    </div>
+  );
+};
+
+const NormalLink = props => {
+  return (
+    <a
+      className={"MenuItem"}
+      style={{ textDecoration: "none" }}
+      onClick={props.onClick}
+    >
+      {props.text}
+    </a>
+  );
+};
 class LoginRegister extends Component {
   defaultProps = {
     editLink: "/"
@@ -43,39 +73,31 @@ class LoginRegister extends Component {
               navigateTo={this.state.navigateTo}
             />
           )}
+
           <div>
-            <a
-              className={"MenuItem"}
+            <NormalLink
+              text="Sign up"
               onClick={() => this.setState({ displaySignup: true })}
-            >
-              Sign up
-            </a>
+            />
             <a> | </a>
-            <a
-              className={"MenuItem"}
-              onClick={() =>
-                this.setState({
-                  displayLogin: true
-                })
-              }
-            >
-              Log in
-            </a>
+            <NormalLink
+              text="Log in"
+              onClick={() => this.setState({ displayLogin: true })}
+            />
           </div>
+
           <div style={styles.line} />
+
           <div style={{ marginTop: "30px", textAlign: "right" }}>
-            <a
-              className={"MenuItem"}
-              style={{ textDecoration: "none" }}
-              onClick={() =>
+            <NormalLink
+              text="Create Project"
+              onClick={() => {
                 this.setState({
                   displayLogin: true,
                   navigateTo: "/create-project"
-                })
-              }
-            >
-              Create Project
-            </a>
+                });
+              }}
+            />
           </div>
         </div>
       );
@@ -87,41 +109,12 @@ class LoginRegister extends Component {
           </h5>
           <div style={styles.line} />
           <div style={styles.optionsContainer}>
-            <div style={styles.option}>
-              <Link
-                className={"MenuItem"}
-                to={"/create-project"}
-                style={{ textDecoration: "none" }}
-                onClick={() => {}}
-              >
-                <span>Create Project</span>
-              </Link>
-            </div>
-            <div style={styles.option}>
-              <a
-                className={"MenuItem"}
-                style={{ textDecoration: "none" }}
-                onClick={() => {}}
-              >
-                Your Projects
-              </a>
-            </div>
+            <RouteLink text="Create project" to="/create-project" />
+            <RouteLink text="Your projects" to="/" />
             {this.props.canEdit && (
-              <div style={styles.option}>
-                <Link
-                  className={"MenuItem"}
-                  to={this.props.editLink}
-                  style={{ textDecoration: "none" }}
-                >
-                  <span>Edit project</span>
-                </Link>
-              </div>
+              <RouteLink text="Edit project" to={this.props.editLink} />
             )}
-            <div style={styles.option}>
-              <Link to={"/"} className={"MenuItem"} onClick={this.logout}>
-                Log out
-              </Link>
-            </div>
+            <RouteLink text="Log out" to="/" onClick={this.logout} />
           </div>
         </div>
       );

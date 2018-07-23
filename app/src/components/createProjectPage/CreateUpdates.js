@@ -15,7 +15,7 @@ const Container = props => {
 };
 
 const Title = props => {
-  const style = { paddingTop: "50px", color: "var(--dark-teal)"};
+  const style = { paddingTop: "50px", color: "var(--dark-teal)" };
   return <h3 style={style}>Updates</h3>;
 };
 
@@ -56,7 +56,8 @@ class AddThumbnails extends Component {
   constructor() {
     super();
     this.state = {
-      thumbnails: []
+      thumbnails: [],
+      currentItem: undefined
     };
   }
 
@@ -69,7 +70,7 @@ class AddThumbnails extends Component {
       thumbnails[i] = { url };
     }
 
-    this.setState({ thumbnails });
+    this.props.setThumbnails(thumbnails);
   };
 
   toggleFullScreen = index => {
@@ -79,19 +80,17 @@ class AddThumbnails extends Component {
   };
 
   addThumbnail = thumbnail => {
-    const { thumbnails } = this.state;
-    thumbnails.push(thumbnail);
+    const { thumbnails } = this.props;
+    thumbnails.unshift(thumbnail);
     this.props.setThumbnails(thumbnails);
-    this.setState({ thumbnails });
     this.toggleFullScreen(null);
   };
 
   removeThumbnail = () => {
     if (this.state.currentItem !== null) {
-      let { thumbnails } = this.state;
+      let { thumbnails } = this.props;
       thumbnails.splice(this.state.currentItem, 1);
       this.props.setThumbnails(thumbnails);
-      this.setState({ thumbnails });
     }
     this.toggleFullScreen(null);
   };
@@ -110,7 +109,7 @@ class AddThumbnails extends Component {
               <CreateUpdatePost
                 toggleFullScreen={this.toggleFullScreen}
                 projectID={this.props.projectID}
-                data={this.state.thumbnails[this.state.currentItem]}
+                data={this.props.thumbnails[this.state.currentItem]}
                 addThumbnail={this.addThumbnail}
                 removeThumbnail={this.removeThumbnail}
               />
@@ -122,7 +121,7 @@ class AddThumbnails extends Component {
   }
 
   getThumbnailsToShow() {
-    const { thumbnails } = this.state;
+    const { thumbnails } = this.props;
     const thumbnailsToShow = [];
     for (let i = 0; i < thumbnails.length; i++) {
       const data = thumbnails[i];

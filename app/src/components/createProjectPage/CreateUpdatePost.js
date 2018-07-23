@@ -27,8 +27,8 @@ const Content = props => {
     margin: "20%",
     minWidth: "80vh",
     textAlign: "left",
-    backgroundColor: "white",
-    zIndex: 4,
+    backgroundColor: "rgba(255,255,255,1)",
+    zIndex: 10,
     position: "relative"
   };
   return <div style={style}>{props.children}</div>;
