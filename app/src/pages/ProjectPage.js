@@ -43,12 +43,13 @@ class ProjectPage extends Component {
       user: {},
       isLoggedIn: false,
       hasFetchedUser: false,
-      foundProject: false
+      foundProject: false,
+      canEdit: true
     };
   }
 
   componentDidMount() {
-    console.log(this.props.match);
+    this.setupAuthStateChange();
     if (this.props.match && this.props.match.params.projectId) {
       this.loadLiveProject();
     } else if (this.props.match && this.props.match.params.draftId) {
@@ -59,8 +60,6 @@ class ProjectPage extends Component {
         foundProject: false
       });
     }
-
-    this.setupAuthStateChange();
   }
 
   loadDraftProject() {
@@ -96,6 +95,16 @@ class ProjectPage extends Component {
         });
       }
     });
+  }
+
+  canEditProject() {
+    let canEdit = false;
+    this.state.project.owners.forEach(owner => {
+      if (owner.userID === this.state.user.id) {
+        canEdit = true;
+      }
+    });
+    return canEdit;
   }
 
   setupAuthStateChange() {
@@ -134,6 +143,7 @@ class ProjectPage extends Component {
                 isLoggedIn={this.state.isLoggedIn}
                 user={this.state.user}
                 hasFetchedUser={this.state.hasFetchedUser}
+                canEdit={this.canEditProject()}
               />
             </header>
             {this.state.foundProject && (

@@ -43,14 +43,14 @@ const ShowSelectedUser = props => {
 };
 
 class UserSearchField extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       value: "",
       suggestions: [],
       users: [],
       selected: {},
-      submittedUsers: [],
+      submittedUsers: props.currentOwners,
       role: ""
     };
   }
@@ -66,6 +66,12 @@ class UserSearchField extends Component {
         };
       });
       this.setState({ users });
+    });
+  }
+
+  componentWillRecieveProps(props) {
+    this.setState({
+      submittedUsers: props.currentOwners
     });
   }
 
@@ -103,11 +109,8 @@ class UserSearchField extends Component {
 
   submitUser = user => {
     const subUser = { userID: user.id, role: this.state.role, ...user };
-    const users = [...this.state.submittedUsers, subUser];
+    const users = [...this.props.currentOwners, subUser];
     this.props.setOwners(users);
-    this.setState({
-      submittedUsers: users
-    });
     this.removeSelectedUser();
   };
 
@@ -118,11 +121,10 @@ class UserSearchField extends Component {
   };
 
   removeSubmittedUser = user => {
-    const newUsers = this.state.submittedUsers.filter(d => {
+    const newUsers = this.props.currentOwners.filter(d => {
       return user.id !== d.id;
     });
     this.props.setOwners(newUsers);
-    this.setState({ submittedUsers: newUsers });
   };
 
   render() {
@@ -131,7 +133,7 @@ class UserSearchField extends Component {
     return (
       <div>
         <Contributors
-          developers={this.state.submittedUsers}
+          developers={this.props.currentOwners}
           removeUser={this.removeSubmittedUser}
         />
         <div class="row">
