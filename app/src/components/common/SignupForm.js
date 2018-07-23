@@ -85,7 +85,7 @@ class SignUpView extends Component {
               />
               {!this.state.validEmail && (
                 <div>
-                  <p style={{ color: "var(--bright-orange" }}>Must end with @dnb.no</p>
+                  <p style={{ color: "var(--bright-orange", fontStyle: "italic", fontSize: "14px"}}>Not a valid email. Must end with @dnb.no</p>
                 </div>
               )}
             </div>

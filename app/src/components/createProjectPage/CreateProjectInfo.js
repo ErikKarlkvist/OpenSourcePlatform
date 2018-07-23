@@ -159,7 +159,7 @@ class CreateProjectInfo extends Component {
               handleInputChange={e => this.props.handleInputChange(e)}
               className={"inputTextBox"}
               validate={validateEmail}
-              invalidText={"Not an email"}
+              invalidText={"Not a valid email"}
             />
           </Small>
           <Big>
@@ -177,7 +177,7 @@ class CreateProjectInfo extends Component {
                 className={"inputTextBox"}
                 validate={validateGithubURL}
                 invalidText={
-                  "WARNING: Not a github repository. Embed the following: https://github.com/{username}/{repository-name}/)"
+                  "Not a github repository. Embed the following: https://github.com/{username}/{repository-name}/)"
                 }
               />
             </div>
