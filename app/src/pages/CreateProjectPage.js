@@ -14,6 +14,7 @@ import Line from "../components/common/Line";
 import Button from "../components/common/Button";
 import { saveToLocalDraft } from "../backend/projectDrafts";
 import { validateGithubURL, validateEmail } from "../backend/validation";
+import { withRouter } from "react-router";
 
 const Buttons = props => {
   const styles = {
@@ -57,7 +58,7 @@ class CreateProjectPage extends Component {
       projectID: undefined,
       projectName: "",
       description: "",
-      lookingFor: "",
+      lookingFor: [],
       gitURL: "",
       readmeURL: "",
       contactMail: "",
@@ -76,7 +77,6 @@ class CreateProjectPage extends Component {
   }
 
   setOwners = owners => {
-    console.log(owners);
     this.setState({ owners: owners });
   };
 
@@ -112,6 +112,19 @@ class CreateProjectPage extends Component {
   };
 
   getProjectFromState() {
+    let headerImageURL = this.state.headerImageURL;
+    let standardImageURLs = [
+      "https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/resources%2Fgreen.png?alt=media&token=8211dd36-6174-4c18-bf07-e954960fdb0f",
+      "https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/resources%2Fpink.jpg?alt=media&token=dcd44594-e7bc-4458-a57f-19a53921cd3a"
+    ];
+
+    if (!this.state.headerImageURL) {
+      const randInt = Math.floor(
+        Math.random() * Math.floor(standardImageURLs.length)
+      );
+      headerImageURL = [standardImageURLs[randInt]];
+    }
+
     return {
       name: this.state.projectName,
       description: this.state.description,
@@ -120,7 +133,7 @@ class CreateProjectPage extends Component {
       readmeURL: this.state.readmeURL,
       contactMail: this.state.contactMail,
       creator: this.state.user.id,
-      headerImageURL: this.state.headerImageURL,
+      headerImageURL,
       owners: this.state.owners,
       thumbnails: this.state.thumbnails,
       projectID: this.state.projectID
@@ -128,10 +141,21 @@ class CreateProjectPage extends Component {
   }
 
   submitProject = () => {
-    let standardImageURLs = [
-      "https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/resources%2Fgreen.png?alt=media&token=8211dd36-6174-4c18-bf07-e954960fdb0f",
-      "https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/resources%2Fpink.jpg?alt=media&token=dcd44594-e7bc-4458-a57f-19a53921cd3a"
-    ];
+    console.log(this.state);
+    if (!this.state.projectName) {
+      alert("Please add a title");
+      return;
+    }
+
+    if (!this.state.description) {
+      alert("Please add a description");
+      return;
+    }
+
+    if (this.state.owners.length === 0) {
+      alert("Please add atleast one owner");
+      return;
+    }
 
     if (!validateEmail(this.state.contactMail)) {
       alert("Invalid contact email");
@@ -142,12 +166,18 @@ class CreateProjectPage extends Component {
       alert("Invalid github url, please fix or remove");
       return;
     }
-    //validateEmail
-    //validateGithubURL if exists
-    //check title exists
-    //check description exists
-    //check atleast one owner exists
-    //createNewProject(this.getProjectFromState());
+
+    this.setState({ loading: true });
+    const project = this.getProjectFromState();
+    createNewProject(this.getProjectFromState(), this.state.projectID)
+      .then(() => {
+        const url = `/project/${this.state.projectID}`;
+        this.props.history.push(url);
+      })
+      .catch(e => {
+        this.setState({ loading: false });
+        alert(e.message);
+      });
   };
 
   setThumbnails = thumbnails => {
@@ -160,14 +190,12 @@ class CreateProjectPage extends Component {
 
   preview = () => {
     const project = this.getProjectFromState();
-    saveToLocalDraft(project.projectID, project).then(() => {
-      const url = `/preview-project/${project.projectID}`;
+    saveToLocalDraft(this.state.projectID, project).then(() => {
+      const url = `/preview-project/${this.state.projectID}`;
       var win = window.open(url, "_blank");
       win.focus();
     });
   };
-
-  createProject = () => {};
 
   removeHeaderImage = () => {
     this.setState({ headerImageURL: "" });
@@ -228,4 +256,4 @@ class CreateProjectPage extends Component {
   }
 }
 
-export default CreateProjectPage;
+export default withRouter(CreateProjectPage);
