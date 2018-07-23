@@ -4,8 +4,8 @@ import "./UserSearch.css";
 import Button from "./Button";
 import Contributors from "../projectPage/Contributors";
 
-const UserImage = props => {
-  return <img className="userImage" src={props.url} />;
+const UserImageBig = props => {
+  return <img className="userImageBig" src={props.url} />;
 };
 
 const SearchResult = props => {
@@ -23,18 +23,24 @@ const SearchResult = props => {
 
 const ShowSelectedUser = props => {
   return (
-    <div>
-      {props.user.image}
+    <div style={{ margin: "5px" }}>
       {props.user.name}
+      {props.user.image}
       <div>
         <input
+          style={{ margin: "3px" }}
           onChange={e => props.onRoleChange(e)}
           value={props.role}
           placeholder={props.user.firstname + "'s role"}
           onKeyDown={e => props.submitOnEnter(e)}
-        />
+        />{" "}
+        <Button
+          style={{ margin: "5px" }}
+          onClick={() => props.submitUser(props.user)}
+        >
+          Add owner
+        </Button>
       </div>
-      <Button onClick={() => props.submitUser(props.user)}>Submit user</Button>
     </div>
   );
 };
@@ -59,7 +65,7 @@ class UserSearchField extends Component {
           ...d,
           name: d.firstname + " " + d.lastname,
 
-          image: <UserImage url={d.profileImageURL} />
+          image: <UserImageBig url={d.profileImageURL} />
         };
       });
       this.setState({ users });
@@ -101,8 +107,6 @@ class UserSearchField extends Component {
   submitUser = user => {
     const subUser = { userID: user.id, role: this.state.role, ...user };
     const users = [...this.state.submittedUsers, subUser];
-    console.log(users);
-    console.log(this.props.setOwners);
     this.props.setOwners(users);
     this.setState({
       submittedUsers: users
@@ -134,17 +138,19 @@ class UserSearchField extends Component {
           removeUser={this.removeSubmittedUser}
         />
         <div class="row">
-          <div class="col-md-6 col-sm-6 col-lg-6">
-            <input
-              className="search-input"
-              onChange={e => this.onChange(e)}
-              value={this.state.value}
-              placeholder="Search users"
-            />
-            {suggestions.length < this.state.users.length && (
-              <div className="suggestions-container">{suggestions}</div>
-            )}
-          </div>
+          {this.state.selected.name == undefined && (
+            <div class="col-md-6 col-sm-6 col-lg-6">
+              <input
+                className="search-input"
+                onChange={e => this.onChange(e)}
+                value={this.state.value}
+                placeholder="Search users"
+              />
+              {suggestions.length < this.state.users.length && (
+                <div className="suggestions-container">{suggestions}</div>
+              )}
+            </div>
+          )}
           {this.state.selected.name !== undefined && (
             <div class="col-md-6 col-sm-6 col-lg-6">
               <ShowSelectedUser
