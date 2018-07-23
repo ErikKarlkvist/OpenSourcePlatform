@@ -1,7 +1,5 @@
 import firebase from "./firebase";
-import { sendJoinRequestMail } from "./email";
-import { uploadHeaderImage } from "./storage";
-
+import { getUser } from "./users";
 const storage = window.localStorage;
 
 export async function getAllProjects() {
@@ -291,12 +289,9 @@ async function getOwnersForProject(project) {
   snapshots.forEach(snapshot => {
     if (snapshot.exists) {
       promises.push(
-        ref
-          .doc(snapshot.data().userID)
-          .get()
-          .then(userData => {
-            owners.push({ ...userData.data(), ...snapshot.data() });
-          })
+        getUser(snapshot.data().userID).then(userData => {
+          owners.push({ ...userData, ...snapshot.data() });
+        })
       );
     }
   });
@@ -308,20 +303,7 @@ async function getOwnersForProject(project) {
 //loads creator for specified project
 async function getCreatorForProject(project) {
   try {
-    const creator = await firebase
-      .firestore()
-      .collection("users")
-      .doc(project.creator)
-      .get()
-      .then(snapshot => {
-        if (snapshot.exists) {
-          const user = snapshot.data();
-          user.id = snapshot.id;
-          return Promise.resolve(user);
-        } else {
-          return Promise.resolve({ id: "No user" });
-        }
-      });
+    const creator = await getUser(project.creator);
     const data = { creator, projectId: project.id };
     return Promise.resolve(data);
   } catch (e) {

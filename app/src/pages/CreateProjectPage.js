@@ -92,6 +92,7 @@ class CreateProjectPage extends Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         getUser(user.uid).then(user => {
+          console.log(user);
           page.setState({
             isLoggedIn: true,
             hasFetchedUser: true,
@@ -99,6 +100,7 @@ class CreateProjectPage extends Component {
           });
         });
       } else {
+        page.props.history.push("/");
         page.setState({
           isLoggedIn: false,
           hasFetchedUser: true
@@ -136,7 +138,8 @@ class CreateProjectPage extends Component {
       headerImageURL,
       owners: this.state.owners,
       thumbnails: this.state.thumbnails,
-      projectID: this.state.projectID
+      projectID: this.state.projectID,
+      creator: this.state.user.id
     };
   }
 
