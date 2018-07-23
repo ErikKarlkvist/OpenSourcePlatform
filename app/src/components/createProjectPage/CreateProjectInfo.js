@@ -164,7 +164,6 @@ class CreateProjectInfo extends Component {
           </Small>
           <Big>
             <div>
-              
               <InputTextBox
                 title="GitURL"
                 placeholder="Github repository url. Needed for metrics and 'Get code!' button"
@@ -175,18 +174,14 @@ class CreateProjectInfo extends Component {
                 className={"inputTextBox"}
                 validate={validateGithubURL}
                 invalidText={
-<<<<<<< HEAD
-                  "Not a github repository (should be: https://github.com/{username}/{repository-name})"
-=======
-                  "WARNING: Not a github repository. Embed following: https://github.com/{username}/{repository-name}/)"
->>>>>>> 3994d5bcdd8db5af161810ef00f9afaa7df470c0
+                  "WARNING: Not a github repository. Embed following: https://github.com/{username}/{repository-name})"
                 }
               />
             </div>
             <p> </p>
             {validateGithubURL(this.props.values.gitURL) && (
               <ProjectMetrics gitURL={this.props.values.gitURL} />
-              )}
+            )}
           </Big>
           <Small>
             <UserSearch
