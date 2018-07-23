@@ -11,7 +11,8 @@ class LoginRegister extends Component {
     this.state = {
       displaySignup: false,
       displayLogin: false,
-      loading: false
+      loading: false,
+      navigateTo: undefined
     };
   }
 
@@ -25,10 +26,18 @@ class LoginRegister extends Component {
       return (
         <div>
           {this.state.displayLogin && (
-            <LoginForm hide={this.hide} switchDisplay={this.switchDisplay} />
+            <LoginForm
+              hide={this.hide}
+              switchDisplay={this.switchDisplay}
+              navigateTo={this.state.navigateTo}
+            />
           )}
           {this.state.displaySignup && (
-            <SignupForm hide={this.hide} switchDisplay={this.switchDisplay} />
+            <SignupForm
+              hide={this.hide}
+              switchDisplay={this.switchDisplay}
+              navigateTo={this.state.navigateTo}
+            />
           )}
           <div>
             <a
@@ -40,12 +49,30 @@ class LoginRegister extends Component {
             <a> | </a>
             <a
               className={"MenuItem"}
-              onClick={() => this.setState({ displayLogin: true })}
+              onClick={() =>
+                this.setState({
+                  displayLogin: true
+                })
+              }
             >
               Log in
             </a>
           </div>
           <div style={styles.line} />
+          <div style={{ marginTop: "30px", textAlign: "right" }}>
+            <a
+              className={"MenuItem"}
+              style={{ textDecoration: "none" }}
+              onClick={() =>
+                this.setState({
+                  displayLogin: true,
+                  navigateTo: "/create-project"
+                })
+              }
+            >
+              Create Project
+            </a>
+          </div>
         </div>
       );
     } else {
@@ -67,19 +94,18 @@ class LoginRegister extends Component {
               </Link>
             </div>
             <div style={styles.option}>
-              <Link
+              <a
                 className={"MenuItem"}
-                to={"/create-project"}
                 style={{ textDecoration: "none" }}
                 onClick={() => {}}
               >
-                <span>Your Projects</span>
-              </Link>
+                Your Projects
+              </a>
             </div>
             <div style={styles.option}>
-              <a className={"MenuItem"} onClick={this.logout}>
+              <Link to={"/"} className={"MenuItem"} onClick={this.logout}>
                 Log out
-              </a>
+              </Link>
             </div>
           </div>
         </div>
