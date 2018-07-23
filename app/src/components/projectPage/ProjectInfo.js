@@ -47,9 +47,6 @@ const Small = props => {
     </div>
   );
 };
-const mailContact = () => {
-  window.location = "mailto:xyz.dnb.no";
-};
 
 const Description = props => {
   const styles = {
@@ -132,7 +129,7 @@ class ProjectInfo extends Component {
           </Big>
           <Small>
             <Seeking lookingFor={this.props.project.lookingFor} />
-            <Contact />
+            <Contact email={this.props.project.contactMail} />
           </Small>
           <Big>
             <ProjectMetrics gitURL={this.props.project.gitURL} />
@@ -144,10 +141,6 @@ class ProjectInfo extends Component {
       </InfoContainer>
     );
   }
-
-  mailContact = () => {
-    window.location = "mailto:xyz.dnb.no";
-  };
 
   switchDisplay = () => {
     if (this.state.displaySignup) {

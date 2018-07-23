@@ -5,6 +5,7 @@ import UserSearch from "../common/UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
 import ProjectMetrics from "../projectPage/ProjectMetrics";
+import { validateGithubURL, validateEmail } from "../../backend/validation";
 
 const AddTitle = props => {
   return (
@@ -170,9 +171,13 @@ class CreateProjectInfo extends Component {
                 handleInputChange={e => this.props.handleInputChange(e)}
                 onChange={e => this.props.handleInputChange(e)}
                 className={"inputTextBox"}
+                validate={validateGithubURL}
+                invalidText={
+                  "Not a github repository (should be: https://github.com/{username}/{repository-name}/)"
+                }
               />
             </div>
-            {this.validateGithubURL(this.props.values.gitURL) && (
+            {validateGithubURL(this.props.values.gitURL) && (
               <ProjectMetrics gitURL={this.props.values.gitURL} />
             )}
           </Big>
@@ -186,10 +191,6 @@ class CreateProjectInfo extends Component {
         </Container>
       </div>
     );
-  }
-
-  validateGithubURL(gitURL) {
-    return gitURL.includes("https://github.com/");
   }
 
   styles = {
