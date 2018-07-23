@@ -173,7 +173,7 @@ class Updates extends Component {
     }
 
     return (
-      <div style={{ position: "absolute", zIndex: "1" }}>
+      <div>
         <Container>
           <div className="Center">
             <Title />
