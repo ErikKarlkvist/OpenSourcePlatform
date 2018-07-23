@@ -177,7 +177,7 @@ class CreateProjectInfo extends Component {
                 className={"inputTextBox"}
                 validate={validateGithubURL}
                 invalidText={
-                  "WARNING: Not a github repository. Embed following: https://github.com/{username}/{repository-name})"
+                  "WARNING: Not a github repository. Embed the following: https://github.com/{username}/{repository-name}/)"
                 }
               />
             </div>

@@ -150,7 +150,7 @@ const styles = {
     width: "400px",
     padding: 40,
     color: "var(--dark-teal)",
-    boxShadow: "5px 5px 10px black",
+    boxShadow: "0px 5px 10px black",
     zIndex: 4
   },
   closer: {
