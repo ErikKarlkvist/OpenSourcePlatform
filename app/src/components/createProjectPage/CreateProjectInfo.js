@@ -191,6 +191,7 @@ class CreateProjectInfo extends Component {
               removeOwner={this.props.removeOwner}
               setOwners={this.props.setOwners}
               recieveURL={this.props.recieveURL}
+              currentOwners={this.props.values.owners}
             />
           </Small>
         </Container>

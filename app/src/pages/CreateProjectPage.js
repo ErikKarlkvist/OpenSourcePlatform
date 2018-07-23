@@ -92,12 +92,18 @@ class CreateProjectPage extends Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         getUser(user.uid).then(user => {
-          console.log(user);
           page.setState({
             isLoggedIn: true,
             hasFetchedUser: true,
             user
           });
+
+          const owner = user;
+          owner.role = "Creator";
+          const owners = [];
+          owners.push(owner);
+
+          page.setOwners(owners);
         });
       } else {
         page.props.history.push("/");
