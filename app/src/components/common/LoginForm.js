@@ -58,10 +58,7 @@ class SignUpView extends Component {
             <br />
             <br />
             <div style={styles.container2}>
-              <a style={styles.cancel} onClick={this.props.hide}>
-                {" "}
-                Cancel{" "}
-              </a>
+              <input type="cancel" value="Cancel" className="CancelBtn" onClick={this.props.hide}/>
               <input type="submit" value="Log in" className="LogInBtn" />
             </div>
             <div style={styles.container2}>
@@ -159,10 +156,6 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
-  },
-  cancel: {
-    margin: 20,
-    cursor: "pointer"
   },
   create: {
     cursor: "pointer",

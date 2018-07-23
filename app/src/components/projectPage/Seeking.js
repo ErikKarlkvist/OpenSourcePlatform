@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../common/Button";
 
 const Header = props => {
   const style = {
@@ -41,7 +40,7 @@ const LookingForList = props => {
   for (let i = 0; i < props.lookingFor.length; i++) {
     const listElem = (
       <li key={i}>
-        <h3>> {props.lookingFor[i]}</h3>
+        <h4>> {props.lookingFor[i]}</h4>
         {props.removeItem && (
           <a onClick={() => props.removeItem(i)} style={styles.removeText}>
             Remove

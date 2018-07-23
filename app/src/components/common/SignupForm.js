@@ -113,10 +113,7 @@ class SignUpView extends Component {
               <br />
             </div>
             <div style={styles.container2}>
-              <a style={styles.cancel} onClick={this.props.hide}>
-                {" "}
-                Cancel{" "}
-              </a>
+              <input type="cancel" value="Cancel" className="CancelBtn" onClick={this.props.hide}/>
               <input type="submit" value="Sign up" className="LogInBtn" />
             </div>
             <div style={styles.container2}>
@@ -206,10 +203,6 @@ const styles = {
     backgroundColor: "var(--white-three)",
     paddingLeft: 10,
     border: "1px solid var(--dark-teal)"
-  },
-  cancel: {
-    margin: 20,
-    cursor: "pointer"
   },
   gotoLogin: {
     cursor: "pointer",
