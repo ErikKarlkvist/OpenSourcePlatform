@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import LookingFor from "./LookingFor";
-import Contact from "../projectPage/Contact";
 import UserSearch from "../common/UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";

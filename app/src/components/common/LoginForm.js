@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import "../../resources/fonts.css";
-import "../../resources/colors.css";
-import "../../resources/Main.css";
 import Spinner from "../common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
 
