@@ -77,7 +77,7 @@ class SignUpView extends Component {
                 style={styles.input}
                 type="email"
                 name="email"
-                placeholder="Enter a valid email@dnb.no  address"
+                placeholder="Enter a valid email@dnb.no address"
                 pattern="[^@\s]+@dnb.no+"
                 customValidity
                 onBlur={e => this.checkEmail(e.target.value)}
@@ -85,7 +85,7 @@ class SignUpView extends Component {
               />
               {!this.state.validEmail && (
                 <div>
-                  <p style={{ color: "red" }}>Must be an @dnb.no email</p>
+                  <p style={{ color: "var(--bright-orange" }}>Must end with @dnb.no</p>
                 </div>
               )}
             </div>
@@ -179,7 +179,7 @@ const styles = {
     padding: 40,
     color: "var(--dark-teal)",
     zIndex: 4,
-    boxShadow: "5px 5px 10px black"
+    boxShadow: "0px 5px 10px black"
   },
   container2: {
     marginTop: "3%",
