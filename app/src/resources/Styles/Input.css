@@ -1,12 +1,15 @@
-input[type="text"]::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: grey;
   font-style: italic;
   font-family: FedraSansLight;
 }
-input[type="text"]:focus, textarea:focus {
-  border: 1px solid var(--light-teal) !important; 
-}
 
+input:focus,
+textarea:focus {
+  border: 1px solid var(--light-teal) !important;
+  outline: none;
+}
 
 .Title {
   width: 98%;
@@ -50,7 +53,6 @@ input[type="text"]:focus, textarea:focus {
   background-color: white;
 }
 
-
 .LookingFor {
   width: 100%;
   height: 40px;
@@ -92,7 +94,6 @@ input[type="text"]:focus, textarea:focus {
   .Description {
   }
   .LookingFor {
-  
   }
 }
 
@@ -102,7 +103,6 @@ input[type="text"]:focus, textarea:focus {
     height: 60px;
   }
   .Description {
-
   }
   .LookingFor {
   }
@@ -114,11 +114,9 @@ input[type="text"]:focus, textarea:focus {
     height: 60px;
   }
   .Description {
-    
   }
   .LookingFor {
   }
   .inputTextBox {
-
   }
 }

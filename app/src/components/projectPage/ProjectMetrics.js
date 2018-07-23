@@ -101,41 +101,42 @@ class ProjectMetrics extends Component {
     this.state = {
       nmbrOfEts: "",
       nmbrOfBugs: "",
-      nmbrOfClb: ""
+      nmbrOfClb: "",
+      foundProject: false
     };
   }
 
   componentDidMount() {
     getFeatureRequestCount(this.props.gitURL)
       .then(res => {
-        this.setState({ nmbrOfEts: res });
+        this.setState({ nmbrOfEts: res, foundProject: true });
       })
       .catch(e => {
-        console.log(e);
         this.setState({
-          nmbrOfEts: "Couldn't fetch"
+          nmbrOfEts: "Couldn't fetch",
+          foundProject: false
         });
       });
 
     getBugCount(this.props.gitURL)
       .then(res => {
-        this.setState({ nmbrOfBugs: res });
+        this.setState({ nmbrOfBugs: res, foundProject: true });
       })
       .catch(e => {
-        console.log(e);
         this.setState({
-          nmbrOfBugs: "Couldn't fetch"
+          nmbrOfBugs: "Couldn't fetch",
+          foundProject: false
         });
       });
 
     getCollaboratorCount(this.props.gitURL)
       .then(res => {
-        this.setState({ nmbrOfClb: res });
+        this.setState({ nmbrOfClb: res, foundProject: true });
       })
       .catch(e => {
-        console.log(e);
         this.setState({
-          nmbrOfClb: "Couldn't fetch"
+          nmbrOfClb: "Couldn't fetch",
+          foundProject: false
         });
       });
   }
@@ -145,11 +146,16 @@ class ProjectMetrics extends Component {
       return (
         <Container>
           <Title />
-          <Metrics
-            nmbrOfBugs={this.state.nmbrOfBugs}
-            nmbrOfClb={this.state.nmbrOfClb}
-            nmbrOfEts={this.state.nmbrOfEts}
-          />
+          {this.state.foundProject && (
+            <Metrics
+              nmbrOfBugs={this.state.nmbrOfBugs}
+              nmbrOfClb={this.state.nmbrOfClb}
+              nmbrOfEts={this.state.nmbrOfEts}
+            />
+          )}
+          {!this.state.foundProject && (
+            <h3>Error fetching metrics - bad url?</h3>
+          )}
           <InfoText />
           <InputContainer>
             <Button

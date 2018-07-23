@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import LookingFor from "./LookingFor";
-import Contact from "../projectPage/Contact";
 import UserSearch from "../common/UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
@@ -155,15 +154,16 @@ class CreateProjectInfo extends Component {
               title="Contact email"
               placeholder="Your contact email"
               name="contactMail"
-              maxChars={25}
+              type="email"
               value={this.props.values.contactMail}
               handleInputChange={e => this.props.handleInputChange(e)}
               className={"inputTextBox"}
+              validate={validateEmail}
+              invalidText={"Not an email"}
             />
           </Small>
           <Big>
             <div>
-              
               <InputTextBox
                 title="GitURL"
                 placeholder="Github repository url. Needed for metrics and 'Get code!' button"
@@ -181,7 +181,7 @@ class CreateProjectInfo extends Component {
             <p> </p>
             {validateGithubURL(this.props.values.gitURL) && (
               <ProjectMetrics gitURL={this.props.values.gitURL} />
-              )}
+            )}
           </Big>
           <Small>
             <UserSearch

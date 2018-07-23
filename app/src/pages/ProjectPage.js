@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import firebase from "../backend/firebase";
-import "../resources/Main.css";
 import { getUser } from "../backend/users.js";
 import { getProject } from "../backend/projects";
 import LoginRegister from "../components/common/LoginRegister";
