@@ -4,7 +4,16 @@ import { PropagateLoader, CircleLoader } from "react-spinners";
 
 class Spinner extends React.Component {
   static propTypes = {
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    fillPage: PropTypes.bool,
+    color: PropTypes.string,
+    type: PropTypes.string
+  };
+
+  static defaultProps = {
+    color: "white",
+    fillPage: false,
+    type: ""
   };
 
   render() {
@@ -14,13 +23,13 @@ class Spinner extends React.Component {
       if (this.props.type === "round") {
         return (
           <div style={style}>
-            <CircleLoader color={this.props.color || "white"} size={40} />
+            <CircleLoader color={this.props.color} size={40} />
           </div>
         );
       } else {
         return (
           <div style={style}>
-            <PropagateLoader color={this.props.color || "white"} size={10} />
+            <PropagateLoader color={this.props.color} size={10} />
           </div>
         );
       }
