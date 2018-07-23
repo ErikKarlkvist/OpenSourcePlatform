@@ -21,7 +21,7 @@ const Paragraph = () => {
 
 const Contact = props => {
   const mailContact = () => {
-    window.location = "mailto:xyz.dnb.no";
+    window.location = "mailto:" + props.email;
   };
   return (
     <Container>

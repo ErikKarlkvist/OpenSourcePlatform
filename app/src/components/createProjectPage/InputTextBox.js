@@ -27,40 +27,61 @@ class InputTextBox extends Component {
       this.setState({ chars: e.target.value.length });
     }
   };
+
   render() {
-    if (this.props.multiline) {
-      return (
-        <div>
-          <textarea
-            type="text"
-            name={this.props.name}
-            placeholder={this.props.placeholder}
-            className={this.props.className || "inputTextBox multiliner"}
-            value={this.props.value}
-            style={{ color: this.props.textColor || "white" }}
-            onChange={e => {
-              this.checkInputLength(e);
-            }}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <input
-            type="text"
-            name={this.props.name}
-            placeholder={this.props.placeholder}
-            className={this.props.className || "inputTextBox multiliner"}
-            value={this.props.value}
-            style={{ color: this.props.textColor || "white" }}
-            onChange={e => {
-              this.checkInputLength(e);
-            }}
-          />
-        </div>
-      );
+    let valid = true;
+    if (this.props.validate) {
+      if (
+        this.props.value.length > 0 &&
+        !this.props.validate(this.props.value)
+      ) {
+        valid = false;
+      }
     }
+
+    return (
+      <div>
+        {!this.props.multiline && this.renderInput()}
+        {this.props.multiline && this.renderTextarea()}
+        {!valid && <p style={{ color: "red" }}>{this.props.invalidText}</p>}
+      </div>
+    );
+  }
+
+  renderInput() {
+    return (
+      <div>
+        <input
+          type="text"
+          name={this.props.name}
+          placeholder={this.props.placeholder}
+          className={this.props.className || "inputTextBox multiliner"}
+          value={this.props.value}
+          style={{ color: this.props.textColor || "white" }}
+          onChange={e => {
+            this.checkInputLength(e);
+          }}
+        />
+      </div>
+    );
+  }
+
+  renderTextarea() {
+    return (
+      <div>
+        <textarea
+          type="text"
+          name={this.props.name}
+          placeholder={this.props.placeholder}
+          className={this.props.className || "inputTextBox multiliner"}
+          value={this.props.value}
+          style={{ color: this.props.textColor || "white" }}
+          onChange={e => {
+            this.checkInputLength(e);
+          }}
+        />
+      </div>
+    );
   }
   /* {this.props.title}{" "}
         {this.props.maxChars && this.state.chars + "/" + this.props.maxChars}*/
