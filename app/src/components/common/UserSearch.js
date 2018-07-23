@@ -3,6 +3,7 @@ import { getAllUsers } from "../../backend/users";
 import "./UserSearch.css";
 import Button from "./Button";
 import Contributors from "../projectPage/Contributors";
+import InputTextBox from "../createProjectPage/InputTextBox";
 
 const UserImageBig = props => {
   return <img className="userImageBig" src={props.url} />;
@@ -28,7 +29,7 @@ const ShowSelectedUser = props => {
       {props.user.image}
       <div>
         <input
-          style={{ margin: "3px" }}
+          className="inputTextBox"
           onChange={e => props.onRoleChange(e)}
           value={props.role}
           placeholder={props.user.firstname + "'s role"}
