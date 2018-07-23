@@ -11,11 +11,7 @@ const UserImageBig = props => {
 
 const SearchResult = props => {
   return (
-    <div
-      //style={style}
-      className="suggestion"
-      onClick={e => props.handleClick(props.user)}
-    >
+    <div className="suggestion" onClick={e => props.handleClick(props.user)}>
       {props.user.name}
       {props.user.profileImageURL && props.user.image}
     </div>

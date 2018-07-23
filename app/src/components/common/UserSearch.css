@@ -21,7 +21,7 @@ input:focus {
   z-index: 10;
   color: black;
   text-align: left;
-  max-height: 200px;
+  max-height: 250px;
   overflow: auto;
   width: 90%;
   margin-left: 5%;
@@ -29,8 +29,13 @@ input:focus {
 
 .suggestion {
   cursor: pointer;
-  padding: 20px 20px;
   color: white;
+  display: flex;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .suggestion:hover {

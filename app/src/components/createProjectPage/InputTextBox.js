@@ -52,7 +52,7 @@ class InputTextBox extends Component {
     return (
       <div>
         <input
-          type="text"
+          type={this.props.type || "text"}
           name={this.props.name}
           placeholder={this.props.placeholder}
           className={this.props.className || "inputTextBox multiliner"}
@@ -70,7 +70,7 @@ class InputTextBox extends Component {
     return (
       <div>
         <textarea
-          type="text"
+          type={this.props.type || "text"}
           name={this.props.name}
           placeholder={this.props.placeholder}
           className={this.props.className || "inputTextBox multiliner"}
