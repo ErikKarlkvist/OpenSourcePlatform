@@ -16,9 +16,6 @@ const Title = props => {
 
 const Metrics = props => {
   const styles = {
-    title: {
-      fontSize: "20px"
-    },
     subtitle: {
       fontSize: "12px",
       fontStyle: "italic"
@@ -28,15 +25,15 @@ const Metrics = props => {
   return (
     <div className="row" style={{ width: "100%", textAlign: "left" }}>
       <div className="col-md-3 col-sm-12 col-lg-3">
-        <h3 style={styles.title}>{props.nmbrOfBugs} Bugs</h3>
+        <h4 style={styles.title}>{props.nmbrOfBugs} Bugs</h4>
         <h6 style={styles.subtitle}>to be fixed</h6>
       </div>
       <div className="col-md-4 col-sm-12 col-lg-4">
-        <h3 style={styles.title}>{props.nmbrOfEts} Features</h3>
+        <h4 style={styles.title}>{props.nmbrOfEts} Features</h4>
         <h6 style={styles.subtitle}>to be implemented</h6>
       </div>
       <div className="col-md-5 col-sm-12 col-lg-5">
-        <h3 style={styles.title}>{props.nmbrOfBugs} Contributors</h3>
+        <h4 style={styles.title}>{props.nmbrOfBugs} Contributors</h4>
         <h6 style={styles.subtitle}>has added code</h6>
       </div>
     </div>
@@ -163,7 +160,7 @@ class ProjectMetrics extends Component {
               Get the code!
             </Button>
             <Button style={{ width: "170px" }} onClick={this.openIssues}>
-              Send in suggestion
+              Add a suggestion
             </Button>
           </InputContainer>
         </Container>

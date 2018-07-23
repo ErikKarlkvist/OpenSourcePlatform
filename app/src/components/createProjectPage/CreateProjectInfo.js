@@ -4,6 +4,7 @@ import UserSearch from "../common/UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
 import ProjectMetrics from "../projectPage/ProjectMetrics";
+import { validateGithubURL, validateEmail } from "../../backend/validation";
 
 const AddTitle = props => {
   return (
@@ -135,7 +136,7 @@ class CreateProjectInfo extends Component {
             removeHeaderImage={this.props.removeHeaderImage}
           />
           <Big>
-            <h3 style={{ textAlign: "left", marginLeft: "30px" }}>
+            <h3 style={{ textAlign: "left" }}>
               What is {this.props.values.projectName}?
             </h3>
             <Description
@@ -161,19 +162,25 @@ class CreateProjectInfo extends Component {
           </Small>
           <Big>
             <div>
+              
               <InputTextBox
                 title="GitURL"
-                placeholder="Github repository url (needed for metrics, get code button)"
+                placeholder="Github repository url. Needed for metrics and 'Get code!' button"
                 name="gitURL"
                 value={this.props.values.gitURL}
                 handleInputChange={e => this.props.handleInputChange(e)}
                 onChange={e => this.props.handleInputChange(e)}
                 className={"inputTextBox"}
+                validate={validateGithubURL}
+                invalidText={
+                  "WARNING: Not a github repository. Embed following: https://github.com/{username}/{repository-name}/)"
+                }
               />
             </div>
-            {this.validateGithubURL(this.props.values.gitURL) && (
+            <p> </p>
+            {validateGithubURL(this.props.values.gitURL) && (
               <ProjectMetrics gitURL={this.props.values.gitURL} />
-            )}
+              )}
           </Big>
           <Small>
             <UserSearch
@@ -185,10 +192,6 @@ class CreateProjectInfo extends Component {
         </Container>
       </div>
     );
-  }
-
-  validateGithubURL(gitURL) {
-    return gitURL.includes("https://github.com/");
   }
 
   styles = {
