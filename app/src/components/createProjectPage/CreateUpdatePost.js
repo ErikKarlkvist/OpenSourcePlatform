@@ -71,7 +71,7 @@ const Buttons = props => {
   return (
     <div style={styles.container}>
       <Button style={styles.leftButton} warning={true} onClick={props.remove}>
-        Remove update
+        Delete update
       </Button>
       <Button
         solidBtn={true}

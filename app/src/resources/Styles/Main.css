@@ -1,4 +1,3 @@
-@import "../resources/colors.css";
 .App-title {
   margin-top: 40px;
 }
@@ -24,80 +23,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.SeeThroughBtn {
-  border: solid white 2px;
-  width: 100%;
-  border-radius: 1px;
-  box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
-  background: none;
-  color: white;
-  padding: 5px;
-  text-align: center;
-  transition: 0.2s;
-  resize: flex;
-}
-
-.SeeThroughBtn:hover {
-  background: var(--light-teal);
-  border: solid var(--light-teal) 2px;
-  color: var(--dark-teal);
-  cursor: pointer;
-}
-
-.SolidBtn {
-  border: solid var(--bluey-green) 2px;
-  width: 150px;
-  border-radius: 1px;
-  box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
-  background: var(--bluey-green);
-  color: white;
-  padding: 5px;
-  text-align: center;
-  transition: 0.2s;
-}
-
-.SolidBtn:hover {
-  background: var(--light-teal);
-  border: solid var(--light-teal) 2px;
-  color: var(--dark-teal);
-  cursor: pointer;
-}
-
-.WarningBtn {
-  border: solid var(--bright-orange) 2px;
-  width: 170px;
-  border-radius: 1px;
-  box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.5);
-  background: var(--bright-orange);
-  color: white;
-  padding: 5px;
-  text-align: center;
-  transition: 0.2s;
-}
-
-.WarningBtn:hover {
-  background: var(--bright-orange);
-  border: solid var(--bright-orange) 2px;
-  color: var(--dark-teal);
-  cursor: pointer;
-}
-
-.LogInBtn {
-  border: solid var(--dark-teal) 2px;
-  background: none;
-  color: var(--dark-teal);
-  width: 100px;
-  height: 50px;
-  text-align: center;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-.LogInBtn:hover {
-  background: var(--dark-teal);
-  color: var(--white);
 }
 
 .Thumbnail {

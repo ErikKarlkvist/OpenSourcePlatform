@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import LookingFor from "./LookingFor";
-import Contact from "../projectPage/Contact";
 import UserSearch from "../common/UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "./InputTextBox";
@@ -137,7 +136,7 @@ class CreateProjectInfo extends Component {
             removeHeaderImage={this.props.removeHeaderImage}
           />
           <Big>
-            <h3 style={{ textAlign: "left", marginLeft: "30px" }}>
+            <h3 style={{ textAlign: "left" }}>
               What is {this.props.values.projectName}?
             </h3>
             <Description
@@ -165,9 +164,10 @@ class CreateProjectInfo extends Component {
           </Small>
           <Big>
             <div>
+              
               <InputTextBox
                 title="GitURL"
-                placeholder="Github repository url (needed for metrics, get code button)"
+                placeholder="Github repository url. Needed for metrics and 'Get code!' button"
                 name="gitURL"
                 value={this.props.values.gitURL}
                 handleInputChange={e => this.props.handleInputChange(e)}
@@ -175,13 +175,18 @@ class CreateProjectInfo extends Component {
                 className={"inputTextBox"}
                 validate={validateGithubURL}
                 invalidText={
+<<<<<<< HEAD
                   "Not a github repository (should be: https://github.com/{username}/{repository-name})"
+=======
+                  "WARNING: Not a github repository. Embed following: https://github.com/{username}/{repository-name}/)"
+>>>>>>> 3994d5bcdd8db5af161810ef00f9afaa7df470c0
                 }
               />
             </div>
+            <p> </p>
             {validateGithubURL(this.props.values.gitURL) && (
               <ProjectMetrics gitURL={this.props.values.gitURL} />
-            )}
+              )}
           </Big>
           <Small>
             <UserSearch

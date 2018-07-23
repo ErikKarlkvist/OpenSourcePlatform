@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import "../resources/Main.css";
 import { getAllProjects } from "../backend/projects";
 import { getUser } from "../backend/users.js";
 import ProjectsDisplay from "../components/homePage/ProjectsDisplay";
