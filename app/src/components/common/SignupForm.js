@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import "../../resources/fonts.css";
-import "../../resources/colors.css";
-import "../../resources/Main.css";
 import { register } from "../../backend/auth";
 import Spinner from "../common/Spinner";
 
@@ -43,7 +40,13 @@ class SignUpView extends Component {
           {this.state.loading && (
             <Spinner loading={true} fillPage color={"black"} />
           )}
-          <h1 style={{ color: "var(--dark-teal)", textAlign: "center" }}>
+          <h1
+            style={{
+              color: "var(--dark-teal)",
+              textAlign: "center",
+              marginTop: "4%"
+            }}
+          >
             Sign up
           </h1>
           <form name="signup" onSubmit={this.submit} style={{ width: "100%" }}>
@@ -74,7 +77,7 @@ class SignUpView extends Component {
                 style={styles.input}
                 type="email"
                 name="email"
-                placeholder="Enter a valid @dnb.no email address"
+                placeholder="Enter a valid email@dnb.no  address"
                 pattern="[^@\s]+@dnb.no+"
                 customValidity
                 onBlur={e => this.checkEmail(e.target.value)}
@@ -110,10 +113,7 @@ class SignUpView extends Component {
               <br />
             </div>
             <div style={styles.container2}>
-              <a style={styles.cancel} onClick={this.props.hide}>
-                {" "}
-                Cancel{" "}
-              </a>
+              <input type="cancel" value="Cancel" className="CancelBtn" onClick={this.props.hide}/>
               <input type="submit" value="Sign up" className="LogInBtn" />
             </div>
             <div style={styles.container2}>
@@ -169,11 +169,12 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 2,
-    textAlign: "left"
+    textAlign: "left",
+    overflowY: "auto"
   },
   container: {
     backgroundColor: "var(--white-three)",
-    height: "650px",
+    height: "700px",
     width: "400px",
     padding: 40,
     color: "var(--dark-teal)",
@@ -202,10 +203,6 @@ const styles = {
     backgroundColor: "var(--white-three)",
     paddingLeft: 10,
     border: "1px solid var(--dark-teal)"
-  },
-  cancel: {
-    margin: 20,
-    cursor: "pointer"
   },
   gotoLogin: {
     cursor: "pointer",

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import "./ProjectInfo.css";
-import "../../resources/Main.css";
 import LoginForm from "../common/LoginForm";
 import SignupForm from "../common/SignupForm";
 import Contributors from "./Contributors";
-import "../../resources/fonts.css";
 import ProjectMetrics from "./ProjectMetrics";
 import Seeking from "./Seeking";
 import Contact from "./Contact";

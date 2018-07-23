@@ -43,7 +43,7 @@ class InputTextBox extends Component {
       <div>
         {!this.props.multiline && this.renderInput()}
         {this.props.multiline && this.renderTextarea()}
-        {!valid && <p style={{ color: "red" }}>{this.props.invalidText}</p>}
+        {!valid && <p style={{ color: "var(--bright-orange)", width: "90%"}}>{this.props.invalidText}</p>}
       </div>
     );
   }
