@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "../backend/firebase";
 import { getUser } from "../backend/users.js";
+import { getProject } from "../backend/projects";
 import LoginRegister from "../components/common/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Spinner from "../components/common/Spinner";
@@ -71,8 +72,38 @@ class CreateProjectPage extends Component {
 
   componentDidMount() {
     this.setupAuthStateChange();
-    createNewProjectID().then(id => {
-      this.setState({ projectID: id, loading: false });
+    if (this.props.match && this.props.match.params.projectId) {
+      this.loadLiveProject();
+    } else {
+      createNewProjectID().then(id => {
+        this.setState({ projectID: id, loading: false });
+      });
+    }
+  }
+
+  loadLiveProject() {
+    getProject(this.props.match.params.projectId).then(project => {
+      if (project) {
+        this.setState({
+          loading: false,
+          foundProject: true,
+          projectID: project.id,
+          projectName: project.name,
+          description: project.description,
+          lookingFor: project.lookingFor,
+          gitURL: project.gitURL,
+          readmeURL: project.readmeURL,
+          contactMail: project.contactMail,
+          headerImageURL: project.headerImageURL,
+          owners: project.owners,
+          thumbnails: project.thumbnails
+        });
+      } else {
+        this.setState({
+          loading: false,
+          foundProject: false
+        });
+      }
     });
   }
 

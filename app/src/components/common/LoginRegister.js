@@ -6,6 +6,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { logout } from "../../backend/auth";
 
 class LoginRegister extends Component {
+  defaultProps = {
+    editLink: "/"
+  };
+
   constructor() {
     super();
     this.state = {
@@ -106,7 +110,7 @@ class LoginRegister extends Component {
               <div style={styles.option}>
                 <Link
                   className={"MenuItem"}
-                  to={"/create-project"}
+                  to={this.props.editLink}
                   style={{ textDecoration: "none" }}
                 >
                   <span>Edit project</span>

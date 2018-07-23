@@ -30,6 +30,7 @@ const Routing = () => {
         <Route path="/project/:projectId" component={Project} />
         <Route path="/create-project" component={CreateProject} />
         <Route path="/preview-project/:draftId" component={Project} />
+        <Route path="/update-project/:projectId" component={CreateProject} />
       </div>
     </Router>
   );
