@@ -163,7 +163,7 @@ class ProjectMetrics extends Component {
               Get the code!
             </Button>
             <Button style={{ width: "170px" }} onClick={this.openIssues}>
-              Send in suggestion
+              Add a suggestion
             </Button>
           </InputContainer>
         </Container>
