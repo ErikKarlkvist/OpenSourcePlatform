@@ -177,12 +177,14 @@ class ProjectMetrics extends Component {
   }
 
   openGit = () => {
-    window.location = this.props.gitURL;
+    const win = window.open(this.props.gitURL, "_blank");
+    win.focus();
   };
 
   openIssues = () => {
     const url = this.props.gitURL + "/issues";
-    window.location = url;
+    const win = window.open(url, "_blank");
+    win.focus();
   };
 }
 export default ProjectMetrics;
