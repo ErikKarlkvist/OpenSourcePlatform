@@ -97,8 +97,16 @@ class CreateProjectPage extends Component {
             hasFetchedUser: true,
             user
           });
+
+          const owner = user;
+          owner.role = "Creator";
+          const owners = [];
+          owners.push(owner);
+
+          page.setOwners(owners);
         });
       } else {
+        page.props.history.push("/");
         page.setState({
           isLoggedIn: false,
           hasFetchedUser: true
@@ -136,7 +144,8 @@ class CreateProjectPage extends Component {
       headerImageURL,
       owners: this.state.owners,
       thumbnails: this.state.thumbnails,
-      projectID: this.state.projectID
+      projectID: this.state.projectID,
+      creator: this.state.user.id
     };
   }
 
