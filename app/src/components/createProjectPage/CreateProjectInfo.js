@@ -154,15 +154,16 @@ class CreateProjectInfo extends Component {
               title="Contact email"
               placeholder="Your contact email"
               name="contactMail"
-              maxChars={25}
+              type="email"
               value={this.props.values.contactMail}
               handleInputChange={e => this.props.handleInputChange(e)}
               className={"inputTextBox"}
+              validate={validateEmail}
+              invalidText={"Not an email"}
             />
           </Small>
           <Big>
             <div>
-              
               <InputTextBox
                 title="GitURL"
                 placeholder="Github repository url. Needed for metrics and 'Get code!' button"
@@ -173,14 +174,14 @@ class CreateProjectInfo extends Component {
                 className={"inputTextBox"}
                 validate={validateGithubURL}
                 invalidText={
-                  "WARNING: Not a github repository. Embed following: https://github.com/{username}/{repository-name}/)"
+                  "WARNING: Not a github repository. Embed following: https://github.com/{username}/{repository-name})"
                 }
               />
             </div>
             <p> </p>
             {validateGithubURL(this.props.values.gitURL) && (
               <ProjectMetrics gitURL={this.props.values.gitURL} />
-              )}
+            )}
           </Big>
           <Small>
             <UserSearch
