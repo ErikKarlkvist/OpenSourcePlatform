@@ -102,6 +102,17 @@ class LoginRegister extends Component {
                 Your Projects
               </a>
             </div>
+            {this.props.canEdit && (
+              <div style={styles.option}>
+                <Link
+                  className={"MenuItem"}
+                  to={"/create-project"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <span>Edit project</span>
+                </Link>
+              </div>
+            )}
             <div style={styles.option}>
               <Link to={"/"} className={"MenuItem"} onClick={this.logout}>
                 Log out
