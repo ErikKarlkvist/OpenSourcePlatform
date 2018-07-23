@@ -128,12 +128,26 @@ class CreateProjectPage extends Component {
   }
 
   submitProject = () => {
+    let standardImageURLs = [
+      "https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/resources%2Fgreen.png?alt=media&token=8211dd36-6174-4c18-bf07-e954960fdb0f",
+      "https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/resources%2Fpink.jpg?alt=media&token=dcd44594-e7bc-4458-a57f-19a53921cd3a"
+    ];
+
+    if (!validateEmail(this.state.contactMail)) {
+      alert("Invalid contact email");
+      return;
+    }
+
+    if (this.state.gitURL && !validateGithubURL(this.state.gitURL)) {
+      alert("Invalid github url, please fix or remove");
+      return;
+    }
     //validateEmail
     //validateGithubURL if exists
     //check title exists
     //check description exists
     //check atleast one owner exists
-    createNewProject(this.getProjectFromState());
+    //createNewProject(this.getProjectFromState());
   };
 
   setThumbnails = thumbnails => {
@@ -200,7 +214,7 @@ class CreateProjectPage extends Component {
               />
               <Buttons
                 preview={this.preview}
-                createProject={this.createProject}
+                createProject={this.submitProject}
               />
             </div>
           </div>
