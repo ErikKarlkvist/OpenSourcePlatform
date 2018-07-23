@@ -6,7 +6,11 @@ import LoginRegister from "../components/common/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Spinner from "../components/common/Spinner";
 import logo from "../logo.svg";
-import { createNewProject, createNewProjectID } from "../backend/projects";
+import {
+  createNewProject,
+  createNewProjectID,
+  updateProject
+} from "../backend/projects";
 import ProjectInfo from "../components/createProjectPage/CreateProjectInfo";
 import CreateUpdates from "../components/createProjectPage/CreateUpdates";
 import ReadmeInput from "../components/createProjectPage/ReadmeInput";
@@ -32,7 +36,7 @@ const Buttons = props => {
     },
     leftButton: {}
   };
-
+  let title = props.update ? "Update project" : "Create project";
   return (
     <div style={styles.container}>
       <Button style={styles.leftButton} onClick={props.preview}>
@@ -43,7 +47,7 @@ const Buttons = props => {
         style={styles.rightButton}
         onClick={props.createProject}
       >
-        Create project
+        {title}
       </Button>
     </div>
   );
@@ -66,7 +70,8 @@ class CreateProjectPage extends Component {
       headerImageURL: "",
       owners: [],
       loading: true,
-      thumbnails: []
+      thumbnails: [],
+      update: false
     };
   }
 
@@ -83,6 +88,7 @@ class CreateProjectPage extends Component {
 
   loadLiveProject() {
     getProject(this.props.match.params.projectId).then(project => {
+      console.log(project);
       if (project) {
         this.setState({
           loading: false,
@@ -96,7 +102,8 @@ class CreateProjectPage extends Component {
           contactMail: project.contactMail,
           headerImageURL: project.headerImageURL,
           owners: project.owners,
-          thumbnails: project.thumbnails
+          thumbnails: project.thumbnails,
+          update: true
         });
       } else {
         this.setState({
@@ -209,15 +216,28 @@ class CreateProjectPage extends Component {
 
     this.setState({ loading: true });
     const project = this.getProjectFromState();
-    createNewProject(this.getProjectFromState(), this.state.projectID)
-      .then(() => {
-        const url = `/project/${this.state.projectID}`;
-        this.props.history.push(url);
-      })
-      .catch(e => {
-        this.setState({ loading: false });
-        alert(e.message);
-      });
+
+    if (this.state.update) {
+      updateProject(this.getProjectFromState(), this.state.projectID)
+        .then(() => {
+          const url = `/project/${this.state.projectID}`;
+          this.props.history.push(url);
+        })
+        .catch(e => {
+          this.setState({ loading: false });
+          alert(e.message);
+        });
+    } else {
+      createNewProject(this.getProjectFromState(), this.state.projectID)
+        .then(() => {
+          const url = `/project/${this.state.projectID}`;
+          this.props.history.push(url);
+        })
+        .catch(e => {
+          this.setState({ loading: false });
+          alert(e.message);
+        });
+    }
   };
 
   setThumbnails = thumbnails => {
@@ -244,51 +264,56 @@ class CreateProjectPage extends Component {
   render() {
     return (
       <div className="PageContainer">
-        {this.state.hasFetchedUser && (
-          <div className="Content">
-            <FixedBackgroundImage headerImageURL={this.state.headerImageURL} />
-            <header className="App-header">
-              <Link to="/">
-                <img src={logo} className="Logo" alt="logo" />
-              </Link>
-              <LoginRegister
-                isLoggedIn={this.state.isLoggedIn}
-                user={this.state.user}
-                hasFetchedUser={this.state.hasFetchedUser}
+        {this.state.hasFetchedUser &&
+          !this.state.loading && (
+            <div className="Content">
+              <FixedBackgroundImage
+                headerImageURL={this.state.headerImageURL}
               />
-            </header>
-            <div className="Center">
-              <ProjectInfo
-                values={this.state}
-                handleInputChange={this.handleInputChange}
-                setOwners={this.setOwners}
-                projectID={this.state.projectID}
-                recieveURL={this.recieveURL}
-                setSeeking={this.setSeeking}
-                removeHeaderImage={this.removeHeaderImage}
-              />
+              <header className="App-header">
+                <Link to="/">
+                  <img src={logo} className="Logo" alt="logo" />
+                </Link>
+                <LoginRegister
+                  isLoggedIn={this.state.isLoggedIn}
+                  user={this.state.user}
+                  hasFetchedUser={this.state.hasFetchedUser}
+                />
+              </header>
+              <div className="Center">
+                <ProjectInfo
+                  values={this.state}
+                  handleInputChange={this.handleInputChange}
+                  setOwners={this.setOwners}
+                  projectID={this.state.projectID}
+                  recieveURL={this.recieveURL}
+                  setSeeking={this.setSeeking}
+                  removeHeaderImage={this.removeHeaderImage}
+                />
+              </div>
+              {this.state.projectID && (
+                <CreateUpdates
+                  projectID={this.state.projectID}
+                  setThumbnails={this.setThumbnails}
+                  thumbnails={this.state.thumbnails}
+                />
+              )}
+              <Line full={true} />
+              <div className="Center">
+                <ReadmeInput
+                  handleInputChange={this.handleInputChange}
+                  values={this.state}
+                />
+                <Buttons
+                  preview={this.preview}
+                  createProject={this.submitProject}
+                  update={this.state.update}
+                />
+              </div>
             </div>
-            {this.state.projectID && (
-              <CreateUpdates
-                projectID={this.state.projectID}
-                setThumbnails={this.setThumbnails}
-              />
-            )}
-            <Line full={true} />
-            <div className="Center">
-              <ReadmeInput
-                handleInputChange={this.handleInputChange}
-                values={this.state}
-              />
-              <Buttons
-                preview={this.preview}
-                createProject={this.submitProject}
-              />
-            </div>
-          </div>
-        )}
+          )}
         <Spinner
-          loading={!this.state.hasFetchedUser && !this.state.loading}
+          loading={!this.state.hasFetchedUser || this.state.loading}
           fillPage={true}
         />
       </div>

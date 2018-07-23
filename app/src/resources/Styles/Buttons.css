@@ -55,6 +55,7 @@
 
 .LogInBtn {
   border: solid var(--dark-teal) 2px;
+  border-radius: 1px;
   background: none;
   color: var(--dark-teal);
   width: 100px;
@@ -67,6 +68,7 @@
 .LogInBtn:hover {
   background: var(--dark-teal);
   color: var(--white);
+  border-radius: 1px;
 }
 
 .CancelBtn {

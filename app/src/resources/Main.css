@@ -82,8 +82,9 @@
 
 .LogInBtn {
   border: solid var(--dark-teal) 2px;
+  border-radius: 3px;
   background: none;
-  color: var(--dark-teal);
+  color: blue;
   width: 100px;
   text-align: center;
   transition: 0.2s;
@@ -92,6 +93,7 @@
 
 .LogInBtn:hover {
   background: var(--dark-teal);
+  border-radius: 3px;
   color: var(--white);
 }
 

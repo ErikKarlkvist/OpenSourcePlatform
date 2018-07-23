@@ -144,7 +144,7 @@ class ProjectPage extends Component {
                 user={this.state.user}
                 hasFetchedUser={this.state.hasFetchedUser}
                 canEdit={this.canEditProject()}
-                editLink={`/create-project/${this.state.project.id}`}
+                editLink={`/update-project/${this.state.project.id}`}
               />
             </header>
             {this.state.foundProject && (
