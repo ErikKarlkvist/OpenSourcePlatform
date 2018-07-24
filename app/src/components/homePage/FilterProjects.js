@@ -2,22 +2,22 @@ import React, { Component } from "react";
 import "../../resources/Styles/AnimatedMenu.css";
 
 const FilterProjects = props => {
-  let liveStyle = "";
+  let ideas = "";
   let allStyle = "";
-  let graduateStyle = "";
+  let inProgress = "";
 
   if (props.picked === "all") {
-    liveStyle = "MenuItem";
+    ideas = "MenuItem";
     allStyle = "MenuItem UnderlinedMenuItem";
-    graduateStyle = "MenuItem";
+    inProgress = "MenuItem";
   } else if (props.picked === "live") {
-    liveStyle = "MenuItem UnderlinedMenuItem";
+    ideas = "MenuItem UnderlinedMenuItem";
     allStyle = "MenuItem";
-    graduateStyle = "MenuItem";
+    inProgress = "MenuItem";
   } else {
-    liveStyle = "MenuItem";
+    ideas = "MenuItem";
     allStyle = "MenuItem";
-    graduateStyle = "MenuItem UnderlinedMenuItem";
+    inProgress = "MenuItem UnderlinedMenuItem";
   }
 
   return (
@@ -29,15 +29,11 @@ const FilterProjects = props => {
       >
         All
       </a>
-      <a
-        className={liveStyle}
-        href="#"
-        onClick={() => props.changeFilter("live")}
-      >
+      <a className={ideas} href="#" onClick={() => props.changeFilter("live")}>
         Ideas
       </a>
       <a
-        className={graduateStyle}
+        className={inProgress}
         href="#"
         onClick={() => props.changeFilter("graduate")}
       >
