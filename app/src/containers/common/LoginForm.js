@@ -47,24 +47,21 @@ class SignUpView extends Component {
           </h1>
           <form name="login" onSubmit={this.submit} style={{ width: "100%" }}>
             <div style={styles.space}>
-              Email <br />
+              Email
               <input
                 style={styles.input}
                 type="email"
                 name="email"
                 placeholder="name@email.com "
               />
-              <br />
             </div>
-            Password:<br />
+            Password:
             <input
               style={styles.input}
               type="password"
               name="password"
               placeholder="password"
             />
-            <br />
-            <br />
             <div style={styles.container2}>
               <input
                 type="cancel"
@@ -78,7 +75,7 @@ class SignUpView extends Component {
               <a style={styles.create} onClick={this.props.switchDisplay}>
                 Create account
               </a>
-              <br />
+
               <a style={styles.create} onClick={this.forgotPassword}>
                 Forgot password
               </a>

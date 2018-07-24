@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { register } from "../../backend/auth";
 import Spinner from "../../components/common/Spinner";
+import FormInput from "../../components/common/FormInput";
 
 class SignUpView extends Component {
   constructor(props, context) {
@@ -50,26 +51,17 @@ class SignUpView extends Component {
             Sign up
           </h1>
           <form name="signup" onSubmit={this.submit} style={{ width: "100%" }}>
-            <div style={styles.space}>
-              Firstname
-              <input
-                style={styles.input}
-                type="text"
-                name="firstname"
-                placeholder="Enter your first name"
-                required
-              />
-            </div>
-            <div style={styles.space}>
-              Lastname
-              <input
-                style={styles.input}
-                type="text"
-                name="lastname"
-                placeholder="Enter your lastname"
-                required
-              />
-            </div>
+            <FormInput
+              text={"Firstname"}
+              name={"firstname"}
+              placeholder={"Enter your first name"}
+            />
+            <FormInput
+              text={"Lastname"}
+              name={"lastname"}
+              placeholder={"Enter your last name"}
+            />
+
             <div style={styles.space}>
               Email
               <input
@@ -96,26 +88,20 @@ class SignUpView extends Component {
                 </div>
               )}
             </div>
-            <div style={styles.space}>
-              Password
-              <input
-                style={styles.input}
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-              />
-            </div>
-            <div style={styles.space}>
-              Confirm password
-              <input
-                style={styles.input}
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm password"
-                required
-              />
-            </div>
+            <FormInput
+              text={"Password"}
+              name={"password"}
+              type={"password"}
+              placeholder={"Enter your password"}
+            />
+
+            <FormInput
+              text={"Confirm password"}
+              name={"password"}
+              type={"password"}
+              placeholder={"Confirm your password"}
+              required
+            />
             <div style={styles.container2}>
               <input
                 type="cancel"
