@@ -50,9 +50,8 @@ class SignUpView extends Component {
             Sign up
           </h1>
           <form name="signup" onSubmit={this.submit} style={{ width: "100%" }}>
-            <br />
             <div style={styles.space}>
-              Firstname<br />
+              Firstname
               <input
                 style={styles.input}
                 type="text"
@@ -62,7 +61,7 @@ class SignUpView extends Component {
               />
             </div>
             <div style={styles.space}>
-              Lastname<br />
+              Lastname
               <input
                 style={styles.input}
                 type="text"
@@ -72,7 +71,7 @@ class SignUpView extends Component {
               />
             </div>
             <div style={styles.space}>
-              Email<br />
+              Email
               <input
                 style={styles.input}
                 type="email"
@@ -85,12 +84,20 @@ class SignUpView extends Component {
               />
               {!this.state.validEmail && (
                 <div>
-                  <p style={{ color: "var(--bright-orange", fontStyle: "italic", fontSize: "14px"}}>Not a valid email. Must end with @dnb.no</p>
+                  <p
+                    style={{
+                      color: "var(--bright-orange",
+                      fontStyle: "italic",
+                      fontSize: "14px"
+                    }}
+                  >
+                    Not a valid email. Must end with @dnb.no
+                  </p>
                 </div>
               )}
             </div>
             <div style={styles.space}>
-              Password<br />
+              Password
               <input
                 style={styles.input}
                 type="password"
@@ -98,11 +105,9 @@ class SignUpView extends Component {
                 placeholder="Enter your password"
                 required
               />
-              <br />
             </div>
             <div style={styles.space}>
               Confirm password
-              <br />
               <input
                 style={styles.input}
                 type="password"
@@ -110,17 +115,20 @@ class SignUpView extends Component {
                 placeholder="Confirm password"
                 required
               />
-              <br />
             </div>
             <div style={styles.container2}>
-              <input type="cancel" value="Cancel" className="CancelBtn" onClick={this.props.hide}/>
+              <input
+                type="cancel"
+                value="Cancel"
+                className="CancelBtn"
+                onClick={this.props.hide}
+              />
               <input type="submit" value="Sign up" className="LogInBtn" />
             </div>
             <div style={styles.container2}>
               <a style={styles.gotoLogin} onClick={this.props.switchDisplay}>
                 Go to login
               </a>
-              <br />
             </div>
           </form>
         </div>
@@ -198,7 +206,7 @@ const styles = {
     zIndex: 3
   },
   input: {
-    marginTop: 5,
+    marginTop: "5px",
     width: "100%",
     backgroundColor: "var(--white-three)",
     paddingLeft: 10,
