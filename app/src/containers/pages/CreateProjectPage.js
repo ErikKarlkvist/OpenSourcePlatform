@@ -224,30 +224,29 @@ class CreateProjectPage extends Component {
         return;
       }
 
-      /*
-    const project = this.getProjectFromState();
+      const project = this.getProjectFromState();
 
-    if (this.state.update) {
-      updateProject(this.getProjectFromState(), this.state.projectID)
-        .then(() => {
-          const url = `/project/${this.state.projectID}`;
-          this.props.history.push(url);
-        })
-        .catch(e => {
-          this.setState({ loading: false });
-          alert(e.message);
-        });
-    } else {
-      createNewProject(this.getProjectFromState(), this.state.projectID)
-        .then(() => {
-          const url = `/project/${this.state.projectID}`;
-          this.props.history.push(url);
-        })
-        .catch(e => {
-          this.setState({ loading: false });
-          alert(e.message);
-        });
-    }*/
+      if (this.state.update) {
+        updateProject(this.getProjectFromState(), this.state.projectID)
+          .then(() => {
+            const url = `/project/${this.state.projectID}`;
+            this.props.history.push(url);
+          })
+          .catch(e => {
+            this.setState({ loading: false });
+            alert(e.message);
+          });
+      } else {
+        createNewProject(this.getProjectFromState(), this.state.projectID)
+          .then(() => {
+            const url = `/project/${this.state.projectID}`;
+            this.props.history.push(url);
+          })
+          .catch(e => {
+            this.setState({ loading: false });
+            alert(e.message);
+          });
+      }
     });
   };
 

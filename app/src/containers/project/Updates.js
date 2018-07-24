@@ -79,7 +79,8 @@ const FullScreenImage = props => {
       paddingTop: 10,
       paddingBottom: 10,
       color: "var(--dark-teal)",
-      backgroundColor: "white"
+      backgroundColor: "white",
+      whiteSpace: "pre-line"
     }
   };
   return (
