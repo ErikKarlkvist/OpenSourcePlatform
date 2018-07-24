@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import "./ProjectInfo.css";
+import "../../resources/Styles/ProjectInfo.css";
 import LoginForm from "../common/LoginForm";
 import SignupForm from "../common/SignupForm";
 import Contributors from "./Contributors";
 import ProjectMetrics from "./ProjectMetrics";
-import Seeking from "./Seeking";
-import Contact from "./Contact";
+import Seeking from "../../components/project/Seeking";
+import Contact from "../../components/project/Contact";
 
 const InfoContainer = props => {
   const style = {

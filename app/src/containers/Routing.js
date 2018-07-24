@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { RouteComponentProps, withRouter } from "react-router";
-import Home from "./HomePage";
-import Project from "./ProjectPage";
-import CreateProject from "./CreateProjectPage";
+import { withRouter } from "react-router";
+import Home from "./pages/HomePage";
+import Project from "./pages/ProjectPage";
+import CreateProject from "./pages/CreateProjectPage";
 
 //For some reason default in routing is not to scroll to top when changeing page
 //this forces scroll to top

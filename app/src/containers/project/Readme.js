@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Markdown from "react-remarkable";
-import "./Readme.css";
+import "../../resources/Styles/Readme.css";
 
 /*
 * Displays the project's readme.md file
@@ -16,14 +16,6 @@ const ErrorText = () => {
       Could not parse link. Are you sure this is a raw .md file?
     </p>
   );
-};
-
-const Header = () => {
-  const style = {
-    paddingBottom: "30px",
-    textAlign: "left"
-  };
-  return <h2 style={style}>README</h2>;
 };
 
 class Readme extends Component {

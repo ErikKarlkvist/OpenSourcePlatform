@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Line from "../common/Line.js";
+import Line from "../../components/common/Line.js";
 import CreateUpdatePost from "./CreateUpdatePost";
-import Thumbnail from "../common/Thumbnail";
+import Thumbnail from "../../components/common/Thumbnail";
 
 const Container = props => {
   const style = {

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../common/AnimatedMenu.css";
+import "../../resources/Styles/AnimatedMenu.css";
 
 const RemoveSubmittedUser = props => {
   const styles = {
@@ -21,6 +21,7 @@ const RemoveSubmittedUser = props => {
     </div>
   );
 };
+
 class Contributors extends React.Component {
   static propTypes = {
     developers: PropTypes.array.isRequired
