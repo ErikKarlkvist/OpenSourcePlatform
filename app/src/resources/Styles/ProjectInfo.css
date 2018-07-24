@@ -1,4 +1,4 @@
-@import "../../resources/colors.css";
+@import "../colors.css";
 
 .Contact {
   border: solid var(--white-two) 1px;

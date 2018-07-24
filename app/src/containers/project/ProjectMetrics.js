@@ -4,7 +4,7 @@ import {
   getBugCount,
   getCollaboratorCount
 } from "../../backend/metrics";
-import Button from "../common/Button";
+import Button from "../../components/common/Button";
 
 const Container = props => {
   return <div style={{ width: "100%" }}>{props.children}</div>;
@@ -69,31 +69,6 @@ const InputContainer = props => {
     </div>
   );
 };
-
-/*const SuggestionLink = props => {
-  const styles = {
-    container: {
-      marginLeft: 20,
-      marginTop: 20
-    },
-    text: {
-      color: "white",
-      textAlign: "bottom"
-    },
-    suggestionLink: {
-      color: "white",
-      textDecoration: "underline"
-    }
-  };
-  return (
-    <div style={styles.container}>
-      <pre style={styles.text}>
-        or{"  "}
-         <a style={styles.suggestionLink}>Send in a suggestion</a>
-      </pre>
-    </div>
-  );
-}; */
 
 class ProjectMetrics extends Component {
   constructor() {

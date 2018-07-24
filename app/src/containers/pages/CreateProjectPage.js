@@ -1,24 +1,24 @@
 import React, { Component } from "react";
-import firebase from "../backend/firebase";
-import { getUser } from "../backend/users.js";
-import { getProject } from "../backend/projects";
-import LoginRegister from "../components/common/LoginRegister";
+import firebase from "../../backend/firebase";
+import { getUser } from "../../backend/users.js";
+import { getProject } from "../../backend/projects";
+import LoginRegister from "../common/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Spinner from "../components/common/Spinner";
-import logo from "../logo.svg";
+import Spinner from "../../components/common/Spinner";
+import logo from "../../logo.svg";
 import {
   createNewProject,
   createNewProjectID,
   updateProject
-} from "../backend/projects";
-import ProjectInfo from "../components/createProjectPage/CreateProjectInfo";
-import CreateUpdates from "../components/createProjectPage/CreateUpdates";
-import ReadmeInput from "../components/createProjectPage/ReadmeInput";
-import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
-import Line from "../components/common/Line";
-import Button from "../components/common/Button";
-import { saveToLocalDraft } from "../backend/projectDrafts";
-import { validateGithubURL, validateEmail } from "../backend/validation";
+} from "../../backend/projects";
+import ProjectInfo from "../create/CreateProjectInfo";
+import CreateUpdates from "../create/CreateUpdates";
+import ReadmeInput from "../create/ReadmeInput";
+import FixedBackgroundImage from "../../components/common/FixedBackgroundImage";
+import Line from "../../components/common/Line";
+import Button from "../../components/common/Button";
+import { saveToLocalDraft } from "../../backend/projectDrafts";
+import { validateGithubURL, validateEmail } from "../../backend/validation";
 import { withRouter } from "react-router";
 
 const Buttons = props => {

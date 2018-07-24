@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { getAllUsers } from "../../backend/users";
-import "./UserSearch.css";
-import Button from "./Button";
-import Contributors from "../projectPage/Contributors";
-import InputTextBox from "../createProjectPage/InputTextBox";
+import "../../resources/Styles/UserSearch.css";
+import Button from "../../components/common/Button";
+import Contributors from "../project/Contributors";
 
 const UserImageBig = props => {
   return <img className="userImageBig" src={props.url} />;

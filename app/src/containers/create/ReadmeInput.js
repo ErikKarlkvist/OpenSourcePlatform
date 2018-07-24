@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import InputTextBox from "./InputTextBox";
-import Readme from "../projectPage/Readme";
-import Line from "../common/Line";
+import InputTextBox from "../../components/common/InputTextBox";
+import Readme from "../project/Readme";
 
 const Container = props => {
   const style = {
