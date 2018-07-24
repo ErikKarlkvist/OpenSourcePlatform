@@ -29,7 +29,8 @@ const Content = props => {
     textAlign: "left",
     backgroundColor: "rgba(255,255,255,1)",
     zIndex: 10,
-    position: "relative"
+    position: "relative",
+    opacity: "1"
   };
   return <div style={style}>{props.children}</div>;
 };

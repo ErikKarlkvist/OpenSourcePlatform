@@ -27,7 +27,7 @@ const FilterProjects = props => {
         href="#"
         onClick={() => props.changeFilter("all")}
       >
-        All Projects
+        All
       </a>
       <a className={ideas} href="#" onClick={() => props.changeFilter("live")}>
         Ideas
