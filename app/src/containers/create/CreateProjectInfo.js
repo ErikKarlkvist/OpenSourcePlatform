@@ -92,6 +92,7 @@ const Top = props => {
       marginBottom: "20px"
     }
   };
+
   return (
     <div style={styles.container} className="row">
       <div className="col-md-7 col-sm-12 col-lg-7">

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Line from "../../components/common/Line.js";
 import CreateUpdatePost from "./CreateUpdatePost";
 import Thumbnail from "../../components/common/Thumbnail";
+import firebase from "../../backend/firebase";
 
 const Container = props => {
   const style = {
@@ -74,9 +75,19 @@ class AddThumbnails extends Component {
   };
 
   toggleFullScreen = index => {
-    this.setState((prevState, props) => {
-      return { showFullScreen: !prevState.showFullScreen, currentItem: index };
-    });
+    if (!firebase.auth().currentUser.emailVerified) {
+      alert(
+        "Permission Denied. Your email is not verfied, verify it by clicking on the link you recevied when creating your account. You can generate a new email from your profile."
+      );
+      return;
+    } else {
+      this.setState((prevState, props) => {
+        return {
+          showFullScreen: !prevState.showFullScreen,
+          currentItem: index
+        };
+      });
+    }
   };
 
   addThumbnail = thumbnail => {
