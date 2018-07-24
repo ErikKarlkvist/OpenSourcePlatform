@@ -111,7 +111,7 @@ class LoginRegister extends Component {
           <div style={styles.line} />
           <div style={styles.optionsContainer}>
             <RouteLink text="Create project" to="/create-project" />
-            <RouteLink text="Your projects" to="/" />
+            <RouteLink text="Your projects" to="/your-projects" />
             {this.props.canEdit && (
               <RouteLink text="Edit project" to={this.props.editLink} />
             )}

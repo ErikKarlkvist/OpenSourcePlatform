@@ -49,3 +49,7 @@ export async function logout() {
 export function resetPassword(email) {
   return firebase.auth().sendPasswordResetEmail(email);
 }
+
+export function resendVerificationEmail() {
+  firebase.auth().currentUser.sendEmailVerification();
+}
