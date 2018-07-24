@@ -6,6 +6,7 @@ import {
   uploadProfileImage
 } from "../../backend/storage";
 import Spinner from "../../components/common/Spinner";
+import firebase from "../../backend/firebase";
 
 /*
 WARNING HOW TO USE:
@@ -63,6 +64,13 @@ class UploadImage extends Component {
   }
 
   handleEvent = e => {
+    if (!firebase.auth().currentUser.emailVerified) {
+      alert(
+        "Permission Denied. Your email is not verfied, verify it by clicking on the link you recevied when creating your account. You can generate a new email from your profile."
+      );
+      return;
+    }
+
     let newUrl = "";
     this.setState({ uploading: true });
     if (this.props.type === "headerImage") {

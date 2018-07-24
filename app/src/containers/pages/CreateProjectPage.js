@@ -88,7 +88,6 @@ class CreateProjectPage extends Component {
 
   loadLiveProject() {
     getProject(this.props.match.params.projectId).then(project => {
-      console.log(project);
       if (project) {
         this.setState({
           loading: false,
@@ -188,7 +187,13 @@ class CreateProjectPage extends Component {
   }
 
   submitProject = () => {
-    console.log(this.state);
+    if (!firebase.auth().currentUser.emailVerified) {
+      alert(
+        "Permission Denied. Your email is not verfied, verify it by clicking on the link you recevied when creating your account. You can generate a new email from your profile."
+      );
+      return;
+    }
+
     if (!this.state.projectName) {
       alert("Please add a title");
       return;
@@ -214,7 +219,9 @@ class CreateProjectPage extends Component {
       return;
     }
 
-    this.setState({ loading: true });
+    //if()
+
+    /*this.setState({ loading: true });
     const project = this.getProjectFromState();
 
     if (this.state.update) {
@@ -237,7 +244,7 @@ class CreateProjectPage extends Component {
           this.setState({ loading: false });
           alert(e.message);
         });
-    }
+    }*/
   };
 
   setThumbnails = thumbnails => {
