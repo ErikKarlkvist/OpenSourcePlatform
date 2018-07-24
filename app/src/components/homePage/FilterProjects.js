@@ -27,21 +27,21 @@ const FilterProjects = props => {
         href="#"
         onClick={() => props.changeFilter("all")}
       >
-        All Projects
+        All
       </a>
       <a
         className={liveStyle}
         href="#"
         onClick={() => props.changeFilter("live")}
       >
-        Live Projects
+        Ideas
       </a>
       <a
         className={graduateStyle}
         href="#"
         onClick={() => props.changeFilter("graduate")}
       >
-        Graduated Projects
+        In progress
       </a>
     </div>
   );
