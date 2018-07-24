@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import UploadImage from "./UploadImage";
-import InputTextBox from "./InputTextBox";
-import Button from "../common/Button";
+import InputTextBox from "../../components/common/InputTextBox";
+import Button from "../../components/common/Button";
 
 const Container = props => {
   const style = {

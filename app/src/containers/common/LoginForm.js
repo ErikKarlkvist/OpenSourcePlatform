@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Spinner from "../common/Spinner";
+import Spinner from "../../components/common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
