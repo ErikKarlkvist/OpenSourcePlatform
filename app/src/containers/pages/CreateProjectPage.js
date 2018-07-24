@@ -18,7 +18,11 @@ import FixedBackgroundImage from "../../components/common/FixedBackgroundImage";
 import Line from "../../components/common/Line";
 import Button from "../../components/common/Button";
 import { saveToLocalDraft } from "../../backend/projectDrafts";
-import { validateGithubURL, validateEmail } from "../../backend/validation";
+import {
+  validateGithubURL,
+  validateEmail,
+  hasVerifiedEmail
+} from "../../backend/validation";
 import { withRouter } from "react-router";
 
 const Buttons = props => {
@@ -187,43 +191,40 @@ class CreateProjectPage extends Component {
   }
 
   submitProject = () => {
-    firebase
-      .auth()
-      .currentUser.reload()
-      .then(() => {
-        if (!firebase.auth().currentUser.emailVerified) {
-          alert(
-            "Permission Denied. Your email is not verfied, verify it by clicking on the link you recevied when creating your account. You can generate a new email from your profile."
-          );
-          return;
-        }
+    hasVerifiedEmail().then(verified => {
+      if (!verified) {
+        alert(
+          "Permission Denied. Your email is not verfied, verify it by clicking on the link you recevied when creating your account. You can generate a new email from your profile."
+        );
+        return;
+      }
 
-        if (!this.state.projectName) {
-          alert("Please add a title");
-          return;
-        }
+      if (!this.state.projectName) {
+        alert("Please add a title");
+        return;
+      }
 
-        if (!this.state.description) {
-          alert("Please add a description");
-          return;
-        }
+      if (!this.state.description) {
+        alert("Please add a description");
+        return;
+      }
 
-        if (this.state.owners.length === 0) {
-          alert("Please add atleast one owner");
-          return;
-        }
+      if (this.state.owners.length === 0) {
+        alert("Please add atleast one owner");
+        return;
+      }
 
-        if (!validateEmail(this.state.contactMail)) {
-          alert("Invalid contact email");
-          return;
-        }
+      if (!validateEmail(this.state.contactMail)) {
+        alert("Invalid contact email");
+        return;
+      }
 
-        if (this.state.gitURL && !validateGithubURL(this.state.gitURL)) {
-          alert("Invalid github url, please fix or remove");
-          return;
-        }
+      if (this.state.gitURL && !validateGithubURL(this.state.gitURL)) {
+        alert("Invalid github url, please fix or remove");
+        return;
+      }
 
-        /*
+      /*
     const project = this.getProjectFromState();
 
     if (this.state.update) {
@@ -247,7 +248,7 @@ class CreateProjectPage extends Component {
           alert(e.message);
         });
     }*/
-      });
+    });
   };
 
   setThumbnails = thumbnails => {

@@ -6,7 +6,7 @@ import {
   uploadProfileImage
 } from "../../backend/storage";
 import Spinner from "../../components/common/Spinner";
-import firebase from "../../backend/firebase";
+import { hasVerifiedEmail } from "../../backend/validation";
 
 /*
 WARNING HOW TO USE:
@@ -64,52 +64,55 @@ class UploadImage extends Component {
   }
 
   handleEvent = e => {
-    if (!firebase.auth().currentUser.emailVerified) {
-      alert(
-        "Permission Denied. Your email is not verfied, verify it by clicking on the link you recevied when creating your account. You can generate a new email from your profile."
-      );
-      return;
-    }
+    //event somehow loses it's reference sometime, make a copy of it
+    var event = Object.assign({}, e);
+    hasVerifiedEmail().then(verified => {
+      if (!verified) {
+        alert(
+          "Permission Denied. Your email is not verfied, verify it by clicking on the link you recevied when creating your account. You can generate a new email from your profile."
+        );
+        return;
+      }
 
-    let newUrl = "";
-    this.setState({ uploading: true });
-    if (this.props.type === "headerImage") {
-      uploadHeaderImage(e.target.files[0], this.props.id)
-        .then(output => {
-          this.setState({ uploading: false });
-          if (this.props.recieveURL) {
-            this.props.recieveURL(output.downloadURL);
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else if (this.props.type === "thumbnailImage") {
-      uploadThumbnailImage(e.target.files[0], this.props.id)
-        .then(output => {
-          this.setState({ uploading: false });
-          if (this.props.recieveURL) {
-            this.props.recieveURL(output.downloadURL);
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else if (this.props.type === "profileImage") {
-      uploadProfileImage(e.target.files[0], this.props.id)
-        .then(output => {
-          this.setState({ uploading: false });
-          if (this.props.recieveURL) {
-            this.props.recieveURL(output.downloadURL);
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      this.setState({ uploading: false });
-    }
-
+      let newUrl = "";
+      this.setState({ uploading: true });
+      if (this.props.type === "headerImage") {
+        uploadHeaderImage(event.target.files[0], this.props.id)
+          .then(output => {
+            this.setState({ uploading: false });
+            if (this.props.recieveURL) {
+              this.props.recieveURL(output.downloadURL);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      } else if (this.props.type === "thumbnailImage") {
+        uploadThumbnailImage(event.target.files[0], this.props.id)
+          .then(output => {
+            this.setState({ uploading: false });
+            if (this.props.recieveURL) {
+              this.props.recieveURL(output.downloadURL);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      } else if (this.props.type === "profileImage") {
+        uploadProfileImage(event.target.files[0], this.props.id)
+          .then(output => {
+            this.setState({ uploading: false });
+            if (this.props.recieveURL) {
+              this.props.recieveURL(output.downloadURL);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      } else {
+        this.setState({ uploading: false });
+      }
+    });
     //
   };
 
