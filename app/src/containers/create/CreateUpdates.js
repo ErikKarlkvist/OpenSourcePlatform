@@ -9,8 +9,7 @@ const Container = props => {
     textAlign: "left",
     marginTop: "80px",
     paddingBottom: "80px",
-    backgroundColor: "var(--light-teal)",
-    opacity: "0.8"
+    backgroundColor: "var(--light-teal)"
   };
   return <div style={style}>{props.children}</div>;
 };
