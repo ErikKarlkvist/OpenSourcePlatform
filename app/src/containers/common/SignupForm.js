@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { register } from "../../backend/auth";
-import Spinner from "../common/Spinner";
+import Spinner from "../../components/common/Spinner";
 
 class SignUpView extends Component {
   constructor(props, context) {

@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import firebase from "../backend/firebase";
-import { getUser } from "../backend/users.js";
-import { getProject } from "../backend/projects";
-import LoginRegister from "../components/common/LoginRegister";
+import firebase from "../../backend/firebase";
+import { getUser } from "../../backend/users.js";
+import { getProject } from "../../backend/projects";
+import LoginRegister from "../common/LoginRegister";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
-import Spinner from "../components/common/Spinner";
-import ProjectInfo from "../components/projectPage/ProjectInfo";
-import Readme from "../components/projectPage/Readme";
-import Updates from "../components/projectPage/Updates";
-import Line from "../components/common/Line";
-import logo from "../logo.svg";
-import FixedBackgroundImage from "../components/common/FixedBackgroundImage";
-import { getProjectFromDraft } from "../backend/projectDrafts";
+import Spinner from "../../components/common/Spinner";
+import ProjectInfo from "../project/ProjectInfo";
+import Readme from "../project/Readme";
+import Updates from "../project/Updates";
+import Line from "../../components/common/Line";
+import logo from "../../logo.svg";
+import FixedBackgroundImage from "../../components/common/FixedBackgroundImage";
+import { getProjectFromDraft } from "../../backend/projectDrafts";
 
 const ProjectNotFound = props => {
   return (
