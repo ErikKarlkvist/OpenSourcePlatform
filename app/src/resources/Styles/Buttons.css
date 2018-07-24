@@ -49,6 +49,7 @@
 .WarningBtn:hover {
   background: var(--bright-orange);
   border: solid var(--bright-orange) 2px;
+  border-radius: 1px;
   color: white;
   cursor: pointer;
 }
