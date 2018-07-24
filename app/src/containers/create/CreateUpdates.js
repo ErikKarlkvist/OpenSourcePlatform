@@ -75,19 +75,12 @@ class AddThumbnails extends Component {
   };
 
   toggleFullScreen = index => {
-    if (!firebase.auth().currentUser.emailVerified) {
-      alert(
-        "Permission Denied. Your email is not verfied, verify it by clicking on the link you recevied when creating your account. You can generate a new email from your profile."
-      );
-      return;
-    } else {
-      this.setState((prevState, props) => {
-        return {
-          showFullScreen: !prevState.showFullScreen,
-          currentItem: index
-        };
-      });
-    }
+    this.setState((prevState, props) => {
+      return {
+        showFullScreen: !prevState.showFullScreen,
+        currentItem: index
+      };
+    });
   };
 
   addThumbnail = thumbnail => {
