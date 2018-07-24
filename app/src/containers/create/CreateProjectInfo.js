@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import LookingFor from "./LookingFor";
-import UserSearch from "../common/UserSearch";
+import LookingFor from "./CreateSeeking";
+import UserSearch from "./UserSearch";
 import UploadImage from "./UploadImage";
-import InputTextBox from "./InputTextBox";
-import ProjectMetrics from "../projectPage/ProjectMetrics";
+import InputTextBox from "../../components/common/InputTextBox";
+import ProjectMetrics from "../project/ProjectMetrics";
 import { validateGithubURL, validateEmail } from "../../backend/validation";
 
 const AddTitle = props => {

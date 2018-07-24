@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Seeking from "../projectPage/Seeking";
-import Button from "../common/Button";
-import InputTextBox from "./InputTextBox";
+import Seeking from "../../components/project/Seeking";
+import Button from "../../components/common/Button";
+import InputTextBox from "../../components/common/InputTextBox";
 
 class LookingFor extends Component {
   constructor() {

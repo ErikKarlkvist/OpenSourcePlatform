@@ -5,8 +5,7 @@ import {
   uploadThumbnailImage,
   uploadProfileImage
 } from "../../backend/storage";
-import "./UploadImage.css";
-import Spinner from "../common/Spinner";
+import Spinner from "../../components/common/Spinner";
 
 /*
 WARNING HOW TO USE:

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./AnimatedMenu.css";
+import "../../resources/Styles/AnimatedMenu.css";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -35,6 +35,7 @@ const NormalLink = props => {
     </a>
   );
 };
+
 class LoginRegister extends Component {
   defaultProps = {
     editLink: "/"
