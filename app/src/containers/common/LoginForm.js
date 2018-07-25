@@ -3,7 +3,7 @@ import Spinner from "../../components/common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
-
+import FormInput from "../../components/common/FormInput";
 class SignUpView extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -55,13 +55,13 @@ class SignUpView extends Component {
                 placeholder="name@email.com "
               />
             </div>
-            Password:
-            <input
-              style={styles.input}
-              type="password"
-              name="password"
-              placeholder="password"
+            <FormInput
+              text={"Password"}
+              type={"password"}
+              name={"password"}
+              placeholder={"Password"}
             />
+
             <div style={styles.container2}>
               <input
                 type="cancel"
