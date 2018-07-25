@@ -52,12 +52,12 @@ class SignUpView extends Component {
           </h1>
           <form name="signup" onSubmit={this.submit} style={{ width: "100%" }}>
             <FormInput
-              text={"Firstname"}
+              text={"First name"}
               name={"firstname"}
               placeholder={"Enter your first name"}
             />
             <FormInput
-              text={"Lastname"}
+              text={"Last name"}
               name={"lastname"}
               placeholder={"Enter your last name"}
             />
