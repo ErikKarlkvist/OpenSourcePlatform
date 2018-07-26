@@ -151,14 +151,14 @@ const ReadMore = props => {
   const style = {
     marginRight: "10px",
     color: "var(--dark-teal)",
-    textDecoration: "underline"
+    textDecoration: "underline",
+    position: "absolute",
+    width: "100px",
+    right: -8,
+    bottom: 0
   };
   return (
-    <div
-      style={style}
-      href="#!"
-      className="black-text d-flex justify-content-end"
-    >
+    <div style={style} href="#!">
       <h6 style={style}>Read more</h6>
     </div>
   );
