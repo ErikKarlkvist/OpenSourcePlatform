@@ -122,6 +122,26 @@ const Top = props => {
   );
 };
 
+const Contact = props => {
+  const styles = {
+    header: {
+      textAlign: 'left'
+    }
+  }
+  return <div><h3 style ={styles.header}>Contact</h3>
+  <InputTextBox
+    title="Contact email"
+    placeholder="Your contact email"
+    name="contactMail"
+    type="email"
+    value={props.value}
+    handleInputChange={e => props.handleInputChange(e)}
+    className={"inputTextBox"}
+    validate={validateEmail}
+    invalidText={"Not a valid email"}
+  /></div>
+}
+
 class CreateProjectInfo extends Component {
   render() {
     return (
@@ -150,20 +170,15 @@ class CreateProjectInfo extends Component {
               handleInputChange={this.props.handleInputChange}
               setSeeking={this.props.setSeeking}
             />
-            <InputTextBox
-              title="Contact email"
-              placeholder="Your contact email"
-              name="contactMail"
-              type="email"
-              value={this.props.values.contactMail}
-              handleInputChange={e => this.props.handleInputChange(e)}
-              className={"inputTextBox"}
-              validate={validateEmail}
-              invalidText={"Not a valid email"}
-            />
+            <Contact value={this.props.values.contactMail}
+    handleInputChange={e => this.props.handleInputChange(e)}/>
           </Small>
           <Big>
+          {validateGithubURL(this.props.values.gitURL) && (
+              <ProjectMetrics gitURL={this.props.values.gitURL} />
+            )}
             <div>
+            
               {!validateGithubURL(this.props.values.gitURL) && (
                 <h3 style={{ textAlign: "left" }}>Metrics</h3>
               )}
@@ -182,9 +197,7 @@ class CreateProjectInfo extends Component {
               />
             </div>
             <p> </p>
-            {validateGithubURL(this.props.values.gitURL) && (
-              <ProjectMetrics gitURL={this.props.values.gitURL} />
-            )}
+            
           </Big>
           <Small>
             <UserSearch
