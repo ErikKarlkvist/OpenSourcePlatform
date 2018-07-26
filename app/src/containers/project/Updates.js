@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Thumbnail from "../../components/common/Thumbnail";
 
 //Sets how many pictures are shown if "show more" has not been pressed
-const cutoff = 6;
+const cutoff = 4;
 
 const Container = props => {
   const style = {
@@ -23,16 +23,28 @@ const ImageContainer = props => {
 };
 
 const ToggleMore = props => {
+  const styles = {
+    text: {
+      color: "var(--dark-teal)",
+      cursor: "pointer",
+      alignSelf: "flex-end"
+    },
+    container: {
+      marginBottom: "15px"
+    }
+  };
   return (
     <div>
       {props.imagesLength > cutoff &&
         props.showingLength < props.imagesLength && (
-          <a onClick={this.showAll}>Show more</a>
+          <span onClick={props.showAll} style={styles.text}>
+            Show more
+          </span>
         )}
       {props.showingLength > cutoff && (
-        <a onClick={this.showLess} style={{ alignSelf: "flex-end" }}>
+        <span onClick={props.showLess} style={styles.text}>
           Show less
-        </a>
+        </span>
       )}
     </div>
   );
@@ -107,8 +119,6 @@ class Updates extends Component {
       sizes: [],
       showFullScreen: false
     };
-
-    console.log("tet");
   }
 
   componentDidMount() {
@@ -152,11 +162,11 @@ class Updates extends Component {
   }
 
   showAll = () => {
-    this.setState({ showing: this.state.images });
+    this.setState({ showing: this.state.items });
   };
 
   showLess = () => {
-    this.setState({ showing: this.state.images.slice(0, cutoff) });
+    this.setState({ showing: this.state.items.slice(0, cutoff) });
   };
 
   //TODO: Should only call in componentDidMount
@@ -167,7 +177,6 @@ class Updates extends Component {
   };
 
   render() {
-    console.log(this.state.items);
     if (!this.state.items || this.state.items.length <= 0) {
       return <div />;
     }
@@ -181,6 +190,8 @@ class Updates extends Component {
             <ToggleMore
               imagesLength={this.state.items.length}
               showingLength={this.state.showing.length}
+              showAll={this.showAll}
+              showLess={this.showLess}
             />
           </div>
         </Container>
