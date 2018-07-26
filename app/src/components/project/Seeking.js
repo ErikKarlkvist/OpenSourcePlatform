@@ -4,7 +4,6 @@ const SubContainer = props => {
   const style = {
     textAlign: "left",
     clear: "both",
-    paddingTop: "20px",
     position: "relative",
     marginTop: "10px"
   };
@@ -18,18 +17,24 @@ const LookingForList = props => {
     },
     removeText: {
       color: "white",
-      cursor: "pointer"
+      cursor: "pointer",
+      marginLeft: "20px",
+      textShadow: "1px 1px black"
+    },
+    container: {
+      display: "flex",
+      justifyContent: "flex-start"
     }
   };
   const listItems = [];
   for (let i = 0; i < props.lookingFor.length; i++) {
     const listElem = (
-      <li key={i}>
+      <li key={i} style={styles.container}>
         <h4>> {props.lookingFor[i]}</h4>
         {props.removeItem && (
-          <a onClick={() => props.removeItem(i)} style={styles.removeText}>
-            Remove
-          </a>
+          <h4 onClick={() => props.removeItem(i)} style={styles.removeText}>
+            ⮾
+          </h4>
         )}
       </li>
     );
