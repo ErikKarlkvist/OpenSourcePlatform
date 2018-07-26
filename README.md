@@ -7,7 +7,7 @@ This project uses react, node packet manager (npm) and firebase. You need to ins
 
 [You can create a firebase project here] (https://console.firebase.google.com/u/0/), and [View the firebase documentation here](https://firebase.google.com/docs/guides/)
 
-##Quick guide once everything is installed and you've pulled the latest version of the project:
+## Quick guide once everything is installed and you've pulled the latest version of the project:
 1. Open the terminal and navigate to the project
 2. cd app
 3. Run npm install (you have to install npm in order for this to work)
@@ -27,7 +27,7 @@ firebase.initializeApp({
 export default firebase;
 ```
 
-...Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click Add Firebase to your web app.
+* Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click Add Firebase to your web app.
 
 5. Open the terminal and run npm start
 6. A window will open in your default browser. If nothing happens, go to "localhost:3000" in your browser.
