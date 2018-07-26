@@ -36,7 +36,7 @@ const NormalLink = props => {
   );
 };
 
-class LoginRegister extends Component {
+class HeaderMenu extends Component {
   defaultProps = {
     editLink: "/"
   };
@@ -87,7 +87,7 @@ class LoginRegister extends Component {
             />
           </div>
 
-          <div style={styles.line} />
+          <div style={styles.lineSignedOut} />
 
           <div style={{ marginTop: "30px", textAlign: "right" }}>
             <NormalLink
@@ -105,13 +105,21 @@ class LoginRegister extends Component {
     } else {
       return (
         <div style={styles.container}>
-          <h5>
-            Welcome {this.props.user.firstname} {this.props.user.lastname}
-          </h5>
-          <div style={styles.line} />
-          <div style={styles.optionsContainer}>
+          <div class="HeaderProfile">
+            <h5>
+              Welcome {this.props.user.firstname} {this.props.user.lastname}
+            </h5>
+            <img
+              style={styles.image}
+              src={this.props.user.profileImageURL}
+              alt={""}
+            />
+            <div style={styles.lineSignedIn} />
+          </div>
+
+          <div class="OptionsContainer">
             <RouteLink text="Create project" to="/create-project" />
-            <RouteLink text="Your projects" to="/your-projects" />
+            <RouteLink text="Your profile" to="/your-projects" />
             {this.props.canEdit && (
               <RouteLink text="Edit project" to={this.props.editLink} />
             )}
@@ -152,7 +160,19 @@ class LoginRegister extends Component {
 }
 
 const styles = {
-  line: {
+  container: {
+    marginTop: "10px"
+  },
+  lineSignedIn: {
+    borderBottom: "1px solid white",
+    height: "20px",
+    width: "150px",
+    marginLeft: "50px",
+    position: "absolute",
+    right: 0,
+    top: 60
+  },
+  lineSignedOut: {
     borderBottom: "1px solid white",
     height: "20px",
     width: "150px",
@@ -161,12 +181,17 @@ const styles = {
     right: 0,
     top: 40
   },
-  optionsContainer: {
-    marginTop: 30
-  },
   option: {
     marginTop: 10,
     textAlign: "right"
+  },
+  image: {
+    height: "50px",
+    width: "50px",
+    marginLeft: "20px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    marginTop: "-15px"
   }
 };
-export default LoginRegister;
+export default HeaderMenu;
