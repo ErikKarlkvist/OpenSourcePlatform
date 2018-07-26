@@ -91,31 +91,6 @@ class SignUpView extends Component {
           {this.state.loading && (
             <Spinner loading={true} fillPage color={"black"} />
           )}
-<<<<<<< HEAD:app/src/components/common/SignupForm.js
-          <Header />
-          <form name="signup" onSubmit={this.submit} style={{ width: "100%" }}>
-            <br />
-            <FirstName />
-            <LastName />
-            <Email
-              validEmail={() => this.state.validEmail}
-              checkEmail={() => this.checkEmail}
-            />
-            <div style={styles.space}>
-              Password<br />
-              <input
-                style={styles.input}
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-              />
-              <br />
-            </div>
-            <div style={styles.space}>
-              Confirm password
-              <br />
-=======
           <h1
             style={{
               color: "var(--dark-teal)",
@@ -178,7 +153,6 @@ class SignUpView extends Component {
               required
             />
             <div style={styles.container2}>
->>>>>>> ed67ebb69a5706074e1130033168ee22c903a7ab:app/src/containers/common/SignupForm.js
               <input
                 type="cancel"
                 value="Cancel"
