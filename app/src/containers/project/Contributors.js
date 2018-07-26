@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../../resources/Styles/AnimatedMenu.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 const RemoveSubmittedUser = props => {
   const styles = {
@@ -41,6 +43,7 @@ class Contributors extends React.Component {
     let items = [];
     if (data) {
       items = data.map((d, i) => (
+        <Link to={`/user/${d.id}`}>
         <div
           className="d-block d-sm-block d-md-block"
           style={styles.owner}
@@ -62,6 +65,7 @@ class Contributors extends React.Component {
             <RemoveSubmittedUser removeUser={this.props.removeUser} user={d} />
           )}
         </div>
+        </Link>
       ));
 
       this.setState({ owners: items, ownersToShow: items.slice(0, 2) });
