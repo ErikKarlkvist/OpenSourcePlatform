@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import firebase from "../../backend/firebase";
 import { getUser } from "../../backend/users.js";
 import { getProject } from "../../backend/projects";
-import LoginRegister from "../common/LoginRegister";
+import HeaderMenu from "../common/HeaderMenu";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Spinner from "../../components/common/Spinner";
 import logo from "../../logo.svg";
@@ -285,7 +285,7 @@ class CreateProjectPage extends Component {
                 <Link to="/">
                   <img src={logo} className="Logo" alt="logo" />
                 </Link>
-                <LoginRegister
+                <HeaderMenu
                   isLoggedIn={this.state.isLoggedIn}
                   user={this.state.user}
                   hasFetchedUser={this.state.hasFetchedUser}
