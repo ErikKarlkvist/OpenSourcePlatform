@@ -125,22 +125,26 @@ const Top = props => {
 const Contact = props => {
   const styles = {
     header: {
-      textAlign: 'left'
+      textAlign: "left"
     }
-  }
-  return <div><h3 style ={styles.header}>Contact</h3>
-  <InputTextBox
-    title="Contact email"
-    placeholder="Your contact email"
-    name="contactMail"
-    type="email"
-    value={props.value}
-    handleInputChange={e => props.handleInputChange(e)}
-    className={"inputTextBox"}
-    validate={validateEmail}
-    invalidText={"Not a valid email"}
-  /></div>
-}
+  };
+  return (
+    <div>
+      <h3 style={styles.header}>Contact</h3>
+      <InputTextBox
+        title="Contact email"
+        placeholder="Your contact email"
+        name="contactMail"
+        type="email"
+        value={props.value}
+        handleInputChange={e => props.handleInputChange(e)}
+        className={"inputTextBox"}
+        validate={validateEmail}
+        invalidText={"Not a valid email"}
+      />
+    </div>
+  );
+};
 
 class CreateProjectInfo extends Component {
   render() {
@@ -170,15 +174,16 @@ class CreateProjectInfo extends Component {
               handleInputChange={this.props.handleInputChange}
               setSeeking={this.props.setSeeking}
             />
-            <Contact value={this.props.values.contactMail}
-    handleInputChange={e => this.props.handleInputChange(e)}/>
+            <Contact
+              value={this.props.values.contactMail}
+              handleInputChange={e => this.props.handleInputChange(e)}
+            />
           </Small>
           <Big>
-          {validateGithubURL(this.props.values.gitURL) && (
+            {validateGithubURL(this.props.values.gitURL) && (
               <ProjectMetrics gitURL={this.props.values.gitURL} />
             )}
             <div>
-            
               {!validateGithubURL(this.props.values.gitURL) && (
                 <h3 style={{ textAlign: "left" }}>Metrics</h3>
               )}
@@ -197,7 +202,6 @@ class CreateProjectInfo extends Component {
               />
             </div>
             <p> </p>
-            
           </Big>
           <Small>
             <UserSearch
