@@ -131,10 +131,6 @@ class UserSearchField extends Component {
 
     return (
       <div>
-        <Contributors
-          developers={this.props.currentOwners}
-          removeUser={this.removeSubmittedUser}
-        />
         <div class="row">
           {this.state.selected.name == undefined && (
             <div class="col-md-12 col-sm-12 col-lg-12">
@@ -161,6 +157,10 @@ class UserSearchField extends Component {
             </div>
           )}
         </div>
+        <Contributors
+          developers={this.props.currentOwners}
+          removeUser={this.removeSubmittedUser}
+        />
       </div>
     );
   }
