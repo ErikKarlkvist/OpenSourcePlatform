@@ -59,18 +59,23 @@ const LookingForList = props => {
 };
 
 const Seeking = props => {
-  /*if (!props.lookingFor || props.lookingFor <= 0) {
+  let title = "Seeking";
+
+  if (props.createMode) {
+    title = "Seeking (optional)";
+  } else if (!props.lookingFor || props.lookingFor <= 0) {
+    title = "Join us!";
     return (
       <Header>
-        <Title>Join us!</Title>
+        <Title>{title}</Title>
       </Header>
     );
-  }*/
+  }
 
   return (
     <div className="ProjectTopInfo">
       <Header>
-        <Title>Seeking</Title>
+        <Title>{title}</Title>
       </Header>
       <SubContainer>
         <LookingForList

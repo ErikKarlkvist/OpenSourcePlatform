@@ -185,7 +185,9 @@ class CreateProjectInfo extends Component {
             )}
             <div>
               {!validateGithubURL(this.props.values.gitURL) && (
-                <h3 style={{ textAlign: "left" }}>Metrics</h3>
+                <h3 style={{ textAlign: "left" }}>
+                  Github repository (optional)
+                </h3>
               )}
               <InputTextBox
                 title="GitURL"

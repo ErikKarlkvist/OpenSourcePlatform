@@ -43,6 +43,7 @@ class LookingFor extends Component {
         <Seeking
           lookingFor={this.props.value}
           removeItem={this.removeItem}
+          createMode={true}
         />
         <div
           className="row"
