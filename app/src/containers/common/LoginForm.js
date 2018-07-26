@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Spinner from "../../components/common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
-<<<<<<< HEAD:app/src/components/common/LoginForm.js
 
 const Header = () => {
   const style = {
@@ -84,18 +83,6 @@ const Buttons = props => {
 };
 
 class LoginView extends Component {
-=======
-import { withRouter } from "react-router";
-import PropTypes from "prop-types";
-import FormInput from "../../components/common/FormInput";
-class SignUpView extends Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
-
->>>>>>> ed67ebb69a5706074e1130033168ee22c903a7ab:app/src/containers/common/LoginForm.js
   constructor(props, context) {
     super(props, context);
 
@@ -115,49 +102,12 @@ class SignUpView extends Component {
           )}
           <Header />
           <form name="login" onSubmit={this.submit} style={{ width: "100%" }}>
-<<<<<<< HEAD:app/src/components/common/LoginForm.js
             <Inputs />
             <Buttons
               hide={this.props.hide}
               switchDisplay={this.props.switchDisplay}
               forgotPassword={this.forgotPassword}
             />
-=======
-            <div style={styles.space}>
-              Email
-              <input
-                style={styles.input}
-                type="email"
-                name="email"
-                placeholder="name@email.com "
-              />
-            </div>
-            <FormInput
-              text={"Password"}
-              type={"password"}
-              name={"password"}
-              placeholder={"Password"}
-            />
-
-            <div style={styles.container2}>
-              <input
-                type="cancel"
-                value="Cancel"
-                className="CancelBtn"
-                onClick={this.props.hide}
-              />
-              <input type="submit" value="Log in" className="LogInBtn" />
-            </div>
-            <div style={styles.container2}>
-              <a style={styles.create} onClick={this.props.switchDisplay}>
-                Create account
-              </a>
-
-              <a style={styles.create} onClick={this.forgotPassword}>
-                Forgot password
-              </a>
-            </div>
->>>>>>> ed67ebb69a5706074e1130033168ee22c903a7ab:app/src/containers/common/LoginForm.js
           </form>
         </div>
       </div>
@@ -234,36 +184,7 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 3
-<<<<<<< HEAD:app/src/components/common/LoginForm.js
   }
 };
 
 export default LoginView;
-=======
-  },
-  input: {
-    width: "100%",
-    backgroundColor: "var(--white-three)",
-    paddingLeft: 10,
-    border: "1px solid var(--dark-teal)"
-  },
-  container2: {
-    marginTop: "3%",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  create: {
-    cursor: "pointer",
-    margin: 20,
-    textAlign: "center"
-  },
-  space: {
-    width: "100%",
-    marginBottom: 20
-  }
-};
-
-export default withRouter(SignUpView);
->>>>>>> ed67ebb69a5706074e1130033168ee22c903a7ab:app/src/containers/common/LoginForm.js
