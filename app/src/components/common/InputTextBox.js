@@ -15,7 +15,10 @@ class InputTextBox extends Component {
   checkInputLength = e => {
     if (this.props.maxChars === undefined) {
       this.props.handleInputChange(e);
-    } else if (e.target.value.length <= this.props.maxChars) {
+    } else if (
+      e.target.value.length <= this.props.maxChars ||
+      e.target.value.length < this.props.value.length
+    ) {
       this.props.handleInputChange(e);
     }
   };
@@ -68,6 +71,10 @@ class InputTextBox extends Component {
             this.checkInputLength(e);
           }}
         />
+        <p style={{ color: "white" }}>
+          {this.props.maxChars &&
+            this.props.value.length + "/" + this.props.maxChars}
+        </p>
       </div>
     );
   }
@@ -86,11 +93,13 @@ class InputTextBox extends Component {
             this.checkInputLength(e);
           }}
         />
+        <p style={{ color: "white" }}>
+          {this.props.maxChars &&
+            this.props.value.length + "/" + this.props.maxChars}
+        </p>
       </div>
     );
   }
-  /* {this.props.title}{" "}
-        {this.props.maxChars && this.state.chars + "/" + this.props.maxChars}*/
 }
 
 export default InputTextBox;

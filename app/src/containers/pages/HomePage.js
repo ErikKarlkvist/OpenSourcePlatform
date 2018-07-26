@@ -28,8 +28,8 @@ class HomePage extends Component {
       this.setState({
         currentlyViewing: projects,
         allProjects: projects,
-        liveProjects: [projects[0]],
-        graduateProjects: [projects[projects.length - 1]],
+        liveProjects: [projects[0], projects[1], projects[projects.length - 1]],
+        graduateProjects: [projects[2]],
         loading: false
       });
     });
