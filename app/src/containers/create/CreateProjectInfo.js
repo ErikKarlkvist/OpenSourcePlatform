@@ -203,12 +203,11 @@ class CreateProjectInfo extends Component {
             />
           </Small>
           <Big>
-            
             <div>
-                <HeaderWithTooltip tooltip={TooltipTexts.GithubRepo}>
-                  Github repository (optional)
-                </HeaderWithTooltip>
-              
+              <HeaderWithTooltip tooltip={TooltipTexts.GithubRepo}>
+                Github repository (optional)
+              </HeaderWithTooltip>
+
               <InputTextBox
                 title="GitURL"
                 placeholder="Github repository url. Needed for metrics and 'Get code!' button"
