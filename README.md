@@ -5,9 +5,9 @@ An open source platform with open source projects created by DNB employees - but
 # Running the project
 This project uses react, node packet manager (npm) and firebase. You need to install npm on your computer and create a firebase project in order to run this project. We currently do not provide any mock data to firebase, so there won't be any users och projects created when you run the app the first time.
 
-[You can create a firebase project here] (https://console.firebase.google.com/u/0/), and [View the firebase documentation here](https://firebase.google.com/docs/guides/)
+[You can create a firebase project here](https://console.firebase.google.com/u/0/), and [View the firebase documentation here](https://firebase.google.com/docs/guides/)
 
-## Quick guide once everything is installed and you've pulled the latest version of the project:
+### Quick guide once everything is installed and you've pulled the latest version of the project:
 1. Open the terminal and navigate to the project
 2. cd app
 3. Run npm install (you have to install npm in order for this to work)
