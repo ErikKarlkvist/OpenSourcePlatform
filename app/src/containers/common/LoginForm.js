@@ -1,88 +1,25 @@
 import React, { Component } from "react";
 import Spinner from "../../components/common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
+import { withRouter } from "react-router";
+import PropTypes from "prop-types";
+import FormInput from "../../components/common/FormInput";
 
 const Header = () => {
   const style = {
     color: "var(--dark-teal)",
     textAlign: "center",
-    paddingBottom: "20px"
+    marginTop: "4%"
   };
   return <h1 style={style}>Log in</h1>;
 };
-
-const Inputs = () => {
-  const styles = {
-    input: {
-      width: "100%",
-      backgroundColor: "var(--white-three)",
-      paddingLeft: "10px",
-      marginBottom: "25px",
-      border: "1px solid var(--dark-teal)"
-    }
+class SignUpView extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   };
 
-  return (
-    <div>
-      Email
-      <input
-        style={styles.input}
-        type="email"
-        name="email"
-        placeholder="name@email.com "
-      />
-      Password:
-      <input
-        style={styles.input}
-        type="password"
-        name="password"
-        placeholder="password"
-      />
-    </div>
-  );
-};
-
-const Buttons = props => {
-  const styles = {
-    container2: {
-      marginTop: "3%",
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
-    },
-    cancel: {
-      margin: 20,
-      cursor: "pointer"
-    },
-    create: {
-      cursor: "pointer",
-      margin: 20,
-      textAlign: "center"
-    }
-  };
-  return (
-    <div>
-      <div style={styles.container2}>
-        <a style={styles.cancel} onClick={props.hide}>
-          Cancel
-        </a>
-        <input type="submit" value="Log in" className="LogInBtn" />
-      </div>
-      <div style={styles.container2}>
-        <a style={styles.create} onClick={props.switchDisplay}>
-          Create account
-        </a>
-        <br />
-        <a style={styles.create} onClick={props.forgotPassword}>
-          Forgot password
-        </a>
-      </div>
-    </div>
-  );
-};
-
-class LoginView extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -100,14 +37,42 @@ class LoginView extends Component {
           {this.state.loading && (
             <Spinner loading={true} fillPage color={"black"} />
           )}
-          <Header />
           <form name="login" onSubmit={this.submit} style={{ width: "100%" }}>
-            <Inputs />
-            <Buttons
-              hide={this.props.hide}
-              switchDisplay={this.props.switchDisplay}
-              forgotPassword={this.forgotPassword}
+            <Header />
+            <div style={styles.space}>
+              Email
+              <input
+                style={styles.input}
+                type="email"
+                name="email"
+                placeholder="name@email.com "
+              />
+            </div>
+            <FormInput
+              text={"Password"}
+              type={"password"}
+              name={"password"}
+              placeholder={"Password"}
             />
+
+            <div style={styles.container2}>
+              <input
+                type="cancel"
+                value="Cancel"
+                className="CancelBtn"
+                onClick={this.props.hide}
+              />
+              <input type="submit" value="Log in" className="LogInBtn" />
+            </div>
+            <div style={styles.container2}>
+              <a style={styles.create} onClick={this.props.switchDisplay}>
+                Create account
+              </a>
+
+              <a style={styles.create} onClick={this.forgotPassword}>
+                Forgot password
+              </a>
+            </div>
           </form>
         </div>
       </div>
@@ -184,7 +149,29 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 3
+  },
+  input: {
+    width: "100%",
+    backgroundColor: "var(--white-three)",
+    paddingLeft: 10,
+    border: "1px solid var(--dark-teal)"
+  },
+  container2: {
+    marginTop: "3%",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  create: {
+    cursor: "pointer",
+    margin: 20,
+    textAlign: "center"
+  },
+  space: {
+    width: "100%",
+    marginBottom: 20
   }
 };
 
-export default LoginView;
+export default withRouter(SignUpView);
