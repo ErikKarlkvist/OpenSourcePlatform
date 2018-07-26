@@ -2,12 +2,8 @@ input[type="file"] {
   display: none;
 }
 
-.App-title {
-  margin-top: 100px;
-}
-
 .App-header {
-  height: 80px;
+  height: 100px;
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -44,10 +40,6 @@ input[type="file"] {
   margin: 0 auto;
 }
 
-.Logo {
-  height: 40px;
-}
-
 .GreenBox {
   width: 300px;
   padding: 20px;
@@ -71,13 +63,18 @@ input[type="file"] {
   padding-top: 20px;
 }
 
+.App-title {
+  margin-top: 50px;
+}
+
 @media (min-width: 576px) {
+  .App-title {
+    margin-top: 20px;
+  }
+
   .Center {
     max-width: 300px;
     margin: 0 auto;
-  }
-  .Logo {
-    height: 60px;
   }
 
   .GreenBox {
@@ -109,9 +106,6 @@ input[type="file"] {
     max-width: 700px;
     margin: 0 auto;
   }
-  .Logo {
-    height: 80px;
-  }
 
   .GreenBox {
     width: 300px;
@@ -141,9 +135,6 @@ input[type="file"] {
   .Center {
     max-width: 1000px;
     margin: 0 auto;
-  }
-  .Logo {
-    height: 80px;
   }
 
   .GreenBox {
@@ -175,9 +166,7 @@ input[type="file"] {
     max-width: 1000px;
     margin: 0 auto;
   }
-  .Logo {
-    height: 80px;
-  }
+
   .GreenBox {
     width: 500px;
     padding: 20px;

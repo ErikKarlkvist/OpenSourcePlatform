@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "../../logo.svg";
 import { getAllProjects } from "../../backend/projects";
 import { getUser } from "../../backend/users.js";
-import LoginRegister from "../common/LoginRegister";
+import HeaderMenu from "../common/HeaderMenu";
 import Spinner from "../../components/common/Spinner";
 import { BrowserRouter as Link } from "react-router-dom";
 import firebase from "../../backend/firebase";
@@ -64,7 +64,7 @@ class HomePage extends Component {
           <Link to="/">
             <img src={logo} className="Logo" alt="logo" />
           </Link>
-          <LoginRegister
+          <HeaderMenu
             isLoggedIn={this.state.isLoggedIn}
             user={this.state.user}
             hasFetchedUser={this.state.hasFetchedUser}
