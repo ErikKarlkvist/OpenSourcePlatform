@@ -108,7 +108,6 @@ const Top = props => {
             id={props.projectID}
             recieveURL={props.recieveURL}
             label="Upload header image"
-            loadingType="round"
           />
         )}
         {props.headerImageURL && (
@@ -119,6 +118,30 @@ const Top = props => {
           </div>
         )}
       </div>
+    </div>
+  );
+};
+
+const Contact = props => {
+  const styles = {
+    header: {
+      textAlign: "left"
+    }
+  };
+  return (
+    <div>
+      <h3 style={styles.header}>Contact</h3>
+      <InputTextBox
+        title="Contact email"
+        placeholder="Your contact email"
+        name="contactMail"
+        type="email"
+        value={props.value}
+        handleInputChange={e => props.handleInputChange(e)}
+        className={"inputTextBox"}
+        validate={validateEmail}
+        invalidText={"Not a valid email"}
+      />
     </div>
   );
 };
@@ -151,22 +174,20 @@ class CreateProjectInfo extends Component {
               handleInputChange={this.props.handleInputChange}
               setSeeking={this.props.setSeeking}
             />
-            <InputTextBox
-              title="Contact email"
-              placeholder="Your contact email"
-              name="contactMail"
-              type="email"
+            <Contact
               value={this.props.values.contactMail}
               handleInputChange={e => this.props.handleInputChange(e)}
-              className={"inputTextBox"}
-              validate={validateEmail}
-              invalidText={"Not a valid email"}
             />
           </Small>
           <Big>
+            {validateGithubURL(this.props.values.gitURL) && (
+              <ProjectMetrics gitURL={this.props.values.gitURL} />
+            )}
             <div>
               {!validateGithubURL(this.props.values.gitURL) && (
-                <h3 style={{ textAlign: "left" }}>Metrics</h3>
+                <h3 style={{ textAlign: "left" }}>
+                  Github repository (optional)
+                </h3>
               )}
               <InputTextBox
                 title="GitURL"
@@ -183,9 +204,6 @@ class CreateProjectInfo extends Component {
               />
             </div>
             <p> </p>
-            {validateGithubURL(this.props.values.gitURL) && (
-              <ProjectMetrics gitURL={this.props.values.gitURL} />
-            )}
           </Big>
           <Small>
             <UserSearch

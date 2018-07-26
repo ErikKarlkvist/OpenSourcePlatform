@@ -3,7 +3,7 @@ import logo from "../../logo.svg";
 import { getAllProjects } from "../../backend/projects";
 import { getUser } from "../../backend/users.js";
 import ProjectsDisplay from "../../components/homePage/ProjectsDisplay";
-import LoginRegister from "../common/LoginRegister";
+import HeaderMenu from "../common/HeaderMenu";
 import FilterProjects from "../../components/homePage/FilterProjects";
 import Line from "../../components/common/Line";
 import Spinner from "../../components/common/Spinner";
@@ -28,8 +28,8 @@ class HomePage extends Component {
       this.setState({
         currentlyViewing: projects,
         allProjects: projects,
-        liveProjects: [projects[0]],
-        graduateProjects: [projects[projects.length - 1]],
+        liveProjects: [projects[0], projects[1], projects[projects.length - 1]],
+        graduateProjects: [projects[2]],
         loading: false
       });
     });
@@ -73,7 +73,7 @@ class HomePage extends Component {
           <Link to="/">
             <img src={logo} className="Logo" alt="logo" />
           </Link>
-          <LoginRegister
+          <HeaderMenu
             isLoggedIn={this.state.isLoggedIn}
             user={this.state.user}
             hasFetchedUser={this.state.hasFetchedUser}

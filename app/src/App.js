@@ -8,6 +8,7 @@ import "./resources/colors.css";
 import "./resources/Styles/Main.css";
 import "./resources/Styles/Input.css";
 import "./resources/Styles/Buttons.css";
+import "./resources/Styles/HeaderMenu.css";
 
 class App extends Component {
   render() {

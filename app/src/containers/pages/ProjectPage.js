@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import firebase from "../../backend/firebase";
 import { getUser } from "../../backend/users.js";
 import { getProject } from "../../backend/projects";
-import LoginRegister from "../common/LoginRegister";
+import HeaderMenu from "../common/HeaderMenu";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
@@ -139,7 +139,7 @@ class ProjectPage extends Component {
               <Link to="/">
                 <img src={logo} className="Logo" alt="logo" />
               </Link>
-              <LoginRegister
+              <HeaderMenu
                 isLoggedIn={this.state.isLoggedIn}
                 user={this.state.user}
                 hasFetchedUser={this.state.hasFetchedUser}

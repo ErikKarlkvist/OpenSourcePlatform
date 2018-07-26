@@ -5,13 +5,6 @@ label {
   height: 50px;
 }
 
-.Menu {
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  width: 40%;
-}
-
 .MenuItem {
   position: relative;
   text-decoration: none;
@@ -46,4 +39,41 @@ label {
 .UnderlinedMenuItem {
   text-decoration: none;
   border-bottom: 3px solid var(--bright-orange);
+}
+
+.Menu {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 80%;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 600px) {
+  .Menu {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 60%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media (min-width: 992px) {
+  .Menu {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 60%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .Menu {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 40%;
+  }
 }
