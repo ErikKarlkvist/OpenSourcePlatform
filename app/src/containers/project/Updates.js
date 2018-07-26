@@ -7,8 +7,7 @@ const cutoff = 6;
 const Container = props => {
   const style = {
     paddingTop: "40px",
-    backgroundColor: "var(--light-teal)",
-    opacity: "0.8"
+    backgroundColor: "var(--light-teal-80)"
   };
   return <div style={style}>{props.children}</div>;
 };
@@ -107,8 +106,6 @@ class Updates extends Component {
       sizes: [],
       showFullScreen: false
     };
-
-    console.log("tet");
   }
 
   componentDidMount() {
@@ -129,7 +126,7 @@ class Updates extends Component {
         return (
           <div
             key={i}
-            style={{ marginBottom: 30 }}
+            style={styles.thumbnailStyle}
             className={"col-md-4 col-sm-12 col-lg-3"}
           >
             <Thumbnail
@@ -198,6 +195,11 @@ class Updates extends Component {
 const styles = {
   Name: {
     color: "grey"
+  },
+  thumbnailStyle: {
+    marginBottom: 30,
+    display: "flex",
+    justifyContent: "center"
   }
 };
 export default Updates;
