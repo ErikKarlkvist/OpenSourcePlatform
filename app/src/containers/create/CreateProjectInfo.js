@@ -4,7 +4,7 @@ import UserSearch from "./UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "../../components/common/InputTextBox";
 import ProjectMetrics from "../project/ProjectMetrics";
-import ReactTooltip from "react-tooltip";
+import HeaderWithTooltip from "./HeaderWithTooltip";
 import { validateGithubURL, validateEmail } from "../../backend/validation";
 
 const AddTitle = props => {
@@ -147,38 +147,6 @@ const Contact = props => {
   );
 };
 
-const HeaderWithTooltip = props => {
-  const styles = {
-    HelperText: {
-      textDecoration: "underline",
-      textDecorationStyle: "dashed",
-      marginRight: "20px"
-    },
-    Container: {
-      display: "flex",
-      justifyContent: "space-between"
-    },
-    Header: {
-      textAlign: "left"
-    }
-  };
-  return (
-    <div style={styles.Container}>
-      <h3>{props.children}</h3>
-      <a data-tip={props.tooltip} style={styles.HelperText}>
-        Tips
-      </a>
-      <ReactTooltip
-        place="right"
-        multiline="true"
-        type="light"
-        effect="float"
-        delayShow={200}
-      />
-    </div>
-  );
-};
-
 const TooltipTexts = {
   Description:
     "Your description should cover what problem your project solves, and how it solves it",
@@ -189,7 +157,9 @@ const TooltipTexts = {
   Updates:
     "A living project is more likely to attract contributors, so use this space to show of what you have accomplished. <br />Post about new releases, launches, milestones, new team members, and that new deal you just struck",
   Readme:
-    'This link will display the readme on your github page, updated dynamically.<br />You find the .md file by opening the readme file, then pressing the "Raw" button above the file.<br />Should look like this: https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md'
+    'This link will display the readme on your github page, updated dynamically.<br />You find the .md file by opening the readme file, then pressing the "Raw" button above the file.<br />Should look like this: https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md',
+  Owners:
+    "Adding team members means other people can see who works on this project, and will display this project on their profile page"
 };
 
 class CreateProjectInfo extends Component {
@@ -226,21 +196,19 @@ class CreateProjectInfo extends Component {
               handleInputChange={this.props.handleInputChange}
               setSeeking={this.props.setSeeking}
             />
+            <br />
             <Contact
               value={this.props.values.contactMail}
               handleInputChange={e => this.props.handleInputChange(e)}
             />
           </Small>
           <Big>
-            {validateGithubURL(this.props.values.gitURL) && (
-              <ProjectMetrics gitURL={this.props.values.gitURL} />
-            )}
+            
             <div>
-              {!validateGithubURL(this.props.values.gitURL) && (
                 <HeaderWithTooltip tooltip={TooltipTexts.GithubRepo}>
                   Github repository (optional)
                 </HeaderWithTooltip>
-              )}
+              
               <InputTextBox
                 title="GitURL"
                 placeholder="Github repository url. Needed for metrics and 'Get code!' button"
@@ -255,9 +223,15 @@ class CreateProjectInfo extends Component {
                 }
               />
             </div>
+            {validateGithubURL(this.props.values.gitURL) && (
+              <ProjectMetrics gitURL={this.props.values.gitURL} />
+            )}
             <p> </p>
           </Big>
           <Small>
+            <HeaderWithTooltip tooltip={TooltipTexts.Owners}>
+              Add team member
+            </HeaderWithTooltip>
             <UserSearch
               removeOwner={this.props.removeOwner}
               setOwners={this.props.setOwners}
