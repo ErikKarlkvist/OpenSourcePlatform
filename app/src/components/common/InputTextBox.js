@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 /* INPUT EXAMPLE
 title="Thumbnail Title"
@@ -39,19 +40,7 @@ class InputTextBox extends Component {
         {!this.props.multiline && this.renderInput()}
         {this.props.multiline && this.renderTextarea()}
         {!valid && (
-          <p
-            style={{
-              color: "var(--bright-orange)",
-              width: "90%",
-              fontSize: "14px",
-              fontStyle: "italic",
-              textAlign: "left",
-              padding: "5px",
-              marginLeft: "30px"
-            }}
-          >
-            {this.props.invalidText}
-          </p>
+          <p style={this.styles.errorText}>{this.props.invalidText}</p>
         )}
       </div>
     );
@@ -61,17 +50,17 @@ class InputTextBox extends Component {
     return (
       <div>
         <input
-          type={this.props.type || "text"}
+          type={this.props.type}
           name={this.props.name}
           placeholder={this.props.placeholder}
-          className={this.props.className || "inputTextBox multiliner"}
+          className={this.props.className}
           value={this.props.value}
-          style={{ color: this.props.textColor || "white" }}
+          style={{ color: this.props.textColor }}
           onChange={e => {
             this.checkInputLength(e);
           }}
         />
-        <p style={{ color: "white" }}>
+        <p style={this.styles.charCounter}>
           {this.props.maxChars &&
             this.props.value.length + "/" + this.props.maxChars}
         </p>
@@ -83,23 +72,56 @@ class InputTextBox extends Component {
     return (
       <div>
         <textarea
-          type={this.props.type || "text"}
+          type={this.props.type}
           name={this.props.name}
           placeholder={this.props.placeholder}
-          className={this.props.className || "inputTextBox multiliner"}
+          className={this.props.className}
           value={this.props.value}
-          style={{ color: this.props.textColor || "white" }}
+          style={{ color: this.props.textColor }}
           onChange={e => {
             this.checkInputLength(e);
           }}
         />
-        <p style={{ color: "white" }}>
+        <p style={this.styles.charCounter}>
           {this.props.maxChars &&
             this.props.value.length + "/" + this.props.maxChars}
         </p>
       </div>
     );
   }
+
+  styles = {
+    charCounter: {
+      color: this.props.textColor,
+      textAlign: "right",
+      marginRight: "20px"
+    },
+    errorText: {
+      color: "var(--bright-orange)",
+      width: "90%",
+      fontSize: "14px",
+      fontStyle: "italic",
+      textAlign: "left",
+      padding: "5px",
+      marginLeft: "30px"
+    }
+  };
 }
+
+InputTextBox.propTypes = {
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  className: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  textColor: PropTypes.string,
+  maxChars: PropTypes.number
+};
+
+InputTextBox.defaultProps = {
+  textColor: "white",
+  type: "text",
+  className: "inputTextBox multiliner"
+};
 
 export default InputTextBox;
