@@ -138,13 +138,14 @@ class CreateProjectPage extends Component {
             hasFetchedUser: true,
             user
           });
+          if (!page.props.match || !page.props.match.params.projectId) {
+            const owner = user;
+            owner.role = "Creator";
+            const owners = [];
+            owners.push(owner);
 
-          const owner = user;
-          owner.role = "Creator";
-          const owners = [];
-          owners.push(owner);
-
-          page.setOwners(owners);
+            page.setOwners(owners);
+          }
         });
       } else {
         page.props.history.push("/");
@@ -225,7 +226,7 @@ class CreateProjectPage extends Component {
       }
 
       const project = this.getProjectFromState();
-
+      this.setState({ loading: true });
       if (this.state.update) {
         updateProject(this.getProjectFromState(), this.state.projectID)
           .then(() => {
