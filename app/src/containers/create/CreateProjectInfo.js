@@ -108,7 +108,6 @@ const Top = props => {
             id={props.projectID}
             recieveURL={props.recieveURL}
             label="Upload header image"
-            loadingType="round"
           />
         )}
         {props.headerImageURL && (
