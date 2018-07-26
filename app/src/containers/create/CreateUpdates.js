@@ -9,14 +9,14 @@ const Container = props => {
     textAlign: "left",
     marginTop: "80px",
     paddingBottom: "80px",
-    backgroundColor: "var(--light-teal)"
+    backgroundColor: "var(--light-teal-80)"
   };
   return <div style={style}>{props.children}</div>;
 };
 
 const Title = props => {
   const style = { paddingTop: "50px", color: "var(--dark-teal)" };
-  return <h3 style={style}>Updates</h3>;
+  return <h3 style={style}>Updates (optional)</h3>;
 };
 
 const ThumbnailUpload = props => {

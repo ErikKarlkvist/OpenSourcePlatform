@@ -150,7 +150,8 @@ const Description = props => {
 const ReadMore = props => {
   const style = {
     marginRight: "10px",
-    color: "var(--dark-teal)"
+    color: "var(--dark-teal)",
+    textDecoration: "underline"
   };
   return (
     <div
@@ -158,7 +159,7 @@ const ReadMore = props => {
       href="#!"
       className="black-text d-flex justify-content-end"
     >
-      <h5 style={style}>Read more</h5>
+      <h6 style={style}>Read more</h6>
     </div>
   );
 };
@@ -240,7 +241,7 @@ class Thumbnail extends Component {
             <ThumbnailHeads owners={this.props.owners} />
           )}
         </Body>
-        {this.props.size === "medium" && <ReadMore />}
+        <ReadMore />
       </Container>
     );
   }

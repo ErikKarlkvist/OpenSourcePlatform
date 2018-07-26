@@ -33,7 +33,7 @@ class UploadImage extends Component {
   render() {
     if (this.state.uploading) {
       return (
-        <div style={this.styles.container}>
+        <div style={this.styles.spinnerContainer}>
           <Spinner
             loading={true}
             color={this.props.loadingColor || "white"}
@@ -123,6 +123,12 @@ class UploadImage extends Component {
       marginTop: "20px",
       marginLeft: "20px",
       width: "200px"
+    },
+    spinnerContainer: {
+      display: "flex",
+      justifyContent: "center",
+      width: "200px",
+      marginTop: "20px"
     },
     uploadLabel: {
       cursor: "pointer",

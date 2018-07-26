@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import Thumbnail from "../../components/common/Thumbnail";
 
 //Sets how many pictures are shown if "show more" has not been pressed
-const cutoff = 6;
+const cutoff = 4;
 
 const Container = props => {
   const style = {
     paddingTop: "40px",
-    backgroundColor: "var(--light-teal)",
-    opacity: "0.8"
+    backgroundColor: "var(--light-teal-80)"
   };
   return <div style={style}>{props.children}</div>;
 };
@@ -23,16 +22,28 @@ const ImageContainer = props => {
 };
 
 const ToggleMore = props => {
+  const styles = {
+    text: {
+      color: "var(--dark-teal)",
+      cursor: "pointer",
+      alignSelf: "flex-end"
+    },
+    container: {
+      marginBottom: "15px"
+    }
+  };
   return (
     <div>
       {props.imagesLength > cutoff &&
         props.showingLength < props.imagesLength && (
-          <a onClick={this.showAll}>Show more</a>
+          <span onClick={props.showAll} style={styles.text}>
+            Show more
+          </span>
         )}
       {props.showingLength > cutoff && (
-        <a onClick={this.showLess} style={{ alignSelf: "flex-end" }}>
+        <span onClick={props.showLess} style={styles.text}>
           Show less
-        </a>
+        </span>
       )}
     </div>
   );
@@ -107,8 +118,6 @@ class Updates extends Component {
       sizes: [],
       showFullScreen: false
     };
-
-    console.log("tet");
   }
 
   componentDidMount() {
@@ -129,7 +138,7 @@ class Updates extends Component {
         return (
           <div
             key={i}
-            style={{ marginBottom: 30 }}
+            style={styles.thumbnailStyle}
             className={"col-md-4 col-sm-12 col-lg-3"}
           >
             <Thumbnail
@@ -152,11 +161,11 @@ class Updates extends Component {
   }
 
   showAll = () => {
-    this.setState({ showing: this.state.images });
+    this.setState({ showing: this.state.items });
   };
 
   showLess = () => {
-    this.setState({ showing: this.state.images.slice(0, cutoff) });
+    this.setState({ showing: this.state.items.slice(0, cutoff) });
   };
 
   //TODO: Should only call in componentDidMount
@@ -167,7 +176,6 @@ class Updates extends Component {
   };
 
   render() {
-    console.log(this.state.items);
     if (!this.state.items || this.state.items.length <= 0) {
       return <div />;
     }
@@ -181,6 +189,8 @@ class Updates extends Component {
             <ToggleMore
               imagesLength={this.state.items.length}
               showingLength={this.state.showing.length}
+              showAll={this.showAll}
+              showLess={this.showLess}
             />
           </div>
         </Container>
@@ -198,6 +208,11 @@ class Updates extends Component {
 const styles = {
   Name: {
     color: "grey"
+  },
+  thumbnailStyle: {
+    marginBottom: 30,
+    display: "flex",
+    justifyContent: "center"
   }
 };
 export default Updates;

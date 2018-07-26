@@ -145,8 +145,7 @@ class CreateUpdatePost extends Component {
                 id={this.props.projectID}
                 recieveURL={this.recieveURL}
                 color="grey"
-                loadingColor="var(--bluey-green)"
-                loadingType="round"
+                loadingColor="grey"
               />
             </div>
           )}

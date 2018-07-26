@@ -18,9 +18,8 @@ class LookingFor extends Component {
 
   submitField = () => {
     const newValue = this.state.value + "";
-    const submitted = [...this.state.submitted, newValue];
+    const submitted = [...this.props.value, newValue];
     this.setState({
-      submitted,
       value: ""
     });
     this.props.setSeeking(submitted);
@@ -34,16 +33,17 @@ class LookingFor extends Component {
 
   //Remove item 'index' from the submitted list. Index = int
   removeItem = index => {
-    const newItems = [...this.state.submitted].filter((d, i) => i !== index);
-    this.setState({ submitted: newItems });
+    const newItems = [...this.props.value].filter((d, i) => i !== index);
+    this.props.setSeeking(newItems);
   };
 
   render() {
     return (
       <div>
         <Seeking
-          lookingFor={this.state.submitted}
+          lookingFor={this.props.value}
           removeItem={this.removeItem}
+          createMode={true}
         />
         <div
           className="row"

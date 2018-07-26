@@ -25,6 +25,7 @@ const FormInput = props => {
         pattern={props.pattern}
         customValidity
         onBlur={props.onBlur}
+        onChange={props.onChange}
         required={props.required}
       />
     </div>

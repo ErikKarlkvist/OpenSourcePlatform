@@ -3,7 +3,16 @@ import Spinner from "../../components/common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
+import FormInput from "../../components/common/FormInput";
 
+const Header = () => {
+  const style = {
+    color: "var(--dark-teal)",
+    textAlign: "center",
+    marginTop: "4%"
+  };
+  return <h1 style={style}>Log in</h1>;
+};
 class SignUpView extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -14,24 +23,10 @@ class SignUpView extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = {
       value: "",
       loading: false
     };
-  }
-
-  getValidationState() {
-    const length = this.state.value.length;
-    if (length > 10) return "success";
-    else if (length > 5) return "warning";
-    else if (length > 0) return "error";
-    return null;
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value });
   }
 
   render() {
@@ -42,10 +37,8 @@ class SignUpView extends Component {
           {this.state.loading && (
             <Spinner loading={true} fillPage color={"black"} />
           )}
-          <h1 style={{ color: "var(--dark-teal)", textAlign: "center" }}>
-            Log in
-          </h1>
           <form name="login" onSubmit={this.submit} style={{ width: "100%" }}>
+            <Header />
             <div style={styles.space}>
               Email
               <input
@@ -55,13 +48,13 @@ class SignUpView extends Component {
                 placeholder="name@email.com "
               />
             </div>
-            Password:
-            <input
-              style={styles.input}
-              type="password"
-              name="password"
-              placeholder="password"
+            <FormInput
+              text={"Password"}
+              type={"password"}
+              name={"password"}
+              placeholder={"Password"}
             />
+
             <div style={styles.container2}>
               <input
                 type="cancel"
@@ -103,7 +96,6 @@ class SignUpView extends Component {
     e.preventDefault();
     const email = document.forms["login"]["email"].value;
     const password = document.forms["login"]["password"].value;
-
     const emailDomain = email.split("@")[1];
 
     if (emailDomain !== "dnb.no") {

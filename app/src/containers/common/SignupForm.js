@@ -3,6 +3,64 @@ import { register } from "../../backend/auth";
 import Spinner from "../../components/common/Spinner";
 import FormInput from "../../components/common/FormInput";
 
+const Header = () => {
+  const style = {
+    color: "var(--dark-teal)",
+    textAlign: "center",
+    marginTop: "4%"
+  };
+  return <h1 style={style}>Sign up</h1>;
+};
+
+const Disclaimer = () => {
+  const styles = {
+    link: {
+      fontSize: "11px",
+      color: "var(--dark-teal)",
+      fontStyle: "italic"
+    },
+    disclaimer: {
+      marginTop: "10px",
+      fontSize: "11px"
+    }
+  };
+  return (
+    <div style={styles.disclaimer}>
+      {"By signing up to this website, you agree to DNB's "}
+      <a
+        style={styles.link}
+        rel="noopener noreferrer"
+        target="_blank"
+        href="https://www.dnb.no/global/generelle-vilkar.html"
+      >
+        {"General terms "}
+      </a>
+      {"and "}
+      <a
+        style={styles.link}
+        rel="noopener noreferrer"
+        target="_blank"
+        href="https://www.dnb.no/om-oss/personvern.html"
+      >
+        {"Personal privacy policy "}
+      </a>
+    </div>
+  );
+};
+
+const InvalidEmailText = () => {
+  const style = {
+    color: "var(--bright-orange",
+    fontStyle: "italic",
+    fontSize: "14px"
+  };
+  return (
+    <div>
+      <p style={style}>Not a valid email. Must end with @dnb.no</p>
+    </div>
+  );
+};
+
 class SignUpView extends Component {
   constructor(props, context) {
     super(props, context);
@@ -15,22 +73,21 @@ class SignUpView extends Component {
     };
   }
 
-  getValidationState() {
-    const length = this.state.value.length;
-    if (length > 10) return "success";
-    else if (length > 5) return "warning";
-    else if (length > 0) return "error";
-    return null;
-  }
-
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
 
-  checkEmail = e => {
+  //Show text if the input box is blurred with an incorrect email, remove text immediately if the user enters a correct address
+  checkEmail = (e, onChange) => {
     const split = e.split("@");
-    console.log("EMAIL", e, split, split.length === 2 && split[1] == "dnb.no");
-    this.setState({ validEmail: split.length === 2 && split[1] == "dnb.no" });
+    let valid = split.length === 2 && split[1] == "dnb.no";
+    if (onChange) {
+      if (!this.state.validEmail) {
+        this.setState({ validEmail: valid });
+      }
+    } else {
+      this.setState({ validEmail: valid });
+    }
   };
 
   render() {
@@ -41,53 +98,28 @@ class SignUpView extends Component {
           {this.state.loading && (
             <Spinner loading={true} fillPage color={"black"} />
           )}
-          <h1
-            style={{
-              color: "var(--dark-teal)",
-              textAlign: "center",
-              marginTop: "4%"
-            }}
-          >
-            Sign up
-          </h1>
+          <Header />
+
           <form name="signup" onSubmit={this.submit} style={{ width: "100%" }}>
             <FormInput
-              text={"Firstname"}
+              text={"First name"}
               name={"firstname"}
               placeholder={"Enter your first name"}
             />
             <FormInput
-              text={"Lastname"}
+              text={"Last name"}
               name={"lastname"}
               placeholder={"Enter your last name"}
             />
+            <FormInput
+              text="Email"
+              name="email"
+              placeholder="Enter a valid email@dnb.no address"
+              onBlur={e => this.checkEmail(e.target.value, false)}
+              onChange={e => this.checkEmail(e.target.value, true)}
+            />
 
-            <div style={styles.space}>
-              Email
-              <input
-                style={styles.input}
-                type="email"
-                name="email"
-                placeholder="Enter a valid email@dnb.no address"
-                pattern="[^@\s]+@dnb.no+"
-                customValidity
-                onBlur={e => this.checkEmail(e.target.value)}
-                required
-              />
-              {!this.state.validEmail && (
-                <div>
-                  <p
-                    style={{
-                      color: "var(--bright-orange",
-                      fontStyle: "italic",
-                      fontSize: "14px"
-                    }}
-                  >
-                    Not a valid email. Must end with @dnb.no
-                  </p>
-                </div>
-              )}
-            </div>
+            {!this.state.validEmail && <InvalidEmailText />}
             <FormInput
               text={"Password"}
               name={"password"}
@@ -97,11 +129,12 @@ class SignUpView extends Component {
 
             <FormInput
               text={"Confirm password"}
-              name={"password"}
+              name={"confirmPassword"}
               type={"password"}
               placeholder={"Confirm your password"}
               required
             />
+            <Disclaimer />
             <div style={styles.container2}>
               <input
                 type="cancel"
