@@ -1,90 +1,6 @@
 import React, { Component } from "react";
 import Spinner from "../../components/common/Spinner";
 import { login, resetPassword } from "../../backend/auth";
-<<<<<<< HEAD:app/src/components/common/LoginForm.js
-
-const Header = () => {
-  const style = {
-    color: "var(--dark-teal)",
-    textAlign: "center",
-    paddingBottom: "20px"
-  };
-  return <h1 style={style}>Log in</h1>;
-};
-
-const Inputs = () => {
-  const styles = {
-    input: {
-      width: "100%",
-      backgroundColor: "var(--white-three)",
-      paddingLeft: "10px",
-      marginBottom: "25px",
-      border: "1px solid var(--dark-teal)"
-    }
-  };
-
-  return (
-    <div>
-      Email
-      <input
-        style={styles.input}
-        type="email"
-        name="email"
-        placeholder="name@email.com "
-      />
-      Password:
-      <input
-        style={styles.input}
-        type="password"
-        name="password"
-        placeholder="password"
-      />
-    </div>
-  );
-};
-
-const Buttons = props => {
-  const styles = {
-    container2: {
-      marginTop: "3%",
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
-    },
-    cancel: {
-      margin: 20,
-      cursor: "pointer"
-    },
-    create: {
-      cursor: "pointer",
-      margin: 20,
-      textAlign: "center"
-    }
-  };
-  return (
-    <div>
-      <div style={styles.container2}>
-        <a style={styles.cancel} onClick={props.hide}>
-          Cancel
-        </a>
-        <input type="submit" value="Log in" className="LogInBtn" />
-      </div>
-      <div style={styles.container2}>
-        <a style={styles.create} onClick={props.switchDisplay}>
-          Create account
-        </a>
-        <br />
-        <a style={styles.create} onClick={props.forgotPassword}>
-          Forgot password
-        </a>
-      </div>
-    </div>
-  );
-};
-
-class LoginView extends Component {
-=======
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import FormInput from "../../components/common/FormInput";
@@ -95,7 +11,6 @@ class SignUpView extends Component {
     history: PropTypes.object.isRequired
   };
 
->>>>>>> ed67ebb69a5706074e1130033168ee22c903a7ab:app/src/containers/common/LoginForm.js
   constructor(props, context) {
     super(props, context);
 
@@ -113,16 +28,7 @@ class SignUpView extends Component {
           {this.state.loading && (
             <Spinner loading={true} fillPage color={"black"} />
           )}
-          <Header />
           <form name="login" onSubmit={this.submit} style={{ width: "100%" }}>
-<<<<<<< HEAD:app/src/components/common/LoginForm.js
-            <Inputs />
-            <Buttons
-              hide={this.props.hide}
-              switchDisplay={this.props.switchDisplay}
-              forgotPassword={this.forgotPassword}
-            />
-=======
             <div style={styles.space}>
               Email
               <input
@@ -157,7 +63,6 @@ class SignUpView extends Component {
                 Forgot password
               </a>
             </div>
->>>>>>> ed67ebb69a5706074e1130033168ee22c903a7ab:app/src/containers/common/LoginForm.js
           </form>
         </div>
       </div>
@@ -234,12 +139,6 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 3
-<<<<<<< HEAD:app/src/components/common/LoginForm.js
-  }
-};
-
-export default LoginView;
-=======
   },
   input: {
     width: "100%",
@@ -266,4 +165,3 @@ export default LoginView;
 };
 
 export default withRouter(SignUpView);
->>>>>>> ed67ebb69a5706074e1130033168ee22c903a7ab:app/src/containers/common/LoginForm.js
