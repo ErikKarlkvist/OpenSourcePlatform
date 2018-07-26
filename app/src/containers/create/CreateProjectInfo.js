@@ -4,6 +4,7 @@ import UserSearch from "./UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "../../components/common/InputTextBox";
 import ProjectMetrics from "../project/ProjectMetrics";
+import ReactTooltip from "react-tooltip";
 import { validateGithubURL, validateEmail } from "../../backend/validation";
 
 const AddTitle = props => {
@@ -146,6 +147,51 @@ const Contact = props => {
   );
 };
 
+const HeaderWithTooltip = props => {
+  const styles = {
+    HelperText: {
+      textDecoration: "underline",
+      textDecorationStyle: "dashed",
+      marginRight: "20px"
+    },
+    Container: {
+      display: "flex",
+      justifyContent: "space-between"
+    },
+    Header: {
+      textAlign: "left"
+    }
+  };
+  return (
+    <div style={styles.Container}>
+      <h3>{props.children}</h3>
+      <a data-tip={props.tooltip} style={styles.HelperText}>
+        Tips
+      </a>
+      <ReactTooltip
+        place="right"
+        multiline="true"
+        type="light"
+        effect="float"
+        delayShow={200}
+      />
+    </div>
+  );
+};
+
+const TooltipTexts = {
+  Description:
+    "Your description should cover what problem your project solves, and how it solves it",
+  GithubRepo:
+    "Paste the link to your project's Github repository here, and the project metrics will automatically be fetched. <br /> If you do not use GitHub, leave this blank.<br /> Should look like this: https://github.com/ErikKarlkvist/OpenSourcePlatform",
+  LookingFor:
+    "If you're looking for a spesific skill or position to complement your team, add them here. <br /> Try to not be too spesific, as people are more likely to search for more general terms",
+    Updates: 
+    "A living project is more likely to attract contributors, so use this space to show of what you have accomplished. <br />Post about new releases, launches, milestones, new team members, and that new deal you just struck",
+    Readme:
+    "This link will display the readme on your github page, updated dynamically.<br />You find the .md file by opening the readme file, then pressing the \"Raw\" button above the file.<br />Should look like this: https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md"
+};
+
 class CreateProjectInfo extends Component {
   render() {
     return (
@@ -160,9 +206,12 @@ class CreateProjectInfo extends Component {
             removeHeaderImage={this.props.removeHeaderImage}
           />
           <Big>
-            <h3 style={{ textAlign: "left" }}>
-              What is {this.props.values.projectName}?
-            </h3>
+            <div>
+              <HeaderWithTooltip tooltip={TooltipTexts.Description}>
+                What is {this.props.values.projectName}?{" "}
+              </HeaderWithTooltip>
+            </div>
+
             <Description
               description={this.props.values.description}
               handleInputChange={this.props.handleInputChange}
@@ -185,9 +234,9 @@ class CreateProjectInfo extends Component {
             )}
             <div>
               {!validateGithubURL(this.props.values.gitURL) && (
-                <h3 style={{ textAlign: "left" }}>
+                <HeaderWithTooltip tooltip={TooltipTexts.GithubRepo}>
                   Github repository (optional)
-                </h3>
+                </HeaderWithTooltip>
               )}
               <InputTextBox
                 title="GitURL"
