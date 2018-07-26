@@ -1,6 +1,66 @@
 import React, { Component } from "react";
 import { register } from "../../backend/auth";
 import Spinner from "../../components/common/Spinner";
+import FormInput from "../../components/common/FormInput";
+
+const Header = () => {
+  const style = {
+    color: "var(--dark-teal)",
+    textAlign: "center"
+  };
+  return <h1 style={style}>Sign up</h1>;
+};
+
+const FirstName = () => {
+  return (
+    <div style={styles.space}>
+      Firstname<br />
+      <input
+        style={styles.input}
+        type="text"
+        name="firstname"
+        placeholder="Enter your first name"
+        required
+      />
+    </div>
+  );
+};
+
+const LastName = () => {
+  return (
+    <div style={styles.space}>
+      Lastname<br />
+      <input
+        style={styles.input}
+        type="text"
+        name="lastname"
+        placeholder="Enter your last name"
+        required
+      />
+    </div>
+  );
+};
+
+const Email = props => {
+  return (
+    <div style={styles.space}>
+      Email
+      <input
+        style={styles.input}
+        type="email"
+        name="email"
+        placeholder="Enter a valid @dnb.no email address"
+        pattern="[^@\s]+@dnb.no+"
+        onBlur={e => props.checkEmail(e.target.value)}
+      />
+      {props.validEmail && (
+        <div>
+          <p style={{ color: "red" }}>Must be an @dnb.no email</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 class SignUpView extends Component {
   constructor(props, context) {
@@ -14,21 +74,12 @@ class SignUpView extends Component {
     };
   }
 
-  getValidationState() {
-    const length = this.state.value.length;
-    if (length > 10) return "success";
-    else if (length > 5) return "warning";
-    else if (length > 0) return "error";
-    return null;
-  }
-
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
 
   checkEmail = e => {
     const split = e.split("@");
-    console.log("EMAIL", e, split, split.length === 2 && split[1] == "dnb.no");
     this.setState({ validEmail: split.length === 2 && split[1] == "dnb.no" });
   };
 
@@ -50,26 +101,17 @@ class SignUpView extends Component {
             Sign up
           </h1>
           <form name="signup" onSubmit={this.submit} style={{ width: "100%" }}>
-            <div style={styles.space}>
-              Firstname
-              <input
-                style={styles.input}
-                type="text"
-                name="firstname"
-                placeholder="Enter your first name"
-                required
-              />
-            </div>
-            <div style={styles.space}>
-              Lastname
-              <input
-                style={styles.input}
-                type="text"
-                name="lastname"
-                placeholder="Enter your lastname"
-                required
-              />
-            </div>
+            <FormInput
+              text={"First name"}
+              name={"firstname"}
+              placeholder={"Enter your first name"}
+            />
+            <FormInput
+              text={"Last name"}
+              name={"lastname"}
+              placeholder={"Enter your last name"}
+            />
+
             <div style={styles.space}>
               Email
               <input
@@ -96,26 +138,20 @@ class SignUpView extends Component {
                 </div>
               )}
             </div>
-            <div style={styles.space}>
-              Password
-              <input
-                style={styles.input}
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-              />
-            </div>
-            <div style={styles.space}>
-              Confirm password
-              <input
-                style={styles.input}
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm password"
-                required
-              />
-            </div>
+            <FormInput
+              text={"Password"}
+              name={"password"}
+              type={"password"}
+              placeholder={"Enter your password"}
+            />
+
+            <FormInput
+              text={"Confirm password"}
+              name={"password"}
+              type={"password"}
+              placeholder={"Confirm your password"}
+              required
+            />
             <div style={styles.container2}>
               <input
                 type="cancel"
