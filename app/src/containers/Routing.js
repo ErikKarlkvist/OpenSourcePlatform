@@ -6,6 +6,7 @@ import Project from "./pages/ProjectPage";
 import CreateProject from "./pages/CreateProjectPage";
 import YourProjectsPage from "./pages/YourProjectsPage";
 import AboutPage from "./pages/AboutPage";
+import UserPage from "./pages/UserPage";
 
 //For some reason default in routing is not to scroll to top when changeing page
 //this forces scroll to top
@@ -35,6 +36,7 @@ const Routing = () => {
         <Route path="/update-project/:projectId" component={CreateProject} />
         <Route path="/your-projects/" component={YourProjectsPage} />
         <Route path="/about/" component={AboutPage} />
+        <Route path="/user/:userId" component={UserPage} />
       </div>
     </Router>
   );
