@@ -1,0 +1,27 @@
+@import "../colors.css";
+
+.Contact {
+  border: solid var(--white-two) 1px;
+  height: 100%;
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .BorderTop {
+    border-top: 3px solid var(--bluey-green);
+    padding-top: 20px;
+  }
+
+  .BorderBottom {
+    border-bottom: 3px solid var(--bluey-green);
+  }
+
+  .BorderSides {
+    border-left: 3px solid var(--bluey-green);
+    border-right: 3px solid var(--bluey-green);
+  }
+}
+
+.BottomPadding {
+  padding-top: 40px;
+}

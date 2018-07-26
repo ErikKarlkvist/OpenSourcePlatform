@@ -1,7 +1,5 @@
 import firebase from "./firebase";
-import { sendJoinRequestMail } from "./email";
-import { uploadHeaderImage } from "./storage";
-
+import { getUser } from "./users";
 const storage = window.localStorage;
 
 export async function getAllProjects() {
@@ -112,21 +110,118 @@ export async function createNewProjectID() {
     .doc().id;
 }
 
+/* PROJECTDATA
+  name: 
+      description: 
+      lookingFor: 
+      gitURL:
+      readmeURL:
+      contactMail: 
+      creator: 
+      headerImageURL:,
+      owners: 
+      thumbnails: 
+  */
 export async function createNewProject(projectData, id) {
-  console.log(projectData);
+  const owners = projectData.owners.slice();
+  const thumbnails = projectData.thumbnails.slice();
+
+  delete projectData.owners;
+  delete projectData.thumbnails;
+
+  projectData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+
   await firebase
     .firestore()
     .collection("projects")
     .doc(id)
-    .set(projectData)
-    .then(function() {
-      console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-      console.error("Error writing document: ", error);
-    });
+    .set(projectData);
 
-  uploadHeaderImage(projectData.headerImageURL, projectData.name);
+  const promises = [];
+  for (let i = 0; i < thumbnails.length; i++) {
+    promises.push(
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(id)
+        .collection("thumbnails")
+        .add(thumbnails[i])
+    );
+  }
+
+  for (let j = 0; j < owners.length; j++) {
+    promises.push(
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(id)
+        .collection("owners")
+        .doc((j + 1).toString())
+        .set({ role: owners[j].role, userID: owners[j].id })
+    );
+  }
+
+  await Promise.all(promises);
+  //reload all project on update
+  await getAllProjectsHelper();
+  return Promise.resolve(true);
+}
+
+export async function updateProject(projectData, id) {
+  const owners = projectData.owners.slice();
+  const thumbnails = projectData.thumbnails.slice();
+
+  delete projectData.owners;
+  delete projectData.thumbnails;
+
+  projectData.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+
+  await firebase
+    .firestore()
+    .collection("projects")
+    .doc(id)
+    .set(projectData, { merge: true });
+
+  const promises = [];
+  for (let i = 0; i < thumbnails.length; i++) {
+    if (thumbnails[i].id) {
+      promises.push(
+        firebase
+          .firestore()
+          .collection("projects")
+          .doc(id)
+          .collection("thumbnails")
+          .doc(thumbnails[i].id)
+          .set(thumbnails[i], { merge: true })
+      );
+    } else {
+      promises.push(
+        firebase
+          .firestore()
+          .collection("projects")
+          .doc(id)
+          .collection("thumbnails")
+          .add(thumbnails[i])
+      );
+    }
+  }
+
+  for (let j = 0; j < owners.length; j++) {
+    promises.push(
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(id)
+        .collection("owners")
+        .doc((j + 1).toString())
+        .set({ role: owners[j].role, userID: owners[j].id })
+    );
+  }
+
+  await Promise.all(promises);
+  //reload all project on update
+  await getAllProjectsHelper();
+  return Promise.resolve(true);
 }
 
 //----------------------------------_HELPER ---------------------------------
@@ -227,6 +322,7 @@ async function getToolsForProject(project) {
     snapshots.forEach(snapshot => {
       if (snapshot.exists) {
         const data = snapshot.data();
+        data.id = snapshot.id;
         tools.push(data);
       }
     });
@@ -251,12 +347,9 @@ async function getOwnersForProject(project) {
   snapshots.forEach(snapshot => {
     if (snapshot.exists) {
       promises.push(
-        ref
-          .doc(snapshot.data().userID)
-          .get()
-          .then(userData => {
-            owners.push({ ...userData.data(), ...snapshot.data() });
-          })
+        getUser(snapshot.data().userID).then(userData => {
+          owners.push({ ...userData, ...snapshot.data() });
+        })
       );
     }
   });
@@ -268,20 +361,7 @@ async function getOwnersForProject(project) {
 //loads creator for specified project
 async function getCreatorForProject(project) {
   try {
-    const creator = await firebase
-      .firestore()
-      .collection("users")
-      .doc(project.creator)
-      .get()
-      .then(snapshot => {
-        if (snapshot.exists) {
-          const user = snapshot.data();
-          user.id = snapshot.id;
-          return Promise.resolve(user);
-        } else {
-          return Promise.resolve({ id: "No user" });
-        }
-      });
+    const creator = await getUser(project.creator);
     const data = { creator, projectId: project.id };
     return Promise.resolve(data);
   } catch (e) {
@@ -302,6 +382,7 @@ async function getThumbnailsForProject(project) {
     snapshots.forEach(snapshot => {
       if (snapshot.exists) {
         const data = snapshot.data();
+        data.id = snapshot.id;
         thumbnails.push(data);
       }
     });

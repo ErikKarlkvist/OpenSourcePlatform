@@ -12,6 +12,10 @@ export async function getUser(uid) {
     .get();
   if (snapshot.exists) {
     const userData = snapshot.data();
+    if (!userData.profileImageURL) {
+      userData.profileImageURL =
+        "https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/resources%2FblankProfile.png?alt=media&token=5fd23b76-d5f6-4bb0-b4c3-11979905cc4b";
+    }
     userData.id = snapshot.id;
     return userData;
   } else {
@@ -29,6 +33,10 @@ export async function getAllUsers() {
   snapshots.forEach(snapshot => {
     if (snapshot.exists) {
       const data = snapshot.data();
+      if (!data.profileImageURL) {
+        data.profileImageURL =
+          "https://firebasestorage.googleapis.com/v0/b/opensourceplatformtesting.appspot.com/o/resources%2FblankProfile.png?alt=media&token=5fd23b76-d5f6-4bb0-b4c3-11979905cc4b";
+      }
       data.id = snapshot.id;
       users.push(data);
     }
