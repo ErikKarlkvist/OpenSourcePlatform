@@ -27,7 +27,7 @@ firebase.initializeApp({
 export default firebase;
 ```
 
-⋅⋅⋅Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click Add Firebase to your web app.
+...Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click Add Firebase to your web app.
 
 5. Open the terminal and run npm start
 6. A window will open in your default browser. If nothing happens, go to "localhost:3000" in your browser.
