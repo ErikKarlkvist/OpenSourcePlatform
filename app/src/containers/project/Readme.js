@@ -44,13 +44,6 @@ class Readme extends Component {
     }
   }
 
-  addHeader = text => {
-    const title = this.props.projectName
-      ? this.props.projectName
-      : this.props.project.name;
-    return <h1>{title}'s Readme</h1>;
-  };
-
   render() {
     if (!this.props.readmeURL && !this.props.project.readmeURL) {
       return <div />;
@@ -58,8 +51,6 @@ class Readme extends Component {
     return (
       <div className="readmeContainer">
         <div className="markdown">
-          {this.props.projectName !== "" && this.addHeader()}
-
           <Markdown source={this.state.text} className="markdownInner" />
         </div>
       </div>
