@@ -1,20 +1,5 @@
 import React from "react";
 
-const Header = props => {
-  const style = {
-    width: "100%",
-    paddingBottom: "20px"
-  };
-  return <div style={style}>{props.children}</div>;
-};
-
-const Title = props => {
-  const style = {
-    float: "left"
-  };
-  return <h3 style={style}>{props.children}</h3>;
-};
-
 const SubContainer = props => {
   const style = {
     textAlign: "left",
@@ -59,24 +44,8 @@ const LookingForList = props => {
 };
 
 const Seeking = props => {
-  let title = "Seeking";
-
-  if (props.createMode) {
-    title = "Seeking (optional)";
-  } else if (!props.lookingFor || props.lookingFor <= 0) {
-    title = "Join us!";
-    return (
-      <Header>
-        <Title>{title}</Title>
-      </Header>
-    );
-  }
-
   return (
     <div className="ProjectTopInfo">
-      <Header>
-        <Title>{title}</Title>
-      </Header>
       <SubContainer>
         <LookingForList
           lookingFor={props.lookingFor}
