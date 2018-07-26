@@ -24,7 +24,8 @@ firebase.initializeApp({
     messagingSenderId: "<SENDER_ID>",
 });
 
-export default firebase;```
+export default firebase;
+```
 
 Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click Add Firebase to your web app.
 
