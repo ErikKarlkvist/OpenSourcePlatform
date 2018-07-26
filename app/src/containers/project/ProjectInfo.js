@@ -67,6 +67,21 @@ const Description = props => {
   );
 };
 
+const Header = props => {
+  const style = {
+    width: "100%",
+    paddingBottom: "20px"
+  };
+  return <div style={style}>{props.children}</div>;
+};
+
+const Title = props => {
+  const style = {
+    float: "left"
+  };
+  return <h3 style={style}>{props.children}</h3>;
+};
+
 class ProjectInfo extends Component {
   //"joinStatus === joined, requested or none"
   state = {
@@ -126,6 +141,13 @@ class ProjectInfo extends Component {
             <Description project={this.props.project} />
           </Big>
           <Small>
+            <Header>
+              <Title>
+                {this.props.project.lookingFor.length <= 0
+                  ? "Join us!"
+                  : "Looking for"}
+              </Title>
+            </Header>
             <Seeking lookingFor={this.props.project.lookingFor} />
             <Contact email={this.props.project.contactMail} />
           </Small>
