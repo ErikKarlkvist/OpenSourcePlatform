@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 
-class Line extends Component {
-  render() {
-    let style = styles.small;
-    if (this.props.full) {
-      style = styles.full;
-    }
-    //hooked with login
-    return (
-      <div style={this.props.style}>
-        <div style={style} />
-      </div>
-    );
+const Line = props => {
+  let style = styles.small;
+  if (props.full) {
+    style = styles.full;
   }
-}
+  //hooked with login
+  return (
+    <div style={props.style}>
+      <div style={style} />
+    </div>
+  );
+};
 
 const styles = {
   small: {

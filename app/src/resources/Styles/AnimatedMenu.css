@@ -1,0 +1,49 @@
+@import "../colors.css";
+label {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+}
+
+.Menu {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 40%;
+}
+
+.MenuItem {
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.MenuItem:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+.MenuItem:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  background-color: var(--bright-orange);
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.MenuItem:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.UnderlinedMenuItem {
+  text-decoration: none;
+  border-bottom: 3px solid var(--bright-orange);
+}
