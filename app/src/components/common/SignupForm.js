@@ -5,6 +5,65 @@ import "../../resources/Main.css";
 import { register } from "../../backend/auth";
 import Spinner from "../common/Spinner";
 
+const Header = () => {
+  const style = {
+    color: "var(--dark-teal)",
+    textAlign: "center"
+  };
+  return <h1 style={style}>Sign up</h1>;
+};
+
+const FirstName = () => {
+  return (
+    <div style={styles.space}>
+      Firstname<br />
+      <input
+        style={styles.input}
+        type="text"
+        name="firstname"
+        placeholder="Enter your first name"
+        required
+      />
+    </div>
+  );
+};
+
+const LastName = () => {
+  return (
+    <div style={styles.space}>
+      Lastname<br />
+      <input
+        style={styles.input}
+        type="text"
+        name="lastname"
+        placeholder="Enter your last name"
+        required
+      />
+    </div>
+  );
+};
+
+const Email = props => {
+  return (
+    <div style={styles.space}>
+      Email
+      <input
+        style={styles.input}
+        type="email"
+        name="email"
+        placeholder="Enter a valid @dnb.no email address"
+        pattern="[^@\s]+@dnb.no+"
+        onBlur={e => props.checkEmail(e.target.value)}
+      />
+      {props.validEmail && (
+        <div>
+          <p style={{ color: "red" }}>Must be an @dnb.no email</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
 class SignUpView extends Component {
   constructor(props, context) {
     super(props, context);
@@ -17,21 +76,12 @@ class SignUpView extends Component {
     };
   }
 
-  getValidationState() {
-    const length = this.state.value.length;
-    if (length > 10) return "success";
-    else if (length > 5) return "warning";
-    else if (length > 0) return "error";
-    return null;
-  }
-
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
 
   checkEmail = e => {
     const split = e.split("@");
-    console.log("EMAIL", e, split, split.length === 2 && split[1] == "dnb.no");
     this.setState({ validEmail: split.length === 2 && split[1] == "dnb.no" });
   };
 
@@ -43,49 +93,15 @@ class SignUpView extends Component {
           {this.state.loading && (
             <Spinner loading={true} fillPage color={"black"} />
           )}
-          <h1 style={{ color: "var(--dark-teal)", textAlign: "center" }}>
-            Sign up
-          </h1>
+          <Header />
           <form name="signup" onSubmit={this.submit} style={{ width: "100%" }}>
             <br />
-            <div style={styles.space}>
-              Firstname<br />
-              <input
-                style={styles.input}
-                type="text"
-                name="firstname"
-                placeholder="Enter your first name"
-                required
-              />
-            </div>
-            <div style={styles.space}>
-              Lastname<br />
-              <input
-                style={styles.input}
-                type="text"
-                name="lastname"
-                placeholder="Enter your lastname"
-                required
-              />
-            </div>
-            <div style={styles.space}>
-              Email<br />
-              <input
-                style={styles.input}
-                type="email"
-                name="email"
-                placeholder="Enter a valid @dnb.no email address"
-                pattern="[^@\s]+@dnb.no+"
-                customValidity
-                onBlur={e => this.checkEmail(e.target.value)}
-                required
-              />
-              {!this.state.validEmail && (
-                <div>
-                  <p style={{ color: "red" }}>Must be an @dnb.no email</p>
-                </div>
-              )}
-            </div>
+            <FirstName />
+            <LastName />
+            <Email
+              validEmail={() => this.state.validEmail}
+              checkEmail={() => this.checkEmail}
+            />
             <div style={styles.space}>
               Password<br />
               <input
