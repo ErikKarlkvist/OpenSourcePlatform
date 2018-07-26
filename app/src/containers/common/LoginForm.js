@@ -4,6 +4,15 @@ import { login, resetPassword } from "../../backend/auth";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import FormInput from "../../components/common/FormInput";
+
+const Header = () => {
+  const style = {
+    color: "var(--dark-teal)",
+    textAlign: "center",
+    marginTop: "4%"
+  };
+  return <h1 style={style}>Log in</h1>;
+};
 class SignUpView extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -29,6 +38,7 @@ class SignUpView extends Component {
             <Spinner loading={true} fillPage color={"black"} />
           )}
           <form name="login" onSubmit={this.submit} style={{ width: "100%" }}>
+            <Header />
             <div style={styles.space}>
               Email
               <input
