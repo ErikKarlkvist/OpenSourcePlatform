@@ -10,18 +10,18 @@ import "../../resources/Styles/ProjectInfo.css";
 
 const Container = props => {
   const style = {
-    paddingRight: "0px",
-    paddingLeft: "0px",
-    height: "auto",
-    alignContent: "space-between"
+    marginTop: "100px"
   };
-  return <div className="row">{props.children}</div>;
+  return (
+    <div style={style} className="container">
+      <div className="row">{props.children}</div>
+    </div>
+  );
 };
 
 const Big = props => {
   const style = {
-    borderRight: "solid 2px white",
-    paddingRight: "30px"
+    border: "1px solid black"
   };
   return (
     <div className={"col-md-7 col-sm-12 col-lg-7 ProjectInfoLeft"}>
@@ -31,7 +31,7 @@ const Big = props => {
 };
 
 const Small = props => {
-  const style = {};
+  const style = { border: "1px solid black" };
   return (
     <div className={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
       {props.children}
@@ -41,28 +41,36 @@ const Small = props => {
 const UserInfo = props => {
   const styles = {
     Name: {
-      fontSize: "24px"
+      textAlign: "left"
     },
-    Image: { display: "cover", height: "300px" }
+    Image: { objectFit: "cover", height: "200px", borderRadius: "50%" }
   };
 
   return (
-    <div className="container">
-      <Container>
-        <Big>
-          <div style={styles.Name}>
-            {props.user.firstname} {props.user.lastname}
-          </div>
-        </Big>
-        <Small>
-          <img
-            src={props.user.profileImageURL}
-            style={styles.Image}
-            alt={props.user.firstname}
-          />
-        </Small>
-      </Container>
-    </div>
+    <Container>
+      <Big>
+        <h1 style={styles.Name}>
+          {props.user.firstname} {props.user.lastname}
+        </h1>
+        <p style={{ color: "white", textAlign: "left" }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+          ultrices vitae odio eget scelerisque. Sed odio leo, blandit pharetra
+          imperdiet eu, blandit ac erat. Morbi nibh diam, hendrerit sed lacinia
+          vel, ullamcorper ut dui. Phasellus est turpis, facilisis vel augue
+          nec, pulvinar maximus erat. Orci varius natoque penatibus et magnis
+          dis parturient montes, nascetur ridiculus mus. Ut ac odio id nisi
+          tempor efficitur. Morbi gravida nibh nec hendrerit fringilla. Interdum
+          et malesuada fames ac ante ipsum primis in faucibus.
+        </p>
+      </Big>
+      <Small>
+        <img
+          src={props.user.profileImageURL}
+          style={styles.Image}
+          alt={props.user.firstname}
+        />
+      </Small>
+    </Container>
   );
 };
 
