@@ -49,6 +49,12 @@ const UserInfo = props => {
       borderRadius: "50%",
       marginBottom: "20px",
       marginTop: "40px"
+    },
+    EditText: {
+      textAlign: "left",
+      color: "white",
+      cursor: "pointer",
+      textDecoration: "underline"
     }
   };
 
@@ -75,9 +81,16 @@ const UserInfo = props => {
             <Button onClick={props.submitUser}>Submit</Button>
           </div>
         ) : (
-          <p style={{ color: "white", textAlign: "left" }}>
-            {props.description}
-          </p>
+          <div>
+            <p style={{ color: "white", textAlign: "left" }}>
+              {props.description}
+            </p>
+            {props.isMyProfile && (
+              <p onClick={props.setEdit} style={styles.EditText}>
+                Edit
+              </p>
+            )}
+          </div>
         )}
       </Big>
       <Small>
@@ -86,8 +99,9 @@ const UserInfo = props => {
           style={styles.Image}
           alt={props.user.firstname}
         />
-        <UploadImage type="profileImage" id={props.user.id} />
-        {}
+        {props.isMyProfile && (
+          <UploadImage type="profileImage" id={props.user.id} />
+        )}
       </Small>
     </Container>
   );
@@ -131,9 +145,10 @@ class UserPage extends Component {
       loading: true,
       isLoggedIn: false,
       hasFetchedUser: false,
+      user: {},
       displayUser: {},
       editing: false,
-      description: "",
+      description: " ",
       isMyProfile: false,
       userId: props.match.params.userId
     };
@@ -146,12 +161,11 @@ class UserPage extends Component {
 
   setupData(userId) {
     getUser(userId).then(user => {
-      console.log(user);
       if (user) {
         this.setState({
           displayUser: user,
           loading: false,
-          description: user.description
+          description: user.description ? user.description : " "
         });
       }
     });
@@ -167,7 +181,7 @@ class UserPage extends Component {
     this.loadUser();
   }
 
-  componentDidReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     if (nextProps !== this.props) {
       this.loadUser();
     }
@@ -182,13 +196,15 @@ class UserPage extends Component {
 
   setupAuthStateChange() {
     const page = this;
+
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         getUser(user.uid).then(user => {
           page.setState({
             isLoggedIn: true,
             hasFetchedUser: true,
-            user
+            user,
+            isMyProfile: page.props.match.params.userId === user.id
           });
         });
       } else {
@@ -237,8 +253,10 @@ class UserPage extends Component {
               description={this.state.description}
               onChange={e => this.onChange(e)}
               submitUser={this.submitUser}
+              setEdit={this.setEdit}
+              isMyProfile={this.state.isMyProfile}
             />
-            <Button onClick={this.setEdit}>Edit</Button>
+
             <Projects projects={this.state.projects} />
           </div>
         </div>
