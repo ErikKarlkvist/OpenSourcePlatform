@@ -30,11 +30,7 @@ const Big = props => {
 };
 
 const Small = props => {
-  return (
-    <div className={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
-      {props.children}
-    </div>
-  );
+  return <div className={"col-md-5 col-sm-12 col-lg-5"}>{props.children}</div>;
 };
 
 const UserInfo = props => {
@@ -47,7 +43,8 @@ const UserInfo = props => {
       height: "250px",
       width: "250px",
       borderRadius: "50%",
-      marginBottom: "20px"
+      marginBottom: "20px",
+      marginTop: "40px"
     }
   };
 
@@ -58,14 +55,7 @@ const UserInfo = props => {
           {props.user.firstname} {props.user.lastname}
         </h1>
         <p style={{ color: "white", textAlign: "left" }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-          ultrices vitae odio eget scelerisque. Sed odio leo, blandit pharetra
-          imperdiet eu, blandit ac erat. Morbi nibh diam, hendrerit sed lacinia
-          vel, ullamcorper ut dui. Phasellus est turpis, facilisis vel augue
-          nec, pulvinar maximus erat. Orci varius natoque penatibus et magnis
-          dis parturient montes, nascetur ridiculus mus. Ut ac odio id nisi
-          tempor efficitur. Morbi gravida nibh nec hendrerit fringilla. Interdum
-          et malesuada fames ac ante ipsum primis in faucibus.
+          {props.user.description}
         </p>
       </Big>
       <Small>
@@ -82,7 +72,8 @@ const UserInfo = props => {
 const Projects = props => {
   const styles = {
     topMargin: {
-      marginTop: "40px"
+      marginTop: "40px",
+      textAlign: "left"
     },
     text: {
       textAlign: "left",
@@ -96,38 +87,56 @@ const Projects = props => {
         <h1 style={styles.text} className="col-12">
           Projects
         </h1>
-        <div style={styles.topMargin} className="col-12">
-          <ProjectsDisplay projects={props.projects} />
+        <div style={styles.topMargin} className="col-12 Center">
+          {props.projects.length > 0 && (
+            <ProjectsDisplay projects={props.projects} />
+          )}
         </div>
+        {props.projects.length == 0 && (
+          <h2 className="col-12">No projects found</h2>
+        )}
       </div>
     </div>
   );
 };
 
 class UserPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loading: true,
       isLoggedIn: false,
       hasFetchedUser: false,
-      displayUser: {}
+      displayUser: {},
+      userId: props.match.params.userId
     };
   }
 
   componentDidMount() {
     this.setupAuthStateChange();
-    getUser(this.props.match.params.userId).then(user => {
+    this.setupData(this.state.userId);
+  }
+
+  setupData(userId) {
+    getUser(userId).then(user => {
+      console.log(user);
       if (user) {
         this.setState({ displayUser: user, loading: false });
       }
     });
 
-    getProjectsForUser(this.props.match.params.userId).then(projects => {
+    getProjectsForUser(userId).then(projects => {
       if (projects) {
         this.setState({ projects });
       }
     });
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.match.params.userId !== this.state.userId) {
+      this.setState({ userId: props.match.params.userId, loading: true });
+      this.setupData(props.match.params.userId);
+    }
   }
 
   setupAuthStateChange() {
