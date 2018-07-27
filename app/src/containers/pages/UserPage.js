@@ -81,19 +81,24 @@ const UserInfo = props => {
 
 const Projects = props => {
   const styles = {
-    container: {
+    topMargin: {
       marginTop: "40px"
     },
     text: {
-      textAlign: "left"
+      textAlign: "left",
+      marginTop: "40px"
     }
   };
   return (
-    <div style={styles.container} className="Center">
-      <Line full={true} />
-      <h1 style={styles.text}>Projects</h1>
-      <div style={styles.container}>
-        <ProjectsDisplay projects={props.projects} />
+    <div className="container" style={styles.topMargin}>
+      <div className="row">
+        <Line full={true} />
+        <h1 style={styles.text} className="col-12">
+          Projects
+        </h1>
+        <div style={styles.topMargin} className="col-12">
+          <ProjectsDisplay projects={props.projects} />
+        </div>
       </div>
     </div>
   );
