@@ -8,7 +8,7 @@ export async function register(firstname, lastname, email, password) {
     .catch(function(error) {
       return Promise.reject(error);
     });
-  const user = { firstname, lastname, email };
+  const user = { firstname, lastname, email, description: "" };
 
   //create user document on database
   await firebase
