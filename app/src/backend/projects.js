@@ -224,6 +224,32 @@ export async function updateProject(projectData, id) {
   return Promise.resolve(true);
 }
 
+export async function getProjectsForUser(uid) {
+  if (!uid) {
+    throw new Error("UID undefined");
+  }
+
+  let allProjects = storage.getItem("projects");
+  if (allProjects) {
+    allProjects = JSON.parse(allProjects);
+  } else {
+    allProjects = await getAllProjectsHelper();
+  }
+
+  console.log(allProjects);
+
+  const userProjects = [];
+  allProjects.forEach(project => {
+    project.owners.forEach(owner => {
+      if (owner.id === uid) {
+        userProjects.push(project);
+      }
+    });
+  });
+
+  return Promise.resolve(userProjects);
+}
+
 //----------------------------------_HELPER ---------------------------------
 
 async function getAllProjectsHelper() {
