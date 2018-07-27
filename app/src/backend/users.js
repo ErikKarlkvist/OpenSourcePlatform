@@ -24,6 +24,17 @@ export async function getUser(uid) {
   }
 }
 
+export async function setUser(uid, user) {
+  await firebase
+    .firestore()
+    .collection("users")
+    .doc(uid)
+    .set(user)
+    .catch(function(error) {
+      return Promise.reject(error);
+    });
+}
+
 export async function getAllUsers() {
   const snapshots = await firebase
     .firestore()

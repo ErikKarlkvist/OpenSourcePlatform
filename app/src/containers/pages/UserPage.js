@@ -9,6 +9,10 @@ import logo from "../../logo.svg";
 import "../../resources/Styles/ProjectInfo.css";
 import ProjectsDisplay from "../../components/homePage/ProjectsDisplay";
 import Line from "../../components/common/Line";
+import InputTextBox from "../../components/common/InputTextBox";
+import Button from "../../components/common/Button";
+import { setUser } from "../../backend/users";
+import UploadImage from "../create/UploadImage";
 
 const Container = props => {
   const style = {
@@ -57,16 +61,27 @@ const UserInfo = props => {
         <h1 style={styles.Name}>
           {props.user.firstname} {props.user.lastname}
         </h1>
-        <p style={{ color: "white", textAlign: "left" }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-          ultrices vitae odio eget scelerisque. Sed odio leo, blandit pharetra
-          imperdiet eu, blandit ac erat. Morbi nibh diam, hendrerit sed lacinia
-          vel, ullamcorper ut dui. Phasellus est turpis, facilisis vel augue
-          nec, pulvinar maximus erat. Orci varius natoque penatibus et magnis
-          dis parturient montes, nascetur ridiculus mus. Ut ac odio id nisi
-          tempor efficitur. Morbi gravida nibh nec hendrerit fringilla. Interdum
-          et malesuada fames ac ante ipsum primis in faucibus.
-        </p>
+
+        {props.editing ? (
+          <div>
+            <InputTextBox
+              title="Description"
+              placeholder="Describe yourself"
+              name="description"
+              maxChars={200}
+              textColor={"white"}
+              value={props.description}
+              handleInputChange={e => props.onChange(e)}
+              className={"Description"}
+              multiline={true}
+            />
+            <Button onClick={props.submitUser}>Submit</Button>
+          </div>
+        ) : (
+          <p style={{ color: "white", textAlign: "left" }}>
+            {props.description}
+          </p>
+        )}
       </Big>
       <Small>
         <img
@@ -74,6 +89,8 @@ const UserInfo = props => {
           style={styles.Image}
           alt={props.user.firstname}
         />
+        <UploadImage type="profileImage" id={props.user.id} />
+        {}
       </Small>
     </Container>
   );
@@ -106,15 +123,22 @@ class UserPage extends Component {
       loading: true,
       isLoggedIn: false,
       hasFetchedUser: false,
-      displayUser: {}
+      displayUser: {},
+      editing: false,
+      description: "",
+      isMyProfile: false
     };
   }
 
-  componentDidMount() {
+  loadUser = () => {
     this.setupAuthStateChange();
     getUser(this.props.match.params.userId).then(user => {
       if (user) {
-        this.setState({ displayUser: user, loading: false });
+        this.setState({
+          displayUser: user,
+          loading: false,
+          description: user.description
+        });
       }
     });
 
@@ -123,6 +147,16 @@ class UserPage extends Component {
         this.setState({ projects });
       }
     });
+  };
+
+  componentDidMount() {
+    this.loadUser();
+  }
+
+  componentDidReceiveProps(nextProps) {
+    if (nextProps !== this.props) {
+      this.loadUser();
+    }
   }
 
   setupAuthStateChange() {
@@ -145,6 +179,22 @@ class UserPage extends Component {
     });
   }
 
+  setEdit = () => {
+    this.setState({ editing: true });
+  };
+
+  submitUser = () => {
+    this.setState({ editing: false });
+    setUser(this.state.user.id, {
+      ...this.state.user,
+      description: this.state.description
+    });
+  };
+
+  onChange = e => {
+    this.setState({ description: e.target.value });
+  };
+
   render() {
     if (!this.state.loading) {
       return (
@@ -160,7 +210,14 @@ class UserPage extends Component {
                 hasFetchedUser={this.state.hasFetchedUser}
               />
             </header>
-            <UserInfo user={this.state.displayUser} />
+            <UserInfo
+              user={this.state.displayUser}
+              editing={this.state.editing}
+              description={this.state.description}
+              onChange={e => this.onChange(e)}
+              submitUser={this.submitUser}
+            />
+            <Button onClick={this.setEdit}>Edit</Button>
             <Projects projects={this.state.projects} />
           </div>
         </div>
