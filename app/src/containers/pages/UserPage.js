@@ -34,11 +34,7 @@ const Big = props => {
 };
 
 const Small = props => {
-  return (
-    <div className={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
-      {props.children}
-    </div>
-  );
+  return <div className={"col-md-5 col-sm-12 col-lg-5"}>{props.children}</div>;
 };
 
 const UserInfo = props => {
@@ -51,7 +47,8 @@ const UserInfo = props => {
       height: "250px",
       width: "250px",
       borderRadius: "50%",
-      marginBottom: "20px"
+      marginBottom: "20px",
+      marginTop: "40px"
     }
   };
 
@@ -98,27 +95,38 @@ const UserInfo = props => {
 
 const Projects = props => {
   const styles = {
-    container: {
-      marginTop: "40px"
+    topMargin: {
+      marginTop: "40px",
+      textAlign: "left"
     },
     text: {
-      textAlign: "left"
+      textAlign: "left",
+      marginTop: "40px"
     }
   };
   return (
-    <div style={styles.container} className="Center">
-      <Line full={true} />
-      <h1 style={styles.text}>Projects</h1>
-      <div style={styles.container}>
-        <ProjectsDisplay projects={props.projects} />
+    <div className="container" style={styles.topMargin}>
+      <div className="row">
+        <Line full={true} />
+        <h1 style={styles.text} className="col-12">
+          Projects
+        </h1>
+        <div style={styles.topMargin} className="col-12 Center">
+          {props.projects.length > 0 && (
+            <ProjectsDisplay projects={props.projects} />
+          )}
+        </div>
+        {props.projects.length == 0 && (
+          <h2 className="col-12">No projects found</h2>
+        )}
       </div>
     </div>
   );
 };
 
 class UserPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loading: true,
       isLoggedIn: false,
@@ -126,13 +134,19 @@ class UserPage extends Component {
       displayUser: {},
       editing: false,
       description: "",
-      isMyProfile: false
+      isMyProfile: false,
+      userId: props.match.params.userId
     };
   }
 
   loadUser = () => {
     this.setupAuthStateChange();
-    getUser(this.props.match.params.userId).then(user => {
+    this.setupData(this.state.userId);
+  };
+
+  setupData(userId) {
+    getUser(userId).then(user => {
+      console.log(user);
       if (user) {
         this.setState({
           displayUser: user,
@@ -142,12 +156,12 @@ class UserPage extends Component {
       }
     });
 
-    getProjectsForUser(this.props.match.params.userId).then(projects => {
+    getProjectsForUser(userId).then(projects => {
       if (projects) {
         this.setState({ projects });
       }
     });
-  };
+  }
 
   componentDidMount() {
     this.loadUser();
@@ -156,6 +170,13 @@ class UserPage extends Component {
   componentDidReceiveProps(nextProps) {
     if (nextProps !== this.props) {
       this.loadUser();
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.match.params.userId !== this.state.userId) {
+      this.setState({ userId: props.match.params.userId, loading: true });
+      this.setupData(props.match.params.userId);
     }
   }
 

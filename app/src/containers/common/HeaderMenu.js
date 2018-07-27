@@ -37,7 +37,7 @@ const NormalLink = props => {
 };
 
 class HeaderMenu extends Component {
-  defaultProps = {
+  static defaultProps = {
     editLink: "/"
   };
 
