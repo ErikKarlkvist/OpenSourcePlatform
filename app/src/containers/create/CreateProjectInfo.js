@@ -4,7 +4,7 @@ import UserSearch from "./UserSearch";
 import UploadImage from "./UploadImage";
 import InputTextBox from "../../components/common/InputTextBox";
 import ProjectMetrics from "../project/ProjectMetrics";
-import HeaderWithTooltip from "./HeaderWithTooltip";
+import HeaderWithTooltip from "../../components/common/HeaderWithTooltip";
 import { validateGithubURL, validateEmail } from "../../backend/validation";
 
 const AddTitle = props => {
