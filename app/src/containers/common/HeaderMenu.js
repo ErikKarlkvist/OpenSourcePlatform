@@ -120,7 +120,7 @@ class HeaderMenu extends Component {
 
           <div class="OptionsContainer">
             <RouteLink text="Create project" to="/create-project" />
-            <RouteLink text="Your profile" to="/your-projects" />
+            <RouteLink text="Your profile" to={`/user/${this.props.user.id}`}/>
             {this.props.canEdit && (
               <RouteLink text="Edit project" to={this.props.editLink} />
             )}
