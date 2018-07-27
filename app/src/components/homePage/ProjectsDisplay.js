@@ -12,7 +12,7 @@ const ProjectsDisplay = props => {
         key={i}
         className="col-md-6 col-sm-12 col-lg-4"
       >
-        <Link to={`project/${d.id}`}>
+        <Link to={`/project/${d.id}`}>
           <Thumbnail
             renderHeads={true}
             name={d.name}
