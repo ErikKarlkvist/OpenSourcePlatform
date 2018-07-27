@@ -110,17 +110,18 @@ class HeaderMenu extends Component {
             <h5>
               Welcome {this.props.user.firstname} {this.props.user.lastname}
             </h5>
-            <img
-              style={styles.image}
-              src={this.props.user.profileImageURL}
-              alt={""}
-            />
+            <Link to={`/user/${this.props.user.id}`}>
+              <img
+                style={styles.image}
+                src={this.props.user.profileImageURL}
+                alt={""}
+              />
+            </Link>
             <div style={styles.lineSignedIn} />
           </div>
 
           <div class="OptionsContainer">
             <RouteLink text="Create project" to="/create-project" />
-            <RouteLink text="Your profile" to={`/user/${this.props.user.id}`}/>
             {this.props.canEdit && (
               <RouteLink text="Edit project" to={this.props.editLink} />
             )}
