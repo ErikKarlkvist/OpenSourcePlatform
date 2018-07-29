@@ -9,7 +9,7 @@ import Line from "../../components/common/Line";
 import Spinner from "../../components/common/Spinner";
 import { BrowserRouter as Link } from "react-router-dom";
 import firebase from "../../backend/firebase";
-import { resendVerificationEmail } from "../../backend/auth";
+import { login } from "../../backend/auth";
 
 class HomePage extends Component {
   constructor() {
