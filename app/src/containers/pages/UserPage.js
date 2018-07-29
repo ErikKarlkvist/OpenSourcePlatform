@@ -13,6 +13,7 @@ import InputTextBox from "../../components/common/InputTextBox";
 import Button from "../../components/common/Button";
 import { setUser } from "../../backend/users";
 import UploadImage from "../create/UploadImage";
+import { resendVerificationEmail, resetPassword } from "../../backend/auth";
 
 const Container = props => {
   const style = {
@@ -55,6 +56,14 @@ const UserInfo = props => {
       color: "white",
       cursor: "pointer",
       textDecoration: "underline"
+    },
+    buttonContainer: {
+      display: "flex",
+      justifyContent: "flex-end",
+      marginRight: "30px"
+    },
+    button: {
+      width: "150px"
     }
   };
 
@@ -71,14 +80,18 @@ const UserInfo = props => {
               title="Description"
               placeholder="Describe yourself"
               name="description"
-              maxChars={200}
+              maxChars={600}
               textColor={"white"}
               value={props.description}
               handleInputChange={e => props.onChange(e)}
               className={"Description"}
               multiline={true}
             />
-            <Button onClick={props.submitUser}>Submit</Button>
+            <div style={styles.buttonContainer}>
+              <Button style={styles.button} onClick={props.submitUser}>
+                Submit
+              </Button>
+            </div>
           </div>
         ) : (
           <div>
@@ -86,9 +99,20 @@ const UserInfo = props => {
               {props.description}
             </p>
             {props.isMyProfile && (
-              <p onClick={props.setEdit} style={styles.EditText}>
-                Edit
-              </p>
+              <div>
+                <p onClick={props.setEdit} style={styles.EditText}>
+                  Edit
+                </p>
+                <p onClick={() => resetPassword()} style={styles.EditText}>
+                  Change password
+                </p>
+                <p
+                  onClick={() => resendVerificationEmail()}
+                  style={styles.EditText}
+                >
+                  Re-send verification email
+                </p>
+              </div>
             )}
           </div>
         )}
@@ -100,7 +124,11 @@ const UserInfo = props => {
           alt={props.user.firstname}
         />
         {props.isMyProfile && (
-          <UploadImage type="profileImage" id={props.user.id} />
+          <UploadImage
+            type="profileImage"
+            id={props.user.id}
+            recieveURL={props.recieveURL}
+          />
         )}
       </Small>
     </Container>
@@ -153,6 +181,10 @@ class UserPage extends Component {
       userId: props.match.params.userId
     };
   }
+
+  recieveURL = () => {
+    this.setupData(this.state.userId);
+  };
 
   loadUser = () => {
     this.setupAuthStateChange();
@@ -255,6 +287,7 @@ class UserPage extends Component {
               submitUser={this.submitUser}
               setEdit={this.setEdit}
               isMyProfile={this.state.isMyProfile}
+              recieveURL={this.recieveURL}
             />
 
             <Projects projects={this.state.projects} />
