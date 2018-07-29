@@ -24,7 +24,7 @@ const HeaderWithTooltip = props => {
       </a>
       <ReactTooltip
         place="right"
-        multiline="true"
+        multiline={true}
         type="light"
         effect="float"
         delayShow={200}

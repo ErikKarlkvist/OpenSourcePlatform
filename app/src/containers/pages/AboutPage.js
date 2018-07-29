@@ -157,69 +157,69 @@ class HomePage extends Component {
               <p style={styles.text}>
                 Click on "Create Project" on the menu to the right and fill in
                 the following attributes:
-                <ul style={{ marginTop: "20px" }}>
-                  <li>
-                    <h5>Title</h5>
-                    <p style={styles.text}>
-                      The title of your project. Max 20 characters.
-                    </p>
-                  </li>
-                  <li>
-                    <h5>Description</h5>
-                    <p style={styles.text}>
-                      A short description of your project. Max 600 characters.
-                    </p>
-                  </li>
-                  <li>
-                    <h5>Github url (optional)</h5>
-                    <p style={styles.text}>
-                      {`The url to your github repository where the code is stored. The link must look like this https://github.com/{username}/{repository-name}. A correct link will load the metrics tab where you can click "Get the code!" and "Send in a suggestion" which takes you to the github repository and the repositorys issues where you can create issues (suggestions).`}
-                    </p>
-                  </li>
-                  <li>
-                    <h5>Seeking (optional)</h5>
-                    <p style={styles.text}>
-                      Do you need some skill that will help you progress in the
-                      project? Fill them out here.
-                    </p>
-                  </li>
-                  <li>
-                    <h5>Contact</h5>
-                    <p style={styles.text}>
-                      The email that the "Contact" button will use when opening
-                      the default email application.
-                    </p>
-                  </li>
-                  <li>
-                    <h5>Owners</h5>
-                    <p style={styles.text}>
-                      The owners of the project. These are the people who are
-                      collaborators on github and can accept pull requests. They
-                      can also edit the project page on this site.
-                    </p>
-                  </li>
-                  <li>
-                    <h5>Updates (optional)</h5>
-                    <p style={styles.text}>
-                      Here you can post images of how the project looks like
-                      right now, and post updates on how the project is going or
-                      other things related to the project.
-                    </p>
-                  </li>
-                  <li>
-                    <h5>Readme (optional)</h5>
-                    <p style={styles.text}>
-                      Post a link to a raw .md (markdown) file. An example of a
-                      raw .md file can be found{" "}
-                      <a href="https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md">
-                        here
-                      </a>. You can find the raw .md file on github by clicking
-                      on the readme in the project structure on github, and then
-                      click "Raw" to the right.
-                    </p>
-                  </li>
-                </ul>
               </p>
+              <ul style={{ marginTop: "20px" }}>
+                <li>
+                  <h5>Title</h5>
+                  <p style={styles.text}>
+                    The title of your project. Max 20 characters.
+                  </p>
+                </li>
+                <li>
+                  <h5>Description</h5>
+                  <p style={styles.text}>
+                    A short description of your project. Max 600 characters.
+                  </p>
+                </li>
+                <li>
+                  <h5>Github url (optional)</h5>
+                  <p style={styles.text}>
+                    {`The url to your github repository where the code is stored. The link must look like this https://github.com/{username}/{repository-name}. A correct link will load the metrics tab where you can click "Get the code!" and "Send in a suggestion" which takes you to the github repository and the repositorys issues where you can create issues (suggestions).`}
+                  </p>
+                </li>
+                <li>
+                  <h5>Seeking (optional)</h5>
+                  <p style={styles.text}>
+                    Do you need some skill that will help you progress in the
+                    project? Fill them out here.
+                  </p>
+                </li>
+                <li>
+                  <h5>Contact</h5>
+                  <p style={styles.text}>
+                    The email that the "Contact" button will use when opening
+                    the default email application.
+                  </p>
+                </li>
+                <li>
+                  <h5>Owners</h5>
+                  <p style={styles.text}>
+                    The owners of the project. These are the people who are
+                    collaborators on github and can accept pull requests. They
+                    can also edit the project page on this site.
+                  </p>
+                </li>
+                <li>
+                  <h5>Updates (optional)</h5>
+                  <p style={styles.text}>
+                    Here you can post images of how the project looks like right
+                    now, and post updates on how the project is going or other
+                    things related to the project.
+                  </p>
+                </li>
+                <li>
+                  <h5>Readme (optional)</h5>
+                  <p style={styles.text}>
+                    Post a link to a raw .md (markdown) file. An example of a
+                    raw .md file can be found{" "}
+                    <a href="https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md">
+                      here
+                    </a>. You can find the raw .md file on github by clicking on
+                    the readme in the project structure on github, and then
+                    click "Raw" to the right.
+                  </p>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>

@@ -42,7 +42,7 @@ class Contributors extends React.Component {
     let items = [];
     if (data) {
       items = data.map((d, i) => (
-        <Link to={`/user/${d.id}`}>
+        <Link to={`/user/${d.id}`} key={i}>
           <div
             className="d-block d-sm-block d-md-block"
             style={styles.owner}
@@ -76,7 +76,6 @@ class Contributors extends React.Component {
 
   componentDidUpdate(nextProps) {
     if (nextProps.developers !== this.props.developers) {
-      console.log(nextProps);
       this.getOwners();
     }
   }
