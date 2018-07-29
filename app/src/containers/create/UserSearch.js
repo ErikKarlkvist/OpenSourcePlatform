@@ -68,7 +68,7 @@ class UserSearchField extends Component {
     });
   }
 
-  componentWillRecieveProps(props) {
+  componentWillReceiveProps(props) {
     this.setState({
       submittedUsers: props.currentOwners
     });
@@ -131,9 +131,9 @@ class UserSearchField extends Component {
 
     return (
       <div>
-        <div class="row">
+        <div className="row">
           {this.state.selected.name === undefined && (
-            <div class="col-md-12 col-sm-12 col-lg-12">
+            <div className="col-md-12 col-sm-12 col-lg-12">
               <input
                 className="search-input"
                 onChange={e => this.onChange(e)}
@@ -146,7 +146,7 @@ class UserSearchField extends Component {
             </div>
           )}
           {this.state.selected.name !== undefined && (
-            <div class="col-md-12 col-sm-12 col-lg-12">
+            <div className="col-md-12 col-sm-12 col-lg-12">
               <ShowSelectedUser
                 user={this.state.selected}
                 role={this.state.role}

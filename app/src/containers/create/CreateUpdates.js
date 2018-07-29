@@ -128,7 +128,7 @@ class AddThumbnails extends Component {
     for (let i = 0; i < thumbnails.length; i++) {
       const data = thumbnails[i];
       thumbnailsToShow.push(
-        <div class={"col-md-3 col-sm-12 col-lg-3"}>
+        <div className={"col-md-3 col-sm-12 col-lg-3"} key={i}>
           <Thumbnail
             description={data.description || ""}
             onClick={() => this.toggleFullScreen(i)}
@@ -140,7 +140,7 @@ class AddThumbnails extends Component {
       );
     }
     thumbnailsToShow.push(
-      <div class={"col-md-3 col-sm-12 col-lg-3"}>
+      <div className={"col-md-3 col-sm-12 col-lg-3"} key={thumbnails.length}>
         <ThumbnailUpload
           index={thumbnails.length}
           recieveURL={this.recieveURL}

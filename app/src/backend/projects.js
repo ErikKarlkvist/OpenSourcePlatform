@@ -235,8 +235,6 @@ export async function getProjectsForUser(uid) {
     allProjects = await getAllProjectsHelper();
   }
 
-  console.log(allProjects);
-
   const userProjects = [];
   allProjects.forEach(project => {
     project.owners.forEach(owner => {
