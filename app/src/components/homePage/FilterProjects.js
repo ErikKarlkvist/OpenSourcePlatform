@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../resources/Styles/AnimatedMenu.css";
 
 const FilterProjects = props => {
@@ -22,21 +22,13 @@ const FilterProjects = props => {
 
   return (
     <div className="Menu">
-      <a
-        className={allStyle}
-        href="#"
-        onClick={() => props.changeFilter("all")}
-      >
+      <a className={allStyle} onClick={() => props.changeFilter("all")}>
         All Projects
       </a>
-      <a className={ideas} href="#" onClick={() => props.changeFilter("live")}>
+      <a className={ideas} onClick={() => props.changeFilter("live")}>
         Ideas
       </a>
-      <a
-        className={inProgress}
-        href="#"
-        onClick={() => props.changeFilter("graduate")}
-      >
+      <a className={inProgress} onClick={() => props.changeFilter("graduate")}>
         In progress
       </a>
     </div>

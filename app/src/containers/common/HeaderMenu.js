@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../resources/Styles/AnimatedMenu.css";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "../../backend/auth";
 
 const RouteLink = props => {
@@ -106,7 +106,7 @@ class HeaderMenu extends Component {
     } else {
       return (
         <div style={styles.container}>
-          <div class="HeaderProfile">
+          <div className="HeaderProfile">
             <h5>
               Welcome {this.props.user.firstname} {this.props.user.lastname}
             </h5>
@@ -120,7 +120,7 @@ class HeaderMenu extends Component {
             <div style={styles.lineSignedIn} />
           </div>
 
-          <div class="OptionsContainer">
+          <div className="OptionsContainer">
             <RouteLink text="Create project" to="/create-project" />
             {this.props.canEdit && (
               <RouteLink text="Edit project" to={this.props.editLink} />

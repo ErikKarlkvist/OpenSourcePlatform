@@ -3,7 +3,7 @@ import firebase from "../../backend/firebase";
 import { getUser } from "../../backend/users.js";
 import { getProjectsForUser } from "../../backend/projects";
 import HeaderMenu from "../common/HeaderMenu";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Spinner from "../../components/common/Spinner";
 import logo from "../../logo.svg";
 import "../../resources/Styles/ProjectInfo.css";
@@ -158,7 +158,7 @@ const Projects = props => {
             <ProjectsDisplay projects={props.projects} />
           )}
         </div>
-        {props.projects.length == 0 && (
+        {props.projects.length === 0 && (
           <h2 className="col-12">No projects found</h2>
         )}
       </div>

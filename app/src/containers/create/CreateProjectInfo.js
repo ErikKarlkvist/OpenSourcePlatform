@@ -41,21 +41,13 @@ const Description = props => {
     </div>
   );
 };
+
 const Container = props => {
-  const style = {
-    paddingRight: "0px",
-    paddingLeft: "0px",
-    height: "auto",
-    alignContent: "space-between"
-  };
   return <div className="row">{props.children}</div>;
 };
 
+//create components of big and small? They are used 3 times
 const Big = props => {
-  const style = {
-    borderRight: "solid 2px white",
-    paddingRight: "30px"
-  };
   return (
     <div className={"col-md-7 col-sm-12 col-lg-7 ProjectInfoLeft"}>
       {props.children}
@@ -64,7 +56,6 @@ const Big = props => {
 };
 
 const Small = props => {
-  const style = {};
   return (
     <div className={"col-md-5 col-sm-12 col-lg-5 ProjectInfoRight"}>
       {props.children}

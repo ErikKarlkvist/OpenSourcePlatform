@@ -1,9 +1,6 @@
 //documentation https://firebase.google.com/docs/firestore/
 //https://firebase.google.com/docs/auth/web/password-auth
 import firebase from "./firebase";
-
-let isLoggedIn = false;
-
 export async function getUser(uid) {
   const snapshot = await firebase
     .firestore()
@@ -77,15 +74,3 @@ export async function logout() {
   console.log(firebase.auth());
   return Promise.resolve(true);
 }
-
-export function isLoggedIn() {
-  return isLoggedIn;
-}
-
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    isLoggedIn = true;
-  } else {
-    isLoggedIn = false;
-  }
-});

@@ -4,7 +4,7 @@ export function validateGithubURL(gitURL) {
   if (gitURL.includes("https://github.com/")) {
     gitURL = gitURL.replace("https://github.com/", "");
     let split = gitURL.split("/");
-    if (gitURL.split("/").length === 2) {
+    if (split.length === 2) {
       return true;
     }
   }
