@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Line from "../../components/common/Line.js";
 import CreateUpdatePost from "./CreateUpdatePost";
 import Thumbnail from "../../components/common/Thumbnail";
-import firebase from "../../backend/firebase";
 
 const Container = props => {
   const style = {

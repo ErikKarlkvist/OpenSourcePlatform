@@ -3,7 +3,7 @@ import firebase from "../../backend/firebase";
 import { getUser } from "../../backend/users.js";
 import { getProject } from "../../backend/projects";
 import HeaderMenu from "../common/HeaderMenu";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Spinner from "../../components/common/Spinner";
 import logo from "../../logo.svg";
 import {
@@ -186,8 +186,7 @@ class CreateProjectPage extends Component {
       headerImageURL,
       owners: this.state.owners,
       thumbnails: this.state.thumbnails,
-      projectID: this.state.projectID,
-      creator: this.state.user.id
+      projectID: this.state.projectID
     };
   }
 
@@ -228,7 +227,7 @@ class CreateProjectPage extends Component {
       const project = this.getProjectFromState();
       this.setState({ loading: true });
       if (this.state.update) {
-        updateProject(this.getProjectFromState(), this.state.projectID)
+        updateProject(project, this.state.projectID)
           .then(() => {
             const url = `/project/${this.state.projectID}`;
             this.props.history.push(url);
@@ -238,7 +237,7 @@ class CreateProjectPage extends Component {
             alert(e.message);
           });
       } else {
-        createNewProject(this.getProjectFromState(), this.state.projectID)
+        createNewProject(project, this.state.projectID)
           .then(() => {
             const url = `/project/${this.state.projectID}`;
             this.props.history.push(url);

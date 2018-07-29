@@ -5,7 +5,7 @@ import Button from "../../components/common/Button";
 import Contributors from "../project/Contributors";
 
 const UserImageBig = props => {
-  return <img className="userImageBig" src={props.url} />;
+  return <img className="userImageBig" src={props.url} alt="Profile" />;
 };
 
 const SearchResult = props => {
@@ -132,12 +132,12 @@ class UserSearchField extends Component {
     return (
       <div>
         <div class="row">
-          {this.state.selected.name == undefined && (
+          {this.state.selected.name === undefined && (
             <div class="col-md-12 col-sm-12 col-lg-12">
               <input
                 className="search-input"
                 onChange={e => this.onChange(e)}
-                value={this.state.value}
+                value={value}
                 placeholder="Search users"
               />
               {suggestions.length < this.state.users.length && (
