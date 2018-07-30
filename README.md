@@ -3,7 +3,7 @@
 An open source platform with open source projects created by DNB employees - but still available for external developer. The platform doesn't host any code itself, instead it links to projects on github. The goal is to give an overlook of projects being developed on DNB in an attractive manner.  
 
 # Running the project
-This project uses react, node packet manager (npm) and firebase. You need to install [Node.js](https://nodejs.org/en/) and npm on your computer (installning Node also installs npm) and create a firebase project in order to run this project. We currently do not provide any mock data to firebase, so there won't be any users och projects created when you run the app the first time.
+This project uses react, node packet manager (npm) and firebase. You need to install [Node.js](https://nodejs.org/en/) and npm on your computer (installning Node also installs npm) and create a firebase project in order to run this project. 
 
 [You can create a firebase project here](https://console.firebase.google.com/u/0/), and [View the firebase documentation here](https://firebase.google.com/docs/guides/)
 
