@@ -110,9 +110,9 @@ class CreateUpdatePost extends Component {
   addThumbnail = () => {
     if (!this.state.url) {
       alert("Please upload an image");
-    } else if (!this.state.name) {
+    } else if (!this.state.name.trim()) {
       alert("Please provide a title");
-    } else if (!this.state.description) {
+    } else if (!this.state.description.trim()) {
       alert("Please provide description");
     } else {
       this.props.addThumbnail({

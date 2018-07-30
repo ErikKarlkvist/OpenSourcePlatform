@@ -151,7 +151,7 @@ class AddThumbnails extends Component {
         <ThumbnailUpload
           index={thumbnails.length}
           recieveURL={this.recieveURL}
-          addNewThumbnail={this.toggleFullScreen}
+          addNewThumbnail={() => this.toggleFullScreen(thumbnailsToShow.length)}
         />
       </div>
     );
