@@ -86,7 +86,7 @@ const Image = props => {
       <img
         className="card-img-top"
         src={props.imgURL}
-        alt="Card image cap"
+        alt="Card cap"
         style={styles.image}
       />
     </div>
@@ -162,23 +162,6 @@ const ReadMore = props => {
       <h6 style={style}>Read more</h6>
     </div>
   );
-};
-
-const Hover = props => {
-  const style = {
-    position: "absolute",
-    backgroundColor: "rgba(0,0,0,0.5)",
-    width: "100%",
-    height: "100%",
-    top: 0,
-    left: 0
-  };
-
-  if (props.isHovering) {
-    return <div style={style} />;
-  } else {
-    return <div />;
-  }
 };
 
 class Thumbnail extends Component {

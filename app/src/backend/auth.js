@@ -8,7 +8,7 @@ export async function register(firstname, lastname, email, password) {
     .catch(function(error) {
       return Promise.reject(error);
     });
-  const user = { firstname, lastname, email };
+  const user = { firstname, lastname, email, description: "" };
 
   //create user document on database
   await firebase
@@ -46,10 +46,36 @@ export async function logout() {
   return Promise.resolve(true);
 }
 
+//TODO: should maybe not alert here, fix later
 export function resetPassword(email) {
-  return firebase.auth().sendPasswordResetEmail(email);
+  if (!email) {
+    if (firebase.auth().currentUser) {
+      email = firebase.auth().currentUser.email;
+    } else {
+      alert("No email provided");
+    }
+  }
+
+  return firebase
+    .auth()
+    .sendPasswordResetEmail(email)
+    .then(() => {
+      alert("An email has been sent to your account");
+    })
+    .catch(e => {
+      alert("Something went wrong", e.message);
+    });
 }
 
+//TODO: should maybe not alert here, fix later
 export function resendVerificationEmail() {
-  firebase.auth().currentUser.sendEmailVerification();
+  firebase
+    .auth()
+    .currentUser.sendEmailVerification()
+    .then(() => {
+      alert("An email has been sent to your account");
+    })
+    .catch(e => {
+      alert("Something went wrong", e.message);
+    });
 }

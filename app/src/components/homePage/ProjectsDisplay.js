@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Thumbnail from "../common/Thumbnail";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProjectsDisplay = props => {
   const data = props.projects;

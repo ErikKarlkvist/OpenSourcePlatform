@@ -80,7 +80,7 @@ class SignUpView extends Component {
   //Show text if the input box is blurred with an incorrect email, remove text immediately if the user enters a correct address
   checkEmail = (e, onChange) => {
     const split = e.split("@");
-    let valid = split.length === 2 && split[1] == "dnb.no";
+    let valid = split.length === 2 && split[1] === "dnb.no";
     if (onChange) {
       if (!this.state.validEmail) {
         this.setState({ validEmail: valid });

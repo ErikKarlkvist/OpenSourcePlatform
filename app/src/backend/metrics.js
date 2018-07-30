@@ -28,11 +28,8 @@ async function getIssueFromGithub(url, page, type) {
 async function getCollaborators(url) {
   const gitRepo = url.replace("https://github.com", "");
   const urlToCollabs = `https://api.github.com/repos${gitRepo}/contributors`;
-  console.log(urlToCollabs);
   let result = await fetch(urlToCollabs);
-  console.log(result);
   result = await result.json();
-  console.log(result);
   return Promise.resolve(result);
 }
 

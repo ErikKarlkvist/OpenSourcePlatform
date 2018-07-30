@@ -3,7 +3,7 @@ import firebase from "../../backend/firebase";
 import { getUser } from "../../backend/users.js";
 import { getProject } from "../../backend/projects";
 import HeaderMenu from "../common/HeaderMenu";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import Spinner from "../../components/common/Spinner";

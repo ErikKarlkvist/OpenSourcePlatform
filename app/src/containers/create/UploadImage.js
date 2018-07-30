@@ -74,7 +74,6 @@ class UploadImage extends Component {
         return;
       }
 
-      let newUrl = "";
       this.setState({ uploading: true });
       if (this.props.type === "headerImage") {
         uploadHeaderImage(event.target.files[0], this.props.id)

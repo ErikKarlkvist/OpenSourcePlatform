@@ -18,7 +18,6 @@ export async function getProject(id) {
   let allProjects = storage.getItem("projects");
   if (allProjects) {
     allProjects = JSON.parse(allProjects);
-    let foundProject = undefined;
 
     //use normal for loop instead of forEach so that one can return project directly
     for (let i = 0; i < allProjects.length; i++) {
@@ -236,8 +235,6 @@ export async function getProjectsForUser(uid) {
     allProjects = await getAllProjectsHelper();
   }
 
-  console.log(allProjects);
-
   const userProjects = [];
   allProjects.forEach(project => {
     project.owners.forEach(owner => {
@@ -369,7 +366,6 @@ async function getOwnersForProject(project) {
     .get();
   const owners = [];
   const promises = [];
-  const ref = firebase.firestore().collection("users");
   snapshots.forEach(snapshot => {
     if (snapshot.exists) {
       promises.push(

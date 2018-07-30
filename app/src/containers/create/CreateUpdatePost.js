@@ -129,7 +129,13 @@ class CreateUpdatePost extends Component {
       <Container>
         <Closer toggleFullScreen={this.props.toggleFullScreen} />
         <Content>
-          {this.state.url && <img src={this.state.url} style={styles.image} />}
+          {this.state.url && (
+            <img
+              alt="Update header"
+              src={this.state.url}
+              style={styles.image}
+            />
+          )}
           {!this.state.url && (
             <div
               style={{

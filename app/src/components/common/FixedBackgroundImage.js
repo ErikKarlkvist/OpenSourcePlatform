@@ -23,7 +23,7 @@ const FixedBackgroundImage = props => {
   return (
     <div style={styles.container}>
       {props.headerImageURL && (
-        <img style={styles.test} src={props.headerImageURL} />
+        <img style={styles.test} src={props.headerImageURL} alt="Background" />
       )}
     </div>
   );
