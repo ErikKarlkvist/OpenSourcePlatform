@@ -82,7 +82,12 @@ class AddThumbnails extends Component {
 
   addThumbnail = thumbnail => {
     const { thumbnails } = this.props;
-    thumbnails.unshift(thumbnail);
+    const index = this.state.currentItem;
+    if (index < thumbnails.length) {
+      thumbnails[index] = thumbnail;
+    } else {
+      thumbnails.unshift(thumbnail);
+    }
     this.props.setThumbnails(thumbnails);
     this.toggleFullScreen(null);
   };
@@ -142,7 +147,7 @@ class AddThumbnails extends Component {
         </div>
       );
     }
-    thumbnailsToShow.push(
+    thumbnailsToShow.unshift(
       <div
         className={"col-md-3 col-sm-12 col-lg-3"}
         style={styles.thumbnailStyle}
