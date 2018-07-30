@@ -119,7 +119,6 @@ class UserPage extends Component {
 
   setupData(userId) {
     getUser(userId).then(user => {
-      console.log(user);
       if (user) {
         this.setState({ displayUser: user, loading: false });
       }

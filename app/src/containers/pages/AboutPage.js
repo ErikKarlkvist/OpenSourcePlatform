@@ -4,7 +4,7 @@ import { getAllProjects } from "../../backend/projects";
 import { getUser } from "../../backend/users.js";
 import HeaderMenu from "../common/HeaderMenu";
 import Spinner from "../../components/common/Spinner";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import firebase from "../../backend/firebase";
 
 class HomePage extends Component {
@@ -56,12 +56,8 @@ class HomePage extends Component {
   render() {
     return (
       <div className="PageContainer">
-        <Spinner
-          loading={this.state.loading || !this.state.hasFetchedUser}
-          fillPage={true}
-        />
         <header className="App-header">
-          <Link to="/">
+          <Link to="">
             <img src={logo} className="Logo" alt="logo" />
           </Link>
           <HeaderMenu

@@ -147,6 +147,7 @@ const Contact = props => {
   );
 };
 
+//move to a more generic place?
 const TooltipTexts = {
   Description:
     "Your description should cover what problem your project solves, and how it solves it",
