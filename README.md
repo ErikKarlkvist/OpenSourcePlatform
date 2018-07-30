@@ -33,7 +33,7 @@ This project uses react, node packet manager (npm) and firebase. You need to ins
 # Generate mock data
 There are a few scripts available to both create mock data from your database and fill your database with mock data. This section explains how to create data for your project.
 
-### Genererate auth
+### Generate auth
 You don't have to generate auth users in order for the firestore mock data to work, but if you want to generate them, here's how: 
 
 1. You have to install the [Firebase CLI](https://firebase.google.com/docs/hosting/quickstart#install-the-firebase-cli). You can do this in the terminal by typing "npm install -g firebase-tools"
