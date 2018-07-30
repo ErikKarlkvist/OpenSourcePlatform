@@ -24,7 +24,7 @@ This project uses react, node packet manager (npm) and firebase. You need to ins
 
 ```
 
-  Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click "Add Firebase to your web app".
+  Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click "Add Firebase to your web app". If you do not recieve a "storageBucket" path, go to your project in firebase, select database from the menu and "create database". Make sure you select "Cloud Firestore" and then "test database" when creating the database. 
 
 5. Open the terminal and run npm start
 6. A window will open in your default browser. If nothing happens, go to "localhost:3000" in your browser.
@@ -45,12 +45,11 @@ You don't have to generate auth users in order for the firestore mock data to wo
 ### Generate firestore data
 Before you do this please make sure that the project is running and you've followed the guide under "Running the project." 
 
-1. Go to your project in firebase, select database from the menu and "create database". Make sure you select "Cloud Firestore" when creating the database. 
-2. Go to your terminal and navigate to app/
-3. Run the command "npm run generate-mock-data"
-4. Once the script is done, hit "ctrl c" to exit
-5. Refresh the firebase website, go to database and you should have two collections: "Projects" and "Users"
-6. Run the command "npm start"
-7. Check that the data loads into your application on "localhost:3000".
-8. Success!
+1. Go to your terminal and navigate to app/
+2. Run the command "npm run generate-mock-data"
+3. Once the script is done, hit "ctrl c" to exit
+4. Refresh the firebase website, go to database and you should have two collections: "Projects" and "Users"
+5. Run the command "npm start"
+6. Check that the data loads into your application on "localhost:3000".
+7. Success!
 
