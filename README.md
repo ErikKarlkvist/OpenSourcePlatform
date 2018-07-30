@@ -14,12 +14,12 @@ This project uses react, node packet manager (npm) and firebase. You need to ins
 4. Create a file in /app/src/backend called firebaseKeys.json. Copy and paste the following into the file:
 ```json
 {
-    apiKey: "<API_KEY>",
-    authDomain: "<PROJECT_ID>.firebaseapp.com",
-    databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-    projectId: "<PROJECT_ID>",
-    storageBucket: "<BUCKET>.appspot.com",
-    messagingSenderId: "<SENDER_ID>",
+    "apiKey": "<API_KEY>",
+    "authDomain": "<PROJECT_ID>.firebaseapp.com",
+    "databaseURL": "https://<DATABASE_NAME>.firebaseio.com",
+    "projectId": "<PROJECT_ID>",
+    "storageBucket": "<BUCKET>.appspot.com",
+    "messagingSenderId": "<SENDER_ID>",
 }
 
 ```
