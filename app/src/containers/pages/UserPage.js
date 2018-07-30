@@ -73,7 +73,6 @@ const UserInfo = props => {
         <h1 style={styles.Name}>
           {props.user.firstname} {props.user.lastname}
         </h1>
-
         {props.editing ? (
           <div>
             <InputTextBox
@@ -87,33 +86,40 @@ const UserInfo = props => {
               className={"Description"}
               multiline={true}
             />
-            <div style={styles.buttonContainer}>
-              <Button style={styles.button} onClick={props.submitUser}>
-                Submit
-              </Button>
-            </div>
           </div>
         ) : (
-          <div>
-            <p style={{ color: "white", textAlign: "left" }}>
-              {props.description}
-            </p>
-            {props.isMyProfile && (
-              <div>
+          <p style={{ color: "white", textAlign: "left", minHeight: "200px" }}>
+            {props.description}
+          </p>
+        )}
+        {props.isMyProfile && (
+          <div className="row">
+            <div className="col-md-4 col-lg-4 col-sm-12">
+              {props.editing ? (
+                <div style={styles.buttonContainer}>
+                  <Button style={styles.button} onClick={props.submitUser}>
+                    Submit
+                  </Button>
+                </div>
+              ) : (
                 <p onClick={props.setEdit} style={styles.EditText}>
-                  Edit
+                  Edit description
                 </p>
-                <p onClick={() => resetPassword()} style={styles.EditText}>
-                  Change password
-                </p>
-                <p
-                  onClick={() => resendVerificationEmail()}
-                  style={styles.EditText}
-                >
-                  Re-send verification email
-                </p>
-              </div>
-            )}
+              )}
+            </div>
+            <div className="col-md-4 col-lg-4 col-sm-12">
+              <p onClick={() => resetPassword()} style={styles.EditText}>
+                Change password
+              </p>
+            </div>
+            <div className="col-md-4 col-lg-4 col-sm-12">
+              <p
+                onClick={() => resendVerificationEmail()}
+                style={styles.EditText}
+              >
+                Re-send verification email
+              </p>
+            </div>
           </div>
         )}
       </Big>
@@ -176,7 +182,7 @@ class UserPage extends Component {
       user: {},
       displayUser: {},
       editing: false,
-      description: " ",
+      description: "",
       isMyProfile: false,
       userId: props.match.params.userId
     };
@@ -197,7 +203,8 @@ class UserPage extends Component {
         this.setState({
           displayUser: user,
           loading: false,
-          description: user.description ? user.description : " "
+          description: user.description ? user.description : "",
+          editing: !user.description || !user.description.trim()
         });
       }
     });
