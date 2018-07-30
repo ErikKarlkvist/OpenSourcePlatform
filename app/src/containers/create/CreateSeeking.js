@@ -57,7 +57,7 @@ class LookingFor extends Component {
             <InputTextBox
               type="text"
               name="lookingFor"
-              placeholder="Role"
+              placeholder="Skill"
               className="LookingFor"
               value={this.state.value}
               handleInputChange={e => {

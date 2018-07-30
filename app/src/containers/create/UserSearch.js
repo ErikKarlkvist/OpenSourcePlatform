@@ -131,7 +131,7 @@ class UserSearchField extends Component {
 
     return (
       <div>
-        <div class="row">
+        <div style={{ marginBottom: "20px" }} class="row">
           {this.state.selected.name == undefined && (
             <div class="col-md-12 col-sm-12 col-lg-12">
               <input

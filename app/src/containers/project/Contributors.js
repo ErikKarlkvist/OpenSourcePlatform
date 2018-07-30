@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import "../../resources/Styles/AnimatedMenu.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-
 const RemoveSubmittedUser = props => {
   const styles = {
     container: {
@@ -43,29 +42,29 @@ class Contributors extends React.Component {
     let items = [];
     if (data) {
       items = data.map((d, i) => (
-        <Link to={`/user/${d.id}`}>
         <div
           className="d-block d-sm-block d-md-block"
           style={styles.owner}
           key={i}
         >
-          <img
-            style={styles.image}
-            src={d.profileImageURL || d.blankProfileUrl}
-            alt={"profile"}
-          />
-          <p style={{ ...styles.name, ...{ marginBottom: "-10px" } }}>
-            {d.firstname}
-          </p>
-          <p style={styles.name}>
-            <i>{d.role}</i>
-          </p>
+          <Link to={`/user/${d.id}`}>
+            <img
+              style={styles.image}
+              src={d.profileImageURL || d.blankProfileUrl}
+              alt={"profile"}
+            />
+            <p style={{ ...styles.name, ...{ marginBottom: "-10px" } }}>
+              {d.firstname}
+            </p>
+            <p style={styles.name}>
+              <i>{d.role}</i>
+            </p>
+          </Link>
           {/*Allows for removal of user in createProjectPage/UserSearch*/}
           {this.props.removeUser && (
             <RemoveSubmittedUser removeUser={this.props.removeUser} user={d} />
           )}
         </div>
-        </Link>
       ));
 
       this.setState({ owners: items, ownersToShow: items.slice(0, 2) });

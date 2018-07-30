@@ -125,6 +125,7 @@ class HeaderMenu extends Component {
             {this.props.canEdit && (
               <RouteLink text="Edit project" to={this.props.editLink} />
             )}
+            <RouteLink text="Your profile" to={`/user/${this.props.user.id}`} />
             <RouteLink text="About" to="/about" />
             <RouteLink text="Log out" to="/" onClick={this.logout} />
           </div>
