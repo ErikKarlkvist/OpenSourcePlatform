@@ -70,9 +70,33 @@ const UserInfo = props => {
   return (
     <Container>
       <Big>
-        <h1 style={styles.Name}>
-          {props.user.firstname} {props.user.lastname}
-        </h1>
+        {props.editing ? (
+          <div>
+          <InputTextBox
+              title="First name"
+              placeholder="Your first name"
+              name="firstname"
+              maxChars={50}
+              textColor={"white"}
+              value={props.firstname}
+              handleInputChange={e => props.onChange(e)}
+              className={"Name"}
+              multiline={true}
+            />
+            <InputTextBox
+            title="Last name"
+            placeholder="Your last name"
+            name="lastname"
+            maxChars={50}
+            textColor={"white"}
+            value={props.lastname}
+            handleInputChange={e => props.onChange(e)}
+            className={"Name"}
+            multiline={true}
+          /></div>)
+        : (<h1 style={styles.Name}>
+          {props.firstname} {props.lastname}
+        </h1>)}
         {props.editing ? (
           <div>
             <InputTextBox
@@ -103,7 +127,7 @@ const UserInfo = props => {
                 </div>
               ) : (
                 <p onClick={props.setEdit} style={styles.EditText}>
-                  Edit description
+                  Edit personal info
                 </p>
               )}
             </div>
@@ -133,7 +157,7 @@ const UserInfo = props => {
           <UploadImage
             type="profileImage"
             id={props.user.id}
-            recieveURL={props.recieveURL}
+            receiveURL={props.receiveURL}
           />
         )}
       </Small>
@@ -183,12 +207,14 @@ class UserPage extends Component {
       displayUser: {},
       editing: false,
       description: "",
+      firstname: "",
+      lastname: "",
       isMyProfile: false,
       userId: props.match.params.userId
     };
   }
 
-  recieveURL = () => {
+  receiveURL = () => {
     this.setupData(this.state.userId);
   };
 
@@ -204,6 +230,8 @@ class UserPage extends Component {
           displayUser: user,
           loading: false,
           description: user.description ? user.description : "",
+          firstname: user.firstname ? user.firstname: "",
+          lastname: user.lastname ? user.lastname: "",
           editing: !user.description || !user.description.trim()
         });
       }
@@ -263,12 +291,14 @@ class UserPage extends Component {
     this.setState({ editing: false });
     setUser(this.state.user.id, {
       ...this.state.user,
-      description: this.state.description
+      description: this.state.description,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname
     });
   };
 
   onChange = e => {
-    this.setState({ description: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
@@ -289,12 +319,14 @@ class UserPage extends Component {
             <UserInfo
               user={this.state.displayUser}
               editing={this.state.editing}
+              firstname={this.state.firstname}
+              lastname={this.state.lastname}
               description={this.state.description}
               onChange={e => this.onChange(e)}
               submitUser={this.submitUser}
               setEdit={this.setEdit}
               isMyProfile={this.state.isMyProfile}
-              recieveURL={this.recieveURL}
+              receiveURL={this.receiveURL}
             />
 
             <Projects projects={this.state.projects} />

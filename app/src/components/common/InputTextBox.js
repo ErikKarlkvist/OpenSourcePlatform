@@ -12,6 +12,10 @@ handleInputChange={this.handleInputChange}
 className={"Description"}
 multiline={true}
 */
+
+/*
+* CSS for className is set in resources/style/Input.css
+*/
 class InputTextBox extends Component {
   checkInputLength = e => {
     if (this.props.maxChars === undefined) {
