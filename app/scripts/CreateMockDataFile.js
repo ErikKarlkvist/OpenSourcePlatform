@@ -21,7 +21,6 @@ try {
 
   createFile();
 } catch (e) {
-  throw e;
   console.error("ERROR:", e.message);
 }
 
