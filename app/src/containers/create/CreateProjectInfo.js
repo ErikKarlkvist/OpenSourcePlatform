@@ -148,8 +148,6 @@ const TooltipTexts = {
     "If you're looking for a spesific skill or position to complement your team, add them here. <br /> Try to not be too spesific, as people are more likely to search for more general terms",
   Updates:
     "A living project is more likely to attract contributors, so use this space to show of what you have accomplished. <br />Post about new releases, launches, milestones, new team members, and that new deal you just struck",
-  Readme:
-    'This link will display the readme on your github page, updated dynamically.<br />You find the .md file by opening the readme file, then pressing the "Raw" button above the file.<br />Should look like this: https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md',
   Owners:
     "Adding team members means other people can see who works on this project, and will display this project on their profile page"
 };

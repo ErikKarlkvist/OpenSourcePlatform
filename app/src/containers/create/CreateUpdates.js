@@ -7,7 +7,6 @@ const Container = props => {
   const style = {
     textAlign: "left",
     marginTop: "80px",
-    paddingBottom: "80px",
     backgroundColor: "var(--light-teal-80)"
   };
   return <div style={style}>{props.children}</div>;
@@ -83,7 +82,12 @@ class AddThumbnails extends Component {
 
   addThumbnail = thumbnail => {
     const { thumbnails } = this.props;
-    thumbnails.unshift(thumbnail);
+    const index = this.state.currentItem;
+    if (index < thumbnails.length) {
+      thumbnails[index] = thumbnail;
+    } else {
+      thumbnails.unshift(thumbnail);
+    }
     this.props.setThumbnails(thumbnails);
     this.toggleFullScreen(null);
   };
@@ -128,7 +132,11 @@ class AddThumbnails extends Component {
     for (let i = 0; i < thumbnails.length; i++) {
       const data = thumbnails[i];
       thumbnailsToShow.push(
-        <div className={"col-md-3 col-sm-12 col-lg-3"} key={i}>
+        <div
+          className={"col-md-3 col-sm-12 col-lg-3"}
+          style={styles.thumbnailStyle}
+          key={i}
+        >
           <Thumbnail
             description={data.description || ""}
             onClick={() => this.toggleFullScreen(i)}
@@ -139,12 +147,16 @@ class AddThumbnails extends Component {
         </div>
       );
     }
-    thumbnailsToShow.push(
-      <div className={"col-md-3 col-sm-12 col-lg-3"} key={thumbnails.length}>
+    thumbnailsToShow.unshift(
+      <div
+        className={"col-md-3 col-sm-12 col-lg-3"}
+        style={styles.thumbnailStyle}
+        key={thumbnails.length}
+      >
         <ThumbnailUpload
           index={thumbnails.length}
           recieveURL={this.recieveURL}
-          addNewThumbnail={this.toggleFullScreen}
+          addNewThumbnail={() => this.toggleFullScreen(thumbnailsToShow.length)}
         />
       </div>
     );
@@ -152,5 +164,13 @@ class AddThumbnails extends Component {
     return thumbnailsToShow;
   }
 }
+
+const styles = {
+  thumbnailStyle: {
+    marginBottom: 30,
+    display: "flex",
+    justifyContent: "center"
+  }
+};
 
 export default AddThumbnails;

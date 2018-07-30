@@ -70,10 +70,33 @@ const UserInfo = props => {
   return (
     <Container>
       <Big>
-        <h1 style={styles.Name}>
-          {props.user.firstname} {props.user.lastname}
-        </h1>
-
+        {props.editing ? (
+          <div>
+          <InputTextBox
+              title="First name"
+              placeholder="Your first name"
+              name="firstname"
+              maxChars={50}
+              textColor={"white"}
+              value={props.firstname}
+              handleInputChange={e => props.onChange(e)}
+              className={"Name"}
+              multiline={true}
+            />
+            <InputTextBox
+            title="Last name"
+            placeholder="Your last name"
+            name="lastname"
+            maxChars={50}
+            textColor={"white"}
+            value={props.lastname}
+            handleInputChange={e => props.onChange(e)}
+            className={"Name"}
+            multiline={true}
+          /></div>)
+        : (<h1 style={styles.Name}>
+          {props.firstname} {props.lastname}
+        </h1>)}
         {props.editing ? (
           <div>
             <InputTextBox
@@ -87,33 +110,40 @@ const UserInfo = props => {
               className={"Description"}
               multiline={true}
             />
-            <div style={styles.buttonContainer}>
-              <Button style={styles.button} onClick={props.submitUser}>
-                Submit
-              </Button>
-            </div>
           </div>
         ) : (
-          <div>
-            <p style={{ color: "white", textAlign: "left" }}>
-              {props.description}
-            </p>
-            {props.isMyProfile && (
-              <div>
+          <p style={{ color: "white", textAlign: "left", minHeight: "200px" }}>
+            {props.description}
+          </p>
+        )}
+        {props.isMyProfile && (
+          <div className="row">
+            <div className="col-md-4 col-lg-4 col-sm-12">
+              {props.editing ? (
+                <div style={styles.buttonContainer}>
+                  <Button style={styles.button} onClick={props.submitUser}>
+                    Submit
+                  </Button>
+                </div>
+              ) : (
                 <p onClick={props.setEdit} style={styles.EditText}>
-                  Edit
+                  Edit personal info
                 </p>
-                <p onClick={() => resetPassword()} style={styles.EditText}>
-                  Change password
-                </p>
-                <p
-                  onClick={() => resendVerificationEmail()}
-                  style={styles.EditText}
-                >
-                  Re-send verification email
-                </p>
-              </div>
-            )}
+              )}
+            </div>
+            <div className="col-md-4 col-lg-4 col-sm-12">
+              <p onClick={() => resetPassword()} style={styles.EditText}>
+                Change password
+              </p>
+            </div>
+            <div className="col-md-4 col-lg-4 col-sm-12">
+              <p
+                onClick={() => resendVerificationEmail()}
+                style={styles.EditText}
+              >
+                Re-send verification email
+              </p>
+            </div>
           </div>
         )}
       </Big>
@@ -127,7 +157,7 @@ const UserInfo = props => {
           <UploadImage
             type="profileImage"
             id={props.user.id}
-            recieveURL={props.recieveURL}
+            receiveURL={props.receiveURL}
           />
         )}
       </Small>
@@ -176,13 +206,15 @@ class UserPage extends Component {
       user: {},
       displayUser: {},
       editing: false,
-      description: " ",
+      description: "",
+      firstname: "",
+      lastname: "",
       isMyProfile: false,
       userId: props.match.params.userId
     };
   }
 
-  recieveURL = () => {
+  receiveURL = () => {
     this.setupData(this.state.userId);
   };
 
@@ -197,7 +229,10 @@ class UserPage extends Component {
         this.setState({
           displayUser: user,
           loading: false,
-          description: user.description ? user.description : " "
+          description: user.description ? user.description : "",
+          firstname: user.firstname ? user.firstname: "",
+          lastname: user.lastname ? user.lastname: "",
+          editing: !user.description || !user.description.trim()
         });
       }
     });
@@ -256,12 +291,14 @@ class UserPage extends Component {
     this.setState({ editing: false });
     setUser(this.state.user.id, {
       ...this.state.user,
-      description: this.state.description
+      description: this.state.description,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname
     });
   };
 
   onChange = e => {
-    this.setState({ description: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
@@ -282,12 +319,14 @@ class UserPage extends Component {
             <UserInfo
               user={this.state.displayUser}
               editing={this.state.editing}
+              firstname={this.state.firstname}
+              lastname={this.state.lastname}
               description={this.state.description}
               onChange={e => this.onChange(e)}
               submitUser={this.submitUser}
               setEdit={this.setEdit}
               isMyProfile={this.state.isMyProfile}
-              recieveURL={this.recieveURL}
+              receiveURL={this.receiveURL}
             />
 
             <Projects projects={this.state.projects} />
