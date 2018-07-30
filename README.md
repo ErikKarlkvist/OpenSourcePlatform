@@ -3,7 +3,7 @@
 An open source platform with open source projects created by DNB employees - but still available for external developer. The platform doesn't host any code itself, instead it links to projects on github. The goal is to give an overlook of projects being developed on DNB in an attractive manner.  
 
 # Running the project
-This project uses react, node packet manager (npm) and firebase. You need to install npm on your computer and create a firebase project in order to run this project. We currently do not provide any mock data to firebase, so there won't be any users och projects created when you run the app the first time.
+This project uses react, node packet manager (npm) and firebase. You need to install [Node.js](https://nodejs.org/en/) and npm on your computer (installning Node also installs npm) and create a firebase project in order to run this project. We currently do not provide any mock data to firebase, so there won't be any users och projects created when you run the app the first time.
 
 [You can create a firebase project here](https://console.firebase.google.com/u/0/), and [View the firebase documentation here](https://firebase.google.com/docs/guides/)
 
@@ -30,5 +30,14 @@ This project uses react, node packet manager (npm) and firebase. You need to ins
 6. A window will open in your default browser. If nothing happens, go to "localhost:3000" in your browser.
 7. Happy coding!
 
+# Generate mock data
+There are a few scripts available to both create mock data from your database and fill your database with mock data. This section explains how to create data for your project.
 
+### Genererate auth
+You don't have to generate auth users in order for the firestore mock data to work, but if you want to generate them, here's how: 
 
+1. You have to install the [Firebase CLI](https://firebase.google.com/docs/hosting/quickstart#install-the-firebase-cli). You can do this in the terminal by typing "npm install -g firebase-tools"
+2. Run the command "firebase login" and connect your machine to firebase
+3. Edit the file ".firebaserc" in app/ and replace the "default"-key with the name of your firebase repository (with lower case letter)
+4. Run the command "npm run copy-users"
+5. The users should be copied to your database. Check the "authentication" tab in firebase to see all users.
