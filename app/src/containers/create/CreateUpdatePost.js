@@ -88,7 +88,6 @@ const Buttons = props => {
 class CreateUpdatePost extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     if (props.data) {
       this.state = {
         url: props.data.url || "",
@@ -159,7 +158,7 @@ class CreateUpdatePost extends Component {
             title="Title"
             placeholder="Title"
             name="name"
-            maxChars={20}
+            maxChars={50}
             textColor={"var(--dark-teal)"}
             value={this.state.name}
             handleInputChange={this.handleInputChange}
