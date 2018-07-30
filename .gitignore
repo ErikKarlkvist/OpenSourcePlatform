@@ -61,4 +61,4 @@ typings/
 .next
 
 # firebase config file
-app/src/backend/firebase.js
+app/src/backend/firebaseKeys.json
