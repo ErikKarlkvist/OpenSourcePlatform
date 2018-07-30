@@ -88,7 +88,6 @@ const Buttons = props => {
 class CreateUpdatePost extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     if (props.data) {
       this.state = {
         url: props.data.url || "",
@@ -111,9 +110,9 @@ class CreateUpdatePost extends Component {
   addThumbnail = () => {
     if (!this.state.url) {
       alert("Please upload an image");
-    } else if (!this.state.name) {
+    } else if (!this.state.name.trim()) {
       alert("Please provide a title");
-    } else if (!this.state.description) {
+    } else if (!this.state.description.trim()) {
       alert("Please provide description");
     } else {
       this.props.addThumbnail({
@@ -159,7 +158,7 @@ class CreateUpdatePost extends Component {
             title="Title"
             placeholder="Title"
             name="name"
-            maxChars={20}
+            maxChars={50}
             textColor={"var(--dark-teal)"}
             value={this.state.name}
             handleInputChange={this.handleInputChange}
