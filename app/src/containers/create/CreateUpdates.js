@@ -7,7 +7,6 @@ const Container = props => {
   const style = {
     textAlign: "left",
     marginTop: "80px",
-    paddingBottom: "80px",
     backgroundColor: "var(--light-teal-80)"
   };
   return <div style={style}>{props.children}</div>;
@@ -128,7 +127,11 @@ class AddThumbnails extends Component {
     for (let i = 0; i < thumbnails.length; i++) {
       const data = thumbnails[i];
       thumbnailsToShow.push(
-        <div className={"col-md-3 col-sm-12 col-lg-3"} key={i}>
+        <div
+          className={"col-md-3 col-sm-12 col-lg-3"}
+          style={styles.thumbnailStyle}
+          key={i}
+        >
           <Thumbnail
             description={data.description || ""}
             onClick={() => this.toggleFullScreen(i)}
@@ -140,7 +143,11 @@ class AddThumbnails extends Component {
       );
     }
     thumbnailsToShow.push(
-      <div className={"col-md-3 col-sm-12 col-lg-3"} key={thumbnails.length}>
+      <div
+        className={"col-md-3 col-sm-12 col-lg-3"}
+        style={styles.thumbnailStyle}
+        key={thumbnails.length}
+      >
         <ThumbnailUpload
           index={thumbnails.length}
           recieveURL={this.recieveURL}
@@ -152,5 +159,13 @@ class AddThumbnails extends Component {
     return thumbnailsToShow;
   }
 }
+
+const styles = {
+  thumbnailStyle: {
+    marginBottom: 30,
+    display: "flex",
+    justifyContent: "center"
+  }
+};
 
 export default AddThumbnails;
