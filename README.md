@@ -41,3 +41,16 @@ You don't have to generate auth users in order for the firestore mock data to wo
 3. Edit the file ".firebaserc" in app/ and replace the "default"-key with the name of your firebase repository (with lower case letter)
 4. Run the command "npm run copy-users"
 5. The users should be copied to your database. Check the "authentication" tab in firebase to see all users.
+
+### Generate firestore data
+Before you do this please make sure that you've that the project is running and you've followed the guide under "Running the project." 
+
+1. Go to your project in firebase, select database from the menu and "create database". Make sure you select "Cloud Firestore" when creating the database. 
+2. Go to your terminal and navigate to app/
+3. Run the command "npm run generate-mock-data"
+4. Once the script is done, hit "ctrl c" to exit
+5. Refresh the firebase website, go to database and you should have two collections: "Projects" and "Users"
+6. Run the command "npm start"
+7. Check that the data loads into your application on "localhost:3000".
+8. Success!
+
