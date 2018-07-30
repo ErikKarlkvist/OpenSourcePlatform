@@ -11,20 +11,17 @@ This project uses react, node packet manager (npm) and firebase. You need to ins
 1. Open the terminal and navigate to the project
 2. cd app
 3. Run npm install (you have to install npm in order for this to work)
-4. Create a file in /app/src/backend called firebase.js. Copy and paste the following into the file:
-```javascript
-import firebase from "firebase";
-
-firebase.initializeApp({
+4. Create a file in /app/src/backend called firebaseKeys.json. Copy and paste the following into the file:
+```json
+{
     apiKey: "<API_KEY>",
     authDomain: "<PROJECT_ID>.firebaseapp.com",
     databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
     projectId: "<PROJECT_ID>",
     storageBucket: "<BUCKET>.appspot.com",
     messagingSenderId: "<SENDER_ID>",
-});
+}
 
-export default firebase;
 ```
 
   Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click "Add Firebase to your web app".
