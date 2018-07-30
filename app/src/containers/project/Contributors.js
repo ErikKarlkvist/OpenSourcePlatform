@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../../resources/Styles/AnimatedMenu.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const RemoveSubmittedUser = props => {
   const styles = {
@@ -73,7 +73,6 @@ class Contributors extends React.Component {
 
   componentDidUpdate(nextProps) {
     if (nextProps.developers !== this.props.developers) {
-      console.log(nextProps);
       this.getOwners();
     }
   }

@@ -97,7 +97,7 @@ const FullScreenImage = props => {
   return (
     <div style={styles.container} onClick={props.toggleFullScreen}>
       <div style={styles.content}>
-        <img src={props.content.url} style={styles.image} />
+        <img alt="Updates" src={props.content.url} style={styles.image} />
         <h2 style={styles.title}>{props.content.name}</h2>
         <p style={styles.desc}>{props.content.description}</p>
       </div>

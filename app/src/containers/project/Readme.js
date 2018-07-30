@@ -7,16 +7,6 @@ import "../../resources/Styles/Readme.css";
 * Fetches from the github page, displays as a markdown text
 * Lots of CSS went into the making of this component, including overwriting overwritten settings for headers. See Readme.css
 */
-const ErrorText = () => {
-  const style = {
-    color: "red"
-  };
-  return (
-    <p style={style}>
-      Could not parse link. Are you sure this is a raw .md file?
-    </p>
-  );
-};
 
 class Readme extends Component {
   constructor(props) {

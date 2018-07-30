@@ -22,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-mock-data": "node scripts/GenerateMockData",
+    "create-mock-data-file": "node scripts/CreateMockDataFile"
   },
   "homepage": "/DNBOpenSource"
 }
