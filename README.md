@@ -43,7 +43,7 @@ You don't have to generate auth users in order for the firestore mock data to wo
 5. The users should be copied to your database. Check the "authentication" tab in firebase to see all users.
 
 ### Generate firestore data
-Before you do this please make sure that you've that the project is running and you've followed the guide under "Running the project." 
+Before you do this please make sure that the project is running and you've followed the guide under "Running the project." 
 
 1. Go to your project in firebase, select database from the menu and "create database". Make sure you select "Cloud Firestore" when creating the database. 
 2. Go to your terminal and navigate to app/
