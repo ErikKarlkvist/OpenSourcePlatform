@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import InputTextBox from "../../components/common/InputTextBox";
 import Readme from "../project/Readme";
+import HeaderWithTooltip from "../../components/common/HeaderWithTooltip";
 
 const Container = props => {
   const style = {
@@ -16,6 +17,11 @@ const InvalidText = () => {
     color: "red"
   };
   return <p style={style}>Link is not a .md file</p>;
+};
+
+const TooltipText = {
+  Readme:
+    'This link will display the readme on your github page, updated dynamically.<br />You find the .md file by opening the readme file, then pressing the "Raw" button above the file.<br />Should look like this: https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md'
 };
 class ReadmeInput extends Component {
   constructor() {
@@ -38,7 +44,9 @@ class ReadmeInput extends Component {
     return (
       <Container>
         <div style={{ marginTop: "40px" }}>
-          <h3>Readme (optional)</h3>
+          <HeaderWithTooltip tooltip={TooltipText.Readme}>
+            <h3>Readme (optional)</h3>
+          </HeaderWithTooltip>
           <InputTextBox
             handleInputChange={this.handleInputChange}
             name="readmeURL"
