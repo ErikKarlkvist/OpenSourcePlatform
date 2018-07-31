@@ -1,5 +1,8 @@
 :root {
   --dark-teal: #00343e;
+  --dark-teal-alternative: rgba(0, 52, 62, 0.8);
+  --light-teal: #a5e1d2;
+  --light-teal-80: rgba(165, 225, 210, 0.8);
   --white: #ffffff;
   --white-two: #d8d8d8;
   --white-three: #f5f5f5;

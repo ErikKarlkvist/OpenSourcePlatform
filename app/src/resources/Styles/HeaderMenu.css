@@ -1,0 +1,43 @@
+.HeaderProfile {
+  display: none;
+}
+
+.Logo {
+  height: 100px;
+}
+
+.OptionsContainer {
+  margin-top: -20px;
+}
+
+@media (min-width: 576px) {
+  .HeaderProfile {
+    display: flex;
+  }
+
+  .Logo {
+    height: 60px;
+  }
+
+  .OptionsContainer {
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .Logo {
+    height: 80px;
+  }
+}
+
+@media (min-width: 992px) {
+  .Logo {
+    height: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Logo {
+    height: 80px;
+  }
+}

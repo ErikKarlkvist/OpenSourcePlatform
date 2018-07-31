@@ -1,0 +1,192 @@
+input[type="file"] {
+  display: none;
+}
+
+.App-header {
+  height: 100px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Content {
+  width: 100%;
+  flex: display;
+  justify-content: center;
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Thumbnail {
+  padding-bottom: 40px;
+  background-color: var(--dark-teal);
+  object-fit: cover;
+}
+.Thumbnail:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.Center {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.GreenBox {
+  width: 300px;
+  padding: 20px;
+  margin-top: 10px;
+  border: solid 1px var(--bluey-green);
+}
+
+.HeaderImage {
+  width: 300px;
+  height: 230px;
+}
+
+.ProjectInfoLeft {
+  border-bottom: solid 2px white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.ProjectInfoRight {
+  border-bottom: solid 2px white;
+  padding-top: 20px;
+}
+
+.App-title {
+  margin-top: 50px;
+}
+
+@media (min-width: 576px) {
+  .App-title {
+    margin-top: 20px;
+  }
+
+  .Center {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .GreenBox {
+    width: 350px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
+
+  .HeaderImage {
+    width: 350px;
+    height: 251px;
+  }
+
+  .ProjectInfoLeft {
+    border-bottom: solid 2px white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .ProjectInfoRight {
+    border-bottom: solid 2px white;
+    padding-top: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .Center {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .GreenBox {
+    width: 300px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
+
+  .HeaderImage {
+    width: 300px;
+    height: 215px;
+  }
+
+  .ProjectInfoLeft {
+    border-right: solid 2px white;
+    padding-right: 20px;
+    border-bottom: none;
+  }
+
+  .ProjectInfoRight {
+    padding-left: 30px;
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .Center {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .GreenBox {
+    width: 452px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
+
+  .HeaderImage {
+    width: 480px;
+    height: 345px;
+  }
+
+  .ProjectInfoLeft {
+    border-right: solid 2px white;
+    padding-right: 20px;
+    border-bottom: none;
+  }
+
+  .ProjectInfoRight {
+    padding-left: 30px;
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Center {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .GreenBox {
+    width: 500px;
+    padding: 20px;
+    margin-top: 10px;
+    border: solid 1px var(--bluey-green);
+  }
+
+  .HeaderImage {
+    width: 519px;
+    height: 374px;
+  }
+
+  .ProjectInfoLeft {
+    border-right: solid 2px white;
+    padding-right: 20px;
+    border-bottom: none;
+  }
+
+  .ProjectInfoRight {
+    padding-left: 30px;
+    border-bottom: none;
+  }
+}

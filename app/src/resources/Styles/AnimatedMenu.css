@@ -1,0 +1,79 @@
+@import "../colors.css";
+label {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+}
+
+.MenuItem {
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.MenuItem:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+.MenuItem:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  background-color: var(--bright-orange);
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.MenuItem:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.UnderlinedMenuItem {
+  text-decoration: none;
+  border-bottom: 3px solid var(--bright-orange);
+}
+
+.Menu {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 80%;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 600px) {
+  .Menu {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 60%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media (min-width: 992px) {
+  .Menu {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 60%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .Menu {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 40%;
+  }
+}
