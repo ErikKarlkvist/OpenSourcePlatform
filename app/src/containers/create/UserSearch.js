@@ -81,11 +81,20 @@ class UserSearchField extends Component {
   };
 
   showSuggestions = value => {
+    if (!value) {
+      this.setState({ suggestions: [] });
+      return;
+    }
     const suggestions = this.state.users
-      .filter(d => d.name.toLowerCase().includes(value.toLowerCase()))
+      .filter(
+        d =>
+          d.name.toLowerCase().includes(value.toLowerCase()) &&
+          !this.props.currentOwners.some(owner => owner.id === d.id)
+      )
       .map(d => {
         return <SearchResult user={d} handleClick={this.handleClick} />;
       });
+    console.log(suggestions);
 
     this.setState({ suggestions });
   };
