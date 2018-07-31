@@ -12,7 +12,7 @@ import {
   updateProject
 } from "../../backend/projects";
 import ProjectInfo from "../create/CreateProjectInfo";
-import CreateUpdates from "../create/CreateUpdates";
+import CreateAttachments from "../create/CreateAttachments";
 import ReadmeInput from "../create/ReadmeInput";
 import FixedBackgroundImage from "../../components/common/FixedBackgroundImage";
 import Line from "../../components/common/Line";
@@ -271,7 +271,44 @@ class CreateProjectPage extends Component {
     this.setState({ headerImageURL: "" });
   };
 
+  checkUserIsValid() {
+    let valid = false;
+    console.log("checking user is valid");
+    console.log(this.state.user);
+    console.log(this.state.owners);
+    //if not - will be kicked from auth state changed
+    //this function only check that when current user is defined, the currentUser is an owner
+    // when currentUser is not defined (i.e not logged in), the function setupAuthStateChange will kick the user anyway
+    // i check these two in the render because both are asynchronously fetched, and I can't check that they match when one might be undefined
+    // this makes sure that as soon as both are defined, the check is done
+    if (
+      this.state.user &&
+      this.state.user.id &&
+      this.state.owners &&
+      !this.state.hasCheckUserIsValid &&
+      this.props.match.params.projectId
+    ) {
+      console.log("entered check");
+      if (this.state.owners) {
+        this.state.owners.forEach(owner => {
+          if (owner.userID === this.state.user.uid) {
+            valid = true;
+          }
+        });
+      }
+
+      if (!valid) {
+        this.props.history.push("/");
+      } else {
+        this.setState({
+          hasCheckUserIsValid: true
+        });
+      }
+    }
+  }
+
   render() {
+    this.checkUserIsValid();
     return (
       <div className="PageContainer">
         {this.state.hasFetchedUser &&
@@ -302,7 +339,7 @@ class CreateProjectPage extends Component {
                 />
               </div>
               {this.state.projectID && (
-                <CreateUpdates
+                <CreateAttachments
                   projectID={this.state.projectID}
                   setThumbnails={this.setThumbnails}
                   thumbnails={this.state.thumbnails}
