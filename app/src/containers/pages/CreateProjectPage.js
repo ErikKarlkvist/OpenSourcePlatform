@@ -291,7 +291,7 @@ class CreateProjectPage extends Component {
       console.log("entered check");
       if (this.state.owners) {
         this.state.owners.forEach(owner => {
-          if (owner.userID === this.state.user.uid) {
+          if (owner.userID === this.state.user.id) {
             valid = true;
           }
         });

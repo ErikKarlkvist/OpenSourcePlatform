@@ -14,6 +14,10 @@ firebase.initializeApp({
 try {
   console.log("Running create-mock-data-file");
   console.log("");
+<<<<<<< HEAD
+=======
+  console.log("");
+>>>>>>> aed3dbeb8165230c790d4536763f09c143a57b0f
   console.log(
     "Please note that image URLs will not work if they are removed from the database being mocked"
   );
