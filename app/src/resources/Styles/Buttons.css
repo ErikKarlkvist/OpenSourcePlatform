@@ -44,11 +44,13 @@
   padding: 5px;
   text-align: center;
   transition: 0.2s;
+  background: none;
 }
 
 .WarningBtn:hover {
   background: var(--bright-orange);
   border: solid var(--bright-orange) 2px;
+  border-radius: 1px;
   color: white;
   cursor: pointer;
 }

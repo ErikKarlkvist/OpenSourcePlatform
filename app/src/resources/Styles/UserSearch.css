@@ -15,16 +15,16 @@ input:focus {
 }
 
 .suggestions-container {
-  border: 1px solid #aaa;
-  background: none;
-  border-color: #aaa;
   z-index: 10;
   color: black;
   text-align: left;
   max-height: 250px;
   overflow: auto;
   width: 90%;
-  margin-left: 5%;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: absolute;
+  background-color: var(--dark-teal);
 }
 
 .suggestion {
@@ -36,6 +36,7 @@ input:focus {
   padding-bottom: 10px;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--dark-teal);
 }
 
 .suggestion:hover {

@@ -12,7 +12,7 @@ import {
   updateProject
 } from "../../backend/projects";
 import ProjectInfo from "../create/CreateProjectInfo";
-import CreateUpdates from "../create/CreateUpdates";
+import CreateAttachments from "../create/CreateAttachments";
 import ReadmeInput from "../create/ReadmeInput";
 import FixedBackgroundImage from "../../components/common/FixedBackgroundImage";
 import Line from "../../components/common/Line";
@@ -335,7 +335,7 @@ class CreateProjectPage extends Component {
                 />
               </div>
               {this.state.projectID && (
-                <CreateUpdates
+                <CreateAttachments
                   projectID={this.state.projectID}
                   setThumbnails={this.setThumbnails}
                   thumbnails={this.state.thumbnails}
