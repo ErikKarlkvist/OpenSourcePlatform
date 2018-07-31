@@ -74,6 +74,10 @@ class UserSearchField extends Component {
     });
   }
 
+  removeSuggestions = () => {
+    this.setState({ suggestions: [] });
+  };
+
   onChange = e => {
     const value = e.target.value;
     this.showSuggestions(value);
@@ -94,8 +98,6 @@ class UserSearchField extends Component {
       .map(d => {
         return <SearchResult user={d} handleClick={this.handleClick} />;
       });
-    console.log(suggestions);
-
     this.setState({ suggestions });
   };
 
@@ -148,6 +150,7 @@ class UserSearchField extends Component {
                 onChange={e => this.onChange(e)}
                 value={value}
                 placeholder="Search users"
+                onFocus={() => this.showSuggestions(value)}
               />
               {suggestions.length < this.state.users.length && (
                 <div className="suggestions-container">{suggestions}</div>
