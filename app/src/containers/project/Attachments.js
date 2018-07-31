@@ -14,7 +14,7 @@ const Container = props => {
 
 const Title = props => {
   const style = { textAlign: "left", color: "var(--dark-teal)" };
-  return <h3 style={style}>Updates</h3>;
+  return <h3 style={style}>Attachments</h3>;
 };
 
 const ImageContainer = props => {
@@ -97,7 +97,7 @@ const FullScreenImage = props => {
   return (
     <div style={styles.container} onClick={props.toggleFullScreen}>
       <div style={styles.content}>
-        <img alt="Updates" src={props.content.url} style={styles.image} />
+        <img alt="Attachments" src={props.content.url} style={styles.image} />
         <h2 style={styles.title}>{props.content.name}</h2>
         <p style={styles.desc}>{props.content.description}</p>
       </div>
@@ -105,7 +105,7 @@ const FullScreenImage = props => {
   );
 };
 
-class Updates extends Component {
+class Attachments extends Component {
   constructor() {
     super();
 
@@ -215,4 +215,4 @@ const styles = {
     justifyContent: "center"
   }
 };
-export default Updates;
+export default Attachments;

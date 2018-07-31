@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Line from "../../components/common/Line.js";
-import CreateUpdatePost from "./CreateUpdatePost";
+import CreateAttachmentPost from "./CreateAttachmentPost";
 import Thumbnail from "../../components/common/Thumbnail";
 
 const Container = props => {
@@ -14,7 +14,7 @@ const Container = props => {
 
 const Title = props => {
   const style = { paddingTop: "50px", color: "var(--dark-teal)" };
-  return <h3 style={style}>Updates (optional)</h3>;
+  return <h3 style={style}>Attachments (optional)</h3>;
 };
 
 const ThumbnailUpload = props => {
@@ -112,7 +112,7 @@ class AddThumbnails extends Component {
           <div className="row">
             {thumbnailsToShow}
             {this.state.showFullScreen && (
-              <CreateUpdatePost
+              <CreateAttachmentPost
                 toggleFullScreen={this.toggleFullScreen}
                 projectID={this.props.projectID}
                 data={this.props.thumbnails[this.state.currentItem]}
