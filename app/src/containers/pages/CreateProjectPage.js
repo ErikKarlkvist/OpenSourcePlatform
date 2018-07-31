@@ -273,6 +273,9 @@ class CreateProjectPage extends Component {
 
   checkUserIsValid() {
     let valid = false;
+    console.log("checking user is valid");
+    console.log(this.state.user);
+    console.log(this.state.owners);
     //if not - will be kicked from auth state changed
     //this function only check that when current user is defined, the currentUser is an owner
     // when currentUser is not defined (i.e not logged in), the function setupAuthStateChange will kick the user anyway
@@ -280,13 +283,14 @@ class CreateProjectPage extends Component {
     // this makes sure that as soon as both are defined, the check is done
     if (
       this.state.user &&
-      this.state.user.uid &&
-      this.state.project &&
-      !this.state.hasCheckUserIsValid
+      this.state.user.id &&
+      this.state.owners &&
+      !this.state.hasCheckUserIsValid &&
+      this.props.match.params.projectId
     ) {
-      const owners = this.state.project.owners;
-      if (owners) {
-        owners.forEach(owner => {
+      console.log("entered check");
+      if (this.state.owners) {
+        this.state.owners.forEach(owner => {
           if (owner.userID === this.state.user.uid) {
             valid = true;
           }
