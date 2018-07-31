@@ -138,6 +138,7 @@ export async function createNewProject(projectData, id) {
 
   const promises = [];
   for (let i = 0; i < thumbnails.length; i++) {
+    thumbnails[i].createdAt = firebase.firestore.FieldValue.serverTimestamp();
     promises.push(
       firebase
         .firestore()
@@ -183,6 +184,7 @@ export async function updateProject(projectData, id) {
 
   const promises = [];
   for (let i = 0; i < thumbnails.length; i++) {
+    thumbnails[i].createdAt = firebase.firestore.FieldValue.serverTimestamp();
     if (thumbnails[i].id) {
       promises.push(
         firebase
@@ -213,7 +215,7 @@ export async function updateProject(projectData, id) {
         .doc(id)
         .collection("owners")
         .doc((j + 1).toString())
-        .set({ role: owners[j].role, userID: owners[j].id })
+        .set({ role: owners[j].role, userID: owners[j].userID })
     );
   }
 
@@ -400,7 +402,7 @@ async function getThumbnailsForProject(project) {
       .doc(project.id)
       .collection("thumbnails")
       .get();
-    const thumbnails = [];
+    let thumbnails = [];
     snapshots.forEach(snapshot => {
       if (snapshot.exists) {
         const data = snapshot.data();
@@ -408,9 +410,22 @@ async function getThumbnailsForProject(project) {
         thumbnails.push(data);
       }
     });
+    thumbnails = sortOnCreatedAt(thumbnails);
     const data = { thumbnails, projectId: project.id };
     return Promise.resolve(data);
   } catch (e) {
     return Promise.resolve({ error: true, projectId: project.id });
   }
+}
+
+function sortOnCreatedAt(array) {
+  return array.sort((a, b) => {
+    if (a.createdAt && b.createdAt) {
+      return a.createdAt - b.createdAt;
+    } else if (a.createdAt) {
+      return a.createdAt;
+    } else {
+      return b;
+    }
+  });
 }

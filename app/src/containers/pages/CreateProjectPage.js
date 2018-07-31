@@ -271,7 +271,40 @@ class CreateProjectPage extends Component {
     this.setState({ headerImageURL: "" });
   };
 
+  checkUserIsValid() {
+    let valid = false;
+    //if not - will be kicked from auth state changed
+    //this function only check that when current user is defined, the currentUser is an owner
+    // when currentUser is not defined (i.e not logged in), the function setupAuthStateChange will kick the user anyway
+    // i check these two in the render because both are asynchronously fetched, and I can't check that they match when one might be undefined
+    // this makes sure that as soon as both are defined, the check is done
+    if (
+      this.state.user &&
+      this.state.user.uid &&
+      this.state.project &&
+      !this.state.hasCheckUserIsValid
+    ) {
+      const owners = this.state.project.owners;
+      if (owners) {
+        owners.forEach(owner => {
+          if (owner.userID === this.state.user.uid) {
+            valid = true;
+          }
+        });
+      }
+
+      if (!valid) {
+        this.props.history.push("/");
+      } else {
+        this.setState({
+          hasCheckUserIsValid: true
+        });
+      }
+    }
+  }
+
   render() {
+    this.checkUserIsValid();
     return (
       <div className="PageContainer">
         {this.state.hasFetchedUser &&
