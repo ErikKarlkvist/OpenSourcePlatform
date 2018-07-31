@@ -1,0 +1,88 @@
+.markdown h1 {
+  color: black;
+  font-size: 2em;
+  font-weight: bold;
+  border-bottom: 1px solid #eaecef;
+}
+.markdown h2 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  color: black;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-bottom: 1px solid #eaecef;
+  text-align: left;
+}
+.markdown h3 {
+  color: black;
+  font-size: 1.17em;
+  font-weight: bold;
+  text-align: left;
+}
+.markdown h4 {
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: left;
+}
+.markdown h5 {
+  color: black;
+  font-size: 0.83em;
+  font-weight: bold;
+  text-align: left;
+}
+.markdown h6 {
+  color: black;
+  font-size: 0.67em;
+  font-weight: bold;
+}
+
+.markdown p {
+  color: black;
+  text-align: left;
+}
+
+.markdown pre {
+  background-color: #f6f8fa;
+}
+
+.markdown code {
+  background-color: rgba(27, 31, 35, 0.05);
+  padding-top: 0.2em;
+  padding-right: 0.4em;
+  padding-bottom: 0.2em;
+  padding-left: 0.4em;
+  font-size: 85%;
+}
+
+.markdown a {
+  color: #0366d6;
+}
+.markdown a:hover {
+  color: #0366d6;
+}
+
+.markdown blockquote {
+  border-left: 0.25em solid #dfe2e5;
+  color: #6a737d;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+.markdown {
+  background-color: white;
+  color: black !important;
+  text-align: left !important;
+  padding: 45px;
+  justify-content: center;
+  overflow: auto;
+}
+
+.markdownInner {
+  color: black;
+}
+
+.readmeContainer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

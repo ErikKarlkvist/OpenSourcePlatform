@@ -1,7 +1,0 @@
-@import "../resources/colors.css";
-
-.Contact {
-  border: solid var(--white-two) 1px;
-  height: 100%;
-  text-align: center;
-}

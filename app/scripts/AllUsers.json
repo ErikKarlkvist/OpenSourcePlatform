@@ -1,0 +1,181 @@
+{"users": [
+{
+  "localId": "0JIUqQOsqrRFXNd5gLoxOQCxO5o2",
+  "email": "johanna.stenson@dnb.no",
+  "emailVerified": true,
+  "passwordHash": "q1cwTs0t+Fh7M6C+l+8NmZ82moUGwmWz01Wx7WiOGIq3HQVx6t3NXIWHJ91//Gr/6mFPJZjm5ZTwrJ2GduudCg==",
+  "salt": "pgm/YVV1sc3MQA==",
+  "lastSignedInAt": "1532941643000",
+  "createdAt": "1531207320000",
+  "providerUserInfo": []
+},
+{
+  "localId": "3GSLUUHLu0RXTN00Mpiq5mA2Ivy2",
+  "email": "jostein.brevik@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "EBq7JU7hfbilx5V3hKjXJOZISQUKptaOAuINrq2F1/EMdh/Wq+FczCLlNn2xe2RpzJjV9fXxC7WEBUB9Zsteng==",
+  "salt": "krAqoOzyANPiWg==",
+  "lastSignedInAt": "1532593148000",
+  "createdAt": "1531473330000",
+  "providerUserInfo": []
+},
+{
+  "localId": "8Ptzkvcko4O6msI9YptltvvRQHx1",
+  "email": "erikkarlkvist95@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "30k6nq8g3PClpL3mfFMd5Zj+ouCXIW1dUq0SSCVkM7Y0d3yWqPDpQimfx2sIKAg6AOVI3JKNwILNsaVXBK7HZA==",
+  "salt": "DhCMCHtR4kt16g==",
+  "lastSignedInAt": "1532602950000",
+  "createdAt": "1532602950000",
+  "providerUserInfo": []
+},
+{
+  "localId": "CIIinnCFm3RRAxekkVK0W7dJXNX2",
+  "email": "heisann@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "p9GQHwz9i2T8uxkfb5+NmlMoZZDy6++TpobunLe9hzdMrrluypeeUt07QkNjGoYN0VDRZ/cen5aiqaHlNFXAYg==",
+  "salt": "n6M7RI2yFKUh0A==",
+  "lastSignedInAt": "1532932684000",
+  "createdAt": "1532700342000",
+  "providerUserInfo": []
+},
+{
+  "localId": "Cz8uThdGPQXHC2TMLILtrogBs173",
+  "email": "bobbydobby@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "/KHcJx70TG4Vh6rsysUkRuEiCsmpE+rRpUNYdDmqgSiC6UpsL/gek6mL/ETdpf0qmC6KCgH1HEGIbyN8qe12NQ==",
+  "salt": "e5UzC9DzJKPRCQ==",
+  "lastSignedInAt": "1531827931000",
+  "createdAt": "1531827931000",
+  "providerUserInfo": []
+},
+{
+  "localId": "E0BXA8SYPJUteDKmhvsABDEZ5Da2",
+  "email": "jostein.breivik@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "UjFZbRswPLkuDjF1edd5gxxqDgA39d7ru5QW+6UaKa4G57X0birdGAAZ3uMAXD2Ar44Lz4G71h85Sb5ZgizjjQ==",
+  "salt": "jJXNeCMNwlmMoQ==",
+  "lastSignedInAt": "1532939235000",
+  "createdAt": "1531151605000",
+  "providerUserInfo": []
+},
+{
+  "localId": "Ebb9GHkvIcTnLgY304BEeSgFEaF3",
+  "email": "erik.karlkvist@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "xd499pDQmhMK0QYvsC8eX78Y3d0/VFmxX24GtO13uMbAHqAqC6EbZ9Yprot5omxoR0c6/NSPa5tSeDDzL5cGhg==",
+  "salt": "OLP0cAX5SVWDcA==",
+  "lastSignedInAt": "1532933049000",
+  "createdAt": "1531141707000",
+  "providerUserInfo": []
+},
+{
+  "localId": "ScJL9tTUf7WGN0tbdrgPneRKNwC2",
+  "email": "c@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "mfM+2eYwt6mi9l1Sqbw2Ow/vJ9DQfLByNurCWYsZl9TjB+giU5ZNy3n/ZULZJcXjZZE16g7nAQlh+arDCUQTtA==",
+  "salt": "v5AgDkkkgIZm4Q==",
+  "lastSignedInAt": "1531473492000",
+  "createdAt": "1531473492000",
+  "providerUserInfo": []
+},
+{
+  "localId": "Y5nvPSH8F7Myo8B82jDicjeHLcM2",
+  "email": "lol@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "EmNOPYcmk18O+Tf9/1jVob6FqD57/6JhaEOnMXf6iQG16X9ANanJwZ0P1VRPM2zi04Nc6cbg24gEHeYOahAqGw==",
+  "salt": "a6yfdtmjm5M9rw==",
+  "lastSignedInAt": "1530620153000",
+  "createdAt": "1530620153000",
+  "providerUserInfo": []
+},
+{
+  "localId": "YPKJLsTFHiO1pELTqNS1mRX4QKA2",
+  "email": "casper.brekke@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "9PPqGXDnsEEsC4Wc/2ni3H7EI4iviilL3Q1AfBWv/uvfjnRh5w5tqWl8b+oHGwKINLDhJrDy+qkuVciVjm3Thg==",
+  "salt": "dQ5gCld6uA0UfA==",
+  "lastSignedInAt": "1531224270000",
+  "createdAt": "1531224270000",
+  "providerUserInfo": []
+},
+{
+  "localId": "ZWwBL5Mq5KYEuv3zHoSUxd4bGcs1",
+  "email": "henninnenesgrd@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "auJFI0H5TDBHZy7QlsB6bI6+GAqIdXQpdX5XK5WUCC381ETfw6MnwCG+QTFj1/elR5ZrVUFK6SwFelp0EudDOA==",
+  "salt": "jpCGDqkoEz0KpA==",
+  "lastSignedInAt": "1531139202000",
+  "createdAt": "1531139202000",
+  "providerUserInfo": []
+},
+{
+  "localId": "czR8cVL2cieDEbcMnicvFwldM5s2",
+  "email": "erikkarlkvist95@gmail.com",
+  "emailVerified": true,
+  "passwordHash": "bX/GKB7rDXzzvQ5El2qYHT0BvBPDR2n30yXwFkE6OD91ny4pwMjINPkJIXEHT2+ujcmB6n2u+LvRbstTV0tG+w==",
+  "salt": "K7Wno9LXlzMcLw==",
+  "lastSignedInAt": "1532857892000",
+  "createdAt": "1530617863000",
+  "providerUserInfo": []
+},
+{
+  "localId": "dCZKvV5JtrOEQVyL8w7U1SapdPy1",
+  "email": "henninnenesgrd@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "dvuYWMg/cD4+q6w1r09z4+u/0zPl5zLZokkCTITMRvoRcefIn7/7JoHXC0+HBgL7DEJOwrAsYAAKRo3GmKkYLw==",
+  "salt": "VdLvFIGI7xEMNA==",
+  "lastSignedInAt": "1530618031000",
+  "createdAt": "1530618031000",
+  "providerUserInfo": []
+},
+{
+  "localId": "elsMm0cJEqcA6E0SBfA3FjNgV0r1",
+  "email": "mrbossman@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "8HtcPKl2mH3Q3RBhoNrYv/I4ha2fWjaoJdVC+g6sbkIXn8iWIYkwmAlsn9JwUHT+UwHbJwuPg7FL0XUgTwBO3Q==",
+  "salt": "i7gL6n/T1ceNYg==",
+  "lastSignedInAt": "1532700524000",
+  "createdAt": "1532700524000",
+  "providerUserInfo": []
+},
+{
+  "localId": "modg6F28ztcTlKGs8iESDf7spOp1",
+  "email": "henning.aleksander.nesgard@dnb.no",
+  "emailVerified": true,
+  "passwordHash": "fYOBDSQtyttYJYhtnQIrNbes7Kz4xiRqb1mJ/ic0q9/Yn9+P0ol4ha6vhOUaJgOly22Ll/AQBsCpySVTTx1SBQ==",
+  "salt": "YJFnG6BMX51oeA==",
+  "lastSignedInAt": "1532517963000",
+  "createdAt": "1532422960000",
+  "providerUserInfo": []
+},
+{
+  "localId": "q7xJK2T3MpNgoUp1KtZEzwYV8Dm1",
+  "email": "newguy@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "/hU1+lUF/1dNIdBRoXB1ObDRmibaiBozjTrBBcvYYje+kbEUGK1ZSsgcdK7FEk6Vf5JFaPa19JPpJqMwtfpUYQ==",
+  "salt": "t87lC/xGcnns+g==",
+  "lastSignedInAt": "1532700423000",
+  "createdAt": "1532700423000",
+  "providerUserInfo": []
+},
+{
+  "localId": "xFhEtDh7HcXWrTItqR6Bu2v8cZC2",
+  "email": "sdfg@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "tMVZngEiWThOcs+bemO0FmIEJDbEd73gf5nVJMUzdzKLDXa4eKGlT6D+qPVq3b/h9ekipxTbvzX6W3JncZ0wqw==",
+  "salt": "r8kicJ1M5t/Nlg==",
+  "lastSignedInAt": "1532592938000",
+  "createdAt": "1532592580000",
+  "providerUserInfo": []
+},
+{
+  "localId": "yuER7QMcfTh2raPbdEibngznVWB2",
+  "email": "magnus.de.laval@dnb.no",
+  "emailVerified": false,
+  "passwordHash": "K+bfqf9dMtWPB+GJj/uOBT7sTS3cFhxbBUKmrT4FYdMT5DG+da7BehvaPaeXYQHaqWiWwfXMrWs38JO5MlIngQ==",
+  "salt": "cN8gp98HBLmS+A==",
+  "lastSignedInAt": "1532604200000",
+  "createdAt": "1532604200000",
+  "providerUserInfo": []
+}]}
