@@ -271,6 +271,7 @@ class CreateProjectPage extends Component {
     this.setState({ headerImageURL: "" });
   };
 
+<<<<<<< HEAD
   checkUserIsValid() {
     let valid = false;
     console.log("checking user is valid");
@@ -309,6 +310,9 @@ class CreateProjectPage extends Component {
 
   render() {
     this.checkUserIsValid();
+=======
+  render() {
+>>>>>>> aed3dbeb8165230c790d4536763f09c143a57b0f
     return (
       <div className="PageContainer">
         {this.state.hasFetchedUser &&

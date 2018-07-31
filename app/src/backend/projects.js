@@ -138,7 +138,10 @@ export async function createNewProject(projectData, id) {
 
   const promises = [];
   for (let i = 0; i < thumbnails.length; i++) {
+<<<<<<< HEAD
     thumbnails[i].createdAt = firebase.firestore.FieldValue.serverTimestamp();
+=======
+>>>>>>> aed3dbeb8165230c790d4536763f09c143a57b0f
     promises.push(
       firebase
         .firestore()
@@ -184,7 +187,10 @@ export async function updateProject(projectData, id) {
 
   const promises = [];
   for (let i = 0; i < thumbnails.length; i++) {
+<<<<<<< HEAD
     thumbnails[i].createdAt = firebase.firestore.FieldValue.serverTimestamp();
+=======
+>>>>>>> aed3dbeb8165230c790d4536763f09c143a57b0f
     if (thumbnails[i].id) {
       promises.push(
         firebase
@@ -215,7 +221,11 @@ export async function updateProject(projectData, id) {
         .doc(id)
         .collection("owners")
         .doc((j + 1).toString())
+<<<<<<< HEAD
         .set({ role: owners[j].role, userID: owners[j].userID })
+=======
+        .set({ role: owners[j].role, userID: owners[j].id })
+>>>>>>> aed3dbeb8165230c790d4536763f09c143a57b0f
     );
   }
 
