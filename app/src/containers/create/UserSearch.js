@@ -74,6 +74,10 @@ class UserSearchField extends Component {
     });
   }
 
+  removeSuggestions = () => {
+    this.setState({ suggestions: [] });
+  };
+
   onChange = e => {
     const value = e.target.value;
     this.showSuggestions(value);
@@ -81,12 +85,19 @@ class UserSearchField extends Component {
   };
 
   showSuggestions = value => {
+    if (!value) {
+      this.setState({ suggestions: [] });
+      return;
+    }
     const suggestions = this.state.users
-      .filter(d => d.name.toLowerCase().includes(value.toLowerCase()))
+      .filter(
+        d =>
+          d.name.toLowerCase().includes(value.toLowerCase()) &&
+          !this.props.currentOwners.some(owner => owner.id === d.id)
+      )
       .map(d => {
         return <SearchResult user={d} handleClick={this.handleClick} />;
       });
-
     this.setState({ suggestions });
   };
 
@@ -139,6 +150,7 @@ class UserSearchField extends Component {
                 onChange={e => this.onChange(e)}
                 value={value}
                 placeholder="Search users"
+                onFocus={() => this.showSuggestions(value)}
               />
               {suggestions.length < this.state.users.length && (
                 <div className="suggestions-container">{suggestions}</div>
