@@ -47,7 +47,7 @@ class Contributors extends React.Component {
           style={styles.owner}
           key={i}
         >
-          <Link to={`/user/${d.id}`}>
+          <Link to={`/user/${d.userID}`}>
             <img
               style={styles.image}
               src={d.profileImageURL || d.blankProfileUrl}
