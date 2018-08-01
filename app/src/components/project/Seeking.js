@@ -19,7 +19,7 @@ const LookingForList = props => {
       color: "white",
       cursor: "pointer",
       marginLeft: "20px",
-      textShadow: "1px 1px black"
+      marginTop: "5px"
     },
     container: {
       display: "flex",
@@ -32,9 +32,9 @@ const LookingForList = props => {
       <li key={i} style={styles.container}>
         <h4>> {props.lookingFor[i]}</h4>
         {props.removeItem && (
-          <h4 onClick={() => props.removeItem(i)} style={styles.removeText}>
-            ⮾
-          </h4>
+          <p onClick={() => props.removeItem(i)} style={styles.removeText}>
+            (remove)
+          </p>
         )}
       </li>
     );

@@ -21,7 +21,7 @@ const InvalidText = () => {
 
 const TooltipText = {
   Readme:
-    'This link will display the readme on your github page, updated dynamically.<br />You find the .md file by opening the readme file, then pressing the "Raw" button above the file.<br />Should look like this: https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md'
+    'This link will display the readme on your github page, updated dynamically.<br />You find the .md file by opening the readme file, then pressing the "Raw" button above the file.<br />Example: https://raw.githubusercontent.com/ErikKarlkvist/OpenSourcePlatform/master/README.md'
 };
 class ReadmeInput extends Component {
   constructor() {

@@ -27,6 +27,5 @@
     "create-mock-data-file": "node scripts/CreateMockDataFile",
     "create-user-copy": "firebase auth:export scripts/AllUsers.json",
     "copy-users": "firebase auth:import scripts/AllUsers.json"
-  },
-  "homepage": "/DNBOpenSource"
+  }
 }

@@ -231,8 +231,11 @@ class UserPage extends Component {
     };
   }
 
-  receiveURL = () => {
-    this.setupData(this.state.userId);
+  receiveURL = url => {
+    this.setState({ loading: true });
+    const user = this.state.user;
+    user.profileImageURL = url;
+    this.setState({ displayUser: user });
   };
 
   loadUser = () => {
@@ -241,6 +244,7 @@ class UserPage extends Component {
   };
 
   setupData(userId) {
+    this.setState({ loading: true });
     getUser(userId).then(user => {
       if (user) {
         this.setState({
