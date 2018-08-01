@@ -92,7 +92,7 @@ class Contributors extends React.Component {
     return (
       <div style={styles.container}>
         <div className="d-block d-sm-block d-md-block">
-          <h3 style={{ textAlign: "left" }}>Owners</h3>
+          <h3 style={{ textAlign: "left" }}>Team</h3>
           <div style={styles.imageWrapper}>
             <div className="row">{this.state.ownersToShow}</div>
           </div>
