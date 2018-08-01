@@ -16,7 +16,7 @@ const LookingForList = props => {
       marginBottom: "20px"
     },
     removeText: {
-      color: "white",
+      color: "var(--white-two)",
       cursor: "pointer",
       marginLeft: "20px",
       marginTop: "5px"
