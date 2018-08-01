@@ -23,14 +23,13 @@ const Container = props => {
 
 const Content = props => {
   const style = {
-    minHeight: "80vh",
+    height: "100%",
     margin: "20%",
-    minWidth: "80vh",
+    marginBottom: "200px",
     textAlign: "left",
-    backgroundColor: "rgba(255,255,255,1)",
+    backgroundColor: "white",
     zIndex: 10,
-    position: "relative",
-    opacity: "1"
+    minWidth: "60%"
   };
   return <div style={style}>{props.children}</div>;
 };
@@ -57,15 +56,14 @@ const Buttons = props => {
       paddingRight: "15px",
       paddingLeft: "15px",
       paddingBottom: "15px",
-      backgroundColor: "white",
-      marginTop: "-10px",
-
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      width: "100%"
+      backgroundColor: "var(--white-three)",
+      marginTop: "-10px"
     },
-    rightButton: {},
+    cancel: {
+      color: "var(--dark-teal)",
+      marginRight: 20,
+      marginTop: 7
+    },
     leftButton: {}
   };
 
@@ -74,13 +72,16 @@ const Buttons = props => {
       <Button style={styles.leftButton} warning={true} onClick={props.remove}>
         Delete update
       </Button>
-      <Button
-        solidBtn={true}
-        style={styles.rightButton}
-        onClick={props.addThumbnail}
-      >
-        Save update
-      </Button>
+      <div style={{ display: "flex" }}>
+        <p style={styles.cancel}>Cancel</p>
+        <Button
+          solidBtn={true}
+          style={styles.rightButton}
+          onClick={props.addThumbnail}
+        >
+          Save update
+        </Button>
+      </div>
     </div>
   );
 };
@@ -128,57 +129,63 @@ class CreateUpdatePost extends Component {
       <Container>
         <Closer toggleFullScreen={this.props.toggleFullScreen} />
         <Content>
-          {this.state.url && (
-            <img
-              alt="Update header"
-              src={this.state.url}
-              style={styles.image}
-            />
-          )}
-          {!this.state.url && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "100px",
-                marginBottom: "80px"
-              }}
-            >
-              <UploadImage
-                type={"thumbnailImage"}
-                id={this.props.projectID}
-                recieveURL={this.recieveURL}
-                color="grey"
-                loadingColor="grey"
+          <div style={styles.wrapper}>
+            {this.state.url && (
+              <img
+                alt="Update header"
+                src={this.state.url}
+                style={styles.image}
+              />
+            )}
+            {!this.state.url && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: "140px",
+                  marginBottom: "120px"
+                }}
+              >
+                <UploadImage
+                  type={"thumbnailImage"}
+                  id={this.props.projectID}
+                  recieveURL={this.recieveURL}
+                  color="grey"
+                  loadingColor="grey"
+                />
+              </div>
+            )}
+            <div style={{ backgroundColor: "var(--white-three)" }}>
+              <InputTextBox
+                title="Title"
+                placeholder="Title"
+                name="name"
+                maxChars={50}
+                showCounter={false}
+                textColor={"var(--dark-teal)"}
+                value={this.state.name}
+                handleInputChange={this.handleInputChange}
+                className={"UpdateTitle"}
+              />
+              <InputTextBox
+                title="Description"
+                placeholder="Give a descriptive text to the image. Max 1000 characters."
+                name="description"
+                maxChars={1000}
+                showCounter={false}
+                textColor={"var(--dark-teal)"}
+                value={this.state.description}
+                handleInputChange={this.handleInputChange}
+                className={"UpdateDescription"}
+                multiline={true}
+              />
+              <Buttons
+                remove={this.props.removeThumbnail}
+                addThumbnail={this.addThumbnail}
               />
             </div>
-          )}
-          <InputTextBox
-            title="Title"
-            placeholder="Title"
-            name="name"
-            maxChars={50}
-            textColor={"var(--dark-teal)"}
-            value={this.state.name}
-            handleInputChange={this.handleInputChange}
-            className={"UpdateTitle"}
-          />
-          <InputTextBox
-            title="Description"
-            placeholder="Description"
-            name="description"
-            maxChars={1000}
-            textColor={"var(--dark-teal)"}
-            value={this.state.description}
-            handleInputChange={this.handleInputChange}
-            className={"UpdateDescription"}
-            multiline={true}
-          />
-          <Buttons
-            remove={this.props.removeThumbnail}
-            addThumbnail={this.addThumbnail}
-          />
+          </div>
         </Content>
       </Container>
     );
@@ -195,8 +202,8 @@ class CreateUpdatePost extends Component {
 export default CreateUpdatePost;
 
 const styles = {
-  content: {
-    // height: "80vh",
+  wrapper: {
+    backgroundColor: "white"
   },
   image: {
     width: "100%",

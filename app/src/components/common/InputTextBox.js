@@ -66,6 +66,7 @@ class InputTextBox extends Component {
         />
         <p style={this.styles.charCounter}>
           {this.props.maxChars &&
+            this.props.showCounter &&
             this.props.value.length + "/" + this.props.maxChars}
         </p>
       </div>
@@ -88,6 +89,7 @@ class InputTextBox extends Component {
         />
         <p style={this.styles.charCounter}>
           {this.props.maxChars &&
+            this.props.showCounter &&
             this.props.value.length + "/" + this.props.maxChars}
         </p>
       </div>
@@ -119,13 +121,15 @@ InputTextBox.propTypes = {
   className: PropTypes.string,
   value: PropTypes.string.isRequired,
   textColor: PropTypes.string,
-  maxChars: PropTypes.number
+  maxChars: PropTypes.number,
+  showCounter: PropTypes.bool
 };
 
 InputTextBox.defaultProps = {
   textColor: "white",
   type: "text",
-  className: "inputTextBox multiliner"
+  className: "inputTextBox multiliner",
+  showCounter: true
 };
 
 export default InputTextBox;
