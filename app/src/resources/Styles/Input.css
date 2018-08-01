@@ -50,21 +50,26 @@ textarea:focus {
   width: 100%;
   height: 46px;
   font-size: 30px;
-  border: solid 1px #979797;
   padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
   color: #fff;
-  background-color: white;
+  border: none;
+  background-color: var(--white-three);
 }
 
 .UpdateDescription {
   width: 100%;
   height: 220px;
   font-size: 16px;
+  border: none;
   font-family: Arial;
   padding: 10px;
-  margin-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   color: #fff;
-  background-color: white;
+  background-color: var(--white-three);
 }
 
 .LookingFor {
