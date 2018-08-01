@@ -153,7 +153,14 @@ class UserSearchField extends Component {
                 onFocus={() => this.showSuggestions(value)}
               />
               {suggestions.length < this.state.users.length && (
-                <div className="suggestions-container">{suggestions}</div>
+                <div
+                  className={
+                    "suggestions-container " +
+                    (suggestions.length > 0 && "suggestions-border")
+                  }
+                >
+                  {suggestions}
+                </div>
               )}
             </div>
           )}
