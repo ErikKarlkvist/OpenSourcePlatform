@@ -183,8 +183,18 @@ export async function updateProject(projectData, id) {
     .set(projectData, { merge: true });
 
   const promises = [];
+
+  //need to get current project and compare the thumbnails, and remove the old extra
+  const currentProject = await getProject(id);
+  const oldThumbnails = currentProject.thumbnails;
+  const oldOwners = currentProject.owners;
+  const thumbnailIds = [];
+  const ownerIds = [];
+
+  //update and create thumbnails
   for (let i = 0; i < thumbnails.length; i++) {
     thumbnails[i].createdAt = firebase.firestore.FieldValue.serverTimestamp();
+    thumbnailIds.push(thumbnails[i].id);
     if (thumbnails[i].id) {
       promises.push(
         firebase
@@ -207,17 +217,50 @@ export async function updateProject(projectData, id) {
     }
   }
 
+  //recreate owners
   for (let j = 0; j < owners.length; j++) {
+    const id = (j + 1).toString();
+    ownerIds.push(id);
     promises.push(
       firebase
         .firestore()
         .collection("projects")
         .doc(id)
         .collection("owners")
-        .doc((j + 1).toString())
+        .doc(id)
         .set({ role: owners[j].role, userID: owners[j].userID })
     );
   }
+
+  //remove extra no longer used thumbnails
+  oldThumbnails.forEach(thumbnail => {
+    if (!thumbnailIds.includes(thumbnail.id)) {
+      promises.push(
+        firebase
+          .firestore()
+          .collection("projects")
+          .doc(id)
+          .collection("thumbnails")
+          .doc(thumbnail.id)
+          .delete()
+      );
+    }
+  });
+
+  //remove extra no longer used owners
+  oldOwners.forEach(owner => {
+    if (!oldOwners.includes(owner.id)) {
+      promises.push(
+        firebase
+          .firestore()
+          .collection("projects")
+          .doc(id)
+          .collection("owners")
+          .doc(owner.id)
+          .delete()
+      );
+    }
+  });
 
   await Promise.all(promises);
   //reload all project on update
