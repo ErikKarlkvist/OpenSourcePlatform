@@ -14,7 +14,7 @@ const Container = props => {
 
 const Title = props => {
   const style = { textAlign: "left", color: "var(--dark-teal)" };
-  return <h3 style={style}>Attachments</h3>;
+  return <h3 style={style}>Posts</h3>;
 };
 
 const ImageContainer = props => {
