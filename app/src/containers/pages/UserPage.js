@@ -72,7 +72,7 @@ const UserInfo = props => {
       <Big>
         {props.editing ? (
           <div>
-          <InputTextBox
+            <InputTextBox
               title="First name"
               placeholder="Your first name"
               name="firstname"
@@ -84,19 +84,22 @@ const UserInfo = props => {
               multiline={true}
             />
             <InputTextBox
-            title="Last name"
-            placeholder="Your last name"
-            name="lastname"
-            maxChars={50}
-            textColor={"white"}
-            value={props.lastname}
-            handleInputChange={e => props.onChange(e)}
-            className={"Name"}
-            multiline={true}
-          /></div>)
-        : (<h1 style={styles.Name}>
-          {props.firstname} {props.lastname}
-        </h1>)}
+              title="Last name"
+              placeholder="Your last name"
+              name="lastname"
+              maxChars={50}
+              textColor={"white"}
+              value={props.lastname}
+              handleInputChange={e => props.onChange(e)}
+              className={"Name"}
+              multiline={true}
+            />
+          </div>
+        ) : (
+          <h1 style={styles.Name}>
+            {props.firstname} {props.lastname}
+          </h1>
+        )}
         {props.editing ? (
           <div>
             <InputTextBox
@@ -214,8 +217,11 @@ class UserPage extends Component {
     };
   }
 
-  receiveURL = () => {
-    this.setupData(this.state.userId);
+  receiveURL = url => {
+    this.setState({ loading: true });
+    const user = this.state.user;
+    user.profileImageURL = url;
+    this.setState({ displayUser: user });
   };
 
   loadUser = () => {
@@ -224,14 +230,15 @@ class UserPage extends Component {
   };
 
   setupData(userId) {
+    this.setState({ loading: true });
     getUser(userId).then(user => {
       if (user) {
         this.setState({
           displayUser: user,
           loading: false,
           description: user.description ? user.description : "",
-          firstname: user.firstname ? user.firstname: "",
-          lastname: user.lastname ? user.lastname: "",
+          firstname: user.firstname ? user.firstname : "",
+          lastname: user.lastname ? user.lastname : "",
           editing: !user.description || !user.description.trim()
         });
       }

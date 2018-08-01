@@ -27,7 +27,7 @@ const HeaderWithTooltip = props => {
   };
   return (
     <div style={styles.Container}>
-      <h3>{props.children}</h3>
+      <h3 style={props.textStyle}>{props.children}</h3>
       <div style={styles.circle} data-tip={props.tooltip}>
         <a style={styles.HelperText}>?</a>
       </div>
@@ -37,6 +37,7 @@ const HeaderWithTooltip = props => {
         type="light"
         effect="float"
         delayShow={200}
+        textAlign="left"
       />
     </div>
   );

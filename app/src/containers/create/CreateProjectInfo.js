@@ -143,11 +143,9 @@ const TooltipTexts = {
   Description:
     "Your description should cover what problem your project solves, and how it solves it",
   GithubRepo:
-    "Paste the link to your project's Github repository here, and the project metrics will automatically be fetched. <br /> If you do not use GitHub, leave this blank.<br /> Should look like this: https://github.com/ErikKarlkvist/OpenSourcePlatform",
+    "Paste the link to your project's Github repository here, and the project metrics will automatically be fetched.<br/> This will also display the buttons 'Get the code!' and 'Send in suggestions' <br /> If you do not use GitHub, leave this blank.<br /> The url should be on the same format as this: https://github.com/{username}/{repository-name}",
   LookingFor:
-    "If you're looking for a spesific skill or position to complement your team, add them here. <br /> Try to not be too spesific, as people are more likely to search for more general terms",
-  Updates:
-    "A living project is more likely to attract contributors, so use this space to show of what you have accomplished. <br />Post about new releases, launches, milestones, new team members, and that new deal you just struck",
+    "If you're looking for a specific skill or position to complement your team, add them here. <br /> Try to not be too spesific, as people are more likely to search for more general terms",
   Owners:
     "Adding team members means other people can see who works on this project, and will display this project on their profile page"
 };
@@ -208,7 +206,7 @@ class CreateProjectInfo extends Component {
                 className={"inputTextBox"}
                 validate={validateGithubURL}
                 invalidText={
-                  "Not a github repository. Embed the following: https://github.com/{username}/{repository-name})"
+                  "Not a github repository. Embed the following: https://github.com/{username}/{repository-name}"
                 }
               />
             </div>
