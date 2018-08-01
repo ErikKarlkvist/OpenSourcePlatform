@@ -37,6 +37,18 @@ const Big = props => {
 const Small = props => {
   return <div className={"col-md-5 col-sm-12 col-lg-5"}>{props.children}</div>;
 };
+const Contact = props => {
+  const mailContact = () => {
+    window.location = "mailto:" + props.user.email;
+  };
+  return (
+    <Container>
+      <Button style={{ width: "150px" }} onClick={mailContact}>
+        Send a mail to {props.user.firstname}
+      </Button>
+    </Container>
+  );
+};
 
 const UserInfo = props => {
   const styles = {
@@ -72,7 +84,7 @@ const UserInfo = props => {
       <Big>
         {props.editing ? (
           <div>
-          <InputTextBox
+            <InputTextBox
               title="First name"
               placeholder="Your first name"
               name="firstname"
@@ -84,19 +96,22 @@ const UserInfo = props => {
               multiline={true}
             />
             <InputTextBox
-            title="Last name"
-            placeholder="Your last name"
-            name="lastname"
-            maxChars={50}
-            textColor={"white"}
-            value={props.lastname}
-            handleInputChange={e => props.onChange(e)}
-            className={"Name"}
-            multiline={true}
-          /></div>)
-        : (<h1 style={styles.Name}>
-          {props.firstname} {props.lastname}
-        </h1>)}
+              title="Last name"
+              placeholder="Your last name"
+              name="lastname"
+              maxChars={50}
+              textColor={"white"}
+              value={props.lastname}
+              handleInputChange={e => props.onChange(e)}
+              className={"Name"}
+              multiline={true}
+            />
+          </div>
+        ) : (
+          <h1 style={styles.Name}>
+            {props.firstname} {props.lastname}
+          </h1>
+        )}
         {props.editing ? (
           <div>
             <InputTextBox
@@ -116,6 +131,8 @@ const UserInfo = props => {
             {props.description}
           </p>
         )}
+        {!props.isMyProfile && <Contact user={props.user} />}
+
         {props.isMyProfile && (
           <div className="row">
             <div className="col-md-4 col-lg-4 col-sm-12">
@@ -230,8 +247,8 @@ class UserPage extends Component {
           displayUser: user,
           loading: false,
           description: user.description ? user.description : "",
-          firstname: user.firstname ? user.firstname: "",
-          lastname: user.lastname ? user.lastname: "",
+          firstname: user.firstname ? user.firstname : "",
+          lastname: user.lastname ? user.lastname : "",
           editing: !user.description || !user.description.trim()
         });
       }
