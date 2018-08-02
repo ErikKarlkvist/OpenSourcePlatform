@@ -9,8 +9,17 @@ import "./resources/Styles/Main.css";
 import "./resources/Styles/Input.css";
 import "./resources/Styles/Buttons.css";
 import "./resources/Styles/HeaderMenu.css";
+const Title = "DNB Open Source"
 
 class App extends Component {
+  componentWillReceiveProps(nextProps) {
+    document.title = Title;
+  }
+
+  // gets called during the initial mount/render
+  componentDidMount() {
+    document.title = Title;
+  }
   render() {
     return <Routing />;
   }
