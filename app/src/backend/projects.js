@@ -191,6 +191,24 @@ export async function updateProject(projectData, id) {
   const thumbnailIds = [];
   const ownerIds = [];
 
+  //remove all old owners
+  //this is a bit whacky but it bugged completely before... should be optimised, really slow down uploading speed
+  const removeOwnersPromises = [];
+  for (let k = 0; k < oldOwners.length; k++) {
+    const oid = (k + 1).toString();
+    removeOwnersPromises.push(
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(id)
+        .collection("owners")
+        .doc(oid)
+        .delete()
+    );
+  }
+
+  await Promise.all(removeOwnersPromises);
+
   //update and create thumbnails
   for (let i = 0; i < thumbnails.length; i++) {
     thumbnails[i].createdAt = firebase.firestore.FieldValue.serverTimestamp();
@@ -246,23 +264,6 @@ export async function updateProject(projectData, id) {
       );
     }
   });
-
-  //remove extra no longer used owners
-  for(let k = 0; k < oldOwners.length; k++){
-    const oid = (k + 1).toString();
-    if (!ownerIds.includes(oid)) {
-      promises.push(
-        firebase
-          .firestore()
-          .collection("projects")
-          .doc(id)
-          .collection("owners")
-          .doc(oid)
-          .delete()
-      );
-    }
-  }
-    
 
   await Promise.all(promises);
   //reload all project on update
