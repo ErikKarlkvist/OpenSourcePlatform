@@ -14,7 +14,7 @@ const Container = props => {
 
 const Title = props => {
   const style = { paddingTop: "50px", color: "var(--dark-teal)" };
-  return <h3 style={style}>Attachments (optional)</h3>;
+  return <h3 style={style}>Posts (optional)</h3>;
 };
 
 const ThumbnailUpload = props => {
