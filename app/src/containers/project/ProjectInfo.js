@@ -134,7 +134,7 @@ class ProjectInfo extends Component {
               <Title>
                 {this.props.project.lookingFor.length <= 0
                   ? "Join us!"
-                  : "Looking for"}
+                  : "Seeking"}
               </Title>
             </Header>
             <Seeking lookingFor={this.props.project.lookingFor} />
