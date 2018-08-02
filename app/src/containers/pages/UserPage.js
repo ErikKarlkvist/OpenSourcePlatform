@@ -131,7 +131,8 @@ const UserInfo = props => {
             {props.description}
           </p>
         )}
-        {!props.isMyProfile && <Contact user={props.user} />}
+        {!props.isMyProfile &&
+          props.isLoggedIn && <Contact user={props.user} />}
 
         {props.isMyProfile && (
           <div className="row">
@@ -347,6 +348,7 @@ class UserPage extends Component {
               submitUser={this.submitUser}
               setEdit={this.setEdit}
               isMyProfile={this.state.isMyProfile}
+              isLoggedIn={this.state.isLoggedIn}
               receiveURL={this.receiveURL}
             />
 
