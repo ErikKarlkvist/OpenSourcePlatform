@@ -44,10 +44,14 @@ const Contact = props => {
   const ref = "mailto:" + props.user.email;
   return (
     <div>
-      <h2>Contact</h2>
-      <a href={ref} className="MenuItem">
-        {props.user.email}
-      </a>
+      {props.isLoggedIn && (
+        <div>
+          <h2>Contact</h2>
+          <a href={ref} className="MenuItem">
+            {props.user.email}
+          </a>
+        </div>
+      )}
     </div>
   );
 };
@@ -133,8 +137,6 @@ const UserInfo = props => {
             {props.description}
           </p>
         )}
-        {!props.isMyProfile &&
-          props.isLoggedIn && <Contact user={props.user} />}
 
         {props.isMyProfile && (
           <div className="row">
@@ -180,7 +182,7 @@ const UserInfo = props => {
             receiveURL={props.receiveURL}
           />
         )}
-        <Contact user={props.user} />
+        <Contact user={props.user} isLoggedIn={props.isLoggedIn} />
       </Small>
     </Container>
   );
