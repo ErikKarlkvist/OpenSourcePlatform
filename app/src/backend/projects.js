@@ -219,7 +219,7 @@ export async function updateProject(projectData, id) {
 
   //recreate owners
   for (let j = 0; j < owners.length; j++) {
-    const id = (j + 1).toString();
+    const oid = (j + 1).toString();
     ownerIds.push(id);
     promises.push(
       firebase
@@ -227,7 +227,7 @@ export async function updateProject(projectData, id) {
         .collection("projects")
         .doc(id)
         .collection("owners")
-        .doc(id)
+        .doc(oid)
         .set({ role: owners[j].role, userID: owners[j].userID })
     );
   }
@@ -248,19 +248,21 @@ export async function updateProject(projectData, id) {
   });
 
   //remove extra no longer used owners
-  oldOwners.forEach(owner => {
-    if (!oldOwners.includes(owner.id)) {
+  for(let k = 0; k < oldOwners.length; k++){
+    const oid = (k + 1).toString();
+    if (!ownerIds.includes(oid)) {
       promises.push(
         firebase
           .firestore()
           .collection("projects")
           .doc(id)
           .collection("owners")
-          .doc(owner.id)
+          .doc(oid)
           .delete()
       );
     }
-  });
+  }
+    
 
   await Promise.all(promises);
   //reload all project on update
