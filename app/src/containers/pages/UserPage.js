@@ -38,15 +38,17 @@ const Small = props => {
   return <div className={"col-md-5 col-sm-12 col-lg-5"}>{props.children}</div>;
 };
 const Contact = props => {
-  const mailContact = () => {
-    window.location = "mailto:" + props.user.email;
+  const style = {
+    marginLeft: "80px"
   };
+  const ref = "mailto:" + props.user.email;
   return (
-    <Container>
-      <Button style={{ width: "150px" }} onClick={mailContact}>
-        Send a mail to {props.user.firstname}
-      </Button>
-    </Container>
+    <div>
+      <h2>Contact</h2>
+      <a href={ref} className="MenuItem">
+        {props.user.email}
+      </a>
+    </div>
   );
 };
 
@@ -178,6 +180,7 @@ const UserInfo = props => {
             receiveURL={props.receiveURL}
           />
         )}
+        <Contact user={props.user} />
       </Small>
     </Container>
   );
