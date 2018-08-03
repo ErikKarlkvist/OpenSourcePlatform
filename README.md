@@ -25,12 +25,29 @@ This project uses react, node packet manager (npm) and firebase. You need to ins
   "messagingSenderId": "<SENDER_ID>"
 }
 ```
-
 Keep in mind that you have to replace all values with values from your firebase project. These values are found in the project overview page in the Firebase console. Once there, click "Add Firebase to your web app". If you do not recieve a "storageBucket" path, go to your project in firebase, select database from the menu and "create database". Make sure you select "Cloud Firestore" and then "test database" when creating the database.
 
 5.  Open the terminal and run npm start
 6.  A window will open in your default browser. If nothing happens, go to "localhost:3000" in your browser.
 7.  Happy coding!
+
+
+# Frameworks
+React - we use react to build the frontend and we’ve thus coded everything in javascript. Link: https://reactjs.org/ 
+Node & npm - react uses node and npm as packet managers, which is why we use it as well. Link: https://nodejs.org/en/ 
+Firebase - firebase and react is a great combo. Firebase comes with tons of built in functionality, and we have therefore currently no need for a separate server. All code we’ve written is directly written in the app. Link: https://firebase.google.com/ 
+
+# Libraries
+Npm has allowed us to use tons of open source libraries that are free to use. Following is a list of all libraries used with links to each library.
+[Bootstrap](https://getbootstrap.com/) 
+[Firebase (the node package)](https://www.npmjs.com/package/firebase) 
+[Raw-loader](https://www.npmjs.com/package/raw-loader) 
+[React-dom](https://www.npmjs.com/package/react-dom) 
+[React-markdown](https://github.com/rexxars/react-markdown) 
+[React-router-dom](https://www.npmjs.com/package/react-router-dom) 
+[React-scripts](https://www.npmjs.com/package/react-scripts)
+[React-spinners](https://www.npmjs.com/package/react-spinners)
+[React-tooltip](https://www.npmjs.com/package/react-tooltip)  
 
 # Generate mock data
 
@@ -57,3 +74,57 @@ Before you do this please make sure that the project is running and you've follo
 5.  Run the command "npm start"
 6.  Check that the data loads into your application on "localhost:3000".
 7.  Success!
+
+# Migrate to another database
+This is a bit complicated but can be done. Firstly you have to rewrite the “backend” inside the application. This can be found in “app/src/backend/”. You have to rewrite the following files to match the new database:
+* auth.js
+* projects.js
+* storage.js
+* users.js 
+The files “firebase.js” and “firebaseKeys.json” can be deleted if you migrate to another database. 
+
+It will also be necessary to change all the files in “app/src/containers/pages” since they check whether or not the user is logged in and handles each outcome appropriately in a function called “setupAuthStateChange”. This function must either be replaced with something else to check users authentication, or be rewritten.
+
+## User object
+The following data describes a user as a JSON and if the structure is not kept the app might break:
+
+```json
+{
+  description: String,
+  email: String,
+  firstname: String, 
+  id: String,
+  lastname: String,
+  profileImageURL: String
+}
+```
+
+## Project object
+The following data describes a project as a JSON and if the structure is not kept the app might break:
+```json
+{
+  description: String,
+  contactMail: String,
+  creator: String,
+  developers: [String],
+  gitURL: String,
+  headerImageURL: String,
+  id: String,
+  lookingFor: [String],
+  name: String,
+  production: Boolean,
+  readmeURL: String
+  owners: [{
+    role: String,
+    userID: String
+  }],
+  thumbnails: [{
+    createdAt: Date,
+    description: String,
+    name: String,
+    //image url
+    url: String
+  }]
+}
+```
+{
