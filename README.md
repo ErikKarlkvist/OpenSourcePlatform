@@ -88,7 +88,7 @@ It will also be necessary to change all the files in “app/src/containers/pages
 ## User object
 The following data describes a user as a JSON and if the structure is not kept the app might break:
 
-```json
+```javascript
 {
   "description": String,
   "email": String,
@@ -101,7 +101,7 @@ The following data describes a user as a JSON and if the structure is not kept t
 
 ## Project object
 The following data describes a project as a JSON and if the structure is not kept the app might break:
-```json
+```javascript
 {
   "description": String,
   "contactMail": String,
@@ -113,7 +113,7 @@ The following data describes a project as a JSON and if the structure is not kep
   "lookingFor": [String],
   "name": String,
   "production": Boolean,
-  "readmeURL": String
+  "readmeURL": String,
   "owners": [{
     "role": String,
     "userID": String
