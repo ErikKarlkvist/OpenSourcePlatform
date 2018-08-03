@@ -90,12 +90,12 @@ The following data describes a user as a JSON and if the structure is not kept t
 
 ```json
 {
-  description: String,
-  email: String,
-  firstname: String, 
-  id: String,
-  lastname: String,
-  profileImageURL: String
+  "description": String,
+  "email": String,
+  "firstname": String, 
+  "id": String,
+  "lastname": String,
+  "profileImageURL": String
 }
 ```
 
@@ -103,27 +103,27 @@ The following data describes a user as a JSON and if the structure is not kept t
 The following data describes a project as a JSON and if the structure is not kept the app might break:
 ```json
 {
-  description: String,
-  contactMail: String,
-  creator: String,
-  developers: [String],
-  gitURL: String,
-  headerImageURL: String,
-  id: String,
-  lookingFor: [String],
-  name: String,
-  production: Boolean,
-  readmeURL: String
-  owners: [{
-    role: String,
-    userID: String
+  "description": String,
+  "contactMail": String,
+  "creator": String,
+  "developers": [String],
+  "gitURL": String,
+  "headerImageURL": String,
+  "id": String,
+  "lookingFor": [String],
+  "name": String,
+  "production": Boolean,
+  "readmeURL": String
+  "owners": [{
+    "role": String,
+    "userID": String
   }],
-  thumbnails: [{
-    createdAt: Date,
-    description: String,
-    name: String,
+  "thumbnails": [{
+    "createdAt": Date,
+    "description": String,
+    "name":String,
     //image url
-    url: String
+    "url": String
   }]
 }
 ```
